@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="NewsReader">
+</Property><Property Name="Solution File" Value="D:\transfer\NewsReader.NET3\NewsReader.sln">
+</Property><Property Name="Date" Value="11 October 2012">
+</Property><Property Name="Time" Value="PM 18:45:11">
+</Property></Properties><Event ErrorLevel="0" Project="NewsReader" Source="NewsReader.vbproj" Description="Project file successfully backed up as D:\transfer\NewsReader.NET3\Backup\NewsReader.vbproj">
+</Event><Event ErrorLevel="0" Project="NewsReader" Source="NewsReader.vbproj.user" Description="Project user file successfully backed up as D:\transfer\NewsReader.NET3\Backup\NewsReader.vbproj.user">
+</Event><Event ErrorLevel="0" Project="NewsReader" Source="ArticleProcessing.vb" Description="File successfully backed up as D:\transfer\NewsReader.NET3\Backup\ArticleProcessing.vb">
+</Event><Event ErrorLevel="0" Project="NewsReader" Source="AssemblyInfo.vb" Description="File successfully backed up as D:\transfer\NewsReader.NET3\Backup\AssemblyInfo.vb">
+</Event><Event ErrorLevel="0" Project="NewsReader" Source="cArticleProcessing.vb" Description="File successfully backed up as D:\transfer\NewsReader.NET3\Backup\cArticleProcessing.vb">
+</Event><Event ErrorLevel="0" Project="NewsReader" Source="cBitmapProcessor.vb" Description="File successfully backed up as D:\transfer\NewsReader.NET3\Backup\cBitmapProcessor.vb">
+</Event><Event ErrorLevel="0" Project="NewsReader" Source="cNewsReader.vb" Description="File successfully backed up as D:\transfer\NewsReader.NET3\Backup\cNewsReader.vb">
+</Event><Event ErrorLevel="0" Project="NewsReader" Source="DataAccessInterface.vb" Description="File successfully backed up as D:\transfer\NewsReader.NET3\Backup\DataAccessInterface.vb">
+</Event><Event ErrorLevel="0" Project="NewsReader" Source="FRMContextMenu.Designer.vb" Description="File successfully backed up as D:\transfer\NewsReader.NET3\Backup\FRMContextMenu.Designer.vb">
+</Event><Event ErrorLevel="0" Project="NewsReader" Source="FRMContextMenu.vb" Description="File successfully backed up as D:\transfer\NewsReader.NET3\Backup\FRMContextMenu.vb">
+</Event><Event ErrorLevel="0" Project="NewsReader" Source="FRMGroupSelector.Designer.vb" Description="File successfully backed up as D:\transfer\NewsReader.NET3\Backup\FRMGroupSelector.Designer.vb">
+</Event><Event ErrorLevel="0" Project="NewsReader" Source="FRMGroupSelector.vb" Description="File successfully backed up as D:\transfer\NewsReader.NET3\Backup\FRMGroupSelector.vb">
+</Event><Event ErrorLevel="0" Project="NewsReader" Source="frmIgnoreList.Designer.vb" Description="File successfully backed up as D:\transfer\NewsReader.NET3\Backup\frmIgnoreList.Designer.vb">
+</Event><Event ErrorLevel="0" Project="NewsReader" Source="frmIgnoreList.vb" Description="File successfully backed up as D:\transfer\NewsReader.NET3\Backup\frmIgnoreList.vb">
+</Event><Event ErrorLevel="0" Project="NewsReader" Source="frmIMDBHolder.Designer.vb" Description="File successfully backed up as D:\transfer\NewsReader.NET3\Backup\frmIMDBHolder.Designer.vb">
+</Event><Event ErrorLevel="0" Project="NewsReader" Source="frmIMDBHolder.vb" Description="File successfully backed up as D:\transfer\NewsReader.NET3\Backup\frmIMDBHolder.vb">
+</Event><Event ErrorLevel="0" Project="NewsReader" Source="FRMMain.Designer.vb" Description="File successfully backed up as D:\transfer\NewsReader.NET3\Backup\FRMMain.Designer.vb">
+</Event><Event ErrorLevel="0" Project="NewsReader" Source="FRMMain.vb" Description="File successfully backed up as D:\transfer\NewsReader.NET3\Backup\FRMMain.vb">
+</Event><Event ErrorLevel="0" Project="NewsReader" Source="FRMOptions.Designer.vb" Description="File successfully backed up as D:\transfer\NewsReader.NET3\Backup\FRMOptions.Designer.vb">
+</Event><Event ErrorLevel="0" Project="NewsReader" Source="FRMOptions.vb" Description="File successfully backed up as D:\transfer\NewsReader.NET3\Backup\FRMOptions.vb">
+</Event><Event ErrorLevel="0" Project="NewsReader" Source="frmReaderHolder.Designer.vb" Description="File successfully backed up as D:\transfer\NewsReader.NET3\Backup\frmReaderHolder.Designer.vb">
+</Event><Event ErrorLevel="0" Project="NewsReader" Source="frmReaderHolder.vb" Description="File successfully backed up as D:\transfer\NewsReader.NET3\Backup\frmReaderHolder.vb">
+</Event><Event ErrorLevel="0" Project="NewsReader" Source="FRMViewFiles.Designer.vb" Description="File successfully backed up as D:\transfer\NewsReader.NET3\Backup\FRMViewFiles.Designer.vb">
+</Event><Event ErrorLevel="0" Project="NewsReader" Source="FRMViewFiles.vb" Description="File successfully backed up as D:\transfer\NewsReader.NET3\Backup\FRMViewFiles.vb">
+</Event><Event ErrorLevel="0" Project="NewsReader" Source="GlobalDBAccess.vb" Description="File successfully backed up as D:\transfer\NewsReader.NET3\Backup\GlobalDBAccess.vb">
+</Event><Event ErrorLevel="0" Project="NewsReader" Source="GlobalDeclarations.vb" Description="File successfully backed up as D:\transfer\NewsReader.NET3\Backup\GlobalDeclarations.vb">
+</Event><Event ErrorLevel="0" Project="NewsReader" Source="InterProjectFiles.vb" Description="File successfully backed up as D:\transfer\NewsReader.NET3\Backup\InterProjectFiles.vb">
+</Event><Event ErrorLevel="0" Project="NewsReader" Source="MDIMain.Designer.vb" Description="File successfully backed up as D:\transfer\NewsReader.NET3\Backup\MDIMain.Designer.vb">
+</Event><Event ErrorLevel="0" Project="NewsReader" Source="MDIMain.vb" Description="File successfully backed up as D:\transfer\NewsReader.NET3\Backup\MDIMain.vb">
+</Event><Event ErrorLevel="0" Project="NewsReader" Source="modTextDBEngine.vb" Description="File successfully backed up as D:\transfer\NewsReader.NET3\Backup\modTextDBEngine.vb">
+</Event><Event ErrorLevel="0" Project="NewsReader" Source="StringClass.vb" Description="File successfully backed up as D:\transfer\NewsReader.NET3\Backup\StringClass.vb">
+</Event><Event ErrorLevel="0" Project="NewsReader" Source="TemplateMain.vb" Description="File successfully backed up as D:\transfer\NewsReader.NET3\Backup\TemplateMain.vb">
+</Event><Event ErrorLevel="0" Project="NewsReader" Source="_UpgradeReport.htm" Description="File successfully backed up as D:\transfer\NewsReader.NET3\Backup\_UpgradeReport.htm">
+</Event><Event ErrorLevel="0" Project="NewsReader" Source="FRMContextMenu.resX" Description="File successfully backed up as D:\transfer\NewsReader.NET3\Backup\FRMContextMenu.resX">
+</Event><Event ErrorLevel="0" Project="NewsReader" Source="FRMGroupSelector.resX" Description="File successfully backed up as D:\transfer\NewsReader.NET3\Backup\FRMGroupSelector.resX">
+</Event><Event ErrorLevel="0" Project="NewsReader" Source="frmIgnoreList.resX" Description="File successfully backed up as D:\transfer\NewsReader.NET3\Backup\frmIgnoreList.resX">
+</Event><Event ErrorLevel="0" Project="NewsReader" Source="frmIMDBHolder.resX" Description="File successfully backed up as D:\transfer\NewsReader.NET3\Backup\frmIMDBHolder.resX">
+</Event><Event ErrorLevel="0" Project="NewsReader" Source="FRMMain.resX" Description="File successfully backed up as D:\transfer\NewsReader.NET3\Backup\FRMMain.resX">
+</Event><Event ErrorLevel="0" Project="NewsReader" Source="FRMOptions.resX" Description="File successfully backed up as D:\transfer\NewsReader.NET3\Backup\FRMOptions.resX">
+</Event><Event ErrorLevel="0" Project="NewsReader" Source="frmReaderHolder.resX" Description="File successfully backed up as D:\transfer\NewsReader.NET3\Backup\frmReaderHolder.resX">
+</Event><Event ErrorLevel="0" Project="NewsReader" Source="FRMViewFiles.resX" Description="File successfully backed up as D:\transfer\NewsReader.NET3\Backup\FRMViewFiles.resX">
+</Event><Event ErrorLevel="0" Project="NewsReader" Source="MDIMain.resX" Description="File successfully backed up as D:\transfer\NewsReader.NET3\Backup\MDIMain.resX">
+</Event><Event ErrorLevel="1" Project="NewsReader" Source="NewsReader.vbproj" Description="Your project is targeting .NET Framework 2.0 or 3.0. If your project uses assemblies requiring a newer .NET Framework, your project will fail to build. You can change the .NET Framework version by clicking Properties on the project menu and then selecting a new version in the '.NET Framework' dropdown box. (In Visual Basic, this is located on the Compile tab by clicking the 'Advanced Compiler Options...' button.)">
+</Event><Event ErrorLevel="0" Project="NewsReader" Source="NewsReader.vbproj" Description="Project converted successfully">
+</Event><Event ErrorLevel="3" Project="NewsReader" Source="NewsReader.vbproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="NewsReader" Source="NewsReader.vbproj" Description="Scan complete: Upgrade not required for project files.">
+</Event></UpgradeLog>
