@@ -1,0 +1,107 @@
+TheMiner
+END USER LICENSE AGREEMENT
+
+Software License Agreement for TheMiner
+PLEASE READ CAREFULLY: BY INSTALLING THE SOFTWARE (AS DEFINED BELOW), YOU (EITHER ON BEHALF OF YOURSELF AS AN INDIVIDUAL OR ON BEHALF OF AN ENTITY AS ITS AUTHORIZED REPRESENTATIVE) AGREE TO ALL OF THE TERMS OF THIS END USER LICENSE AGREEMENT REGARDING THE USE OF THE SOFTWARE.
+
+1) GRANT OF LICENSE:
+You may install this Software on your computer to experience TheMiner
+
+2) TITLE:
+You acknowledge that no title to the intellectual property in the Software is transferred to you. Title, ownership, rights, and intellectual property rights in and to the Software shall remain that of Sociodox. The Software is protected by copyright laws of the United States and international treaties.
+
+3) ANONYMOUS USAGE STATISTICS:
+You accept that TheMiner send anonymous information about the computer it's loaded on is submitted to Sociodox. This contains no personally identifiable information. The information submitted is:
+(a) Operating system and version
+(b) The make of the CPU, and number of CPUs present
+(c) The graphics card type and vendor name
+(d) Graphics card driver name and version (example: "nv4disp.dll 6.10.93.71")
+(e) Which graphics API is in use (example: "OpenGL 2.1" or "Direct3D 9.0c")
+(f) Amount of RAM used and GarbageCollection statistics
+(g) Current desktop resolution
+(h) Version of the TheMiner
+(i) A number describing whether running on Mac or Windows
+(j) Frequency and usage of the profilers used
+(k) File loaded average size and number
+
+3) DISTRIBUTION:
+You acknowledge that only Sociodox inc. and its designated distribution partners may distribute the TheMiner, without a special permission.
+
+4) CEASE OF DISTRIBUTION:
+In case Sociodox inc. and its designated distribution partners permanently cease to distribute the TheMiner, versions of the TheMiner that have previously been distributed by TheMiner become freely redistributable.
+
+5) DISCLAIMER OF WARRANTY:
+YOU AGREE THAT SOCIODOX INC. HAS MADE NO EXPRESS WARRANTIES, ORAL OR WRITTEN, TO YOU REGARDING THE PRODUCTS AND THAT THE PRODUCTS ARE BEING PROVIDED TO YOU 'AS IS' WITHOUT WARRANTY OF ANY KIND. SOCIODOX INC. DISCLAIMS ANY AND ALL OTHER WARRANTIES, WHETHER EXPRESSED, IMPLIED, OR STATUTORY. YOUR RIGHTS MAY VARY DEPENDING ON THE STATE IN WHICH YOU LIVE. SOCIODOX INC. SHALL NOT BE LIABLE FOR INDIRECT, INCIDENTAL, SPECIAL, COVER, RELIANCE, OR CONSEQUENTIAL DAMAGES RESULTING FROM THE USE OF THIS PRODUCT.
+
+6) LIMITATION OF LIABILITY:
+YOU USE THIS PROGRAM SOLELY AT YOUR OWN RISK. IN NO EVENT SHALL SOCIODOX INC.  BE LIABLE TO YOU FOR ANY DAMAGES, INCLUDING BUT NOT LIMITED TO ANY LOSS, OR OTHER INCIDENTAL, INDIRECT OR CONSEQUENTIAL DAMAGES OF ANY KIND ARISING OUT OF THE USE OF THE SOFTWARE, EVEN IF SOCIODOX INC. HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES. IN NO EVENT WILL SOCIODOX INC.  BE LIABLE FOR ANY CLAIM, WHETHER IN CONTRACT, TORT, OR ANY OTHER THEORY OF LIABILITY, EXCEED THE COST OF THE SOFTWARE. THIS LIMITATION SHALL APPLY TO CLAIMS OF PERSONAL INJURY TO THE EXTENT PERMITTED BY LAW.
+
+7) TERMINATION:
+This Agreement shall terminate automatically if you fail to comply with the limitations described in this Agreement. No notice shall be required to effectuate such termination. Upon termination, you must remove and destroy all copies of the Software.
+
+8) MISCELLANEOUS:
+Severability: In the event of invalidity of any provision of this Agreement, the parties agree that such invalidity shall not affect the validity of the remaining portions of this Agreement.
+Export: You agree that you will not export or re-export the Software outside of the jurisdiction in which you obtained it without the appropriate United States or foreign government licenses.
+Governing Law: This Agreement will be governed by the laws of the State of Denmark as they are applied to agreements between Denmark residents entered into and to be performed entirely within Denmark. The United Nations Convention on Contracts for the International Sale of Goods is specifically disclaimed.
+Entire Agreement: You agree that this is the entire agreement between you and Sociodox inc.,  which supersedes any prior agreement, whether written or oral, and all other communications between Sociodox inc. and you relating to the subject matter of this Agreement.
+Reservation of rights: All rights not expressly granted in this Agreement are reserved by Sociodox inc.
+Derivative work: Whether you are licensing the Software as an individual or on behalf of an entity, you may not: (a) reverse engineer, decompile, or disassemble the Software or attempt to discover the source code; (b) modify, or create derivative works based upon, the Software in whole or in part without the express written consent of Sociodox inc. (c) distribute copies of the Software; (d) remove any proprietary notices or labels on the Software; (e) resell, lease, rent, transfer, sublicense, or otherwise transfer rights to the Software.
+
+
+THE MINER CONTAINS THE FOLLOWING THIRD PARTY LIBRARIES:
+
+Google Analytics as3 implementation
+Copyright (c) 2008 Adobe System inc. 2008 Google inc.
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+http://www.apache.org/licenses/LICENSE-2.0
+Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+
+MonsterDebugger client
+Copyright (c) 2011 De Monsters
+This program is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.
+see <http://www.gnu.org/licenses/>.
+
+Flash Console
+Copyright (c) 2008-2010 Lu Aye Oo
+http://code.google.com/p/flash-console/
+This software is provided 'as-is', without any express or implied
+warranty.  In no event will the authors be held liable for any damages
+arising from the use of this software.
+Permission is granted to anyone to use this software for any purpose,
+including commercial applications, and to alter it and redistribute it
+freely, subject to the following restrictions:
+1. The origin of this software must not be misrepresented; you must not
+claim that you wrote the original software. If you use this software
+in a product, an acknowledgment in the product documentation would be
+appreciated but is not required.
+2. Altered source versions must be plainly marked as such, and must not be
+misrepresented as being the original software.
+3. This notice may not be removed or altered from any source distribution.
+
+Bloody Crypto
+The MIT License
+
+
+Copyright (c) 2010 Nick <BlooDHounD> Ryzhy / blooddy@tut.by / www.blooddy.by
+
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.

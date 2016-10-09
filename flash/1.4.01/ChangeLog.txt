@@ -1,0 +1,30 @@
+Version: 1.4.00
+*Added* FlashConsole tool to main interface
+*Added* Log to FlashConsole in TheMiner.Log("text", Channel);
+*Added* Inspect to FlashConsole in TheMiner.InspectObject(aObject, Channel);
+*Added* Save memory snapshot from Command Pie-Line
+*Added* Save Performance snapshot from Command Pie-Line
+*Added* Search Filter in memory/Performance/Loader profiler can now be saved
+				To enable auto-saving, enable "Filter Save" in the Configuration Tab. 
+*Added* Go to URL for any file loaded with URLLoader or Flash display Loader
+*Added* Save Raw SWF files being loaded, "after" decryption if there was.
+*Added* User Events (ex: TheMiner.AddBasicUserEvent("Foo", "54"); )
+*Added* Average time per frame (in micro) in Performance Profiler
+*Added* Average instanciation per frame in Performance Profiler
+*Added* Columns title in Memory Snapshot
+*Added* Columns title in Performance snapshot
+*Added* Columns title in Samples Dump
+*Added* Columns title in Trace Dump
+*Added* Minimize mode include FPS and Mem
+
+*Updated* Filter box Visibility
+	
+*Fix* Localization code for Dutch was "de" where in fact it's "nl"
+*Fix* Minimize at start not working
+*Fix* Reduced Skin to minimum (images and icons)
+*Fix* Bad commulative time for recursive functions
+*Fix* Bad ending of sample raw data dump
+	
+BugBase-FIX: 0000039 : Crash with SharedObjectLoading : http://www.sociodox.com/TheMinerBugBase/view.php?id=39
+BugBase-FIX: 0000040 : Crash with SWC embedding : http://www.sociodox.com/TheMinerBugBase/view.php?id=40
+*Fix* extended modularity for further updates (mobile / other platforms)
