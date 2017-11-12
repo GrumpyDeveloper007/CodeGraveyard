@@ -1,0 +1,24 @@
+# Compilers and options:
+
+MIDASDIR = ..\..
+LIBDIR = $(MIDASDIR)\lib
+MIDASINCS = $(MIDASDIR)\src
+MIDASLIB = $(LIBDIR)\midasdos.lib
+
+CC = wcc386
+CCOPTS = -w3 -d2 -zdp -zu -bt=dos -d__WC32__ -i$(MIDASINCS) #-dNOTIMER #-dDEBUG
+#CCOPTS = -w3 -zdp -zu -d__WC32__ -i$(MIDASINCS) -dDEBUG -oneatx -s #-dNOTIMER
+ASM = tasm
+ASMOPTS = -UT310 -p -ml -m9 -zi -d__WC32__ #-dDEBUG
+
+LINKCMD = midp.wlk
+
+
+midp.exe :      midp.obj midpdisp.obj $(MIDASLIB)
+        wlink libpath $(LIBDIR) @$(LINKCMD)
+
+midp.obj : midp.c midp.h
+        $(CC) midp.c $(CCOPTS)
+
+midpdisp.obj : midpdisp.c midp.h
+	$(CC) midpdisp.c $(CCOPTS)

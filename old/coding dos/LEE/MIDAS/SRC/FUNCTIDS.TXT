@@ -1,0 +1,340 @@
+	MIDAS Sound System function ID numbers
+	--------------------------------------
+
+$Id: functids.txt,v 1.5 1997/01/16 18:24:38 pekangas Exp $
+
+100 dmaAllocBuffer
+101 dmaFreeBuffer
+102 dmaPlayBuffer
+103 dmaStop
+104 dmaGetPos
+
+200 dsmInit
+201 dsmClose,
+202 dsmGetMixRate,
+203 dsmOpenChannels,
+204 dsmCalcVolTable,
+205 dsmCloseChannels,
+206 dsmClearChannels,
+207 dsmMute,
+208 dsmPause,
+209 dsmSetMasterVolume,
+210 dsmGetMasterVolume,
+211 dsmSetAmplification,
+212 dsmGetAmplification,
+213 dsmPlaySound,
+214 dsmReleaseSound,
+215 dsmStopSound,
+216 dsmSetRate,
+217 dsmGetRate,
+218 dsmSetVolume,
+219 dsmGetVolume,
+220 dsmSetSample,
+221 dsmGetSample,
+222 dsmChangeSample,
+223 dsmSetPosition,
+224 dsmGetPosition,
+225 dsmGetDirection
+226 dsmSetPanning,
+227 dsmGetPanning,
+228 dsmMuteChannel,
+229 dsmAddSample,
+230 dsmRemoveSample,
+231 dsmMixData
+232 dsmMix
+233 dsmMixMoNormal
+234 dsmMixStNormal
+235 dsmClearBuffer
+236 dsmStartStream
+237 dsmStopStream
+238 dsmSetLoopCallback
+239 dsmSetStreamWritePosition
+
+300 emsInit
+301 emsClose
+302 emsAlloc
+303 emsFree
+304 emsMap
+305 emsSave
+306 emsRestore
+307 emsAllocPages
+308 emsFreePages
+309 emsSafe
+310 emsStopSafe
+
+400 memAlloc
+401 memFree
+
+500 modIdentify
+501 modInit
+502 modClose
+503 modLoadModule
+504 modFreeModule
+505 modPlayModule
+506 modStopModule
+507 modSetUpdRateFunct
+508 modPlay
+509 modSetPosition
+510 modGetInformation
+511 modConvertSample
+512 modConvertPattern
+
+600 s3mIdentify
+601 s3mInit
+602 s3mClose
+603 s3mLoadModule
+604 s3mFreeModule
+605 s3mPlayModule
+606 s3mStopModule
+607 s3mSetUpdRateFunct
+608 s3mPlay
+609 s3mSetPosition
+610 s3mGetInformation
+611 s3mDetectChannels
+612 s3mFindUsedInsts
+
+700 mtmIdentify
+701 mtmInit
+702 mtmClose
+703 mtmLoadModule
+704 mtmFreeModule
+705 mtmPlayModule
+706 mtmStopModule
+707 mtmSetUpdRateFunct
+708 mtmPlay
+709 mtmSetPosition
+710 mtmGetInformation
+711 mtmConvertSample
+712 mtmConvertTrack
+
+1000 tmrGetScrSync
+1001 tmrInit
+1002 tmrClose
+1003 tmrPlaySD
+1004 tmrStopSD
+1005 tmrPlayMusic
+1006 tmrStopMusic
+1007 tmrSyncScr
+1008 tmrStopScrSync
+1009 tmrSetUpdRate
+
+1100 vuInit
+1101 vuClose
+1102 vuPrepare
+1103 vuRemove
+1104 vuMeter
+
+1200 rfOpen
+1201 rfClose
+1202 rfGetSize
+1203 rfRead
+1204 rfWrite
+1205 rfSeek
+1206 rfGetPosition
+
+1300 fileOpen
+1301 fileClose
+1302 fileGetSize
+1303 fileRead
+1304 fileWrite
+1305 fileSeek
+1306 fileGetPosition
+
+1400 dpmiAllocDescriptor
+1401 dpmiFreeDescriptor
+1402 dpmiSetSegmentBase
+1403 dpmiSetSegmentLimit
+1404 dpmiSetSegmentAccessRights
+1405 dpmiCreateCodeAlias
+1406 dpmiAllocDOSMem
+1407 dpmiFreeDOSMem
+1408 dpmiRealModeInt
+1409 dpmiGetSegmentBase
+
+1500 gmpInit
+1501 gmpClose
+1502 gmpSetUpdRateFunct
+1503 gmpPlaySong
+1504 gmpStopSong
+1505 gmpPlay
+1506 gmpSetTempo
+1507 gmpPlayPattern
+1508 gmpHandleCommands
+1509 gmpNotePeriod
+1510 gmpPlayNote
+1511 gmpPeriodRate
+1512 gmpFreeModule
+1513 gmpLoadMOD
+1514 gmpSetPeriod
+1515 gmpChangePeriod
+1516 gmpSetVolume
+1517 gmpChangeVolume
+1518 gmpNewNote
+1519 gmpLoadXM
+1520 gmpRunEnvelopes
+1521 gmpLoadS3M
+1522 gmpSetPanning
+1523 gmpSetSyncCallback
+
+1600 fxInit
+1601 fxClose
+1602 fxLoadRawSample
+1603 fxFreeSample
+1604 fxSetAutoChannels
+1605 fxPlaySample
+1606 fxStopSample
+1607 fxSetSampleRate
+1608 fxSetSampleVolume
+1609 fxSetSamplePanning
+1610 fxSetSamplePriority
+
+1700 strInit
+1701 strClose
+1702 strPlayStreamFile
+1703 strPlayStreamPolling
+1704 strPlayStreamCallback
+1705 strStopStream
+1706 strFeedStreamData
+1707 strSetStreamVolume
+1708 strSetStreamPanning
+1709 strIsStreamFinished
+1710 strSetStreamRate
+
+2000 gusDetect
+2001 gusInit
+2002 gusClose
+2003 gusGetMixRate
+2004 gusGetMode
+2005 gusOpenChans
+2006 gusCloseChans
+2007 gusClearChans
+2008 gusMute
+2009 gusPause
+2010 gusSetMasterVolume
+2011 gusGetMasterVolume
+2012 gusSetAmplification
+2013 gusGetAmplification
+2014 gusPlaySound
+2015 gusReleaseSound
+2016 gusStopSound
+2017 gusSetRate
+2018 gusGetRate
+2019 gusSetVolume
+2020 gusGetVolume
+2021 gusSetSample
+2022 gusGetSample
+2023 gusSetPosition
+2024 gusGetPosition
+2025 gusGetDirection
+2026 gusSetPanning
+2027 gusGetPanning
+2028 gusMuteChannel
+2029 gusAddSample
+2030 gusRemoveSample
+2031 gusSetUpdRate
+2032 gusStartPlay
+2033 gusPlay
+2034 gusInitHeap
+2035 gusFreeHeap
+2036 gusMalloc
+2037 gusFree
+2038 gusAllocBlock
+2039 gusCoreFree
+
+2100 pasDetect
+2101 pasInit
+2102 pasClose
+
+2200 wssDetect
+2201 wssInit
+2202 wssClose
+
+2300 sbDetect
+2301 sbInit
+2302 sbClose
+
+2400 winwDetect
+2401 winwInit
+2402 winwClose
+2403 winwGetMode
+2404 winwOpenChannels
+2405 winwSetAmplification
+2406 winwGetAmplification
+2407 winwSetUpdRate
+2408 winwStartPlay
+2409 winwPlay
+
+2500 ossDetect
+2501 ossInit
+2502 ossClose
+2503 ossGetMode
+2504 ossOpenChannels
+2505 ossSetAmplification
+2506 ossGetAmplification
+2507 ossSetUpdRate
+2508 ossStartPlay
+2509 ossPlay
+
+2600 gdcDetect
+2601 gdcInit
+2602 gdcClose
+2603 gdcStartPlay
+
+2900 nsndDetect
+2901 nsndInit
+2902 nsndClose
+2903 nsndGetMixRate
+2904 nsndGetMode
+2905 nsndOpenChans
+2906 nsndCloseChans
+2907 nsndClearChans
+2908 nsndMute
+2909 nsndPause
+2910 nsndSetMaster
+2911 nsndPlaySound
+2912 nsndStopSound
+2913 nsndSetRate
+2914 nsndGetRate
+2915 nsndSetVol
+2916 nsndSetInst
+2917 nsndSetPos
+2918 nsndGetPos
+2919 nsndSetPanning
+2920 nsndGetPanning
+2921 nsndMuteChannel
+2922 nsndAddInst
+2923 nsndRemInst
+2924 nsndSetUpdRate
+2925 nsndPlay
+2926 nsndGetMasterVolume
+2927 nsndGetVolume
+2928 nsndGetInstrument
+2929 nsndStartPlay
+2930 nsndSetAmplification
+2931 nsndGetAmplification
+
+3000 mixsdInit
+3001 mixsdClose
+3002 mixsdGetMode
+3003 mixsdOpenChannels
+3004 mixsdSetAmplification
+3005 mixsdGetAmplification
+3006 mixsdSetUpdRate
+3007 mixsdStartPlay
+3008 mixsdPlay
+
+$Log: functids.txt,v $
+Revision 1.5  1997/01/16 18:24:38  pekangas
+Updated
+
+Revision 1.4  1996/09/22 23:16:12  pekangas
+Updated to include all functions
+
+Revision 1.3  1996/06/26 19:15:47  pekangas
+Added dsmSetLoopCallback
+
+Revision 1.2  1996/05/26 17:49:05  pekangas
+Added dsmStreamStart, dsmStreamStop and WinWave IDs (oops)
+
+Revision 1.1  1996/05/22 20:49:33  pekangas
+Initial revision

@@ -1,0 +1,5 @@
+..\vs2m\source\ch12\vbuf.OBJ
+$SCW$.EXE
+NUL
+ LIBW.LIB COMMDLG.LIB SHELL.LIB
+TEST.DEF

@@ -1,0 +1,29 @@
+# MIDAS Sound System directory:
+
+MIDASDIR = ..\..
+MIDASINCS = $(MIDASDIR)\src
+MIDASLIB = $(MIDASDIR)\lib\midasdos.lib
+
+# Compilers and options:
+
+CC = wcc386
+CL = wcl386
+
+# Maximum optimization for speed:
+CCOPTS = -w3 -dDEBUG -5r -fpi -oneatx -s -i$(MIDASINCS) -zdp -zu -d__WC32__
+CLOPTS = $(CCOPTS)
+
+ASM = tasm
+ASMOPTS = -UT310 -p -ml -m9 -zi -d__WC32__ -l -i$(MIDASINCS)
+
+
+all :           demo.exe miniplay.exe
+
+demo.exe :      demo.obj $(MIDASLIB)
+        wlink @demo.wlk library $(MIDASLIB)
+
+demo.obj : demo.c
+        $(CC) demo.c $(CCOPTS)
+
+miniplay.exe :	miniplay.c $(MIDASLIB)
+	$(CL) miniplay.c $(MIDASLIB) $(CLOPTS)	

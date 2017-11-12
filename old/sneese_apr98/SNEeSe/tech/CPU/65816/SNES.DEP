@@ -1,0 +1,23 @@
+d:\emulator\bin\adrsmode.OBJ: \
+	source\adrsmode.c 
+d:\emulator\bin\cpu.OBJ: \
+	source\cpu.c 
+d:\emulator\bin\instr.OBJ: \
+	source\instr.c 
+d:\emulator\bin\main.OBJ: \
+	source\main.c 
+d:\emulator\bin\memory.OBJ: \
+	source\memory.c 
+d:\emulator\bin\utils.OBJ: \
+	source\utils.c 
+d:\emulator\bin\vars.OBJ: \
+	source\vars.c 
+d:\emulator\bin\opcodes.OBJ: \
+	source\opcodes.c 
+d:\emulator\bin\adrmode.OBJ: \
+	source\adrmode.c 
+d:\emulator\bin\mem.OBJ: \
+	c:\sc\src\ctools\mem.c \
+	c:\sc\src\ctools\mem.h
+d:\emulator\bin\cart.OBJ: \
+	source\cart.c 

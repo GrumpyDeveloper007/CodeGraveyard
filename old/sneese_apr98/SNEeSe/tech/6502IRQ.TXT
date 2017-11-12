@@ -1,0 +1,41 @@
+6502 Microprocessor Interrupts (IRQ, NMI, BRK) Description
+
+IRQ: An interrupt of this type occurs when the active low pin, *IRQ, goes 
+to a logic LO (0) for a period of at least six clock cycles but no more 
+than the execution time of the interrupt service routine.  After 
+triggering the interrupt the line must be restored to its normal HI (1) 
+state.
+
+If the Interrupt Disable Flag (I) of the Processor Status Register (P) is 
+clear and an IRQ interrupt is recognized, the following will occur:
+  - The current executing instruction is completed and the 16-bit Program 
+Counter (PC) is updated to point to the next instruction.
+  - High-byte of Program Counter (PCH) is pushed onto the stack, and 
+accordingly the stack pointer (SP) is decremented
+  - Low-byte PCL is pushed onto the stack
+  - P-register is pushed onto the stack
+  - I-flag of P-register is set to prevent further interrupts from occuring
+  - PC is loaded with IRQ vector ($FFFE) so that PCL=$FFFE and PCH=$FFFF
+  - Interrupt Service Routine executes
+
+After the interrupt routine terminates with RTI:
+  - P-register is pulled from the stack, clearing I-flag in the process 
+(SP of course increments before pull)
+  - PCL is pulled off of the stack
+  - PCH is pulled off of the stack
+  - Execution of the interrupted program continues with the next instruction
+
+NMI: Unlike IRQ which is level-triggered, NMI is edge-triggered and an 
+interrupt of this type will occur when its pin, *NMI, changes state from 
+HI to LO.
+
+Unlike IRQ, NMI cannot be masked by the I-flag (SEI).  NMI vector is 
+($FFFA), and functions like IRQ otherwise.
+
+BRK: The Software Interrupt
+
+The BRK instruction causes the 6502 to execute the IRQ routine.  It sets 
+the B (break) flag in P-register which is cleared after RTI.  BRK cannot 
+be diabled by setting I-flag in P-register.  Quirk:  on return from IRQ 
+routine after BRK, PC will contain address of BRK+2, even though BRK is 
+only one byte.  Use a NOP or other BRK or single byte to fill this gap.

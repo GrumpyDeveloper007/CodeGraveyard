@@ -1,0 +1,130 @@
+10 PRINTER IS 1
+20 PRINT "This programme calculates the Reach Factor and Dump Height for a given set of"
+30 PRINT "Cut Dimensions, and the Boom Head Load for the bucket size needed to give the"
+40 PRINT "required output."
+50 DEG
+60 OPTION BASE 0
+70 DIM M(6,5)
+80 DATA 9.6,6.75,10.9,120,84,40,15.3,9.15,15.3,184,128.8,45,13.55,11.44,20.88,184,128.8,50,13.55,11.44,20.88,184,128.8,50,13,55,11.44,20.88,204,142.8,55
+90 DATA 16.2,15,22.25,222,155.4,65,16.2,15,22.25,222,155.4,65
+100 READ M(*)
+110 DIM N(6,3,2,1)
+120 DATA 37,18.4,39.5,15.2,41.5,12,43,22.8,45.5,19.5,48,15.6,48.5,29.2,51.5,25.3,54.5,20.6,0,0,0,0,0,0,51.6,26.1,54.7,22.1,57.4,17.8,59.3,33.1,62.9,28.3,66.1,
+130 DATA 23.3,66.9,41,71.1,35.6,74.7,29.9,74.6,47,79.3,41.3,83.4,34.9,66.7,41.6,70.9,36,74.7,30.2,74.3,48,79.1,41.8,83.3,35.2,0,0,0,0,0,0,0,0,0,0,0,0,64,34.4,
+140 DATA 0,0,70,25.5,72.5,40.6,0,0,79,32.2,81,48.1,0,0,88,38.2,85,52.1,0,0,92.8,40.8,64,33.4,0,0,70,24.8,72.5,39.9,0,0,79,30.9,81,46.8,0,0,88,36.4,85,50.3,0,
+150 DATA 0,92.8,39.3,81,43,0,0,88,32,87,47,0,0,94.5,36,93,52,0,0,101,40,0,0,0,0,0,0,81,42.3,0,0,88,31.9,87,47,0,0,94.5,35.8,93,51.7,0,0,101,39.5,0,0,0,0,0,0
+160 READ N(*)
+170 DIM Lip(82)
+180 DATA 0,0,0,0,0,0,0,0,80,85,85,85,85,96,100,100,105,105,105,110,110,110,115,115,115,120,120,120,125,125,130,130,130,130,135,135,135,135,135,140,140,
+190 DATA 140,145,145,145,150,150,150,150,150,155,155,155,155,155,155,160,160,160,160,160,160,165,165,165,165,165,170,170,170,170,170,170,170,170,180,180,180,
+200 DATA 180,180,180,180
+210 READ Lip(*)
+220 INPUT "Date ?",Date$
+230 INPUT "Total Depth of Overburden (M) ?",O
+240 INPUT "Slope or Angle or Highwall ?",As
+250 IF As>40 THEN LET A=TAN(As)
+260 IF As<40 THEN LET A=As
+270 INPUT "Slope or Angle of Seam end ?",Ds
+280 IF Ds=90 THEN 320
+290 IF Ds>40 AND Ds<90 THEN 340
+300 IF Ds<40 THEN LET D=Ds
+310 GOTO 350
+320 D=9.E+99
+330 GOTO 350
+340 D=TAN(Ds)
+350 INPUT "Angle of Seam to Horizontal ? '-' angle if seam dips under Machine",La
+360 If La=0 THEN 400
+370 IF La>0 THEN LET L=TAN(La)
+380 If La<0 THEN LET L=TAN(La)
+390 GOTO 410
+400 LET L=La
+410 INPUT "Slope or Angle of Spoil Heap ?",Ca
+420 IF Ca>10 THEN LET C=TAN(Ca)
+430 IF Ca<10 THEN LET C=Ca
+440 INPUT "Swell of Spoil % ?",Si
+450 S=Si/100+1
+460 INPUT "Thickness of Seam (M) ?",T
+470 INPUT "Width of Road on Seam (M) ? Enter 0 if no Road",Rs
+480 INPUT "Width of Road on Pit Bottom (M) ? Enter 0 if no Road",Rp
+490 INPUT "Width of Cut (M) ?",W
+500 INPUT "Height of Dragline Bench (M) ?",B
+510 INPUT "Is calculation for Bucket Size required ? Enter Y or N",Bs$
+520 INPUT "Is a Key Cut required ? Enter Y or N ,K$
+550 IF Bs$="N" THEN 830
+580 INPUT "Machine Size W ?",S$
+590 INPUT "Weight of Spoil Loose (kg/cu.m) ?",Sw
+600 INPUT "Annual Output required (BCM) ?",Op
+610 INPUT "Annual Operating Hours ?",Oh
+620 INPUT "Machine Availablity % ?",Av
+630 INPUT "Machine Utilisation % ?",Ut
+640 INPUT "Bucket Fill Factor % ?",Bf
+650 INPUT "Bucket Type ? Enter MED or HSL or HDL or HDS or HDH",Bt$
+660 Bkt=PROUND((Op*((B*M(X,5))+(O-B)*M(X,5)*1.2.)/O*S*278)/(Oh*Av*Ut*Bf)/.76455,0)
+670 Cm=PROUND(Bkt*.76455,-1)
+680 IF Bkt>12 THEN 720
+681 PRINT " "
+682 PRINT USING "K,K,K";"Bucket Size ",Bkt," Cu.Yd."
+690 INPUT "Empty Bucket Weight (Tonnes) ?",Be
+700 Bh1=PROUND(Cm*Sw/1000+Be,-2)
+710 GOTO 830
+720 IF Bt$="MED" AND Bkt<64 THEN LET Wt=1.115
+730 IF Bt$="MED" AND Bkt>63 THEN LET Bt$="HSL"
+740 IF Bt$="HSL" AND Bke<64 THEN LET Wt=1.258
+750 IF Bt$="HSL" AND Bkt>63 THEN LET Wt=1.189
+760 IF Bt$="HDL" AND Bkt<45 THEN LET Wt=1.314
+770 IF Bt$="HDL" AND Bkt>44 THEN LET Wt=1.335
+780 IF Bt$="HDH" AND Bkt<45 THEN LET Bt$="HDS"
+790 IF BT$="HDS" AND Bkt<45 THEN LET Wt=1.356
+800 IF Bt$="HDS" AND Bkt>44 THEN LET Wt=1.379
+810 IF Bt$="HDH" AND Bkt>44 THEN LET Wt=1.433
+820 Bh1=PROUND(Cm*(Wt+Sw/1000),-2)
+830 IF K$="N" THEN 880
+840 Kb=Lip(Bkt)*.0508
+850 Kt=Kb+B/(A-L)*2
+860 Ks=(Kb+Kt)/2*B*S
+870 GOTO 890
+880 Ks0
+890 Rsp=O*S/(C+L)-W/4*(C-L^2/C)/(C+L)
+900 Hsp=O*S*W/4*C*(1-L^2/C^2)
+910 IF B=O THEN 940
+920 Cs=(O-B)*W*S
+930 GOTO 950
+940 Cs=0
+950 Rf=PROUND(Rsp+B/(A-L)+T/(D-L)+Rs+Rp,-1)
+960 Dh=PROUND(Hsp-B-T-Rf*L-Rs*L-Rp*L,-1)
+970 PRINT USING "16X,K";"Reach Factors, Dump Heights and Boom Head Loads"
+980 PRINT "Boom"
+990 PRINT USING "K,27X,K";"Angle","Boom Lenghts"
+1000 PRINT "W700D/E     43.0               50.4               57.8"
+1010 PRINT " 40   30.25 18.4 38.56   36.25 22.8 31.76   41.75 29.2 25.4"
+1020 PRINT " 35   32.75 15.2 36.3    38.75 19.5 29.47   44.75 25.3 24.0"
+1030 PRINT " 30   34.75 12.0 34.03   41.25 15.6 27.21   47.75 20.6 22.68"
+1040 PRINT "W1000	58.0		68.0			78.0		88.0"
+1050 PRINT " 40	  42.45 26.1 59.0    50.15 33.1 50.0    57.75 41.0 40.8      65.45 47.0 34.0"
+1060 PRINT " 35   45.55 22.1 55.3    53.75 28.3 45.36   61.95 35.6 38.6      70.15 41.3 31.7"
+1070 PRINT " 30   48.25 17.8 52.6    56.95 23.3 42.2    65.55 29.9 36.3      74.25 34.9 30.0"
+1080 PRINT "W1700       80.0		90.0"
+1090 PRINT " 40   55.26 41.6 87.0    62.86 48.0 73.0"
+1100 PRINT " 35   59.46 36.0 79.5    67.66 41.8 65.0"
+1110 PRINT " 30   63.26 30.2 73.0    71.86 35.2 58.5"
+1120 PRINT "w2000	74.6		85.1			95.6		100.85"
+1130 PRINT " 38   52.56 33.4 102.1   61.06 40.6 98.4	69.56 48.1 83.5	     73.56 50.3 75.5"
+1140 PRINT " 30   58.56 25.5 102.1   67.56 32.2 86.2    76.56 38.2 77.0      81.36 39.3 67.8"
+1150 PRINT "W2100 	74.6     	85.1			95.6    	100.85"
+1160 PRINT " 38   52.56 33.4 114.0   61.06 39.9 106.0   69.56 46.8 98.5      73.56 50.3 95.0"
+1170 PRINT " 30   58.56 24.8 108.5   67.56 30.9 100.0   76.56 36.4 92.0      81.36 39.3 88.0"
+1180 PRINT "W3000       90.5		98.0			105.5		"
+1190 PRINT " 38   66.00 43.0 158.58  72.00 467.0 147.42 78.00 52.0 137.71"
+1200 PRINT " 30   73.00 32.0 146.06  79.50  36.0 136.53 86.00 40.0 127.0"
+1210 PRINT "W3100       90.5		98.0			105.5"
+1220 PRINT " 38	  66.00 42.3 181.4   72.00 47.0 167.8   78.00 51.7 154.2"
+1230 PRINT " 30   73.00 31.9 165.5   79.50 35.8 150.6   86.00 39.5 136.1"
+1240 PRINT " "
+1250 IF Bs$="N" THEN 1310
+1260 PRINT USING "3X,K,4D.D,K,4X,K,3D.D,4X,K,4D.DD,K";"Reach Factor",Rf," M","Dump Height",Dh," M","Boom Head Load",Bh1," Tonnes"
+1270 PRINT " "
+1280 PRINT USING "22X,K,3D,K,3D.D,K,K";"Bucket -",Bkt," cu yd -",Cm," cu m -",Bts
+1290 PRINT " "
+1300 GOTO 1330
+1310 PRINT USING "16X,K,4D.D,K,10X,K,3K.D,K";"Reach Factor",Rf," M","Dump Height",Dh," M"
+9999 END

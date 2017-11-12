@@ -1,0 +1,300 @@
+
+'4060 VIEWPORT 11, 111, 2, 72
+4080 WINDOW 0, m(x, 3), 0, m(x, 4)
+4090 CSIZE 3.5, 0.6
+4100 If L < 0 Then GoTo 4140
+4110 Move 0, m(x, 3) * L + 0.21 * m(x, 4)
+4120 DRAW m(x, 3), 0.21 * m(x, 4)
+4130 GoTo 4160
+4140 Move 0, 0.21 * m(x, 4)
+4150 DRAW m(x, 3), -1 * m(x, 3) * L + 0.21 * m(x, 4)
+4160 HBL = Abs(m(x, 3) / 2 * L) + 0.21 * m(x, 4)
+4170 Move m(x, 3) / 2 + RP / 2, HBL - RP / 2 * L
+4180 DRAW m(x, 3) / 2 + RSP + RP / 2, HBL + HSP - RP / 2 * L
+4190 DRAW m(x, 3) / 2 + RSP + RP / 2 + (W + (W * Sin(Atn(L))) / C) / 2, HBL + HSP - (W + (W * Sin(Atn(L))) / C) / 2 * C - RP / 2 * L
+4200 If br$ = "N" Then GoTo 4300
+4210 Move m(x, 3) / 2 - T / (D - L) - RS - B / (A - L), HBL + T + RS * L + B
+4220 DRAW m(x, 3) / 2 - T / (D - L) - RS - B / (A - L) + brl, HBL + T + RS * L + B
+4230 DRAW m(x, 3) / 2 + bb / 2, HBL + bb / 2 * (C - L)
+'4240 LINE TYPE 4
+4250 If bb > W Then GoTo 4280
+4260 DRAW m(x, 3) / 2 + bb, HBL - bb * L
+4270 GoTo 4290
+4280 DRAW m(x, 3) / 2 + W + (bb - W) / 2, HBL - W * L + (bb - W) / 2 * (C - L)
+'4290 LINE TYPE 1
+4300 Move m(x, 3) / 2 + W + RP / 2, HBL - W * L - RP / 2 * L
+4310 DRAW m(x, 3) / 2 + W + RSP + RP / 2, HBL - W * L + HSP - RP / 2 * L
+4320 DRAW m(x, 3) / 2 + W + RSP + RP / 2 + (W + (W * Sin(Atn(L))) / C) / 2, HBL + HSP - W * L - (W + (W * Sin(Atn(L))) / C) / 2 * C - RP / 2 * L
+4330 Move m(x, 3) / 2 + W * 2 + RP / 2, HBL - W * L * 2 - RP / 2 * L
+4340 DRAW m(x, 3) / 2 + W * 2 + RSP + RP / 2, HBL - W * L * 2 + HSP - RP / 2 * L
+4350 DRAW m(x, 3) / 2 + W * 2 + RSP + RP / 2 + (W + (W * Sin(Atn(L))) / C) / 2, HBL + HSP - W * L * 2 - (W + (W * Sin(Atn(L))) / C) / 2 * C - RP / 2 * L
+4360 Move m(x, 3) / 2 + W * 3 + RP / 2, HBL - W * L * 3 - RP / 2 * L
+4370 DRAW m(x, 3) / 2 + W * 3 + RSP + RP / 2, HBL - W * L * 3 + HSP - RP / 2 * L
+4380 DRAW m(x, 3) / 2 + W * 3 + RSP + RP / 2 + (W + (W * Sin(Atn(L))) / C) / 2, HBL + HSP - W * L * 3 - (W + (W * Sin(Atn(L))) / C) / 2 * C - RP / 2 * L
+4390 Move m(x, 3) / 2 + W * 4 + RP / 2, HBL - W * L * 4 - RP / 2 * L
+4400 DRAW m(x, 3) / 2 + W * 4 + RSP + RP / 2, HBL - W * L * 4 + HSP - RP / 2 * L
+4410 DRAW m(x, 3) / 2 + W * 4 + RSP + RP / 2 + (W + (W * Sin(Atn(L))) / C) / 2, HBL + HSP - W * L * 4 - (W + (W * Sin(Atn(L))) / C) / 2 * C - RP / 2 * L
+4420 Move m(x, 3) / 2 - RP / 2, HBL + RP / 2 * L
+4430 DRAW m(x, 3) / 2 - RP / 2 - T / (D - L), HBL + T + RP / 2 * L
+4440 DRAW 0, HBL + T + (m(x, 3) / 2 - RP / 2 - T / (D - L)) * L
+4450 Move m(x, 3) / 2 - RP / 2 - W, HBL + RP / 2 * L + W * L
+4460 DRAW m(x, 3) / 2 - RP / 2 - T / (D - L) - W, HBL + T + RP / 2 * L + W * L
+4470 Move m(x, 3) / 2 - RP / 2 - W * 2, HBL + RP / 2 * L + W * L * 2
+4480 DRAW m(x, 3) / 2 - RP / 2 - T / (D - L) - W * 2, HBL + T + RP / 2 * L + W * L * 2
+4490 Move m(x, 3) / 2 - RP / 2 - W * 3, HBL + RP / 2 * L + W * L * 3
+4500 DRAW m(x, 3) / 2 - RP / 2 - T / (D - L) - W * 3, HBL + T + RP / 2 * L + W * L * 3
+4510 Move m(x, 3) / 2 - RP / 2 - W * 4, HBL + RP / 2 * L + W * L * 4
+4520 DRAW m(x, 3) / 2 - RP / 2 - T / (D - L) - W * 4, HBL + T + RP / 2 * L + W * L * 4
+4530 Move m(x, 3) / 2 - RP / 2 - T / (D - L) - RS, HBL + T + RP / 2 * L + RS * L
+4540 DRAW m(x, 3) / 2 - RP / 2 - T / (D - L) - RS - B / (A - L), HBL + T + RP / 2 * L + RS * L + B
+4550 DRAW 0, HBL + T + B + (m(x, 3) / 2 - RP / 2 - T / (D - L) - B / (A - L)) * L
+4560 Move m(x, 3) / 2 - RP / 2 - T / (D - L) - RS - W, HBL + T + RP / 2 * L + RS * L + W * L
+4570 DRAW m(x, 3) / 2 - RP / 2 - T / (D - L) - RS - B / (A - L) - W, HBL + T + RP / 2 * L + RS * L + B + W * L
+4580 Move m(x, 3) / 2 - RP / 2 - T / (D - L) - RS - W * 2, HBL + T + RP / 2 * L + RS * L + W * L * 2
+4590 DRAW m(x, 3) / 2 - RP / 2 - T / (D - L) - RS - B / (A - L) - W * 2, HBL + T + RP / 2 * L + RS * L + RS * L + B + W * L * 2
+4600 Move m(x, 3) / 2 - RP / 2 - T / (D - L) - RS - W * 3, HBL + T + RP / 2 * L + W * L * 3
+4610 DRAW m(x, 3) / 2 - RP / 2 - T / (D - L) - RS - B / (A - L) - W * 3, HBL + T + RP / 2 * L + RS * L + B + W * L * 3
+4620 Move m(x, 3) / 2 - RP / 2 - T / (D - L) - RS - W * 4, HBL + T + RP / 2 * L + RS * L + W * L * 4
+4630 DRAW m(x, 3) / 2 - RP / 2 - T / (D - L) - RS - B / (A - L) - W * 4, HBL + T + RP / 2 * L + RS * L + B + W * L * 4
+4640 If k$ = "N" Then GoTo 4780
+4650 Move m(x, 3) / 2 - RP / 2 - T / (D - L) - RS - W + kb, HBL + T + RP / 2 * L + RS * L + W * L - kb * L
+4660 DRAW m(x, 3) / 2 - RP / 2 - T / (D - L) - RS - W + kb + B / (A - L), HBL + T + RP / 2 * L + RS * L + W * L - kb * L + B
+4670 If br$ = "Y" Then GoTo 4780
+4680 If KS = aw Then GoTo 4760
+4690 If KS < aw Then GoTo 4730
+4700 Move m(x, 3) / 2 + RP / 2 + KS / W / (C + L) + W / 4 * (C - L ^ 2 / C) / (C + L), HBL + KS / W + W / 4 * C * (1 - L ^ 2 / C ^ 2) - RP / 2 * L 'ERROR RP
+4710 DRAW m(x, 3) / 2 + RP / 2 + KS / W / (C + L) + W / 4 * (C - L ^ 2 / C) / (C + L) + (W + (W * Sin(Atn(L))) / C) / 2, HBL + KS / W + W / 4 * C * (1 - L ^ 2 / C ^ 2) - (W + (W * Sin(Atn(L))) / C) / 2 * C - RP / 2 * L
+4720 GoTo 4780
+4730 Move m(x, 3) / 2 + RP / 2 + Sqr(KS * 4 / (C + L)) / 2, HBL + Sqr(KS * 4 / (C - L)) / 2 * C * (1 - L ^ 2 / C ^ 2) - RP / 2 * L
+4740 DRAW m(x, 3) / 2 + RP / 2 + Sqr(KS * 4 / (C + L)), HBL + Sqr(KS * 4 / (C - L)) * L - RP / 2 * L
+4750 GoTo 4780
+4760 Move m(x, 3) / 2 + RP / 2 + W / 2 * (C - L ^ 2 / C) / (C + L), HBL + W / 2 * C * (1 - L ^ 2 / C ^ 2) * L - RP / 2 * L
+4770 DRAW m(x, 3) / 2 + W + RP / 2, HBL - W * L - RP / 2 * L
+4780 If B = O Then GoTo 4940
+4790 Move m(x, 3) / 2 - RP / 2 - T / (D - L) - RS - B / (A - L) - m(x, 1) - m(x, 2), HBL + T + RP / 2 * L + RS * L + B + (m(x, 1) + m(x, 2)) * L
+4800 DRAW m(x, 3) / 2 - RP / 2 - T / (D - L) - RS - B / (A - L) - m(x, 1) - m(x, 2) - (O - B), HBL + T + RP / 2 * L + RS * L + B + (m(x, 1) + m(x, 2)) * L + (O - B)
+4810 DRAW 0, HBL + T + RP * L + RS * L + B + (m(x, 1) + m(x, 2)) * L + (O - B) + (m(x, 3) / 2 - RP / 2 - T / (D - L) - RS - B / (A - L) - m(x, 1) - m(x, 2) - (O - B)) * L ' ERROR d_l
+4820 Move m(x, 3) / 2 - RP / 2 - T / (D - L) - RS - B / (A - L) - m(x, 1) - m(x, 2) - W, HBL + T + RP / 2 * L + RS * L + B + (m(x, 1) + m(x, 2)) * L + W * L
+4830 DRAW m(x, 3) / 2 - RP / 2 - T / (D - L) - RS - B / (A - L) - m(x, 1) - m(x, 2) - (O - B) - W, HBL + T + RP / 2 * L + RS * L + B + (m(x, 1) + m(x, 2)) * L + (O - B) + W * L
+4840 Move m(x, 3) / 2 - RP / 2 - T / (D - L) - RS - B / (A - L) - m(x, 1) - m(x, 2) - W * 2, HBL + T + RP / 2 * L + RS * L + B + (m(x, 1) + m(x, 2)) * L + W * L * 2
+4850 DRAW m(x, 3) / 2 - RP / 2 - T / (D - L) - RS - B / (A - L) - m(x, 1) - m(x, 2) - (O - B) - W * 2, HBL + T + RP / 2 * L + RS * L + B + (m(x, 1) + m(x, 2)) * L + (O - B) + W * L * 2
+4860 Move m(x, 3) / 2 - RP / 2 - T / (D - L) - RS - B / (A - L) - m(x, 1) - m(x, 2) - W * 3, HBL + T + RP / 2 * L + RS * L + B + (m(x, 1) + m(x, 2)) * L + W * L * 3
+4870 DRAW m(x, 3) / 2 - RP / 2 - T / (D - L) - RS - B / (A - L) - m(x, 1) - m(x, 2) - (O - B) - W * 3, HBL + T + RP / 2 * L + RS * L + B + (m(x, 1) + m(x, 2)) * L + (O - B) + W * L * 3
+4880 Move m(x, 3) / 2 - RP / 2 - W * 1.6, HBL + T + B + (O - B) + W * 1.6 * L
+4890 DRAW m(x, 3) / 2 - RP / 2 - W * 1.6, HBL + 0.07 * m(x, 4) + T + B + (O - B) + W * 1.6 * L
+4900 LDIR 90
+4910 LORG 1
+4920 Move 0.99 * m(x, 3) / 2 - RP / 2 - W * 1.6, HBL + 0.01 * m(x, 4) + T + B + (O - B) + W * 1.6 * L
+'4930 LABEL USING "K";O-B
+4940 LDIR 0
+4950 Move m(x, 3) / 2 + W + RP / 2, HBL - 0.01 * m(x, 4) - W * L
+4960 DRAW m(x, 3) / 2 + W + RP / 2, 0.145 * m(x, 4)
+4970 Move m(x, 3) / 2 + RP / 2, HBL - 0.01 * m(x, 4)
+4980 DRAW m(x, 3) / 2 + RP / 2, 0.145 * m(x, 4)
+4990 Move m(x, 3) / 2 - RP / 2, HBL - 0.01 * m(x, 4) + RP / 2 * L
+5000 DRAW m(x, 3) / 2 - RP / 2, 0.145 * m(x, 4)
+5010 Move m(x, 3) / 2 - RP / 2 - W, HBL - 0.01 * m(x, 4) + RP / 2 * L + W * L
+5020 DRAW m(x, 3) / 2 - RP / 2 - W, 0.145 * m(x, 4)
+5030 Move m(x, 3) / 2 + W + RP / 2, 0.15 * m(x, 4)
+5040 DRAW m(x, 3) / 2 + RP / 2, 0.15 * m(x, 4)
+5050 Move m(x, 3) / 2 - RP / 2, 0.15 * m(x, 4)
+5060 DRAW m(x, 3) / 2 - RP / 2 - W, 0.15 * m(x, 4)
+5070 LORG 4
+5080 Move m(x, 3) / 2 + W / 2 + RP / 2, 0.15 * m(x, 4)
+'5090 LABEL USING "K";W
+5100 Move m(x, 3) / 2 - RP / 2 - W / 2, 0.15 * m(x, 4)
+'5110 LABEL USING "K";W
+5120 If RP = 0 Then GoTo 5200
+5130 Move m(x, 3) / 2.15 * m(x, 4)
+5140 If RP > 6 Then GoTo 5180
+5150 LORG 6
+'5160 LABEL USING "K";RP
+5170 GoTo 5200
+5180 LORG 4
+5191 Move m(x, 3) / 2 + RP / 2, 0.15 * m(x, 4)
+5192 DRAW m(x, 3) / 2 - RP / 2, 0.15 * m(x, 4)
+5200 If RS = 0 Then GoTo 5300
+5210 Move m(x, 3) / 2 - RP / 2 - T / (D - L), HBL + 0.01 * m(x, 4) + T + RP / 2 * L
+5220 DRAW m(x, 3) / 2 - RP / 2 - T / (D - L), HBL + 0.08 * m(x, 4) + T
+5230 Move m(x, 3) / 2 - RP / 2 - T / (D - L) - RS, HBL + 0.01 * m(x, 4) + T + RP / 2 * L + RS * L
+5240 DRAW m(x, 3) / 2 - RP / 2 - T / (D - L) - RS, HBL + 0.08 * m(x, 4) + T
+5250 Move m(x, 3) / 2 - RP / 2 - T / (D - L), HBL + 0.075 * m(x, 4) + T
+5260 DRAW m(x, 3) / 2 - RP / 2 - T / (D - L) - RS, HBL + 0.075 * m(x, 4) + T
+5270 Move m(x, 3) / 2 - RP / 2 - T / (D - L) - RS / 2, HBL + 0.075 * m(x, 4) + T
+5280 LORG 4
+'5290 LABEL USING "K";RS
+5300 If br$ = "N" Then GoTo 5800
+5310 Move m(x, 3) / 2 + RSP + RP / 2, HBL + 0.01 * m(x, 4) + HSP
+5320 DRAW m(x, 3) / 2 + RSP + RP / 2, HBL + 0.14 * m(x, 4) + HSP
+5330 Move m(x, 3) / 2 - RP / 2 - T / (D - L) - RS - B / (A - L) + brl, HBL + 0.015 * m(x, 4) + T + RP / 2 * L + RS * L + B
+5340 DRAW m(x, 3) / 2 - RP / 2 - T / (D - L) - RS - B / (A - L) + brl, HBL + 0.14 * m(x, 4) + T + B
+5350 Move m(x, 3) / 2 - RP / 2 - T / (D - L) - RS - B / (A - L) + brl - m(x, 1), HBL - 0.02 * m(x, 4) + T + RP / 2 * L + RS * L + B - brl * L + m(x, 1) * L
+5360 DRAW m(x, 3) / 2 - RP / 2 - T / (D - L) - RS - B / (A - L) + brl - m(x, 1), HBL + 0.05 * m(x, 4) + T + B
+5370 Move m(x, 3) / 2 - RP / 2 - T / (D - L) - RS - B / (A - L) + brl - m(x, 1), HBL + 0.12 * m(x, 4) + T + B
+5380 DRAW m(x, 3) / 2 - RP / 2 - T / (D - L) - RS - B / (A - L) + brl - m(x, 1), HBL + 0.14 * m(x, 4) + HSP
+5390 Move m(x, 3) / 2 - RP / 2 - T / (D - L) - RS - B / (A - L) + brl - m(x, 1), HBL + 0.13 * m(x, 4) + T + B
+5400 DRAW m(x, 3) / 2 - RP / 2 - T / (D - L) - RS - B / (A - L) + brl, HBL + 0.13 * m(x, 4) + T + B
+5410 Move m(x, 3) / 2 - RP / 2 - T / (D - L) - RS - B / (A - L), HBL + 0.015 * m(x, 4) + T + RP / 2 * L + RS * L + B
+5420 DRAW m(x, 3) / 2 - RP / 2 - T / (D - L) - RS - B / (A - L), HBL + 0.07 * m(x, 4) + T + B
+5430 Move m(x, 3) / 2 + RSP + RP / 2, HBL + 0.13 * m(x, 4) + HSP
+5440 DRAW m(x, 3) / 2 - RP / 2 - T / (D - L) - RS - B / (A - L) + brl - m(x, 1), HBL + 0.13 * m(x, 4) + HSP
+5450 Move m(x, 3) / 2 - RP / 2 - T / (D - L) - RS - B / (A - L) + brl, HBL + 0.06 * m(x, 4) + T + B
+5460 DRAW m(x, 3) / 2 - RP / 2 - T / (D - L) - RS - B / (A - L), HBL + 0.06 * m(x, 4) + T + B
+5470 Move 0.97 * m(x, 3) / 2 + RSP + RP / 2, HBL + HSP / 2 * L
+5480 DRAW 0.94 * m(x, 3) / 2 + RSP + RP / 2 - dh / (C - L), HBL + HSP - RP / 2 * L
+5490 Move 1.03 * m(x, 3) / 2 - RP / 2 - T / (D - L) - RS - B / (A - L) + brl, HBL + T + RP / 2 * L + RS * L + B
+5500 DRAW 0.96 * m(x, 3) / 2 + RSP + RP / 2 - dh / (C - L), HBL + T + RP / 2 * L + RS * L + B
+5510 Move 0.95 * m(x, 3) / 2 + RSP + RP / 2 - dh / (C - L), HBL + HSP - RP / 2 * L
+5520 DRAW 0.95 * m(x, 3) / 2 + RSP + RP / 2 - dh / (C - L), HBL + T + RP / 2 * L + RS * L + B
+5530 Move m(x, 3) / 2 + RSP + RP / 2 - (RF - brl + m(x, 1)) / 2, HBL + 0.13 * m(x, 4) + HSP
+'5540 LABEL USING "K";RF-BRL+M(X,1)
+5550 If m(x, 1) < 15 Then GoTo 5590
+5560 Move m(x, 3) / 2 - RP / 2 - T / (D - L) - RS - B / (A - L) + brl - m(x, 1) / 2, HBL + 0.13 * m(x, 4) + T + B
+5570 LORG 4
+5580 GoTo 5610
+5590 Move 1.01 * m(x, 3) / 2 - RP / 2 - T / (D - L) - RS - B / (A - L) + brl - m(x, 1), HBL + 0.13 * m(x, 4) + T + B
+5600 LORG 1
+'5610 LABEL USING "K";M(X,1)
+5620 If brl < m(x, 1) Then GoTo 5660
+5630 LORG 4
+5640 Move m(x, 3) / 2 - RP / 2 - T / (D - L) - RS - B / (A - L) + brl / 2, HBL + 0.06 * m(x, 4) + T + B
+5650 GoTo 5680
+5660 LORG 7
+5670 Move m(x, 3) / 2 - RP / 2 - T / (D - L) - RS - B / (A - L) + brl, HBL + 0.06 * m(x, 4) + T + B
+'5680 LABEL USING "K";BRL
+5690 If dh < 15 Then GoTo 5730
+5700 Move 0.95 * m(x, 3) / 2 + RSP + RP / 2 - dh / (C - L), HBL + (T + RP / 2 * L + RS * L + B + brl * L + HSP) / 2
+5710 LORG 4
+5720 GoTo 5750
+5730 Move 0.95 * m(x, 3) / 2 + RSP + RP / 2 - dh / (C - L), HBL + 0.005 * m(x, 4) + T + RP / 2 * L + RS * L + B + brl * L
+5740 LORG 1
+5750 LDIR 90
+'5760 LABEL USING "K";DH
+5770 LORG 4
+5780 LDIR 0
+5790 GoTo 6140
+5800 Move m(x, 3) / 2 + RSP + RP / 2, HBL + 0.01 * m(x, 4) + HSP
+5810 DRAW m(x, 3) / 2 + RSP + RP / 2, HBL + 0.14 * m(x, 4) + HSP
+5820 Move m(x, 3) / 2 - RP / 2 - T / (D - L) - RS - B / (A - L) - m(x, 1), HBL - 0.02 * m(x, 4) + T + RP / 2 * L + RS * L + B + m(x, 1) * L
+5830 DRAW m(x, 3) / 2 - RP / 2 - T / (D - L) - RS - B / (A - L) - m(x, 1), HBL + 0.14 * m(x, 4) + HSP
+5840 Move m(x, 3) / 2 + RSP + RP / 2, HBL + 0.13 * m(x, 4) + HSP
+5850 DRAW m(x, 3) / 2 - RP / 2 - T / (D - L) - RS - B / (A - L) - m(x, 1), HBL + 0.13 * m(x, 4) + HSP
+5860 Move m(x, 3) / 2 + RSP + RP / 2 - (RF + m(x, 1)) / 2, HBL + 0.13 * m(x, 4) + HSP
+5870 LORG 4
+'5880 LABEL USING "K";RF+M(X,1)
+5890 Move m(x, 3) / 2 - RP / 2 - T / (D - L) - RS - B / (A - L), HBL + 0.08 * m(x, 4) + HSP
+5900 DRAW m(x, 3) / 2 - RP / 2 - T / (D - L) - RS - B / (A - L), HBL + 0.015 * m(x, 4) + T + B
+5910 Move m(x, 3) / 2 - RP / 2 - T / (D - L) - RS - B / (A - L) - m(x, 1), HBL + 0.015 * m(x, 4) + T + B
+5920 DRAW m(x, 3) / 2 - RP / 2 - T / (D - L) - RS - B / (A - L), HBL + 0.07 * m(x, 4) + HSP
+5930 If m(x, 1) < 15 Then GoTo 5970
+5940 Move m(x, 3) / 2 - RP / 2 - T / (D - L) - RS - B / (A - L) - m(x, 1) / 2, HBL + 0.07 * m(x, 4) + HSP
+5950 LORG 4
+5960 GoTo 5990
+5970 Move 1.01 * m(x, 3) / 2 - RP / 2 - T / (D - L) - RS - B / (A - L) - m(x, 1), HBL + 0.07 * m(x, 4) + HSP
+5980 LORG 1
+'5990 LABEL USING "K";M(X,1)
+6000 Move 0.97 * m(x, 3) / 2 + RSP + RP / 2, HBL + HSP - RP / 2 * L
+6010 DRAW 0.94 * m(x, 3) / 2 + RSP + RP / 2 - dh / (C - L), HBL + HSP - RP / 2 * L
+6020 Move 1.03 * m(x, 3) / 2 - RP / 2 - T / (D - L) - RS - B / (A - L), HBL + T + RP / 2 * L + RS * L + B
+6030 DRAW 0.96 * m(x, 3) / 2 + RSP + RP / 2 - dh / (C - L), HBL + T + RP / 2 * L + RS * L + B
+6040 Move 0.95 * m(x, 3) / 2 + RSP + RP / 2 - dh / (C - L), HBL + HSP - RP / 2 * L
+6050 DRAW 0.95 * m(x, 3) / 2 + RSP + RP / 2 - dh / (C - L), HBL + T + RP / 2 * L + RS * L + B
+6060 If dh < 15 Then GoTo 6100
+6070 Move 0.95 * m(x, 3) / 2 + RSP + RP / 2 - dh / (C - L), HBL + (T + RP / 2 * L + RS * L + B + HSP) / 2
+6080 LORG 4
+6090 GoTo 6120
+6100 Move 0.95 * m(x, 3) / 2 + RSP + RP / 2 - dh / (C - L), HBL + 0.006 * m(x, 4) + T + RP / 2 * L + RS * L + B
+6110 LORG 1
+6120 LDIR 90
+'6130 LABEL USING "K";DH
+6140 LDIR 0
+6150 Move m(x, 3) / 2 - RP / 2 - W * 1.6, HBL + RP / 2 * L + W * 1.6 * L + T + B
+6160 DRAW m(x, 3) / 2 - RP / 2 - W * 1.6, HBL + RP / 2 * L + W * 1.6 * L + T
+6170 Move m(x, 3) / 2 - RP / 2 - W * 1.6, HBL + RP / 2 * L + W * 1.6 * L
+6180 DRAW m(x, 3) / 2 - RP / 2 - W * 1.6, HBL - 0.07 * m(x, 4) + RP / 2 * L + W * 1.6 * L
+6190 LDIR 90
+6200 LORG 4
+6210 Move 0.99 * m(x, 3) / 2 - RP / 2 - W * 1.6, HBL + T + RP / 2 * L + RS * L + B / 2
+'6220 LABEL USING "K";B
+6230 LORG 7
+6240 Move 0.99 * m(x, 3) / 2 - RP / 2 - W * 1.6, HBL - 0.011 * m(x, 4) + RP / 2 * L + W * 1.6 * L
+'6250 LABEL USING "K";T
+6260 If br$ = "N" Then GoTo 6310
+6270 Move (m(x, 3) - RP / 2 - T / (D - L) - RS - (bb / 2 * (C - L) - T) / (A - L) + bb / 2) / 2, HBL + bb / 2 * (C - L)
+6280 LORG 5
+6290 LDIR 0
+'6300 LABEL USING "2D,K";PDH,"%"
+6310 Move 0.99 * m(x, 3), 0.007 * m(x, 4)
+6320 LORG 7
+6330 LDIR 0
+'6340 LABEL USING "K";DATE$
+6350 Move 0.01 * m(x, 3), 0.99 * m(x, 4)
+6360 LORG 3
+'6370 LABEL USING "K,K,K,4D.DD,K,3D.D,K";"W",S$,"    BOOM LENGTH",BL," M BOOM ANGLE",BA,"°"
+6380 Move m(x, 3) / 2, 0.94 * m(x, 4)
+6390 LORG 6
+'6400 LABEL USING "K,4D.D,K,3D.D,K";"DUMP RADIUS",N(X,Y,Z,0)," M DUMP HEIGHT",N(X,Y,Z,1),"M"
+6410 If VAS < 40 Then GoTo 6460
+6420 Move 0.985 * m(x, 3) / 2 - RP / 2 - T / (D - L) - RS, HBL + T + RP / 2 * L + RS * L
+6430 LORG 7
+'6440 LABEL USING "K,K";AS,"°"
+6450 GoTo 6550
+6460 Move m(x, 3) / 2 - RP / 2 - T / (D - L) - RS - B / 3 / (A - L), HBL + T + RP / 2 * L + RS * L + B / 3
+6470 DRAW m(x, 3) / 2 - RP / 2 - T / (D - L) - RS - 2 * B / 3 / (A - L), HBL + T + RP / 2 * L + RS * L + B / 3
+6480 DRAW m(x, 3) / 2 - RP / 2 - T / (D - L) - RS - 2 * B / 3 / (A - L), HBL + T + RP / 2 * L + RS * L + 2 * B / 3
+6490 Move m(x, 3) / 2 - RP / 2 - T / (D - L) - RS - B / 2 / (A - L), HBL + T + RP / 2 * L + RS * L + B / 3
+6500 LORG 6
+6510 Label "1"
+6520 Move m(x, 3) / 2 - RP / 2 - T / (D - L) - RS - 2 * B / 3 / (A - L), HBL + T + RP / 2 * L + RS * L + RS * L + B / 2
+6530 LORG 8
+'6540 LABEL USING "K";AS
+6550 If CA < 10 Then GoTo 6600
+6560 Move m(x, 3) / 2 + RP / 2 + 0.05 * m(x, 4) / (C - L), HBL
+6570 LORG 1
+'6580 LABEL USING "K,K";CA,"°"
+6590 GoTo 6690
+6600 Move m(x, 3) / 2 + RP / 2 + 0.07 * m(x, 4) / (C - L), HBL + 0.07 * m(x, 4)
+6610 DRAW m(x, 3) / 2 + RP / 2 + 0.14 * m(x, 4) / (C - L), HBL + 0.07 * m(x, 4)
+6620 DRAW m(x, 3) / 2 + RP / 2 + 0.14 * m(x, 4) / (C - L), HBL + 0.14 * m(x, 4)
+6630 Move m(x, 3) / 2 + RP / 2 + 0.105 * m(x, 4) / (C - L), HBL + 0.07 * m(x, 4)
+6640 LORG 6
+6650 Label "1"
+6660 Move m(x, 3) / 2 + RP / 2 + 0.14 * m(x, 4) / (C - L), HBL + 0.105 * m(x, 4)
+6670 LORG 2
+'6680 LABEL USING "K";CA
+6690 Move m(x, 3) / 2 - RP / 2 - T / (2 * (D - L)), HBL + T / 2
+6700 DRAW 0.98 * m(x, 3) / 2 - RP / 2 - T / (D - L), HBL + T / 2
+6710 DRAW 0.98 * m(x, 3) / 2 - RP / 2 - T / (D - L), 0.11 * m(x, 4)
+6720 DRAW 0.94 * m(x, 3) / 2 - RP / 2 - T / (D - L), 0.11 * m(x, 4)
+6730 Move 0.94 * m(x, 3) / 2 - RP / 2 - T / (D - L), 0.11 * m(x, 4)
+6740 LORG 8
+6750 If DS = 90 Then GoTo 6810
+6760 If DS < 40 Then GoTo 6790
+'6770 LABEL USING "K,K,K";ANGLE ON SEAM ",DS,"°"
+6780 GoTo 6820
+'6790 LABEL USING "K,K,K";"SLOPE ON SEAM",DS,":1"
+6800 GoTo 6820
+6810 Label "NO SLOPE ON SEAM"
+6820 Move m(x, 3) / 2 + RP / 2 + O * S / 2 / (C - L) + W / 2, HBL + O * S / 2
+6830 LORG 4
+6840 Label "SWELL"
+6850 Move m(x, 3) / 2 + RP / 2 + O * S / 2 / (C - L) + W / 2, HBL + O * S / 2
+6860 LORG 6
+'6870 LABEL USING "K,K";SI,"%"
+6880 If L = 0 Then GoTo 6980
+6890 Move 0.96 * m(x, 3), 0.11 * m(x, 4)
+6900 DRAW 0.97 * m(x, 3), 0.11 * m(x, 4)
+6910 DRAW 0.97 * m(x, 3), HBL - 0.47 * m(x, 3) * L
+6920 Move 0.85 * m(x, 3), 0.155 * m(x, 4)
+6930 LORG 5
+'6940 LABEL USING "K,K";ABS(LA),"° TO"
+6950 Move 0.75 * m(x, 3), 0.11 * m(x, 4)
+6960 LORG 2
+6970 Label "HORIZONAL"
+6980 CLIP OFF
+6990 CSIZE 4.5, 0.75
+7000 LDIR 0
+7010 Move m(x, 3) / 2, 1.01 * m(x, 4)
+7020 LORG 4
+7030 Label "CUT DIAGRAM"
+7040 If p$ = "N" Then GoTo 7100

@@ -1,0 +1,15 @@
+Added preview VAT report (untested)
+Changed functionality on product name box(invoice screen), so mouse click elsewhere causes search
+Changed Description field, so autocase function works differently
+(Company Name) Moved right column of items(invoice number etc) for an extra 10mm
+Added all invoices on Invoice Enquiry screen
+Added warning for zero value invoices
+Added warning for blank companyname+contact name
+Removed 'clear' button from invoice screen, exit button functionality changed
+You can now search for all products by putting a space in the product name box and pressing <enter>
+Added Name to reports
+Removed autocase on invoice comments box, what you see is what you get
+Check negative values on net amount+unit cost (working now)
+* Changed functionality of grid(net amount+unit cost etc.) should not have any effect
+Added save button on customer search screen, to save name+address details
+Changed estimate printout to show 'quotation' instead of invoice

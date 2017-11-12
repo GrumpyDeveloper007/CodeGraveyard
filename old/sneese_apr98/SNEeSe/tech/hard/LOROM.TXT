@@ -1,0 +1,22 @@
+Here you go:
+
+  Lo-ROM Mode (Mode 0x20):
+
+  Bank:           Address:                Mapping:
+  ~~~~            ~~~~~~~                 ~~~~~~~
+  00-3F           0000-1FFF               Mirrored RAM (Mirrors
+  7E.0000-7E.1FFF)
+                  2000-3FFF               Video Registers
+                  4000-5FFF               DMA/BIOS Registers
+                  6000-7FFF               Expanded RAM (? What is this ?)
+                  8000-FFFF               32k ROM Segment
+  40-6F           0000-FFFF               64k ROM Segment
+  70              0000-FFFF               SRAM (not ALL of this... unless
+  you're using 256kbit SRAM)
+  71-7d           0000-FFFF               64k ROM Segment
+  7e-7f           0000-FFFF               SNES RAM (128k total)
+
+  80-FF           ALL                     Same as lower area, except for
+  the NMI/Reset vectors way up                                            top...
+  plus, FE.xxxx and FF.xxxx are ROM now... but what                                       ROM,  I dunno...
+

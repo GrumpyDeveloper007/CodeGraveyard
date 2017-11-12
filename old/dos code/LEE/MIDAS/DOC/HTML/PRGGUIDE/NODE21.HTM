@@ -1,0 +1,204 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<!--Converted with LaTeX2HTML 96.1-h (September 30, 1996) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
+<HTML>
+<HEAD>
+<TITLE>MS-DOS timer screen synchronization</TITLE>
+<META NAME="description" CONTENT="MS-DOS timer screen synchronization">
+<META NAME="keywords" CONTENT="prgguide">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<LINK REL=STYLESHEET HREF="prgguide.css">
+</HEAD>
+<BODY LANG="EN" >
+ <A NAME="tex2html302" HREF="node22.html"><IMG WIDTH=37 HEIGHT=24 ALIGN=BOTTOM ALT="next" SRC="../icons/next_motif.gif"></A> <A NAME="tex2html300" HREF="node20.html"><IMG WIDTH=26 HEIGHT=24 ALIGN=BOTTOM ALT="up" SRC="../icons/up_motif.gif"></A> <A NAME="tex2html294" HREF="node20.html"><IMG WIDTH=63 HEIGHT=24 ALIGN=BOTTOM ALT="previous" SRC="../icons/previous_motif.gif"></A> <A NAME="tex2html304" HREF="node1.html"><IMG WIDTH=65 HEIGHT=24 ALIGN=BOTTOM ALT="contents" SRC="../icons/contents_motif.gif"></A>  <BR>
+<B> Next:</B> <A NAME="tex2html303" HREF="node22.html">5.2 Linking with Watcom </A>
+<B>Up:</B> <A NAME="tex2html301" HREF="node20.html">5 Operating system specific </A>
+<B> Previous:</B> <A NAME="tex2html295" HREF="node20.html">5 Operating system specific </A>
+<BR> <P>
+<H1><A NAME="SECTION00610000000000000000">MS-DOS timer screen synchronization</A></H1>
+<P>
+This section describes how to use the built-in MIDAS screen synchronized
+timer under MS-DOS. This information is not relevant in other operating
+systems.
+<P>
+<H2><A NAME="SECTION00611000000000000000">Introduction</A></H2>
+<P>
+MIDAS Sound System timer includes built-in support for screen
+synchronization. This means that you can program the timer to call your own
+routines every frame, more exactly immediately before the Vertical Retrace,
+immediately after the Vertical Retrace has started and later during the
+Vertical Retrace. This enables you to synchronize your program to the screen
+update to get smooth animation, which otherwise would not be possible with a
+music system playing in the background.  The routines can also be used for
+changing VGA hardware registers, such as display start address and scrolling,
+in correct moments, for triple buffering and for compensating for different
+machine speeds.
+<P>
+<H2><A NAME="SECTION00612000000000000000">5.1.2 Using screen synchronization</A></H2>
+<P>
+If you wish to use timer screen synchronization, use the procedure outlined
+below:
+<P>
+1. BEFORE MIDAS Sound System is initialized, set up the display mode you are
+intending to use and get the timer screen synchronization value corresponding
+to that display mode using <EM>tmrGetScrSync()</EM>. If you are using several
+display modes with different refresh rates (in practise, different vertical
+resolutions, although in standard VGA only 240 or 480 scan line modes have
+different refresh rates) you must activate each of them in turn and get the
+synchronization values for each of them.
+<P>
+2. Initialize MIDAS Sound System etc.
+<P>
+3. Set up the display mode
+<P>
+4. When you need timer screen synchronization, start it using the function
+<EM>tmrSyncScr()</EM>, passing as arguments the timer screen synchronization
+value from step 1 and pointers to the routines you wish the timer to call. If
+you do not require support for some routine, pass a NULL pointer instead.
+<P>
+5. When timer screen synchronization is no longer required, stop it using
+<EM>tmrStopScrSync()</EM>.
+<P>
+If you change the display mode to one with a different refresh rate, you must
+first stop the screen synchronization, change the display mode, and after
+that re-synchronize the timer. Please note that synchronizing the timer to
+the screen update takes a while, and as the timer is disabled for that time
+it may introduce breaks in the music. Therefore we suggest you handle the
+timer screen synchronization before you start playing music.
+<P>
+<H2><A NAME="SECTION00613000000000000000">5.1.3 Timer screen synchronized routines</A></H2>
+<P>
+<EM>tmrSyncScr()</EM> takes as arguments pointers to three separate functions
+-- <EM>preVR()</EM>, <EM>immVR()</EM> and <EM>inVR()</EM> -- that will be called
+at different points during the screen timer interrupt. Following is a brief
+description of each routine and what it is intended for.
+<P>
+<EM>preVR()</EM> is called immediately before Vertical Retrace, and must be as
+short as possible to avoid timer synchronization problems. It is intended
+mainly for changing the display start address register and updating counters.
+<P>
+<EM>immVR()</EM> is called immediately after Vertical Retrace has started, and
+must be as short as possible to avoid timer synchronization problems. It is
+intended mainly for changing VGA hardware registers that have to be modified
+during Vertical Retrace, such as pixel panning.
+<P>
+<EM>inVR()</EM> is called after <EM>immVR()</EM>, and may take a longer time if
+necessary. However, note that even though spending a long time in <EM>
+inVR()</EM> does not induce timer synchronization problems, it may cause problems
+in music tempo if it takes a too long time. Furthermore, the time spent in
+<EM>inVR()</EM> must not exceed one frame. <EM>inVR()</EM> is mainly intended for
+changing the palette or updating small portions of screen, such as drawing
+new characters to a start address scroller.
+<P>
+<H2><A NAME="SECTION00614000000000000000">5.1.4 Waiting for Vertical Retrace</A></H2>
+<P>
+When synchronizing your program to the screen update, instead of waiting for
+Vertical Retrace using the VGA hardware registers you must use the screen
+synchronized timer for this. This is because the music playing interrupt may
+occur just during the Vertical Retrace, causing you to miss one frame
+completely. To use the timer for this, set up a <EM>preVR()</EM> routine that
+increments a frame counter, and instead of waiting for Vertical Retrace bit
+wait for the frame counter to change. For example:
+<P>
+<PRE>
+preVR:
+        frameCount = frameCount + 1;
+
+main:
+        ...
+        tmrSyncScr(scrSync, &amp;preVR, NULL, NULL)
+        ...
+        oldCnt = frameCount;
+        while ( oldCnt == frameCount );</PRE>
+<P>
+Note that you must declare frameCount as <B>volatile</B>, or otherwise ensure
+that the compiler will not optimize the frame waiting loop to an infinite
+one, waiting for a register variable to change.
+<P>
+<H2><A NAME="SECTION00615000000000000000">5.1.5 Speed compensation</A></H2>
+<P>
+The timer screen synchronization can also be used to compensate for different
+speeds on different computers. The following pseudo code should illustrate
+the point:
+<P>
+<PRE>
+main loop:
+        Wait for frameCount to change
+        skipFrames = oldFrameCount - frameCount
+        oldFrameCount = frameCount
+        for i = 1 to skipFrames do
+                MoveEverything
+        DrawEverything</PRE>
+<P>
+<H2><A NAME="SECTION00616000000000000000">5.1.6 Implementation notes</A></H2>
+<P>
+Unlike in some old MIDAS versions, the current timer code no longer crashes
+under Windows 95. However, proper screen sychronization is simply impossible
+under Windows 95, due to inadequacies in Windows 95 timer hardware
+emulation, and MIDAS will just set up a steady timer of 70Hz (or what ever
+refresh rate you set) and call the display synchronization routines there.
+<P>
+For most purposes, this should present no problems to you. The display update
+might not be as smooth as under plain DOS, but no DOS programs run absolutely
+smoothly under Win95 anyway and the users should be used to that. However, if
+you use the screen synchronized timer for page flipping, you'll need to
+change from double to triple buffering. The reason for this is, that you can
+no longer be sure that the new page is indeed displayed after the timer
+interrupt that changed the start address returns. VGA will make use of the
+start address only at the next Vertical Retrace, and there is no guarantee
+that the timer comes at Vertical Retrace time (in fact it usually doesn't).
+<P>
+If MIDAS is unable to determine the correct display sync value (ie. the frame
+rate), it will use the frame rate set in the variable <EM>mDefaultFramerate</EM>
+(in 100*Hz =&gt; 70Hz becomes 7000). This variable is initially set to 7000
+(70Hz), but if you know the refresh rate of your display mode is different
+you can change this before calling <EM>mGetScrSync()</EM>. If your application
+uses several display modes with different frame rates, just set
+mDefaultFramerate before reading the sync value for each of them as follows:
+<P>
+<PRE>
+    SetFirstMode();
+    mDefaultFrameRate = 6000; /* 60 Hz */
+    mGetScrSync(...)
+    SetSecondMode()
+    mDefaultFrameRate = 5000; /* 50 Hz */
+    mGetScrSync(...)</PRE>
+<P>
+To check whether MIDAS was able to synchronize to the screen correctly, check
+the variable <EM>mSyncScreen</EM> after calling <EM>mGetScrSync()</EM>. If the
+variable is 0, MIDAS was unable to determine the frame rate, took it from
+<EM>mDefaultFramerate</EM>, and is now running in Win95 compatibility mode.
+You'll probably want warn the user if that is the case:
+<P>
+<PRE>
+    SetMode();
+    mGetScrSync(...)
+    SetTextMode();
+    if ( mSyncScreen != 1 )
+    {
+        printf(&quot;Warning! Unable to synchronize the program to &quot;
+               &quot;screen update!\n\n&quot;
+               &quot;This normally only happens when running under &quot;
+               &quot;Windows 95 or similar system,\nplease consider&quot;
+               &quot; running this program in MS-DOS mode. The &quot;
+               &quot;program will work,\n but the screen update &quot;
+               &quot;will not be as smooth as possible, and there &quot;
+               &quot;may be\nproblems with music playback.\n\n&quot;
+               &quot;Press any key to continue.\n&quot;);
+        getch();
+    }</PRE>
+<P>
+To force Win95 compatibility mode, set mSyncScreen to 0 yourself before
+calling mGetScrSync the first time. This allows you to set the timer run at a
+constant rate, independent of the display refresh rate.
+<P>
+<HR><A NAME="tex2html302" HREF="node22.html"><IMG WIDTH=37 HEIGHT=24 ALIGN=BOTTOM ALT="next" SRC="../icons/next_motif.gif"></A> <A NAME="tex2html300" HREF="node20.html"><IMG WIDTH=26 HEIGHT=24 ALIGN=BOTTOM ALT="up" SRC="../icons/up_motif.gif"></A> <A NAME="tex2html294" HREF="node20.html"><IMG WIDTH=63 HEIGHT=24 ALIGN=BOTTOM ALT="previous" SRC="../icons/previous_motif.gif"></A> <A NAME="tex2html304" HREF="node1.html"><IMG WIDTH=65 HEIGHT=24 ALIGN=BOTTOM ALT="contents" SRC="../icons/contents_motif.gif"></A>  <BR>
+<B> Next:</B> <A NAME="tex2html303" HREF="node22.html">5.2 Linking with Watcom </A>
+<B>Up:</B> <A NAME="tex2html301" HREF="node20.html">5 Operating system specific </A>
+<B> Previous:</B> <A NAME="tex2html295" HREF="node20.html">5 Operating system specific </A>
+<P><ADDRESS>
+<I>Petteri Kangaslampi <BR>
+Mon Jan 27 00:15:29 EET 1997</I>
+</ADDRESS>
+</BODY>
+</HTML>

@@ -1,0 +1,39 @@
+Major changes
+-------------
+More precalculating in screen renderer
+IRQ disable and 'missed' IRQ support
+Sprite Priority Rotation corrected (Mario status sprite works!)
+
+Notes
+-----
+There are several lines of commented code in several locations, and
+one macro that isn't commented out... do NOT enable this... it is
+there only for use with the DMA dump, which requires modifications to
+main.cc...
+
+Changes by file
+---------------
+ScreenL - Some more stuff precalculated
+          Minor optimizations
+CPU     - Minor optimizations
+          memory mapper macros gotten from mem.h
+CPU0    - Minor optimizations
+CPU4    - Minor optimizations
+          MVP no longer corrupts DB
+CPU5    - Minor optimizations
+          MVN no longer corrupts DB
+          CLI checks for missed IRQ
+IRQ     - Sets a flag if IRQ missed (occurs with CPU flag I set)
+memDMA  - Minor optimizations
+          Some names changed to simplify macros
+HDMA    - Minor optimizations
+          Some names changed to simplify macros
+          memory mapper macros gotten from mem.h
+memhard - More precalculating in screen hardware
+          Fixed write to WMADDM
+          Some names changed to simplify macros
+          Corrected Sprite Priority Rotation registers
+          OAMAddress now byte-address
+SpriteL - Some more stuff precalculated
+          Implemented Sprite Priority Rotation
+MAKEFILE - Changed to support mem.h being included in memDMA, CPU

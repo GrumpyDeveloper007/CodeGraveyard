@@ -1,0 +1,291 @@
+[Root]
+Most Recent Package=Setup - client
+
+
+[Package|Standard Setup Package 1|Root]
+SubWizProgID=PDWizard.SetupPkgSubWiz
+BuildFolder=C:\CODE\Server\Package
+
+[Package|Standard Setup Package 1|Configure DAO ISAMs]
+Applicable=Yes
+Xbase=No
+Exchange=No
+Text=No
+Jet 2.x=No
+Paradox=No
+
+[Package|Standard Setup Package 1|Configure DAO ODBC]
+JetWorkspace=
+ODBCDirect=
+
+[Package|Standard Setup Package 1|Files Found]
+
+[Package|Standard Setup Package 1|Files Released]
+
+[Package|Standard Setup Package 1|Missing Dependency Information]
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\CLSSBLD.DLL=
+C:\Program Files\Microsoft Visual Studio\Common\Tools\Winapi\APILOAD.EXE=
+
+[Package|Standard Setup Package 1|Out-of-Date Dependency Information]
+
+[Package|Standard Setup Package 1|Files Added]
+
+[Package|Standard Setup Package 1|Files Removed]
+
+[Package|Standard Setup Package 1|Files In Project]
+C:\CODE\Server\Darren.exe=Yes
+C:\WINNT\system32\MSVBVM60.DLL=Yes
+C:\WINNT\system32\OLEAUT32.DLL=Yes
+C:\WINNT\system32\OLEPRO32.DLL=Yes
+C:\WINNT\system32\ASYCFILT.DLL=Yes
+C:\WINNT\system32\STDOLE2.TLB=Yes
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\COMCAT.DLL=Yes
+C:\Program Files\Common Files\Microsoft Shared\DAO\DAO2535.TLB=Yes
+C:\Program Files\Common Files\Microsoft Shared\DAO\dao350.dll=Yes
+C:\WINNT\system32\MSJET35.DLL=Yes
+C:\WINNT\system32\MSJTER35.DLL=Yes
+C:\WINNT\system32\MSJINT35.DLL=Yes
+C:\WINNT\system32\vbajet32.dll=Yes
+C:\WINNT\system32\EXPSRV.DLL=Yes
+C:\WINNT\system32\MSRD2X35.DLL=Yes
+C:\WINNT\system32\MSREPL35.DLL=Yes
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\MSVCRT40.DLL=Yes
+C:\WINNT\system32\vb5db.dll=Yes
+C:\Program Files\Microsoft Visual Studio\Common\Tools\Winapi\APILOAD.EXE=Yes
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\CLSSBLD.DLL=Yes
+C:\WINNT\system32\MSWINSCK.OCX=Yes
+C:\WINNT\system32\RICHTX32.OCX=Yes
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\RICHED32.DLL=Yes
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\SETUP.EXE=Yes
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\SETUP1.EXE=Yes
+C:\WINNT\system32\VB6STKIT.DLL=Yes
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\ST6UNST.EXE=Yes
+
+[Package|Standard Setup Package 1|Configure Registry Files]
+Applicable=No
+
+[Package|Standard Setup Package 1|Configure Remote Servers]
+Applicable=No
+
+[Package|Standard Setup Package 1|Install Locations]
+C:\CODE\Server\Darren.exe=$(AppPath)
+C:\WINNT\system32\MSVBVM60.DLL=$(WinSysPathSysFile)
+C:\WINNT\system32\OLEAUT32.DLL=$(WinSysPathSysFile)
+C:\WINNT\system32\OLEPRO32.DLL=$(WinSysPathSysFile)
+C:\WINNT\system32\ASYCFILT.DLL=$(WinSysPathSysFile)
+C:\WINNT\system32\STDOLE2.TLB=$(WinSysPathSysFile)
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\COMCAT.DLL=$(WinSysPathSysFile)
+C:\Program Files\Common Files\Microsoft Shared\DAO\DAO2535.TLB=$(MSDAOPath)
+C:\Program Files\Common Files\Microsoft Shared\DAO\dao350.dll=$(MSDAOPath)
+C:\WINNT\system32\MSJET35.DLL=$(WinSysPathSysFile)
+C:\WINNT\system32\MSJTER35.DLL=$(WinSysPathSysFile)
+C:\WINNT\system32\MSJINT35.DLL=$(WinSysPathSysFile)
+C:\WINNT\system32\vbajet32.dll=$(WinSysPathSysFile)
+C:\WINNT\system32\EXPSRV.DLL=$(WinSysPathSysFile)
+C:\WINNT\system32\MSRD2X35.DLL=$(WinSysPathSysFile)
+C:\WINNT\system32\MSREPL35.DLL=$(WinSysPathSysFile)
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\MSVCRT40.DLL=$(WinSysPathSysFile)
+C:\WINNT\system32\vb5db.dll=$(WinSysPath)
+C:\Program Files\Microsoft Visual Studio\Common\Tools\Winapi\APILOAD.EXE=$(WinSysPath)
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\CLSSBLD.DLL=$(WinSysPath)
+C:\WINNT\system32\MSWINSCK.OCX=$(WinSysPath)
+C:\WINNT\system32\RICHTX32.OCX=$(WinSysPath)
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\RICHED32.DLL=$(WinSysPathSysFile)
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\SETUP.EXE=$(AppPath)
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\SETUP1.EXE=$(WinPath)
+C:\WINNT\system32\VB6STKIT.DLL=$(WinSysPathSysFile)
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\ST6UNST.EXE=$(WinPath)
+
+[Package|Standard Setup Package 1|Configure Shared Files]
+Applicable=Yes
+C:\CODE\Server\Darren.exe=No
+
+[Package|Standard Setup Package 1|Distribution]
+Type=single
+Size=
+Title=Client
+
+[Package|Standard Setup Package 1|IconGroups]
+Group0=Client
+PrivateGroup0=True
+Parent0=$(Programs)
+
+[Package|Standard Setup Package 1|Client]
+Icon1=Darren.exe
+Title1=Client
+StartIn1=$(AppPath)
+Key1=Icon1
+
+[Package|Standard Setup Package 1|Package]
+PackageFolder=C:\CODE\Server\Package
+ProjectFolder=C:\CODE\Server
+ServerSideCab=
+File1=C:\CODE\Server\Package\setup.exe
+File2=C:\CODE\Server\Package\Setup.Lst
+File3=C:\CODE\Server\Package\Darren.CAB
+Handler1=PDWizard.FolderDplySubWiz
+Handler2=PDWizard.WebPostDplySubWiz
+
+
+[Package|Setup - client|Root]
+SubWizProgID=PDWizard.SetupPkgSubWiz
+BuildFolder=C:\coding\Server\client
+
+[Package|Setup - client|Configure DAO ISAMs]
+Applicable=Yes
+Xbase=Yes
+Exchange=No
+Text=No
+Jet 2.x=No
+Paradox=No
+Excel=No
+Lotus=No
+
+[Package|Setup - client|Configure DAO ODBC]
+JetWorkspace=Yes
+ODBCDirect=Yes
+
+[Package|Setup - client|Files Found]
+
+[Package|Setup - client|Files Released]
+
+[Package|Setup - client|Missing Dependency Information]
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\CLSSBLD.DLL=
+C:\Program Files\Microsoft Visual Studio\Common\Tools\Winapi\APILOAD.EXE=
+C:\Program Files\VB98\Wizards\CLSSBLD.DLL=
+C:\Program Files\Common Files\Tools\Winapi\APILOAD.EXE=
+
+[Package|Setup - client|Out-of-Date Dependency Information]
+
+[Package|Setup - client|Files Added]
+
+[Package|Setup - client|Files Removed]
+
+[Package|Setup - client|Files In Project]
+C:\Program Files\Common Files\Microsoft Shared\DAO\DAO2535.TLB=Yes
+C:\Program Files\Common Files\Microsoft Shared\DAO\dao350.dll=Yes
+C:\coding\Server\Darren2.exe=Yes
+C:\WIN95\SYSTEM\MSVBVM60.DLL=Yes
+C:\WIN95\SYSTEM\OLEAUT32.DLL=Yes
+C:\WIN95\SYSTEM\olepro32.dll=Yes
+C:\WIN95\SYSTEM\asycfilt.dll=Yes
+C:\WIN95\SYSTEM\STDOLE2.TLB=Yes
+C:\Program Files\VB98\Wizards\PDWizard\Redist\COMCAT.DLL=Yes
+C:\WIN95\SYSTEM\msjet35.dll=Yes
+C:\WIN95\SYSTEM\msjter35.dll=Yes
+C:\WIN95\SYSTEM\msjint35.dll=Yes
+C:\WIN95\SYSTEM\VBAJET32.DLL=Yes
+C:\WIN95\SYSTEM\EXPSRV.DLL=Yes
+C:\WIN95\SYSTEM\msrd2x35.dll=Yes
+C:\WIN95\SYSTEM\msrepl35.dll=Yes
+C:\Program Files\VB98\Wizards\PDWizard\Redist\MSVCRT40.DLL=Yes
+C:\WIN95\SYSTEM\VB5DB.DLL=Yes
+C:\Program Files\Common Files\Tools\Winapi\APILOAD.EXE=Yes
+C:\Program Files\VB98\Wizards\CLSSBLD.DLL=Yes
+C:\WIN95\SYSTEM\MSWINSCK.OCX=Yes
+C:\WIN95\SYSTEM\RICHTX32.OCX=Yes
+C:\Program Files\VB98\Wizards\PDWizard\Redist\RICHED32.DLL=Yes
+C:\Program Files\VB98\Wizards\PDWizard\Redist\MDAC_TYP.EXE=Yes
+C:\WIN95\SYSTEM\MSRDO20.DLL=Yes
+C:\WIN95\SYSTEM\RDOCURS.DLL=Yes
+C:\WIN95\SYSTEM\MSXBSE35.DLL=Yes
+C:\Program Files\VB98\Wizards\PDWizard\SETUP.EXE=Yes
+C:\Program Files\VB98\Wizards\PDWizard\SETUP1.EXE=Yes
+C:\WIN95\SYSTEM\VB6STKIT.DLL=Yes
+C:\Program Files\VB98\Wizards\PDWizard\ST6UNST.EXE=Yes
+
+[Package|Setup - client|Configure Registry Files]
+Applicable=No
+
+[Package|Setup - client|Configure Remote Servers]
+Applicable=No
+
+[Package|Setup - client|Install Locations]
+C:\CODE\Server\Darren.exe=$(AppPath)
+C:\WINNT\system32\MSVBVM60.DLL=$(WinSysPathSysFile)
+C:\WINNT\system32\OLEAUT32.DLL=$(WinSysPathSysFile)
+C:\WINNT\system32\OLEPRO32.DLL=$(WinSysPathSysFile)
+C:\WINNT\system32\ASYCFILT.DLL=$(WinSysPathSysFile)
+C:\WINNT\system32\STDOLE2.TLB=$(WinSysPathSysFile)
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\COMCAT.DLL=$(WinSysPathSysFile)
+C:\Program Files\Common Files\Microsoft Shared\DAO\DAO2535.TLB=$(MSDAOPath)
+C:\Program Files\Common Files\Microsoft Shared\DAO\dao350.dll=$(MSDAOPath)
+C:\WINNT\system32\MSJET35.DLL=$(WinSysPathSysFile)
+C:\WINNT\system32\MSJTER35.DLL=$(WinSysPathSysFile)
+C:\WINNT\system32\MSJINT35.DLL=$(WinSysPathSysFile)
+C:\WINNT\system32\vbajet32.dll=$(WinSysPathSysFile)
+C:\WINNT\system32\EXPSRV.DLL=$(WinSysPathSysFile)
+C:\WINNT\system32\MSRD2X35.DLL=$(WinSysPathSysFile)
+C:\WINNT\system32\MSREPL35.DLL=$(WinSysPathSysFile)
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\MSVCRT40.DLL=$(WinSysPathSysFile)
+C:\WINNT\system32\vb5db.dll=$(WinSysPath)
+C:\Program Files\Microsoft Visual Studio\Common\Tools\Winapi\APILOAD.EXE=$(WinSysPath)
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\CLSSBLD.DLL=$(WinSysPath)
+C:\WINNT\system32\MSWINSCK.OCX=$(WinSysPath)
+C:\WINNT\system32\RICHTX32.OCX=$(WinSysPath)
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\RICHED32.DLL=$(WinSysPathSysFile)
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\SETUP.EXE=$(AppPath)
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\SETUP1.EXE=$(WinPath)
+C:\WINNT\system32\VB6STKIT.DLL=$(WinSysPathSysFile)
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\ST6UNST.EXE=$(WinPath)
+C:\coding\Server\Darren2.exe=$(AppPath)
+C:\WIN95\SYSTEM\MSVBVM60.DLL=$(WinSysPathSysFile)
+C:\WIN95\SYSTEM\OLEAUT32.DLL=$(WinSysPathSysFile)
+C:\WIN95\SYSTEM\olepro32.dll=$(WinSysPathSysFile)
+C:\WIN95\SYSTEM\asycfilt.dll=$(WinSysPathSysFile)
+C:\WIN95\SYSTEM\STDOLE2.TLB=$(WinSysPathSysFile)
+C:\Program Files\VB98\Wizards\PDWizard\Redist\COMCAT.DLL=$(WinSysPathSysFile)
+C:\WIN95\SYSTEM\msjet35.dll=$(WinSysPathSysFile)
+C:\WIN95\SYSTEM\msjter35.dll=$(WinSysPathSysFile)
+C:\WIN95\SYSTEM\msjint35.dll=$(WinSysPathSysFile)
+C:\WIN95\SYSTEM\VBAJET32.DLL=$(WinSysPathSysFile)
+C:\WIN95\SYSTEM\EXPSRV.DLL=$(WinSysPathSysFile)
+C:\WIN95\SYSTEM\msrd2x35.dll=$(WinSysPathSysFile)
+C:\WIN95\SYSTEM\msrepl35.dll=$(WinSysPathSysFile)
+C:\Program Files\VB98\Wizards\PDWizard\Redist\MSVCRT40.DLL=$(WinSysPathSysFile)
+C:\WIN95\SYSTEM\VB5DB.DLL=$(WinSysPath)
+C:\Program Files\Common Files\Tools\Winapi\APILOAD.EXE=$(WinSysPath)
+C:\Program Files\VB98\Wizards\CLSSBLD.DLL=$(WinSysPath)
+C:\WIN95\SYSTEM\MSWINSCK.OCX=$(WinSysPath)
+C:\WIN95\SYSTEM\RICHTX32.OCX=$(WinSysPath)
+C:\Program Files\VB98\Wizards\PDWizard\Redist\RICHED32.DLL=$(WinSysPathSysFile)
+C:\Program Files\VB98\Wizards\PDWizard\Redist\MDAC_TYP.EXE=$(AppPath)
+C:\WIN95\SYSTEM\MSRDO20.DLL=$(WinSysPath)
+C:\WIN95\SYSTEM\RDOCURS.DLL=$(WinSysPath)
+C:\WIN95\SYSTEM\MSXBSE35.DLL=$(WinSysPathSysFile)
+C:\Program Files\VB98\Wizards\PDWizard\SETUP.EXE=$(AppPath)
+C:\Program Files\VB98\Wizards\PDWizard\SETUP1.EXE=$(WinPath)
+C:\WIN95\SYSTEM\VB6STKIT.DLL=$(WinSysPathSysFile)
+C:\Program Files\VB98\Wizards\PDWizard\ST6UNST.EXE=$(WinPath)
+
+[Package|Setup - client|Configure Shared Files]
+Applicable=Yes
+C:\CODE\Server\Darren.exe=No
+C:\coding\Server\Darren2.exe=No
+C:\Program Files\VB98\Wizards\PDWizard\Redist\MDAC_TYP.EXE=Yes
+
+[Package|Setup - client|Distribution]
+Type=single
+Size=
+Title=Client
+
+[Package|Setup - client|IconGroups]
+Group0=Client
+PrivateGroup0=True
+Parent0=$(Programs)
+
+[Package|Setup - client|Client]
+Icon1=Darren.exe
+Title1=Client
+StartIn1=$(AppPath)
+Key1=Icon1
+
+[Package|Setup - client|Package]
+PackageFolder=C:\coding\Server\client
+ProjectFolder=C:\coding\Server
+ServerSideCab=
+File1=C:\coding\Server\client\setup.exe
+File2=C:\coding\Server\client\Setup.Lst
+File3=C:\coding\Server\client\Darren2.CAB
+Handler1=PDWizard.FolderDplySubWiz
+Handler2=PDWizard.WebPostDplySubWiz

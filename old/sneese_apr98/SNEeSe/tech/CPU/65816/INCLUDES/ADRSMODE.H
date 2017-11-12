@@ -1,0 +1,28 @@
+void stackmode();
+void stackrelative();
+void stackrelindindex();
+void accumulator();
+void PCrelative();
+void PCrelativeLONG();
+void implied ();
+void immediate();
+void absPBR ();
+void absDBR ();
+void absLONG();
+void indirect ();
+void indirectlong();
+void absx();
+void absy ();
+void absxLONG ();
+void indirectindexed ();
+void direct();
+void directX();
+void directY();
+void directind();
+void directindLONG();
+void directindindex();
+void directindindexLONG();
+void directindexind();
+void relative ();
+void relativeLONG();
+

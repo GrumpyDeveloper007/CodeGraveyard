@@ -1,0 +1,421 @@
+#include <i86.h>
+#include <math.h>
+#include <conio.h>
+#include <fstream.h>
+#include <iostream.h>
+#include <time.h>
+#include "\coding\watcom\xavstuff\h\video.h"
+#include "\coding\watcom\XavStuff\h\fixed32.h"
+//#include "assem.h"
+
+const float _PI=3.141592654;
+float DistanceTable[65536];
+unsigned short ScanBufferLeft[200];
+unsigned short ScanBufferRight[200];
+//unsigned char *Screen=(unsigned char *)0x0a0000;
+unsigned char *Texture;
+short ChangeX1,ChangeY1;
+short ChangeX2,ChangeY2;
+short MinY=399,MaxY=0;
+float Ax=160,Ay=5,Bx=10,By=10,Cx=300,Cy=60,Dx=160,Dy=91;
+
+
+ unsigned char *Buffer1,*Screen;
+ unsigned char CurrentPal[256*3];
+ int i,t;
+
+#include "..\XavStuff\h\pcx.h"
+PCXHeader HeaderInfo;
+
+
+void MakeDistanceTable()
+ {
+ int i,t;
+ for (i=0;i<256;i++)
+  for (t=0;t<256;t++)
+   DistanceTable[i*256+t]=(float) sqrt(i*i+t*t);
+ }
+
+void ScanConvert(Fixed x1,Fixed y1,Fixed x2,Fixed y2)   // To convert standard poly
+ {
+ Fixed mx;   // slope of x
+ Fixed temp; // for swapping
+ Fixed x,y;  // source x and y screen coordinates
+ int TempX;  // Dark
+
+ if(y1 > y2) // make sure that edge goes from top to bottom
+  {
+  temp=x1;  // we need to swap the coordinates around
+  x1=x2;
+  x2=temp;
+
+  temp=y1;
+  y1=y2;
+  y2=temp;
+  }
+
+ if (y1<MinY)
+  MinY=y1;
+ if (y2>MaxY)
+  MaxY=y2;
+
+ if(y2!=y1 ) // initialize the slopes for stepping the edges
+  mx = (Int2Fixed(x2-x1)) / (y2-y1); // dx/dy
+
+ x=Int2Fixed(x1);
+ for(y=y1;y<=y2;y++)
+  {
+   TempX=Fixed2Int(x);
+   if (TempX<ScanBufferLeft[y])
+     ScanBufferLeft[y]=TempX;
+   if (TempX>ScanBufferRight[y])
+     ScanBufferRight[y]=TempX;
+  x+=mx;
+  }
+ }
+void OrderPoints(float &Ax,float &Ay,float &Bx,float &By,
+                 float &Cx,float &Cy,float &Dx,float &Dy)
+ {
+ float Tx,Ty;
+ // Ay must be lowest point
+
+ if (Ay>By)
+  {  Tx=Ax;Ty=Ay;Ax=Bx;Ay=By;Bx=Tx;By=Ty;  }
+ if (By>Cy)
+  {  Tx=Bx;Ty=By;Bx=Cx;By=Cy;Cx=Tx;Cy=Ty;  }
+ if (Cy>Dy)
+  {  Tx=Cx;Ty=Cy;Cx=Dx;Cy=Dy;Dx=Tx;Dy=Ty;  }
+
+ if (Ay>By)
+  {  Tx=Ax;Ty=Ay;Ax=Bx;Ay=By;Bx=Tx;By=Ty;  }
+ if (By>Cy)
+  {  Tx=Bx;Ty=By;Bx=Cx;By=Cy;Cx=Tx;Cy=Ty;  }
+ if (Cy>Dy)
+  {  Tx=Cx;Ty=Cy;Cx=Dx;Cy=Dy;Dx=Tx;Dy=Ty;  }
+
+ if (Ay>By)
+  {  Tx=Ax;Ty=Ay;Ax=Bx;Ay=By;Bx=Tx;By=Ty;  }
+ if (By>Cy)
+  {  Tx=Bx;Ty=By;Bx=Cx;By=Cy;Cx=Tx;Cy=Ty;  }
+ if (Cy>Dy)
+  {  Tx=Cx;Ty=Cy;Cx=Dx;Cy=Dy;Dx=Tx;Dy=Ty;  }
+
+ if (Ay>By)
+  {  Tx=Ax;Ty=Ay;Ax=Bx;Ay=By;Bx=Tx;By=Ty;  }
+ if (By>Cy)
+  {  Tx=Bx;Ty=By;Bx=Cx;By=Cy;Cx=Tx;Cy=Ty;  }
+ if (Cy>Dy)
+  {  Tx=Cx;Ty=Cy;Cx=Dx;Cy=Dy;Dx=Tx;Dy=Ty;  }
+
+/* if (By<Ay && By<Cy && By<Dy)
+  {  Tx=Ax;Ty=Ay;Ax=Bx;Ay=By;Bx=Tx;By=Ty;  }
+ if (Cy<Ay && Cy<By && Cy<Dy)
+  {  Tx=Ax;Ty=Ay;Ax=Cx;Ay=Cy;Cx=Tx;Cy=Ty;  }
+ if (Dy<Ay && Dy<By && Dy<Cy)
+  {  Tx=Ax;Ty=Ay;Ax=Dx;Ay=Dy;Dx=Tx;Dy=Ty;  }
+     */
+// if (By>Cy && By>Dy)
+//  {  Tx=Dx;Ty=Dy;Dx=Bx;Dy=By;Bx=Tx;By=Ty;  }
+// if (Cy>By && Cy>Dy)
+//  {  Tx=Dx;Ty=Dy;Dx=Cx;Dy=Cy;Cx=Tx;Cy=Ty;  }
+
+ // Bx must be leftmost + Cx must be rightmost
+ if (Cx<Bx & Cx<Dx)
+  {  Tx=Cx;Ty=Cy;Cx=Bx;Cy=By;Bx=Tx;By=Ty;  }
+ if (Dx<Bx & Dx<Cx)
+  {  Tx=Dx;Ty=Dy;Dx=Bx;Dy=By;Bx=Tx;By=Ty;  }
+ }
+
+void TexturePlot()
+ {
+ int TextureX=128,TextureY=128;
+ int i,t,YMul;
+ float StartX,EndX,SX=0,SY=0;
+ float DXStep,GX,GY,TSX,TSY;
+ float AB,AC;
+ AB=TextureX/(By-Ay); // Step in X of source
+ AC=TextureY/(Cy-Ay);
+ if (Cy>By)
+   {
+   YMul=(int)Ay*320;
+   for(i=Ay;i<By;i++)
+     {
+     StartX=ScanBufferLeft[i];
+     EndX=ScanBufferRight[i];
+     DXStep=EndX-StartX; // M1=length of line in destnation
+     GX=(SY/DXStep);
+     GY=-(SX/DXStep);
+     TSX=0;
+     TSY=SX;
+     for(t=0;t<DXStep;t++)
+       {
+       Screen[(int) (t+StartX+YMul) ]=Buffer1[(int) ( TSX+(int)TSY*TextureX )&16383];
+       TSX+=GX;
+       TSY+=GY;
+       }
+     YMul+=320;
+     SX+=AB; // Next X line in source
+     SY+=AC; // Next Y line in source
+     }
+   if (Dy>Cy)
+     {
+     SX=0;
+     AB=TextureY/(Dy-By);
+     for(i=By;i<Cy;i++)
+       {
+       StartX=ScanBufferLeft[i];
+       EndX=ScanBufferRight[i];
+       DXStep=EndX-StartX; // M1=length of line in destnation
+       GX=(SY-SX)/DXStep;
+       GY=-(TextureY/DXStep);
+       TSX=SX;
+       TSY=TextureY;
+       for(t=0;t<DXStep;t++)
+         {
+         Screen[(int) (t+StartX+i*320) ]=Buffer1[(int) ( TSX+(int)TSY*TextureX )&16383];
+         TSX+=GX;
+         TSY+=GY;
+         }
+       SX+=AB; // Next X line in source
+       SY+=AC; // Next Y line in source
+       }
+     SY=0;
+     AC=TextureX/(Dy-Cy); // Step in X of source
+     for(i=Cy;i<Dy;i++)
+       {
+       StartX=ScanBufferLeft[i];
+       EndX=ScanBufferRight[i];
+       DXStep=EndX-StartX; // M1=length of line in destnation
+       GX=(TextureX-SX)/DXStep;
+       GY=-(TextureY-SY)/DXStep;
+       TSX=SX;
+       TSY=TextureY;
+       for(t=0;t<DXStep;t++)
+         {
+         Screen[(int) (t+StartX+i*320) ]=Buffer1[(int) ( TSX+(int)TSY*TextureX )&16383];
+         TSX+=GX;
+         TSY+=GY;
+         }
+       SX+=AB; // Next X line in source
+       SY+=AC; // Next Y line in source
+       }
+     }
+   else
+     {        // unfinished ////////////////////////////////////////////////
+     SX=0;
+     AB=TextureY/(Dy-By);
+     for(i=By;i<Dy;i++)
+       {
+       StartX=ScanBufferLeft[i];
+       EndX=ScanBufferRight[i];
+       DXStep=EndX-StartX; // M1=length of line in destnation
+       GX=(SY-SX)/DXStep;
+       GY=-(TextureY/DXStep);
+       TSX=SX;
+       TSY=TextureY;
+       for(t=0;t<DXStep;t++)
+         {
+         Screen[(int) (t+StartX+i*320) ]=Buffer1[(int) ( TSX+(int)TSY*TextureX )&16383];
+         TSX+=GX;
+         TSY+=GY;
+         }
+       SX+=AB; // Next X line in source
+       SY+=AC; // Next Y line in source
+       }
+     SX=TextureY;
+     AB=TextureY/(Dy-By); // Step in X of source
+     for(i=Dy;i<Cy;i++)
+       {
+       StartX=ScanBufferLeft[i];
+       EndX=ScanBufferRight[i];
+       DXStep=EndX-StartX; // M1=length of line in destnation
+       GX=-(TextureX-SX)/DXStep;
+       GY=-(TextureY-SY)/DXStep;
+       TSX=TextureX;
+       TSY=SY;
+       for(t=0;t<DXStep;t++)
+         {
+         Screen[(int) (t+StartX+i*320) ]=Buffer1[(int) ( TSX+(int)TSY*TextureX )&16383];
+         TSX+=GX;
+         TSY+=GY;
+         }
+       SX+=-AB; // Next X line in source
+       SY+=AC; // Next Y line in source
+       }
+     }
+   }
+   else // By>Cy //////////////////////////////////////////////////////////
+// AB=TextureX/(By-Ay); 
+// AC=TextureY/(Cy-Ay);
+      // Unfinished
+   {
+   YMul=(int)Ay*320;
+   for(i=Ay;i<Cy;i++)
+     {
+     StartX=ScanBufferLeft[i];
+     EndX=ScanBufferRight[i];
+     DXStep=EndX-StartX; // M1=length of line in destnation
+     GX=(SY/DXStep);
+     GY=-(SX/DXStep);
+     TSX=0;
+     TSY=SX;
+     for(t=0;t<DXStep;t++)
+       {
+       Screen[(int) (t+StartX+YMul) ]=Buffer1[(int) ( TSX+(int)TSY*TextureX )&16383];
+       TSX+=GX;
+       TSY+=GY;
+       }
+     YMul+=320;
+     SX+=AB; // Next X line in source
+     SY+=AC; // Next Y line in source
+     }
+   if (Dy>By)
+     {
+     SY=0;
+     AC=TextureX/(Dy-Cy);
+     for(i=Cy;i<By;i++)
+       {
+       StartX=ScanBufferLeft[i];
+       EndX=ScanBufferRight[i];
+       DXStep=EndX-StartX; // M1=length of line in destnation
+       GX=(TextureY/DXStep);
+       GY=(SY-SX)/DXStep;
+       TSX=0;
+       TSY=SX;
+       for(t=0;t<DXStep;t++)
+         {
+         Screen[(int) (t+StartX+i*320) ]=Buffer1[(int) ( TSX+(int)TSY*TextureX )&16383];
+         TSX+=GX;
+         TSY+=GY;
+         }
+       SX+=AB; // Next X line in source
+       SY+=AC; // Next Y line in source
+       }
+     SX=0;
+     AB=TextureX/(Dy-By); // Step in X of source
+     for(i=By;i<Dy;i++)
+       {
+       StartX=ScanBufferLeft[i];
+       EndX=ScanBufferRight[i];
+       DXStep=EndX-StartX; // M1=length of line in destnation
+       GX=(TextureX-SX)/DXStep;
+       GY=-(TextureY-SY)/DXStep;
+       TSX=SX;
+       TSY=TextureY;
+       for(t=0;t<DXStep;t++)
+         {
+         Screen[(int) (t+StartX+i*320) ]=Buffer1[(int) ( TSX+(int)TSY*TextureX )&16383];
+         TSX+=GX;
+         TSY+=GY;
+         }
+       SX+=AB; // Next X line in source
+       SY+=AC; // Next Y line in source
+       }
+     }
+   else
+     {        // By>Dy unfinished ////////////////////////////////////////////
+     SY=0;
+     AC=TextureY/(Dy-Cy);
+     for(i=Cy;i<Dy;i++)
+       {
+       StartX=ScanBufferLeft[i];
+       EndX=ScanBufferRight[i];
+       DXStep=EndX-StartX; // M1=length of line in destnation
+       GX=(TextureX)/DXStep;
+       GY=-(SX-SY)/DXStep;
+       TSX=0;
+       TSY=SX;
+       for(t=0;t<DXStep;t++)
+         {
+         Screen[(int) (t+StartX+i*320) ]=Buffer1[(int) ( TSX+(int)TSY*TextureX )&16383];
+         TSX+=GX;
+         TSY+=GY;
+         }
+       SX+=AB; // Next X line in source
+       SY+=AC; // Next Y line in source
+       }
+     SY=TextureY;
+     AC=TextureY/(By-Dy); // Step in X of source
+     for(i=Dy;i<By;i++)
+       {
+       StartX=ScanBufferLeft[i];
+       EndX=ScanBufferRight[i];
+       DXStep=EndX-StartX; // M1=length of line in destnation
+       GX=(SY)/DXStep;
+       GY=(TextureY-SX)/DXStep;
+       TSX=0;
+       TSY=SX;
+       for(t=0;t<DXStep;t++)
+         {
+         Screen[(int) (t+StartX+i*320) ]=Buffer1[(int) ( TSX+(int)TSY*TextureX )&16383];
+         TSX+=GX;
+         TSY+=GY;
+         }
+       SX+=AB; // Next X line in source
+       SY+=-AC; // Next Y line in source
+       }
+     }
+   }
+     
+ }
+
+
+
+
+
+
+void main ()
+ {
+ clock_t Start,End;
+ int Frame=0;
+
+
+ Screen=(unsigned char*)0x0a0000;
+ Buffer1=new unsigned char[65536];
+
+ GetPCXInfo(&HeaderInfo,"texture.PCX");
+ GetPCXPicture(&HeaderInfo,"texture.PCX",Buffer1);
+ GetPCXPalette(&HeaderInfo,"texture.PCX",CurrentPal);
+
+
+ InitVideo();
+ SetPalette(CurrentPal,0,256);
+
+ Start=clock();
+ float ax1=-50,ay1=-50,bx1=-50,by1=50;
+ float cx1=80,cy1=-70,dx1=50,dy1=50;
+ float Angle=0;
+
+ while(!kbhit())
+ {
+ Angle+=0.01;
+ if (Angle>=_PI)
+  Angle=0;
+ for(i=0;i<200;i++)     // Initialises Scanbuffer
+  {
+  ScanBufferLeft[i]=320;
+  ScanBufferRight[i]=0;
+  }
+ Ax=(ax1*sin(Angle)+ay1*cos(Angle))+160;
+ Ay=(-ax1*cos(Angle)+ay1*sin(Angle))+100;
+ Bx=(bx1*sin(Angle)+by1*cos(Angle))+160;
+ By=(-bx1*cos(Angle)+by1*sin(Angle))+100;
+ Cx=(cx1*sin(Angle)+cy1*cos(Angle))+160;
+ Cy=(-cx1*cos(Angle)+cy1*sin(Angle))+100;
+ Dx=(dx1*sin(Angle)+dy1*cos(Angle))+160;
+ Dy=(-dx1*cos(Angle)+dy1*sin(Angle))+100;
+ ScanConvert(Ax,Ay,Bx,By);
+ ScanConvert(Ax,Ay,Cx,Cy);
+ ScanConvert(Bx,By,Dx,Dy);
+ ScanConvert(Cx,Cy,Dx,Dy);
+ OrderPoints(Ax,Ay,Bx,By,Cx,Cy,Dx,Dy);
+   TexturePlot();
+    Frame++;
+  }
+
+ End=clock();
+ KillVideo();
+ cout << "Frame number :"<<Frame<<"   start,end :"<<Start<<" : "<<End<<endl;
+ cout << "Frames Per Second = " << (Frame*CLOCKS_PER_SEC)/(End-Start)<<endl;
+ cout << "\nCode By Dark Elf / Phobia"<<endl;
+ }

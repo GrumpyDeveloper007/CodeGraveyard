@@ -1,0 +1,36 @@
+--------------------------------------------------------------------------
+This is free software, however, you may not modify or redistribute this 
+in a modified form....and you definitely can't charge any money for this!
+--------------------------------------------------------------------------
+
+Hi! This is an early attempt of mine at an spc700 disassembler, a friend
+mentioned that before i delete it, i should clean it up and release it,
+in case someone could find it useful.....so with every disclaimer in the
+book, here it is....it should be pretty accurate, the follow jumps option
+is currently not hooked up to any code (just there to look cool)...
+
+Currently, i am using a beefed up command line version of this, along with an
+spc700 assembler (based on the 65816 Cross Assembler) to develop some
+cool snes sound stuff...once i make sure that everything is working cool,
+i will release the assembler (pc/amiga/unix with full source, same deal as
+the 65816 Cross Assembler) i just don't know enough about it all yet to release
+a version, (buggy versions suck!)
+
+So if you think this is useful, lemme know...maybe it will motivate me to
+work on it a bit more ;) If you wanna see a PC/Amiga version, all ya gotta
+do is rewrite the screen.C module, (small amount of code) it is currently
+using ncurses (an eNhanced version of curses)...
+
+If anyone is interested, the 65816 Cross Assembler is on version 2.2 (even
+more bugfixes, in the listing file generation, and one stack releative opcode,
+and a "SCOpe" command to allow better local variable definitions) .... unless
+anyone is specifically interested, this won't be released, verison 2.3
+(almost done) includes <<macros>> and this will be released soon....
+
+	well that's enough for now, anyone with ncurses1.8 and g++
+	should have no problem with this distribution, anyone with a
+	sun should have no problem (sun binary is included, spcdis.gz ;) 
+	anyone else please read the UNIXREADME file....
+
+
+				-jeremy gordon (jgordon@animator.slip.umd.edu)

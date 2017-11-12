@@ -1,0 +1,80 @@
+
+SNEeSe = Snes Emulation (For The Hell Of It)
+--------------------------------------------
+
+ Developed by Savoury Snax - (Silence all who disbelieve!)
+
+ Greets - Dark Elf,Kone,rRNA,Dark Claw,Poiple Shadow,Flash,
+          MaJiC + all at #babylon5 and #star_wars + Anyone else ?
+
+Dedicated to Yoshi - The one without whom emulation would be just a
+                    dream, he was missed before he had even gone.
+
+------- For True SNES Emulation Look No Further Than SNES'97 -------
+
+ Why another SNES emulator ?
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+	Why the hell not! Seriously, this was developed because I was
+in need of a second project (on top of my 3D Engine) which would
+occupy my mind when the first was at a stand still. I decided on
+SNES emulation because I knew nothing about it! This seems backwards
+but I did not want to code something that I had touched on before. I
+have used the 6502,Z80 and 68000 processors which kills most other
+consoles and computers (I actually began a Sinclair 48K emulator
+back in my amiga days). Besides most other emulators have now
+gotten very close to total emulation... SNES still lacks sound and
+stability, the amiga is the only other emulation nightmare (AGA) since
+Marcus got GENEM going again!
+
+ What can SNEeSe do in this version of the program ?
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+ I begun once before, but documents problems left me in the lurch!
+
+ So after a month or so, I have started a re-write (well bugs and all
+are a pain to track sometimes!).
+
+ Implemented features follow :
+
+ o - 73 opcodes (not instructions) implemented fully.
+
+ o - Memory mappings for lo-rom modes done.
+
+ o - DMA operations 0 & 1, channel 0 only!
+
+ o - Hardware scroll registers for all 4 bkgs.
+
+ o - Video Modes 0,1 & 3 are fully implemented (I think).
+
+ o - Some other hardware registers done such as palette etc.
+
+ o - NMI interrupt running although timings may be a little out.
+
+ o - SNES Joypad 1 is supported keys are currently fixed as :
+					<Cursor Keys>  - Directional control
+					Q,W,A,S,Z,X    - L,R,Y,X,B,A Buttons
+					N,M	       - SELECT,START Buttons
+
+ What is left to do in this emulator ?
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+	Erm, Emulate a SNES. Expect This To Become A Real List Once I
+Have A 100% CPU Engine. YUP, The CPU is the slowest emulation process as
+I prefer to get it working 100% first time round (if possible) than have
+to track down problems later on.
+
+ History
+=-=-=-=-=
+
+26 June:
+	At last after screaming at the Yoshi Documentation set (Screen.TXT) I
+got Mode 1 up and running. Turns out the bit about tiles was completely wrong!
+	Modes 3 & 0 are now running properly too.
+	Fixed NMI bug (interrupt was being issued without checking 0x4200!!)
+
+25 June:
+	Finally got to the end of the Demo cartridge (without doing sound part!).
+
+RE-WRITE OF INITIAL EMULATION PROJECT BEGUN TUE 24 JUNE
+NO VERSION NUMBERS YET EXIST!!!

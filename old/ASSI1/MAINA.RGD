@@ -1,0 +1,18 @@
+[BREAKPOINTS]
+TYPE: 3
+FILE: sample.cc
+LINE: 96
+[WATCHES]
+Points2D
+FaceList
+tempfaces
+i
+VectorList
+colour
+*points
+numfaces
+[IDE]
+SCREENMODE: 3
+TABSIZE: 8
+VERBOSEGDB: 0
+MAIN: main

@@ -1,0 +1,10 @@
+     MIDAS Sound System v0.6.1
+
+MIDAS is a 32-bit digital music and sound
+system, for MS-DOS, Win32 (C and Delphi)
+and Linux. It plays Protracker, ST3 and
+FT2 modules, plus individual samples and
+digital audio streams. Full source code and
+pre-compiled libraries for all platforms
+are included.
+  - CONTAINS SUBDIRECTORIES! -

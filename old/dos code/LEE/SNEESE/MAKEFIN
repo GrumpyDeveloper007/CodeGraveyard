@@ -1,0 +1,26 @@
+sneese.exe : ma.obj sc.obj cp.obj me.obj ad.obj ro.obj sca.obj
+        wcl386 /mf /ot -fpi87 -fp3 /l=pmodew /fe=sneese.exe ma.obj sc.obj cp.obj me.obj ad.obj ro.obj sca.obj \coding\include\xavierp.lib
+
+sca.obj : screenas.asm
+        wasm -4p -fo=sca.obj -mf screenas.asm
+
+ma.obj : main.cc
+        wpp386 /mf /ot -fpi87 -fp3 /bt=pmodew /fo=ma.obj main.cc
+
+sc.obj : screen.cc
+        wpp386 /mf /ot -fpi87 -fp3 /bt=pmodew /fo=sc.obj screen.cc
+
+cp.obj : cpu.cc
+        wpp386 /mf /ot -fpi87 -fp3 /bt=pmodew /fo=cp.obj cpu.cc
+
+me.obj : mem.cc
+        wpp386 /mf /ot -fpi87 -fp3 /bt=pmodew /fo=me.obj mem.cc
+
+ad.obj : addr.cc
+        wpp386 /mf /ot -fpi87 -fp3 /bt=pmodew /fo=ad.obj addr.cc
+
+ro.obj : romload.cc
+        wpp386 /mf /ot -fpi87 -fp3 /bt=pmodew /fo=ro.obj romload.cc
+
+
+

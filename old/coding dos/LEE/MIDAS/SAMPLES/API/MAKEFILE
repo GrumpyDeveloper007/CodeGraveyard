@@ -1,0 +1,76 @@
+#*      makefile
+#*
+#* Make script for MIDAS DLL API examples
+#*
+#* Copyright 1996,1997 Housemarque Inc.
+#*
+#* This file is part of the MIDAS Sound System, and may only be
+#* used, modified and distributed under the terms of the MIDAS
+#* Sound System license, LICENSE.TXT. By continuing to use,
+#* modify or distribute this file you indicate that you have
+#* read the license and understand and accept it fully.
+#*
+
+# Directories:
+MIDASDIR = ..\..
+MIDASINCDIR = $(MIDASDIR)\include
+MIDASLIBDIR = $(MIDASDIR)\lib
+
+
+# Set up compiler (actually compile & link program):
+
+!ifdef DOS              # ---------------------------------------------------
+
+# We'll be compiling for DOS with Watcom C:
+CL = wcl386
+
+# Options: Warning level 3, all warnings are errors, SS!=DGROUP,
+# DS pegged to DGROUP, DOS code, include directory, linker case sensitive
+CLOPTS = -w3 -we -zu -zdp -bt=dos -i=$(MIDASINCDIR) -"option caseexact"
+
+# DOS library:
+LIBFILE = $(MIDASLIBDIR)\midasdos.lib
+
+!else
+
+!ifdef VISUALC          # ---------------------------------------------------
+
+# We'll be compiling for Win32 with Visual C:
+CL = cl
+
+# Options: Use threaded RTL, warning level 3, warnings are errors,
+# struct packing at byte boundaries, no logo (be quiet), include directory
+CLOPTS = -MT -W3 -WX -Zp1 -nologo -I$(MIDASINCDIR)
+
+# Visual C import library for DLL:
+LIBFILE = $(MIDASLIBDIR)\midas06_visualc.lib
+
+!else                   # ---------------------------------------------------
+
+# We'll be compiling for Win32 with Watcom C:
+CL = wcl386
+
+# Options: Warning level 3, all warnings are errors, NT code, include dir
+CLOPTS = -w3 -we -bt=nt -i=$(MIDASINCDIR)
+
+# Watcom import library for DLL:
+LIBFILE = $(MIDASLIBDIR)\midas06_watcom.lib
+
+!endif
+
+!endif
+
+
+# Targets:
+
+all :           effects.exe all.exe module.exe
+
+
+all.exe :       all.c
+                $(CL) $(CLOPTS) all.c $(LIBFILE)
+
+effects.exe :   effects.c
+                $(CL) $(CLOPTS) effects.c $(LIBFILE)
+
+module.exe :    module.c
+                $(CL) $(CLOPTS) module.c $(LIBFILE)

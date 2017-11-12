@@ -1,0 +1,39 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<!--Converted with LaTeX2HTML 96.1-h (September 30, 1996) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
+<HTML>
+<HEAD>
+<TITLE>3.3 Channels</TITLE>
+<META NAME="description" CONTENT="3.3 Channels">
+<META NAME="keywords" CONTENT="prgguide">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<LINK REL=STYLESHEET HREF="prgguide.css">
+</HEAD>
+<BODY LANG="EN" >
+ <A NAME="tex2html201" HREF="node13.html"><IMG WIDTH=37 HEIGHT=24 ALIGN=BOTTOM ALT="next" SRC="../icons/next_motif.gif"></A> <A NAME="tex2html199" HREF="node9.html"><IMG WIDTH=26 HEIGHT=24 ALIGN=BOTTOM ALT="up" SRC="../icons/up_motif.gif"></A> <A NAME="tex2html193" HREF="node11.html"><IMG WIDTH=63 HEIGHT=24 ALIGN=BOTTOM ALT="previous" SRC="../icons/previous_motif.gif"></A> <A NAME="tex2html203" HREF="node1.html"><IMG WIDTH=65 HEIGHT=24 ALIGN=BOTTOM ALT="contents" SRC="../icons/contents_motif.gif"></A>  <BR>
+<B> Next:</B> <A NAME="tex2html202" HREF="node13.html">3.4 Panning</A>
+<B>Up:</B> <A NAME="tex2html200" HREF="node9.html">3 MIDAS concepts</A>
+<B> Previous:</B> <A NAME="tex2html194" HREF="node11.html">3.2 Streams</A>
+<BR> <P>
+<H1><A NAME="SECTION00430000000000000000">3.3 Channels</A></H1>
+<P>
+In MIDAS Sound System, channels are used to play the sound. Each channel can
+play one sample or stream at a time, either mono or stereo. When a new sound
+is played on a channel, the old one is removed. A channel is identified by a
+channel number, which range from zero upwards.
+<P>
+Before any sound can be played, a number of channels must be opened from the
+Sound Device. MIDAS supports an unlimited number of channels on all
+platforms, unless hardware mixing is used. Although the number of open
+channels has some impact on CPU usage, the amount of CPU power used depends
+mostly on the channels that actually play sound. Therefore it is much more
+important to ensure that no unnecessary sounds are left playing than it is to
+minimize the number of open channels.
+<P>
+<BR> <HR>
+<P><ADDRESS>
+<I>Petteri Kangaslampi <BR>
+Mon Jan 27 00:15:29 EET 1997</I>
+</ADDRESS>
+</BODY>
+</HTML>

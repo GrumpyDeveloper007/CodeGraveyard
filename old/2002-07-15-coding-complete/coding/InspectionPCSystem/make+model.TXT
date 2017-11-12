@@ -1,0 +1,740 @@
+
+                    
+    GOLF 92 ON          
+
+                    
+    GOLF CABRIOLET 94 ON
+    ROCSTA              
+
+ALFA ROMEO          
+    156                 
+
+ALFA ROMEO          
+    145                 
+    155 95              
+    164                 
+    2000                
+    33 1990             
+    75                  
+    ALFETTA             
+    ARNA                
+    GIULIETTA           
+    GTV                 
+    JUNIOR              
+    MONTREAL            
+    SPIDER              
+    SPRINT              
+    SUD                 
+    SPORT WAGON         
+    LAGONDA             
+
+ASTON MARTIN        
+    V8 AUTO             
+    VANTAGE             
+    VIRAGE              
+    100 1991 ON         
+
+AUDI                
+    110                 
+    1200                
+    200                 
+    50                  
+    80 1987-89          
+    80 1992 ON          
+    90                  
+    A3                  
+    A4                  
+    A6                  
+    A8                  
+    AVANT               
+    CABRIOLET           
+    COUPE               
+    QUATTRO             
+    V8                  
+    BRAVA PICK-UP       
+
+BEDFORD             
+    CF VAN              
+    MIDI VAN            
+    RASCAL              
+    TL                  
+    TM SERIES           
+    2000                
+
+BMW                 
+    R SERIES            
+    3 SERIES 4/91 TO 8/9
+    3 SERIES TO 90      
+    3 SERIES COMPACT    
+    3 SERIES 9/92 ON    
+    5 SERIES TO 3/88    
+    5 SERIES 3/88 ON    
+    6 SERIES 83-88      
+    7 SERIES 83-86      
+    7 SERIES 87 TO 94   
+    850 SERIES          
+    COUPE               
+    K SERIES            
+    MOTOR CYCLES        
+    SAMARA              
+    Z3                  
+    NEON                
+
+CHRYSLER            
+    PT CRUISER          
+    VOYAGER             
+    2 CV                
+
+CITROEN             
+    ACADIANE            
+    AXEL                
+    AMI SUPER           
+    ZX AURA             
+    ZX AVANTAGE         
+    AX 92 ON            
+    AX TO 91            
+    BELINGO             
+    BX 8/86 ON          
+    C15                 
+    C25 5/90 ON         
+    CX                  
+    AX DEBUT            
+    DS 21               
+    AX ECHO             
+    AX FORTE            
+    ZX FURIO            
+    GSA                 
+    GS                  
+    LNA                 
+    ZX REFLEX           
+    SAXO                
+    SM                  
+    SYNERGY             
+    ZX VOLCANE          
+    XANTIA              
+    XM 6/94 ON          
+    XM TO 5/94          
+    XSARA               
+    ZX                  
+    55 WIDE             
+
+DAIHATSU            
+    APPLAUSE            
+    CHARADE             
+    CHARMANT            
+    CUORE               
+    DOMINO              
+    F70-80 VAN          
+    FOURTRAK            
+    GRANDMOVE           
+    HIJET               
+    MIRA                
+    SIRION              
+    SPORTRAK            
+    TERIOS              
+    FT 2300/2800        
+
+DAF                 
+    ROADRUNNER          
+    SHERPA VAN 1982-90  
+    996                 
+
+DAEWOO              
+    ESPERO              
+
+DAEWOO              
+    LANOS               
+    LEGANZA             
+    MATIZ               
+    NEXIA               
+    NUBRIA              
+    'CP'                
+
+ERF                 
+    ATSU SPORTRAK       
+    130                 
+
+FIAT                
+    126 (BIS)           
+    127 FIORINO         
+    2000                
+    A 112               
+    ARGENTA             
+    BARCHETTA           
+    BETA                
+    BRAVO               
+    BRAVA               
+    CINQUECENTO         
+    COUPE 95            
+    CROMA               
+    DEDRA               
+    DELTA               
+    DUCATO              
+    FIORINO             
+    GAMMA               
+    MAREA               
+    MONTECARLO          
+    MULTIPA             
+    PANDA               
+    PRISMA              
+    PUNTO               
+    REGATA              
+    RITMO               
+    SEICENTO            
+    STRADA              
+    TALENTO             
+    TEMPRA 7/93 ON      
+    THEMA               
+    TIPO                
+    TEMPRA TO 6/93      
+    TREVI               
+    ULYSEE              
+    UNO                 
+    X 1/9               
+    A-SERIE             
+
+FORD                
+    CARGO               
+    COUGAR              
+    COURIER             
+    CAPRI               
+    CARGO               
+    ECONOVAN            
+    ESCORT AND ORION 86-
+    ESCORT/ORION 91 TO 9
+    ESCORT 95 ON        
+    FIESTA 89 TO 93     
+    FIESTA 94 ON        
+    FOCUS               
+    FIESTA TO 88        
+    GRANADA 85-91       
+    GALAXY              
+    GRANADA 92-94       
+    GALAXY              
+    KA                  
+    MAVERICK            
+    MONDEO              
+    N-SERIE             
+    ORION               
+    P3                  
+    P4                  
+    P6                  
+    P7                  
+    PROBE 11/94 ON      
+    PUMA                
+    SAPPHIRE            
+    SCORPIO 10/94 ON    
+    SIERRA 87 ON AND P10
+    TRANSIT VAN 86-90   
+    TRANSCONTINENTAL    
+    TRANSIT VAN 78-85   
+    TRANSIT VAN 92 ON   
+    GENARAL MODEL       
+
+HARLEY              
+    DAVIDSON            
+
+HONDA               
+    ACCORD              
+
+HONDA               
+    AERODECK            
+    BALLADE             
+    CRV                 
+    CBR600F             
+    CIVIC 95 ON         
+    CONCERTO            
+    CRX                 
+    CIVIC 91-95         
+    CX 650 E            
+    CY 80               
+    FIREBLADE           
+    FT 500              
+    HRV                 
+    INTEGRA             
+    JAZZ                
+    LEGEND              
+    MOTOR CYCLES (A)    
+    MOTOR CYCLES (B)    
+    MOTOR CYCLES (C)    
+    MTX 80 R2           
+    N 600               
+    NH 125 LEAD         
+    NSX                 
+    PRELUDE             
+    S 800               
+    SHUTTLE             
+    TN ACTY VAN 87 ON   
+    VFR 750 F           
+    XBR 500 S           
+    XL 250 R            
+    ACCENT              
+
+HYUNDAI             
+    ATOZ                
+    COUPE               
+    LANTRA              
+    PONY                
+    S COUPE             
+    SONATA              
+    STELLAR             
+    TRAJET              
+    X2                  
+    TROOPER             
+
+JAGUAR              
+    XJS TO 91           
+
+JAGUAR              
+    XJ6 2.9 AND 3.6 86 O
+    CHEROKEE            
+
+JEEP                
+    WRANGLER            
+    MOTOR CYCLES (A)    
+
+KAWAZAKI            
+    MOTOR CYCLES (B)    
+    MENTOR 1.6SLX       
+
+KIA                 
+    PRIDE               
+    SPORTAGE 2.0SLX     
+    CARS                
+
+LADA                
+    NIVA                
+    RIVA                
+    SAMARA              
+    CONVOY              
+
+LEXUS               
+    GS300               
+
+LAMBRETTA           
+    MOTOR CYCLES        
+
+LANCIA              
+    DEDRA               
+
+LANCIA              
+    DELTA               
+    PRISMA              
+    THEMA               
+    Y10                 
+    ELAN                
+
+LOTUS               
+    ESPRIT              
+    EXCEL               
+    110 SERIES 87 ON    
+
+LANDROVER           
+    3 SERIES            
+    90 SERIES           
+    DISCOVERY 94 ON     
+    DISCOVERY TO 94     
+    FREELANDER          
+    650                 
+
+MAZDA               
+    1300                
+
+MAZDA               
+    121                 
+    323 1.5GLX 95       
+    323 SERIES 1989 ON  
+    616                 
+    626 92 ON           
+    626 87-92           
+    818                 
+    929                 
+    B2000 B2200 PICK UP 
+    DEMIO               
+    E2000 E2200 VAN     
+    MX5                 
+    RX7                 
+    XEDOS 6 1.6         
+    XEDOS 9             
+    XEDOS               
+    1625S               
+
+MERCEDES BENZ       
+    1628S               
+    L                   
+    SMART               
+
+MERCEDES            
+    190                 
+
+MERCEDES            
+    200/300 SERIES      
+    220                 
+    200/300 W124        
+    250                 
+    280                 
+    300                 
+    310                 
+    320                 
+    300 CE 24 4         
+    300 SL 24           
+    400                 
+    500                 
+    500 SL              
+    600                 
+    C-CLASS             
+    G RANGE             
+    G-WAGEN             
+    SPRINTER VAN        
+    VITO VAN            
+    W124                
+    BGT                 
+
+MITSUBISHI          
+    3000                
+
+MITSUBISHI          
+    4LIFE               
+    CARISMA             
+    CELESTE             
+    COLT 88 ON          
+    CORDIA              
+    GALANT 93           
+    L200                
+    L 300               
+    LANCER              
+    L SERIES 91         
+    PAJERO              
+    SAPPORO             
+    SHOGUN 91 ON        
+    SIGMA               
+    SPACE RUNNER AND SPA
+    SPACE STAR          
+    STARION             
+    TREDIA              
+    MINOR               
+
+MZ                  
+    MOTOR CYCLES        
+
+NISSAN              
+    100 NX              
+
+NISSAN              
+    120 Y               
+    160J  710           
+    181B  610           
+    200SX 10/95 ON      
+    240 KGT  C110       
+    260 Z  S30          
+    280 ZXT  S130       
+    300 ZX              
+    ALMERA 95 ON        
+    BLUEBIRD 87-91 T72  
+    CABSTAR F22         
+    CHERRY              
+    E10                 
+    LAUREL              
+    MAXIMA              
+    MICRA K10 TO 92     
+    MICRA 93 ON         
+    PATROL RANGE        
+    PRAIRIE             
+    PRIMERA P10E        
+    SERENA              
+    SILVIA              
+    SKYLINE             
+    STANZA              
+    SUNNY 86-90 N13     
+    TERRANO II          
+    URVAN E24           
+    VANETTE C220        
+    VIOLET              
+    104                 
+
+PEUGEOT             
+    106                 
+    205                 
+    204                 
+    205                 
+    206                 
+    304                 
+    305                 
+    306                 
+    309                 
+    405 TO 92           
+    404                 
+    405 93              
+    406                 
+    504                 
+    505                 
+    605 TO 95           
+    604                 
+    605 95 ON           
+    806                 
+    BOXER               
+    EXPRESS TO 91       
+    J5                  
+    PARTNER             
+    ZENITH              
+    911                 
+
+PORSCHE             
+    911 TARGA 2.4       
+    928 GT              
+    928 S               
+    944                 
+    944 CABRIOLET       
+    944 TURBO           
+    924                 
+    AEROBACK            
+
+PROTON              
+    GLS                 
+    MPI                 
+    PERSONA             
+    LIGIER AMBRA        
+
+RANGE ROVER         
+    86-91               
+
+RANGE ROVER         
+    92 TO 94            
+    95 ON               
+    11                  
+
+RENAULT             
+    19 5/92 ON          
+    19 TO 4/92          
+    21 5/92 ON          
+    25                  
+    21 TO 4/92          
+    5 85 ON             
+    9                   
+    ALPINE              
+    CHAMADE             
+    CLIO                
+    ESPACE TO 91        
+    ESPACE 92           
+    EXTRA               
+    FUEGO               
+    GTA                 
+    KANGOO VAN          
+    LAGUNA              
+    MASTER              
+    MEGANE              
+    NEVADA              
+    RAPID               
+    SAFRANE             
+    SPIDER              
+    TRAFIC              
+    VARIABLE            
+    100 SERIES          
+
+ROVER               
+    200 SERIES 93 ON    
+    200/400 SERIES OCT 8
+    200 SERIES TO 1988  
+    3500                
+    400                 
+    600 SERIES          
+    800 SERIES OCT 91 ON
+    800 SERIES TO 9/91  
+    ACCLAIM             
+    ALLEGRO             
+    MAESTRO H/BACK AND V
+    METRO APR. 90 ON    
+    MG                  
+    MINI 1980 ON        
+    MONTEGO             
+    MONTEGO SALOON AND E
+    METRO 3/5 DOOR AND V
+    MAXI                
+    RANGE ROVER         
+    STERLING            
+    TRIUMPH             
+    VITESSE             
+    900                 
+
+SAAB                
+    9000                
+    PENZA               
+    111 - 141           
+
+SCANIA              
+    112M-142M           
+    81                  
+    400 SERIES          
+
+SEDDON ATKINSON     
+    401                 
+    301                 
+    ALHAMBRA            
+
+SEAT                
+    AROSA               
+    CORDOBA             
+    FURA                
+    IBIZA 93 ON         
+    INCA                
+    MARBELLA            
+    MARBELLA            
+    RONDA               
+    TERRA               
+    TOLEDO              
+    ESTELLE             
+
+SKODA               
+    FAVORIT 1989 ON     
+    FABIA               
+    FELICIA 94 ON       
+    OCTAVIA             
+    KORANDO             
+
+SUBARU              
+    1600                
+
+SUBARU              
+    1800                
+    IMPREZA             
+    JUSTY               
+    LEGACY              
+    L SERIES            
+    SVX                 
+    VIVIO               
+    XT                  
+    ALTO                
+
+SUZUKI              
+    BALENO              
+    CARRY               
+    DR                  
+    GR                  
+    GS                  
+    JIMNY               
+    MOTOR CYCLES (A)    
+    MOTOR CYCLES (B)    
+    RG                  
+    SAMURAI             
+    SJ40R & SJ40V       
+    SK410 SUPER CARRY VA
+    ST90 VAN & PICK-UP  
+    SJ410 VAN & SOFT TOP
+    SWIFT               
+    TROOPER             
+    VITARA              
+    VS                  
+    WAGON R             
+    CHRYSLER            
+
+TALBOT              
+    HORIZON             
+    MATRA MURENA        
+    SAMBA               
+    SOLARA              
+    TAGORA              
+    MOTOR CYCLES        
+
+TOYOTA              
+    AVENSIS             
+
+TOYOTA              
+    CARINA 2/92 ON      
+    CELICA 94 ON        
+    CAMRY 91 ON         
+    COROLLA 92 ON       
+    COROLLA 87 TO 92    
+    HI-ACE 8/87 ON      
+    HILUX 8/88 ON       
+    LANDCRUISER         
+    LITEACE             
+    MODEL F YR 2        
+    MR2 SW20            
+    PASEO               
+    PICNIC              
+    PREVIA              
+    RAV-4               
+    STARLET EP8 1990 ON 
+    SUPRA 8/93 ON       
+    TERCEL              
+    YARIS               
+    S3                  
+
+VAUXHALL            
+    ASTRA 1992 ON       
+
+VAUXHALL            
+    ASTRA AND BELMONT 19
+    BRAVA               
+    CAVALIER 1989 ON    
+    CHEVETTE            
+    CALIBRA 90 ON       
+    COMBO               
+    CORSA               
+    CARLTON 1987 ON     
+    CAVALIER 1982-88    
+    FRONTERA            
+    LOTUS CARLTON       
+    MANTA               
+    MONTEREY 94 ON      
+    NOVA                
+    OMEGA               
+    SENATOR 1988 ON     
+    TIGRA               
+    VECTRA              
+    ZAFIRA              
+    MOTOR CYCLES        
+
+VOLVO               
+    240-260 SERIES 1981 
+
+VOLVO               
+    340-360 SERIES 1985 
+    440-460 SERIES 1988 
+    460                 
+    480 SERIES 1986 ON  
+    66                  
+    V70                 
+    740-760 SERIES 1985 
+    850 SERIES          
+    940-960 SERIES 1990 
+    F10                 
+    FL7 - FL10          
+    F88                 
+    FL6                 
+    F - SERIE           
+    N - SERIE           
+    S40                 
+    S - SERIE           
+    V40                 
+                        
+    BEAGLE              
+
+VOLKSWAGEN          
+    BORA                
+    BETTLE              
+    CARAVELLE           
+    CADDY               
+    CORRADO             
+    DERBY               
+    GOLF CABRIOLET 94 ON
+    GOLF 1986-88        
+    GOLF 89-92          
+    GOODS VEHICLE 1983-8
+    JETTA RANGE         
+    LUPO                
+    POLO 1982 TO 1990   
+    POLO 91 TO 94       
+    POLO 95 ON          
+    PASSAT              
+    SANTANA             
+    SCIROCCO            
+    SHARAN              
+                        
+    TARO                
+    TRANSPORTER         
+    VENTO               
+    MOTOR CYCLES (A)    
+
+YAMAHA              
+    MOTOR CYCLES (B)    

@@ -1,0 +1,48 @@
+Notes on: tilesL.S
+2/12/98
+Ooh boy... that was fun... well, the old names are back in (but not
+used... mainly there if I need them again for bug-hunting)... the 16x16
+plotters were the cause of the problem in the test ROM... the old code
+didn't exactly preserve edi... edi on exit was edi on entry + 8...
+while my new code preserved it like the 8x8 plotters... no longer...
+A few more speed tweaks, thanks to figuring that out...
+
+1/30/98
+This is mostly a cosmetic update
+(and covers both spriteL.S and tilesL.S):
+Sprite plotter code (32x32 and 64x64) has been moved to tilesL.S
+All plotter names redone to more closely match the 8x8 names
+Function pointer tables updated to match name changes
+
+Non-cosmetic changes:
+BSWAP's put back in
+
+Old notes on: tilesL.S
+Notes below were not dated
+
+Each plotter still handles the data in 8x8 parts... but without procedure
+calls, this helps as plotters get larger, especially if the sprite
+plotters are redone this way... And the base 8x8 plotter code has been
+heavily optimized!
+
+We never need to push/pop edi, because it's never corrupted... all changes
+are 100% predictable, so we undo them... we push/pop eax (ah,al), ebx,
+ecx (when necessary), and undo changes to edi before exiting.
+
+Forgot to not use BSWAP the first time around, and made a few errors in the
+16x16 plotters, edi wasn't being restored, all fixed now!
+
+The new 16x16 X-flipped plotters are handled a little differently now...
+originally, they drew right to left, now they draw left to right, last to
+first... slight performance gain, because we no longer need to modify edi,
+except on exit...
+
+And the function pointer tables at the end were misaligned in original
+code, now the 5 global bytes are after the tables...
+
+I finally macroized the X flipping in the 8x8 plotter code, really helps
+source readability... I don't have any plans at the moment to macroize
+Y flip though, because it would hurt the non-8x8 plotters...
+
+And I was finally able to merge the two macros (Init and Loop) into one,
+(Plot) thanks to the macroized X flip...

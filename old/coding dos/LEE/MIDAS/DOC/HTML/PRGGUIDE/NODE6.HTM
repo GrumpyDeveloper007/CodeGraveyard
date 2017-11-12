@@ -1,0 +1,48 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<!--Converted with LaTeX2HTML 96.1-h (September 30, 1996) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
+<HTML>
+<HEAD>
+<TITLE>2.1 Compiling with MIDAS</TITLE>
+<META NAME="description" CONTENT="2.1 Compiling with MIDAS">
+<META NAME="keywords" CONTENT="prgguide">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<LINK REL=STYLESHEET HREF="prgguide.css">
+</HEAD>
+<BODY LANG="EN" >
+ <A NAME="tex2html132" HREF="node7.html"><IMG WIDTH=37 HEIGHT=24 ALIGN=BOTTOM ALT="next" SRC="../icons/next_motif.gif"></A> <A NAME="tex2html130" HREF="node5.html"><IMG WIDTH=26 HEIGHT=24 ALIGN=BOTTOM ALT="up" SRC="../icons/up_motif.gif"></A> <A NAME="tex2html124" HREF="node5.html"><IMG WIDTH=63 HEIGHT=24 ALIGN=BOTTOM ALT="previous" SRC="../icons/previous_motif.gif"></A> <A NAME="tex2html134" HREF="node1.html"><IMG WIDTH=65 HEIGHT=24 ALIGN=BOTTOM ALT="contents" SRC="../icons/contents_motif.gif"></A>  <BR>
+<B> Next:</B> <A NAME="tex2html133" HREF="node7.html">2.2 Linking with MIDAS</A>
+<B>Up:</B> <A NAME="tex2html131" HREF="node5.html">2 Getting started</A>
+<B> Previous:</B> <A NAME="tex2html125" HREF="node5.html">2 Getting started</A>
+<BR> <P>
+<H1><A NAME="SECTION00310000000000000000">2.1 Compiling with MIDAS</A></H1>
+<P>
+For applications using just the MIDAS API, no special compilation options are
+necessary. All MIDAS API definitions are in the file <TT>midasdll.h</TT>
+[FIXME], and the modules using MIDAS functions simply need to
+<TT>#include</TT> this file. No special macros need to be
+<TT>#define</TT>d, and the data structures are structure-packing neutral.
+<TT>midasdll.h</TT> is located in the <TT>include/</TT> subdirectory of
+the MIDAS distribution, and you may need to add that directory to your
+include file search path.
+<P>
+Under Windows NT/95, the MIDAS API functions use the <TT>stdcall</TT>
+calling convention, the same as used by the Win32 API. Under DOS, the
+functions use the <TT>cdecl</TT> calling convention, and under Linux the
+default calling convention used by GCC. This is done transparently to the
+user, however.
+<P>
+Delphi users can simply use the interface unit <TT>midasdll.pas</TT>, and
+access the MIDAS API functions through it. Although Delphi syntax is
+different from C, the function, structure and constant names are exactly the
+same, and all parameters are passed just like in the C versions. Therefore
+all information in this document and the API Reference is also valid for
+Delphi.
+<P>
+<BR> <HR>
+<P><ADDRESS>
+<I>Petteri Kangaslampi <BR>
+Mon Jan 27 00:15:29 EET 1997</I>
+</ADDRESS>
+</BODY>
+</HTML>

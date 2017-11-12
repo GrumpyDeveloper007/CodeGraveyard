@@ -1,0 +1,444 @@
+<html>
+<head>
+<title>DJGPP2 QuickGraphics Programming Guide</title>
+</head>
+<body background="pics/newbg.jpg">
+<center>
+<h2>DJGPP V2 QuickGraphics Programming Guide</h2>
+</center>
+This is just a short tutorial to get one started on graphics programming using <i>DJGPP Version 2</i>, the excellent DOS port of GNU C/C++. I assume one has some knowledge of programming graphics under DOS, but maybe using a different compiler or memory model. Linear video modes such as VGA mode 13h and VBE 2.0 will be covered, as well as some VBE 1.2. I will not discuss protected mode as I know little of it.
+<p>
+I highly suggest reading the FAQ lists first, <a href="ftp://ftp.simtel.net/pub/simtelnet/gnu/djgpp/v1/faq102.zip">faq102.zip</a> and <a href="ftp://ftp.simtel.net/pub/simtelnet/gnu/djgpp/v2/faq202b.zip">faq202b.zip</a>, and the online docs, inside the txi*.zip package. There is also a newsgroup, <a href="news:comp.os.msdos.djgpp">comp.os.msdos.djgpp</a>. The main site is located at <a href="http://www.delorie.com/djgpp/">DJGPP Homepage</a>, where the most up-to-date information is available on DJGPP and where the <a href="http://www.delorie.com/djgpp/mail-archives/">mail archives</a> are kept. I find many helpful articles in the mail archives.
+<p>
+Additionally, looking through the header files of DJGPP might help. The more relevant files are go32.h, dpmi.h, pc.h, sys/farptr.h, sys/nearptr.h and sys/movedata.h.
+<hr size=6>
+<h3>VGA Mode 13h</h3>
+In real mode, one writes to the video memory starting at address $A000:0000 to draw graphics. However, DJGPP V2 programs cannot access this address near by default so one needs a selector spanning it. Luckily, we already have this selector. It is defined as "_dos_ds" in go32.h. Given a real mode segment:offset address (any DOS memory address) and _dos_ds, we could access the same address under protected mode!
+<p>
+How exactly? In low level assembly, one would load a segment register with the selector's value and then copy the value, "segment*16+offset", into another register. Then just use this segment:register pair as a pointer. I will show how simple it is:
+<pre>
+	short our_global_selector;
+	...
+	our_global_selector = _dos_ds;
+	...
+	movw _our_global_selector, %es
+	movl $0xa0000, %edi ;** 0xA000*16 + 0x0000 = 0xA0000
+</pre>
+<b>Note</b>: We are using AT&amp;T syntax for assembly.
+<p>
+Now we can use "es:edi" to write to video memory. How about a putpixel routine?
+<pre>
+	movw _our_global_selector, %es
+	movl $0xA0000, %edi
+	movw _y, %ax
+	imulw $320, %ax
+	addw _x, %ax
+	addw %ax, %di
+        movb _color, %al
+	stosb
+</pre>
+It is really straightforward once you get the hang of it. You could also use other register pairs:
+<pre>
+	movw _our_global_selector, %fs
+	movl $0xA0000, %ebx
+	...
+        movb _color, %al
+	movb %al, %fs:(%ebx)
+</pre>
+<hr size=3>
+It even gets easier. There are many library functions you could use to write to the video memory. Let us start with the <b>farptr</b> hacks.
+<pre>
+	#include &lt;go32.h&gt;
+	#include &lt;dpmi.h&gt;
+	#include &lt;sys/farptr.h&gt;
+
+	#define putpixel(x,y,c) _farpokeb(_dos_ds, 0xA0000 + (y)*320 + (x), (c))
+</pre>
+With optimizations turned on, DJGPP will inline the "_farpokeb" call.
+<p>
+Passing the selector to every "_farp*" call can be slow and cumbersome. However, we can easily take care of this:
+<pre>
+	/* circle routine */
+	...
+	_farsetsel(_dos_ds)
+
+	/* loop */
+	...
+	_farnspokeb(0xA0000 + y*320 + x, color);
+	...
+	/* end loop */
+</pre>
+"_farsetsel" just preloads register "fs" with "_dos_ds" for succeeding "_farns*" calls. 
+<img src="pics/gotcha.gif" alt="[GOTCHA!] " align=middle>
+This segment register is NOT guaranteed to contain the selector except immediately after the "_farsetsel" call!
+<hr size=3>
+Let's examine the <b>nearptr</b> hacks. By the way, these functions turn off all memory protection. 
+<img src="pics/gotcha.gif" alt="[GOTCHA!] " align=middle>
+Taken directly from the sys/nearptr.h file, "NO WARRANTY: WARNING, since these functions disable memory protection, they MAY DESTROY EVERYTHING ON YOUR COMPUTER!"
+<pre>
+	#include &lt;go32.h&gt;
+	#include &lt;dpmi.h&gt;
+	#include &lt;sys/nearptr.h&gt;
+
+	unsigned char *videoptr = (unsigned char *)0xA0000;
+
+	__djgpp_nearptr_enable(); 
+	videoptr[y*320 + x + __djgpp_conventional_base] = color;
+	__djgpp_nearptr_disable();
+</pre>
+Easy! 
+<img src="pics/gotcha.gif" alt="[GOTCHA!] " align=middle>
+Just remember that "__djgpp_conventional_base" is NOT constant. It changes across memory allocation calls.
+<hr size=3>
+There is yet another way to access video memory!
+<pre>
+	#include &lt;go32.h&gt;
+	#include &lt;dpmi.h&gt;
+	#include &lt;sys/movedata.h&gt;
+
+	unsigned char *videoptr = (unsigned char *)0xA0000;
+	unsigned char *doublebuffer = (unsigned char *)malloc(320*200);
+
+	void copy_buffer(void) 
+        { 
+	  dosmemput(doublebuffer, 320*200, videoptr);
+	}
+
+	void copy_buffer2(void) 
+        {
+	  movedata(_my_ds(), doublebuffer, _dos_ds, videoptr, sizeof(*doublebuffer)); 
+	}
+</pre>
+These function calls are fairly obvious. By the way, "_my_ds()" just returns our code's selector; 
+<img src="pics/gotcha.gif" alt="[GOTCHA!] " align=middle>
+do NOT confuse it with "_my_ds". One can find out more about these in the documentation and sys/movedata.h file.
+<hr size=3>
+Other stuff that one might find helpful:
+<pre>
+	#include &lt;go32.h&gt;
+	#include &lt;dpmi.h&gt;
+	#include &lt;pc.h&gt;
+
+	void setmode(short mode) 
+        {
+	  __dpmi_regs r;
+	  r.x.ax = mode;
+	  __dpmi_int(0x10,&amp;r);
+	}
+
+	struct rgbstruct 
+        { 
+          char red, green, blue; 
+        };
+
+	void setpalette(char color, struct rgbstruct rgb) 
+        {
+	  outportb(0x3c8, color);
+	  outportb(0x3c9, rgb.red);
+	  outportb(0x3c9, rgb.green);
+	  outportb(0x3c9, rgb.blue);
+	}
+</pre>
+<hr size=6>
+<h3>VBE 2.0</h3>
+Again, I am not teaching VBE here. Get the SVGAKIT and VBE 2.0 docs from <a href="http://www.scitechsoft.com/">Scitech</a> for reference. Now, let us start with the data structures:
+<pre>
+	#define PACKED __attribute__ ((packed))
+
+	#pragma pack(1)
+	struct VBE_vInfo 
+        {
+	  char VBESig[4] PACKED;
+	  short VBEVer PACKED;
+	  ...
+	};
+
+	struct VBE_mInfo 
+        {
+	  short ModeAttrib PACKED;
+	  char WinAAttrib PACKED;
+	  ...	
+	  unsigned int PhysBasePtr PACKED;
+	  ...
+	};
+	#pragma pack()
+</pre>
+<img src="pics/gotcha.gif" alt="[GOTCHA!] " align=middle>
+The only surprising thing is probably the "PACKED" part. It just tells the compiler to align variables to bytes and fields to bits.
+<hr size=3>
+Okay, let's write a VBE detect function.
+<pre>
+	#include &lt;go32.h&gt;
+	#include &lt;dpmi.h&gt;
+	#include &lt;sys/movedata.h&gt;
+
+	int VBE_detect(struct VBE_vInfo *vbeinfo) 
+        {
+	  __dpmi_regs r;
+
+	  assert(sizeof(*vbeinfo) &lt; _go32_info_block.size_of_transfer_buffer);
+	  strncpy(vbeinfo-&gt;VBESig, "VBE2", 4);
+	  r.x.ax = 0x4F00;
+	  r.x.di = __tb & 0x0F;
+	  r.x.es = (__tb &gt;&gt; 4) & 0xFFFF;
+	  dosmemput(vbeinfo, sizeof(*vbeinfo), __tb);
+	  __dpmi_int(0x10, &amp;r);
+	  dosmemget(__tb, sizeof(*vbeinfo), vbeinfo);
+	  ...
+	}
+</pre>
+What did we just do? First, we know that the detect function "0x4F00" requires a memory buffer in the low 1M memory space (DOS memory) where it will return the mode tables, OEM strings, etc. So we would have to allocate space under 1M, equal to sizeof(struct VBE_vInfo). We could use "__dpmi_allocate_dos_memory()" but there is an easier way. DJGPP uses a global transfer buffer internally, usually 4K in size, and we can use this as our conventional memory buffer! After the call, we can just copy from this transfer buffer to our variable. Easy, isn't it? 
+<img src="pics/gotcha.gif" alt="[GOTCHA!] " align=middle>
+One more little detail, this transfer buffer is defined as "_go32_info_block" or "__tb" in go32.h. Then "__tb & 0x0F" is just its real mode offset, and "(__tb &gt;&gt; 4) & 0xFFFF" is the segment.
+<hr size=3>
+How about a VBE_getModeInfo function?
+<pre>
+	void VBE_getModeInfo(unsigned short mode, struct VBE_mInfo *modeinfo) 
+        {
+	  __dpmi_regs r;
+
+	  assert(sizeof(*modeinfo) &lt; _go32_info_block.size_of_transfer_buffer);
+	  r.x.ax = 0x4F01;
+	  r.x.cx = mode;
+	  r.x.di = __tb & 0x0F;
+	  r.x.es = (__tb &gt;&gt; 4) & 0xFFFF;
+	  __dpmi_int(0x10, &amp;r);
+	  dosmemget(__tb, sizeof(*modeinfo), modeinfo);
+	  ...
+	}
+</pre>
+<hr size=3>
+Let's grab the linear video memory address in 640x480x8!
+<pre>
+	struct VBE_mInfo modeinfo;
+	__dpmi_meminfo mi;
+	unsigned int linear_address;
+
+	VBE_getModeInfo(0x101, &amp;modeinfo);
+	mi.size = (unsigned long)(modeinfo.XRes*modeinfo.YRes);
+	mi.address = modeinfo.PhysBasePtr;
+	__dpmi_physical_address_mapping(&amp;mi);
+	linear_address = mi.address;
+</pre>
+<p>
+We have it! Using "__dpmi_physical_address_mapping()", we are able to convert the device's physical address to a linear address than we can use to poke around with, just like "0xA0000" with Mode 13h! However, before we start writing to video memory, we need to enable the video mode.
+<pre>
+	r.x.ax = 0x4F02;
+	r.x.bx = 0x4101;
+	__dpmi_int(0x10, &amp;r);
+</pre>
+<hr size=3>
+And here is a <b>nearptr</b> putpixel hack!
+<pre>
+	unsigned char *videoptr = (unsigned char *)linear_address;
+
+	__djgpp_nearptr_enable();
+	videoptr[y*width + x +__djgpp_conventional_base] = color;
+	__djgpp_nearptr_disable();
+</pre>
+<hr size=3>
+<b>Farptr</b> access is a bit more involved than the Mode 13h version. 
+<img src="pics/gotcha.gif" alt="[GOTCHA!] " align=middle>
+We no longer have a selector handy to access this linear address. So what do we do? Easy, we make one! In addition, we set the base address of our new selector to the value of "linear_address"; this way, everything starts from offset 0.
+<pre>
+	unsigned char *videoptr = (unsigned char *)0x0;
+	short our_global_selector = __dpmi_allocate_ldt_descriptors(1);
+	__dpmi_set_segment_base_address(our_global_selector, linear_address);
+
+	_farpokeb(our_global_selector, videoptr + y*width +x, color);
+</pre>
+<hr size=3>
+Our good <b>movedata</b> functions are still available.
+<pre>
+	void copy_buffer2(void) 
+        {
+	  movedata(_my_ds(), doublebuffer, our_global_selector, videoptr, width*height);
+	}
+</pre>
+<hr size=3>
+One last thing, about the protected mode VBE protected mode interface. First, the relevant data structure, as described in SVGAKIT.
+<pre>
+        #pragma pack(1) 
+	struct VBE_PMInterface 
+        {
+	  short pfsetWindow PACKED;
+	  short pfsetDisplayStart PACKED;
+	  short pfsetPalette PACKED;
+	  ...
+	};
+        #pragma pack()
+</pre>
+<p>
+This structure will store pointers to the VBE services, if one wants to call them directly from protected mode. 
+<p>
+Now let's write a function that will retrieve our function pointers.
+<pre>
+	int VBE_getPMInterface(struct VBE_PMInterface *vbepmi) 
+        {
+	  __dpmi_regs r;
+
+	  r.x.ax = 0x4F0A;
+	  r.x.bx = 0x0000;
+	  __dpmi_int(0x10,&amp;r);
+	  vbedpmi = (struct VBE_PMInterface *)malloc(sizeof(char)*r.x.cx);
+	  dosmemget(r.x.es*16 + r.x.di,sizeof(*vbepmi),vbepmi);
+	}
+</pre>
+One allocates a buffer equal to size "r.x.cx" bytes after the "0x4F0A" call, then copies the protected mode interface information from DOS memory into it. Then the pointers to the VBE functions are easily retrieved:
+<pre>
+	vbepmi + vbepmi-&gt;pfsetWindow
+	vbepmi + vbepmi-&gt;pfsetDisplayStart
+	vbepmi + vbepmi-&gt;pfsetPalette
+</pre>
+Please refer to the VBE 2.0 specifications for further information. By the way, do not forget to copy the interface from DOS memory after EVERY mode set, and free the buffer when shutting down the graphics system.
+<p>
+<hr size=6>
+<h3>VBE 1.2</h3>
+There's not much to talk about here, really. I just want to show you the bank switching code, since we don't necessarily have the convenient linear frame buffer as before.
+<pre>
+	void bankswitch(short bank) 
+        {
+	  __dpmi_regs r;
+	  r.x.ax = 0x4F05;
+	  r.x.bx = 0x0000;
+	  r.x.dx = bank;
+	  __dpmi_int(0x10, &amp;r);
+
+	 /* In djasm:
+	  __asm__ __volatile__("
+	    movw $0x4F05, %%ax;
+	    xorw %%bx, %%bx;
+	    int $0x10"
+	    : : "d" (bank) : "ax", "bx", "dx"
+	  ); */
+	}
+</pre>
+In VBE mode 101h (640x480x8), you can have each bank holding 64K (65536) bytes. So the bank is computed as:
+<pre>
+	short bank = (short)((640*y + x) &gt;&gt; 16);
+</pre>
+To copy your double buffer to video memory using the nearptr functions, do:
+<pre>
+	void copy_buffer(void) 
+        {
+	  char *source, *dest;
+
+	  source = doublebuffer;
+	  dest = videoptr + __djgpp_conventional_base;
+
+	  __djgpp_nearptr_enable();
+
+          /* 640*480*8bpp = 307200 bytes = 4*64K + 45056 bytes */
+
+	  bankswitch(0);
+	  memcpy(dest, source, 65536L);
+	  bankswitch(1&lt;&lt;WinGran);
+	  source += 65536L;
+	  memcpy(dest, source, 65536L);
+	  bankswitch(2&lt;&lt;WinGran);
+	  source += 65536L;
+	  memcpy(dest, source, 65536L);
+	  bankswitch(3&lt;&lt;WinGran);
+	  source += 65536L;
+	  memcpy(dest, source, 65536L);
+	  bankswitch(4&lt;&lt;WinGran);
+	  source += 65536L;
+	  memcpy(dest, source, 45056L);
+
+	  __djgpp_nearptr_disable();
+	}
+</pre>
+WinGran is just a 16-bit value obtained by:
+<pre>
+	VBE_getModeInfo(0x101, &amp;modeinfo);
+	WinGran=0;
+	while ((unsigned)(64>>WinGran) != modeinfo.WinGranularity)
+	  WinGran++;
+</pre>
+<p>
+That's about it. Qapla'
+<hr size=6>
+<h3>Other resources</h3>
+There are excellent graphics and game libraries available for DJGPP. Some that I have seen are GRX, Allegro, XLIB for DJGPP, and JLIB. They are available at <a href="ftp://x2ftp.oulu.fi/pub/msdos/programming/djgpp2/">x2ftp.oulu.fi</a> and the <a href="ftp://ftp.simtel.net/pub/simtelnet/gnu/djgpp/v2apps/">v2apps/</a> directory at official DJGPP distribution sites.
+<hr size=6>
+11/29/96 icbm@IRC
+<p>
+GREETS
+<b>lexi</b>
+*ace*bjarne*blacky*chug*cm*dm*dM*flub*foxt*goo*griff*hh*jaw*jl*kes*lippis*mag*mblade*
+*midg*qs*rad*ronski*rs*saeg*sec*ser*shiv*sigz*silvr*sledge*terran*tom*xgc*x0r*zaph*zed*zhiv*
+*#c*#gamecode*#os2prog*
+<p>
+Thanks to all people behind DJGPP!
+<p>
+Mail me corrections/suggestions/complaints/crap at <a href="mailto:avly@castle.net">avly@castle.net</a>
+<p>
+Copyright &copy; 1996 avly@castle.net All Rights Reserved.
+<p>
+<em>All trademarks mentioned are of their respective companies.</em>
+<h4>Standard Disclaimer</h4>
+There are absolutely no guarantees, expressed or implied, on anything that you find in this document. I cannot be held responsible for anything that results from the use or misuse of this document.
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

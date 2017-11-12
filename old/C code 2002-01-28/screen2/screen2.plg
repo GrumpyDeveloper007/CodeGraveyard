@@ -1,0 +1,41 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: screen2 - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "E:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP6.tmp" with contents
+[
+/nologo /MLd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /FR"Debug/" /Fp"Debug/screen2.pch" /YX /Fo"Debug/" /Fd"Debug/" /FD /c 
+"D:\coding\MyProjects\screen2\Ddex1.cpp"
+]
+Creating command line "cl.exe @E:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP6.tmp" 
+Creating temporary file "E:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP7.tmp" with contents
+[
+dinput.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib ddraw.lib dxguid.lib /nologo /subsystem:windows /incremental:yes /pdb:"Debug/screen2.pdb" /debug /machine:I386 /out:"Debug/screen2.exe" /pdbtype:sept 
+.\Debug\Ddex1.obj
+.\Debug\general.obj
+.\Debug\graph.obj
+.\Debug\input.obj
+.\Debug\object.obj
+.\Debug\strings.obj
+.\Debug\texture.obj
+]
+Creating command line "link.exe @E:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP7.tmp"
+<h3>Output Window</h3>
+Compiling...
+Ddex1.cpp
+Linking...
+Creating command line "bscmake.exe /nologo /o"Debug/screen2.bsc"  .\Debug\Ddex1.sbr .\Debug\general.sbr .\Debug\graph.sbr .\Debug\input.sbr .\Debug\object.sbr .\Debug\strings.sbr .\Debug\texture.sbr"
+Creating browse info file...
+<h3>Output Window</h3>
+
+
+
+<h3>Results</h3>
+screen2.exe - 0 error(s), 0 warning(s)
+</pre>
+</body>
+</html>

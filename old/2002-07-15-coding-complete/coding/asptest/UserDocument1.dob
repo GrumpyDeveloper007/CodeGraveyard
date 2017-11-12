@@ -1,0 +1,36 @@
+VERSION 5.00
+Begin VB.UserDocument UserDocument1 
+   ClientHeight    =   4800
+   ClientLeft      =   0
+   ClientTop       =   0
+   ClientWidth     =   7695
+   HScrollSmallChange=   225
+   ScaleHeight     =   4800
+   ScaleWidth      =   7695
+   VScrollSmallChange=   225
+   Begin VB.ListBox LSTMovies 
+      Height          =   4545
+      Left            =   120
+      TabIndex        =   0
+      Top             =   60
+      Width           =   7455
+   End
+End
+Attribute VB_Name = "UserDocument1"
+Attribute VB_GlobalNameSpace = False
+Attribute VB_Creatable = True
+Attribute VB_PredeclaredId = False
+Attribute VB_Exposed = True
+Option Explicit
+Dim db As Database
+
+
+Private Sub UserDocument_Initialize()
+    Set db = DBEngine.OpenDatabase("f:\movies\offline movies.mdb", False, False)
+    Dim rs As Recordset
+    Set rs = db.OpenRecordset("SELECT * FROM Movies", dbOpenSnapshot)
+    Do While (rs.EOF = False)
+        Call LSTMovies.AddItem(rs!movieName)
+        rs.MoveNext
+    Loop
+End Sub

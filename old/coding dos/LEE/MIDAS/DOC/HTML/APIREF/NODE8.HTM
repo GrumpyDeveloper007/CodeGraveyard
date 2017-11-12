@@ -1,0 +1,463 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<!--Converted with LaTeX2HTML 96.1-h (September 30, 1996) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
+<HTML>
+<HEAD>
+<TITLE>5.3 Functions</TITLE>
+<META NAME="description" CONTENT="5.3 Functions">
+<META NAME="keywords" CONTENT="apiref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<LINK REL=STYLESHEET HREF="apiref.css">
+</HEAD>
+<BODY LANG="EN" >
+ <A NAME="tex2html231" HREF="node9.html"><IMG WIDTH=37 HEIGHT=24 ALIGN=BOTTOM ALT="next" SRC="../icons/next_motif.gif"></A> <A NAME="tex2html229" HREF="node5.html"><IMG WIDTH=26 HEIGHT=24 ALIGN=BOTTOM ALT="up" SRC="../icons/up_motif.gif"></A> <A NAME="tex2html225" HREF="node7.html"><IMG WIDTH=63 HEIGHT=24 ALIGN=BOTTOM ALT="previous" SRC="../icons/previous_motif.gif"></A> <A NAME="tex2html233" HREF="node1.html"><IMG WIDTH=65 HEIGHT=24 ALIGN=BOTTOM ALT="contents" SRC="../icons/contents_motif.gif"></A>  <BR>
+<B> Next:</B> <A NAME="tex2html232" HREF="node9.html">3 Module playback</A>
+<B>Up:</B> <A NAME="tex2html230" HREF="node5.html">2 Configurationinitialization and </A>
+<B> Previous:</B> <A NAME="tex2html226" HREF="node7.html">5.2 Data types</A>
+<BR> <P>
+<H1><A NAME="SECTION00330000000000000000">5.3 Functions</A></H1>
+<P>
+This section describes all functions available for MIDAS initialization,
+configuration and system control. This includes error handling.
+<P>
+<BR> <HR><A NAME="MIDASstartup">&#160;</A><H2><A NAME="SECTION00331000000000000000">2.3.1 MIDASstartup</A></H2>
+<A NAME="671">&#160;</A>
+<PRE>
+BOOL MIDASstartup(void)</PRE>
+<P>
+Prepares MIDAS Sound System for initialization and use.
+<P>
+<H3><A NAME="SECTION00331100000000000000">Input</A></H3>
+<P>
+None.
+<P>
+<H3><A NAME="SECTION00331200000000000000">Description</A></H3>
+<P>
+This function sets all MIDAS configuration variables to default values and
+prepares MIDAS for use. It must be called before any other MIDAS function,
+including <A HREF="node8.html#MIDASinit">MIDASinit</A> and <A HREF="node8.html#MIDASsetOption">MIDASsetOption</A>, is called. After
+this function has been called, <A HREF="node8.html#MIDASclose">MIDASclose</A> can be safely called
+at any point and any number of times, regardless of whether MIDAS has been
+initialized or not. After calling this function, you can use
+<A HREF="node8.html#MIDASsetOption">MIDASsetOption</A> to change MIDAS configuration before initializing
+MIDAS with <A HREF="node8.html#MIDASinit">MIDASinit</A>.
+<P>
+<H3><A NAME="SECTION00331300000000000000">Return value</A></H3>
+<P>
+TRUE if successful, FALSE if not.
+<P>
+<H3><A NAME="SECTION00331400000000000000">Operating systems</A></H3>
+<P>
+All
+<P>
+<H3><A NAME="SECTION00331500000000000000">See also</A></H3>
+<P>
+<A HREF="node8.html#MIDASsetOption">MIDASsetOption</A>, <A HREF="node8.html#MIDASinit">MIDASinit</A>, <A HREF="node8.html#MIDASclose">MIDASclose</A>
+<P>
+<BR> <HR><A NAME="MIDASgetLastError">&#160;</A><H2><A NAME="SECTION00332000000000000000">2.3.2 MIDASgetLastError</A></H2>
+<A NAME="706">&#160;</A>
+<PRE>
+int MIDASgetLastError(void)</PRE>
+<P>
+Gets the MIDAS error code for last error.
+<P>
+<H3><A NAME="SECTION00332100000000000000">Input</A></H3>
+<P>
+None.
+<P>
+<H3><A NAME="SECTION00332200000000000000">Description</A></H3>
+<P>
+This function can be used to read the error code for most recent failure.
+When a MIDAS API function returns an error condition, this function can be
+used to determine the actual cause of the error, and this error can then be
+reported to the user or ignored, depending on the kind of response needed.
+Use <A HREF="node8.html#MIDASgetErrorMessage">MIDASgetErrorMessage</A> to get a textual message corresponding to
+an error code.
+<P>
+This function can be called at any point after <A HREF="node8.html#MIDASstartup">MIDASstartup</A> has
+been called.
+<P>
+<H3><A NAME="SECTION00332300000000000000">Return value</A></H3>
+<P>
+MIDAS error code for the most recent error.
+<P>
+<H3><A NAME="SECTION00332400000000000000">Operating systems</A></H3>
+<P>
+All
+<P>
+<H3><A NAME="SECTION00332500000000000000">See also</A></H3>
+<P>
+<A HREF="node8.html#MIDASgetErrorMessage">MIDASgetErrorMessage</A>
+<P>
+<BR> <HR><A NAME="MIDASgetErrorMessage">&#160;</A><H2><A NAME="SECTION00333000000000000000">2.3.3 MIDASgetErrorMessage</A></H2>
+<A NAME="721">&#160;</A>
+<PRE>
+char *MIDASgetErrorMessage(int errorCode)</PRE>
+<P>
+Gets an error message corresponding to an error code.
+<P>
+<H3><A NAME="SECTION00333100000000000000">Input</A></H3>
+<P>
+<DL ><DT><STRONG>errorCode</STRONG>
+<DD> The error code from <A HREF="node8.html#MIDASgetLastError">MIDASgetLastError</A>
+<P>
+</DL><H3><A NAME="SECTION00333200000000000000">Description</A></H3>
+<P>
+This function returns a textual error message corresponding to a MIDAS error
+code. It can be used for displaying an error message to the user. Use
+<A HREF="node8.html#MIDASgetLastError">MIDASgetLastError</A> to determine the error code.
+<P>
+This function can be called at any point after <A HREF="node8.html#MIDASstartup">MIDASstartup</A> has
+been called.
+<P>
+<H3><A NAME="SECTION00333300000000000000">Return value</A></H3>
+<P>
+Error message string corresponding to the error code.
+<P>
+<H3><A NAME="SECTION00333400000000000000">Operating systems</A></H3>
+<P>
+All
+<P>
+<H3><A NAME="SECTION00333500000000000000">See also</A></H3>
+<P>
+<A HREF="node8.html#MIDASgetLastError">MIDASgetLastError</A>
+<P>
+<BR> <HR><A NAME="MIDASinit">&#160;</A><H2><A NAME="SECTION00334000000000000000">2.3.4 MIDASinit</A></H2>
+<A NAME="740">&#160;</A>
+<PRE>
+BOOL MIDASinit(void)</PRE>
+<P>
+Initializes MIDAS Sound System.
+<P>
+<H3><A NAME="SECTION00334100000000000000">Input</A></H3>
+<P>
+None.
+<P>
+<H3><A NAME="SECTION00334200000000000000">Description</A></H3>
+<P>
+This function initializes all MIDAS Sound System components, and sets up
+the API. Apart from configuration functions, this function must be called
+before any other MIDAS functions are used.
+<P>
+<H3><A NAME="SECTION00334300000000000000">Return value</A></H3>
+<P>
+TRUE if successful, FALSE if not.
+<P>
+<H3><A NAME="SECTION00334400000000000000">Operating systems</A></H3>
+<P>
+All
+<P>
+<H3><A NAME="SECTION00334500000000000000">See also</A></H3>
+<P>
+<A HREF="node8.html#MIDASsetOption">MIDASsetOption</A>, <A HREF="node8.html#MIDASclose">MIDASclose</A>
+<P>
+<BR> <HR><A NAME="MIDASclose">&#160;</A><H2><A NAME="SECTION00335000000000000000">2.3.5 MIDASclose</A></H2>
+<A NAME="751">&#160;</A>
+<PRE>
+BOOL MIDASclose(void)</PRE>
+<P>
+Uninitializes MIDAS Sound System.
+<P>
+<H3><A NAME="SECTION00335100000000000000">Input</A></H3>
+<P>
+None.
+<P>
+<H3><A NAME="SECTION00335200000000000000">Description</A></H3>
+<P>
+This function uninitializes all MIDAS Sound System components, deallocates
+all resources allocated, and shuts down all MIDAS processing. This function
+must always be called before exiting under MS-DOS and is also strongly
+recommended under other operating systems. After this function has been
+called, no MIDAS function may be called unless MIDAS is initialized again.
+<P>
+<H3><A NAME="SECTION00335300000000000000">Return value</A></H3>
+<P>
+TRUE if successful, FALSE if not.
+<P>
+<H3><A NAME="SECTION00335400000000000000">Operating systems</A></H3>
+<P>
+All
+<P>
+<H3><A NAME="SECTION00335500000000000000">See also</A></H3>
+<P>
+<A HREF="node8.html#MIDASinit">MIDASinit</A>
+<P>
+<BR> <HR><A NAME="MIDASdetectSD">&#160;</A><H2><A NAME="SECTION00336000000000000000">2.3.6 MIDASdetectSD</A></H2>
+<A NAME="758">&#160;</A>
+<PRE>
+BOOL MIDASdetectSD(void)</PRE>
+<P>
+Attempts to detect the Sound Device to use.
+<P>
+<H3><A NAME="SECTION00336100000000000000">Input</A></H3>
+<P>
+None.
+<P>
+<H3><A NAME="SECTION00336200000000000000">Description</A></H3>
+<P>
+This function attempts to detect the Sound Device that should be used. It
+is called internally by <A HREF="node8.html#MIDASinit">MIDASinit</A>, and should not normally be
+called by user programs. Note that the function returns TRUE even if it fails
+to detect a Sound Device.
+<P>
+<H3><A NAME="SECTION00336300000000000000">Return value</A></H3>
+<P>
+TRUE if successful, FALSE if not.
+<P>
+<H3><A NAME="SECTION00336400000000000000">Operating systems</A></H3>
+<P>
+All
+<P>
+<H3><A NAME="SECTION00336500000000000000">See also</A></H3>
+<P>
+<A HREF="node8.html#MIDASinit">MIDASinit</A>
+<P>
+<BR> <HR><A NAME="MIDASsetOption">&#160;</A><H2><A NAME="SECTION00337000000000000000">2.3.7 MIDASsetOption</A></H2>
+<A NAME="769">&#160;</A>
+<PRE>
+BOOL MIDASsetOption(int option, int value)</PRE>
+<P>
+Sets a MIDAS option.
+<P>
+<H3><A NAME="SECTION00337100000000000000">Input</A></H3>
+<P>
+<DL ><DT><STRONG>option</STRONG>
+<DD> Option number (see <TT>enum</TT>
+        <A HREF="node6.html#MIDASoptions">MIDASoptions</A> above)
+    <DT><STRONG>value</STRONG>
+<DD> New value for option
+<P>
+</DL><H3><A NAME="SECTION00337200000000000000">Description</A></H3>
+<P>
+This function sets a value to a MIDAS option. The different number codes for
+different options are described above. All MIDAS configuration options must
+be set with this function <B>before</B> <A HREF="node8.html#MIDASinit">MIDASinit</A> is called.
+<P>
+<H3><A NAME="SECTION00337300000000000000">Return value</A></H3>
+<P>
+TRUE if successful, FALSE if not.
+<P>
+<H3><A NAME="SECTION00337400000000000000">Operating systems</A></H3>
+<P>
+All
+<P>
+<H3><A NAME="SECTION00337500000000000000">See also</A></H3>
+<P>
+<A HREF="node8.html#MIDASinit">MIDASinit</A>
+<P>
+<BR> <HR><A NAME="MIDASopenChannels">&#160;</A><H2><A NAME="SECTION00338000000000000000">2.3.8 MIDASopenChannels</A></H2>
+<A NAME="785">&#160;</A>
+<PRE>
+BOOL MIDASopenChannels(int numChans)</PRE>
+<P>
+Opens Sound Device channels for sound and music output.
+<P>
+<H3><A NAME="SECTION00338100000000000000">Input</A></H3>
+<P>
+<DL ><DT><STRONG>numChans</STRONG>
+<DD> Number of channels to open
+<P>
+</DL><H3><A NAME="SECTION00338200000000000000">Description</A></H3>
+<P>
+This function opens a specified number of channels for digital sound and
+music output. The channels opened can be used for playing streams, samples
+and modules. When <A HREF="node12.html#MIDASplayModule">MIDASplayModule</A> is used to play modules, it will
+use the last possible channels for the module, so that the first <TT>
+(numChans - number-of-channels-in-module)</TT> channels are available for effects
+and streams.
+<P>
+If this function has not been called before <A HREF="node12.html#MIDASplayModule">MIDASplayModule</A> is
+called, <A HREF="node12.html#MIDASplayModule">MIDASplayModule</A> will open the channels it needs for
+module playback. However, if this function has been called, but the number of
+channels opened is inadequate for the module, <A HREF="node12.html#MIDASplayModule">MIDASplayModule</A>
+will return an error and refuse to play the module.
+<P>
+<H3><A NAME="SECTION00338300000000000000">Return value</A></H3>
+<P>
+TRUE if successful, FALSE if not.
+<P>
+<H3><A NAME="SECTION00338400000000000000">Operating systems</A></H3>
+<P>
+All
+<P>
+<H3><A NAME="SECTION00338500000000000000">See also</A></H3>
+<P>
+<A HREF="node8.html#MIDAScloseChannels">MIDAScloseChannels</A>, <A HREF="node12.html#MIDASplayModule">MIDASplayModule</A>
+<P>
+<BR> <HR><A NAME="MIDAScloseChannels">&#160;</A><H2><A NAME="SECTION00339000000000000000">2.3.9 MIDAScloseChannels</A></H2>
+<A NAME="812">&#160;</A>
+<PRE>
+BOOL MIDAScloseChannels(void)</PRE>
+<P>
+Closes Sound Device channels opened with <A HREF="node8.html#MIDASopenChannels">MIDASopenChannels</A>.
+<P>
+<H3><A NAME="SECTION00339100000000000000">Input</A></H3>
+<P>
+None.
+<P>
+<H3><A NAME="SECTION00339200000000000000">Description</A></H3>
+<P>
+This function closes Sound Device channels that were opened with
+<A HREF="node8.html#MIDASopenChannels">MIDASopenChannels</A>. Note that you may <B>not</B> use this function to
+close channels that were opened by <A HREF="node12.html#MIDASplayModule">MIDASplayModule</A> --
+<A HREF="#MIDASstopModule">MIDASstopModule</A> will do that automatically.
+<P>
+<H3><A NAME="SECTION00339300000000000000">Return value</A></H3>
+<P>
+TRUE if successful, FALSE if not.
+<P>
+<H3><A NAME="SECTION00339400000000000000">Operating systems</A></H3>
+<P>
+All
+<P>
+<H3><A NAME="SECTION00339500000000000000">See also</A></H3>
+<P>
+<A HREF="node8.html#MIDASopenChannels">MIDASopenChannels</A>, <A HREF="node12.html#MIDASplayModule">MIDASplayModule</A>,
+<A HREF="#MIDASstopModule">MIDASstopModule</A>
+<P>
+<BR> <HR><A NAME="MIDASstartBackgroundPlay">&#160;</A><H2><A NAME="SECTION003310000000000000000">2.3.10 MIDASstartBackgroundPlay</A></H2>
+<A NAME="843">&#160;</A>
+<PRE>
+BOOL MIDASstartBackgroundPlay(DWORD pollRate)</PRE>
+<P>
+Starts playing music and sound in the background.
+<P>
+<H3><A NAME="SECTION003310100000000000000">Input</A></H3>
+<P>
+<DL ><DT><STRONG>pollRate</STRONG>
+<DD> Polling rate (number of polls per second), 0 for default
+<P>
+</DL><H3><A NAME="SECTION003310200000000000000">Description</A></H3>
+<P>
+This function starts playing sound and music in the background.
+<B>pollRate</B> controls the target polling rate -- number of polls per
+second. Polling might not be done at actually the set rate, although usually
+it will be faster. Under Win32 and Linux, a new thread will be created for
+playing. <B>Under MS-DOS this function is currently ignored, and background
+playback starts immediately when MIDAS is initialized.</B>
+<P>
+<H3><A NAME="SECTION003310300000000000000">Return value</A></H3>
+<P>
+TRUE if successful, FALSE if not.
+<P>
+<H3><A NAME="SECTION003310400000000000000">Operating systems</A></H3>
+<P>
+All, but see MS-DOS note above.
+<P>
+<H3><A NAME="SECTION003310500000000000000">See also</A></H3>
+<P>
+<A HREF="node8.html#MIDASstopBackgroundPlay">MIDASstopBackgroundPlay</A>, <A HREF="node8.html#MIDASpoll">MIDASpoll</A>
+<P>
+<BR> <HR><A NAME="MIDASstopBackgroundPlay">&#160;</A><H2><A NAME="SECTION003311000000000000000">2.3.11 MIDASstopBackgroundPlay</A></H2>
+<A NAME="855">&#160;</A>
+<PRE>
+BOOL MIDASstopBackgroundPlay(void)</PRE>
+<P>
+Stops playing sound and music in the background.
+<P>
+<H3><A NAME="SECTION003311100000000000000">Input</A></H3>
+<P>
+None.
+<P>
+<H3><A NAME="SECTION003311200000000000000">Description</A></H3>
+<P>
+This function stops music and sound background playback that has been started
+with <A HREF="node8.html#MIDASstartBackgroundPlay">MIDASstartBackgroundPlay</A>. Under Win32 and Linux, this function
+also destroys the thread created for playback. <B>Under MS-DOS this
+function is currently ignored, and background playback starts immediately
+when MIDAS is initialized.</B>
+<P>
+If background playback has been started with
+<A HREF="node8.html#MIDASstartBackgroundPlay">MIDASstartBackgroundPlay</A>, this function bf must be called before
+the program exits.
+<P>
+<H3><A NAME="SECTION003311300000000000000">Return value</A></H3>
+<P>
+TRUE if successful, FALSE if not.
+<P>
+<H3><A NAME="SECTION003311400000000000000">Operating systems</A></H3>
+<P>
+All, but see MS-DOS note above.
+<P>
+<H3><A NAME="SECTION003311500000000000000">See also</A></H3>
+<P>
+<A HREF="node8.html#MIDASstartBackgroundPlay">MIDASstartBackgroundPlay</A>, <A HREF="node8.html#MIDASpoll">MIDASpoll</A>
+<P>
+<BR> <HR><A NAME="MIDASpoll">&#160;</A><H2><A NAME="SECTION003312000000000000000">2.3.12 MIDASpoll</A></H2>
+<A NAME="874">&#160;</A>
+<PRE>
+BOOL MIDASpoll(void)</PRE>
+<P>
+Polls the MIDAS sound and music player.
+<P>
+<H3><A NAME="SECTION003312100000000000000">Input</A></H3>
+<P>
+None.
+<P>
+<H3><A NAME="SECTION003312200000000000000">Description</A></H3>
+<P>
+This function can be used to poll MIDAS sound and music player manually. It
+plays music forward, mixes sound data, and sends it to output. When using
+manual polling, make sure you call <A HREF="node8.html#MIDASpoll">MIDASpoll</A> often enough to make
+sure there are no breaks in sound output -- at least two times during buffer
+length, preferably four times or more. Under multitasking operating systems
+such as Win32 and Linux, this may be difficult, so very short buffer sizes
+can't be used reliably.
+<P>
+Also note that <B>currently this function is not available under MS-DOS.</B>
+Under MS-DOS, playback is always done in background using the system timer
+(IRQ 0).
+<P>
+<H3><A NAME="SECTION003312300000000000000">Return value</A></H3>
+<P>
+TRUE if successful, FALSE if not.
+<P>
+<H3><A NAME="SECTION003312400000000000000">Operating systems</A></H3>
+<P>
+Win32, Linux
+<P>
+<H3><A NAME="SECTION003312500000000000000">See also</A></H3>
+<P>
+<A HREF="node8.html#MIDASstartBackgroundPlay">MIDASstartBackgroundPlay</A>, <A HREF="node8.html#MIDASstopBackgroundPlay">MIDASstopBackgroundPlay</A>
+<P>
+<BR> <HR><A NAME="MIDASgetVersionString">&#160;</A><H2><A NAME="SECTION003313000000000000000">2.3.13 MIDASgetVersionString</A></H2>
+<A NAME="889">&#160;</A>
+<PRE>
+char *MIDASgetVersionString(void)</PRE>
+<P>
+Gets the current MIDAS version as a string.
+<P>
+<H3><A NAME="SECTION003313100000000000000">Input</A></H3>
+<P>
+None.
+<P>
+<H3><A NAME="SECTION003313200000000000000">Description</A></H3>
+<P>
+This function can be used to determine the MIDAS version being loaded. It
+returns a text string description of the version. Version numbers are usually
+of form ``x.y.z'', where ``x'' is the major version number, ``y'' minor
+version number and ``z'' patch level. In some occasions, ``z'' can be
+replaced with a textual message such as ``rc1'' for Release Candidate 1. All
+MIDAS versions with the major and minor version numbers equal have a
+compatible DLL API, and can be used interchangeably.
+<P>
+<H3><A NAME="SECTION003313300000000000000">Return value</A></H3>
+<P>
+MIDAS Sound System version number as a string.
+<P>
+<H3><A NAME="SECTION003313400000000000000">Operating systems</A></H3>
+<P>
+Win32, Linux
+<P>
+<H3><A NAME="SECTION003313500000000000000">See also</A></H3>
+<P>
+<HR><A NAME="tex2html231" HREF="node9.html"><IMG WIDTH=37 HEIGHT=24 ALIGN=BOTTOM ALT="next" SRC="../icons/next_motif.gif"></A> <A NAME="tex2html229" HREF="node5.html"><IMG WIDTH=26 HEIGHT=24 ALIGN=BOTTOM ALT="up" SRC="../icons/up_motif.gif"></A> <A NAME="tex2html225" HREF="node7.html"><IMG WIDTH=63 HEIGHT=24 ALIGN=BOTTOM ALT="previous" SRC="../icons/previous_motif.gif"></A> <A NAME="tex2html233" HREF="node1.html"><IMG WIDTH=65 HEIGHT=24 ALIGN=BOTTOM ALT="contents" SRC="../icons/contents_motif.gif"></A>  <BR>
+<B> Next:</B> <A NAME="tex2html232" HREF="node9.html">3 Module playback</A>
+<B>Up:</B> <A NAME="tex2html230" HREF="node5.html">2 Configurationinitialization and </A>
+<B> Previous:</B> <A NAME="tex2html226" HREF="node7.html">5.2 Data types</A>
+<P><ADDRESS>
+<I>Petteri Kangaslampi <BR>
+Mon Jan 27 00:19:24 EET 1997</I>
+</ADDRESS>
+</BODY>
+</HTML>

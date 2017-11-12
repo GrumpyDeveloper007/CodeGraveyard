@@ -1,0 +1,7 @@
+MDIMain = 0, 0, 0, 0, C, 0, 0, 0, 0, C
+DataAccessInterface = 0, 0, 0, 0, C
+GlobalDeclarations = 0, 0, 0, 0, C
+GlobalFunctions = 0, 0, 0, 0, C
+FConfigure = 0, 0, 0, 0, C, 0, 0, 0, 0, C
+Stuff = 0, 0, 0, 0, C
+CNotifyDll = 22, 22, 808, 551, 

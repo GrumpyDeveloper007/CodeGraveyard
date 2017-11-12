@@ -1,0 +1,14 @@
+DOCNAME = prgguide
+DOCINCLUDES = 
+
+all :		$(DOCNAME)-html $(DOCNAME).dvi
+
+include ../common/common.mak
+
+
+
+
+
+
+
+

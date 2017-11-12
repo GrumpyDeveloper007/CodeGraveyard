@@ -1,0 +1,31 @@
+Ok Boys and Girls heres a 65816 emulator that runs.
+YES NINTENDO GAMES
+NO GRAPHICS,NO SOUND JUST STEPS THROUGH THE CODE
+
+I started it in hope that I could help develop a simple SNES emulator to write code on and test
+on the PC.  But I dont have alot of time.
+
+To all the skeptics.
+Yes I beleive you can write an emulator.
+No  I dont beleive it would be fast(But theres always a chance)
+
+I Am going to try to add
+1. Comments on my Code
+2. Optimize it
+3. Debug it(Please hlp on this guys)
+4. A user interface
+
+PLEASE DONT REAM ME ON THE CODE I KNOW ITS NOT THE HOTEST ITS THE EFFORT OF 4 Hours Work while
+watching TV.
+
+I wrote it in Borland 4.0 under QuickWin.
+Change the #include "f:\emulator\include\memory.h" to whereever you put the include files(BORLAND HAS A MEMORY.H)
+It makes a 4 meg virtual memory file
+Also change the hardcoded cart file in the cart.c file to the location of your cart.  It is "f:\cdi.smc".
+
+You may abuse my code as much as you desire but please send me your updates.
+
+PLEASE EMAIL ME WITH IDEAS,CHANGES and BUGS to my 70+hr a week day job 
+eyork@link.com
+
+The books I used was Apple IIGS Programming the SNES Programming Manual and the SNES Mailing List.

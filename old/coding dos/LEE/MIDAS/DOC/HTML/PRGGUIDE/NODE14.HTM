@@ -1,0 +1,52 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<!--Converted with LaTeX2HTML 96.1-h (September 30, 1996) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
+<HTML>
+<HEAD>
+<TITLE>3.5 Software and hardware mixing</TITLE>
+<META NAME="description" CONTENT="3.5 Software and hardware mixing">
+<META NAME="keywords" CONTENT="prgguide">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<LINK REL=STYLESHEET HREF="prgguide.css">
+</HEAD>
+<BODY LANG="EN" >
+ <A NAME="tex2html221" HREF="node15.html"><IMG WIDTH=37 HEIGHT=24 ALIGN=BOTTOM ALT="next" SRC="../icons/next_motif.gif"></A> <A NAME="tex2html219" HREF="node9.html"><IMG WIDTH=26 HEIGHT=24 ALIGN=BOTTOM ALT="up" SRC="../icons/up_motif.gif"></A> <A NAME="tex2html215" HREF="node13.html"><IMG WIDTH=63 HEIGHT=24 ALIGN=BOTTOM ALT="previous" SRC="../icons/previous_motif.gif"></A> <A NAME="tex2html223" HREF="node1.html"><IMG WIDTH=65 HEIGHT=24 ALIGN=BOTTOM ALT="contents" SRC="../icons/contents_motif.gif"></A>  <BR>
+<B> Next:</B> <A NAME="tex2html222" HREF="node15.html">4 The system</A>
+<B>Up:</B> <A NAME="tex2html220" HREF="node9.html">3 MIDAS concepts</A>
+<B> Previous:</B> <A NAME="tex2html216" HREF="node13.html">3.4 Panning</A>
+<BR> <P>
+<H1><A NAME="SECTION00450000000000000000">3.5 Software and hardware mixing</A></H1>
+<P>
+Most sound cards supported by MIDAS Sound System are only capable of playing
+one digital sound channel at a time, but still MIDAS supports an unlimited
+number of channels with them. This is accomplished through software mixing of
+the sound -- the sound channels are mixed digitally together before passing
+the sound to the sound card.
+<P>
+Mixing the sound in software is a complicated process, and, although MIDAS
+mixing routines are carefully optimized, can still take a considerable amount
+of CPU time. The CPU time used is determined by four factors: The number of
+channels active, the mixing rate, the output mode and the type of the samples
+played. The time used depends almost linearly on the mixing rate and the
+number of channels, and stereo output can take up to 50% more CPU time
+than mono. The sample type effect is almost the same - stereo samples can
+take up to 50% more CPU than mono ones, and 16-bit samples 50% more
+than 8-bit.
+<P>
+The opposite of software mixing is hardware mixing. Hardware mixing sound
+cards are capable of playing multiple digital sounds in hardware, and thus
+there is no need to mix the sound in software. This often uses much less CPU
+power, depending on the sound card, but as a tradeoff some flexibility is
+lost. One problem with hardware mixing cards is, that samples have to be
+placed in on-card memory. Very often the cards come with as little as 512kb
+of memory, and thus can store only a few samples. The second problem is, that
+playing streams with hardware mixing cards is usually impossible. This
+severely limits the usability of hardware mixing cards with MIDAS.
+<P>
+<BR> <HR>
+<P><ADDRESS>
+<I>Petteri Kangaslampi <BR>
+Mon Jan 27 00:15:29 EET 1997</I>
+</ADDRESS>
+</BODY>
+</HTML>

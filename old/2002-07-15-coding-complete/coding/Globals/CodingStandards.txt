@@ -1,0 +1,20 @@
+All forms have headings, showing general information/notes
+All Module level varibles are declaried with 'v' prefix
+All Constants are declaried with 'c' prefix
+Form objects are declaired using MS conventsions i.e. TXT for textbox etc.
+All forms have public level interface procedure/properties declaried first, then local procedure, then form procedures each section is seperated by a section heading (see example)
+All function/procedures have Explicit 'call' declariations
+Types/enums user Postfix 'TYPE' and 'ENUM' notation
+module level comments user double '' and inline (procedure level) user single '
+No varible type prefixing is used (except constants), types are irelevent(mostly) in vb
+Forms have 'FRM' prefix, modules have no prefix, classes have 'CLASS' prefix
+Tabbing convenstion consistant with Visual C++
+
+Also other consistancy are used e.g.
+ All recordset operations (DAO/ADO) use the 'openrecordset()' function, this provides simple error control
+ A General OpenDatabase system is used to locate/open databases
+ A General MDI form layout is used, nearly all from are 'fixed single'/MDI child
+ All forms user the 'SetWindowPosition' and 'GetWindowPosition' function, to save and load window location from/to the registory
+ Child/Parent forms use 2 function to pass control, 'SendChildInactive' to return control and 'Search' to pass control to a child
+ Form properties/function(provided by vb) are perceived as private, so all interface changes are local to that form
+ Global fuction are kept simple, any complex functionality is kept within context, normally interface functionality belongs to form and data functionality belongs to data bound (custom) classes

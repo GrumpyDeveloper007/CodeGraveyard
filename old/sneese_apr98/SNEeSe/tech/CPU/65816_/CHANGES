@@ -1,0 +1,17 @@
+2.0		Amiga binary, inclusion of John Corey's disassmebler
+
+-------------
+1.052		fixed a bug having to do with multiple files being left open
+1.051		fixed an opcode bug, ldx indexed,y was inadvertantly disabled
+1.05		fixed incorrect opcode (jmp indexed x) generation, redistributed
+		beleived to be fairly stable at this point
+
+1.042		fixed distribution bug, and an addressing mode bug
+1.041		fixed bug in the smc file generation, erred on files <32768 bytes
+1.04		made this file, added local labels, fixed a few addressing mode
+		bugs... you can even use local labels in expressions....read the
+		65816.doc file...
+
+1.03b		fixed some silly, and not so silly bugs
+
+1.02b		*** RELEASED ***

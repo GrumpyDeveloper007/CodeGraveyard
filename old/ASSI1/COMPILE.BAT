@@ -1,0 +1,1 @@
+gcc sample.c updater.o graflib.o -lm -lpc -O2 -osample.exe

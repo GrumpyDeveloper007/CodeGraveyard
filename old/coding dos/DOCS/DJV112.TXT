@@ -1,0 +1,84 @@
+DJGPP v1.12 Setup Instructions
+
+Important:
+
+[*** ] All files should be unpacked by typing "pkunzip -d -o -n file.zip"
+or "unzip -fo file.zip."
+
+[*** ] Maintenance files have to be installed last and in order: m1, m2,...
+After unzipping a maintenance file, you need to run a batch file that it
+installs before continuing with the next maintenance file.
+
+Version 1.12 is available at all Simtel mirrors. Try simtelnet. The files
+are distributed in the following directories: v1/, v1gnu/ and v1misc/.So
+which files should you get? Well, you need: (with their zip file sizes)
+
+   * djeoe112.zip - execution-only environment (120K)
+   * djdev112.zip - basic development libs (460K)
+   * bnu252bn.zip - binary utilities (1004K)
+   * gcc263bn.zip - GCC binaries (630K)
+   * txi310bn.zip - online info reader (154K)
+   * djdoc112.zip - base documentation (224K)
+   * dj112m1.zip - maintenance files (1104K combined)
+   * dj112m2.zip
+   * dj112m3.zip
+   * dj112m4.zip
+
+Additionally, for C++, these are needed:
+
+   * gpp263.zip - G++ binaries (682K)
+   * lgp262bn.zip - C++ libs (434K)
+
+And, whether it be C or C++ programming, the following tools are highly
+recommended:
+
+   * gdb412bn.zip - GNU debugger (660K)
+   * mak371bn.zip - GNU make (102K)
+   * *dc.zip - all other manuals; for C/C++: bnu252dc.zip, gcc263dc.zip,
+     gdb412dc.zip, mak371dc.zip, txi310dc.zip; for C++: lgp262dc.zip
+
+In general, for v1.12, *bn.zip are binaries, *sr*.zip and *s?.zip are
+sources, and *dc.zip are docs. Get the index file for a complete listing
+with short descriptions at simtelnet.
+
+---------------------------------------------------------------------------
+
+[*** ] After unpacking the files into a directory, you need to set up a few
+environment variables and make sure the compiler knows where to look for
+important things such as standard include files, etc. Let's assume you
+unzipped DJGPP into c:\djgpp.
+
+   * Add the c:\djgpp\bin directory to your PATH variable. For example, if
+     you have "set PATH=c:\;c:\dos" in your AUTOEXEC.BAT file, you would
+     have to change it to "set PATH=c:\;c:\dos;c:\djgpp\bin".
+
+   * Set the DJGPP variable to point to the djgpp.env file. For example,
+     add the line "set DJGPP=c:/djgpp/djgpp.env" to your AUTOEXEC.BAT file.
+
+   * set TMPDIR=c:\yourtempdir (DJGPP needs some temp space while building)
+
+   * set GO32TMP=c:\yourtempdir (DJGPP needs some temp space while
+     building)
+
+   * set GO32=driver c:\djgpp\drv\yourgraphics.drv gw 640 gh 480 nc
+     256(specify your graphics driver and specify the color and resolution)
+
+   * set GO32=emu c:\djgpp\bin\emu387 (if your CPU doesn't have a math
+     coprocessor)
+
+[*** ] The FAQ list has a complete list of other environment variables that
+you might want to set to suit your specific needs.
+
+---------------------------------------------------------------------------
+
+[Previous]
+
+Copyright © 1995-96 avly@castle.net All Rights Reserved
+
+All trademarks mentioned are of their respective companies.
+
+Standard Disclaimer
+
+There are absolutely no guarantees, expressed or implied, on anything that
+you find in this document. I cannot be held responsible for anything that
+results from the use or misuse of this document.

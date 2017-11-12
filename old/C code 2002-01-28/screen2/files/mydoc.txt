@@ -1,0 +1,9 @@
+
+Supports - 
+RGB colour information
+texture coordinates
+multiple textures
+TGA load
+
+limitations 
+textures must be .tga and 256*n size. No checking on texture coords so if the coords are off the texture it will crash

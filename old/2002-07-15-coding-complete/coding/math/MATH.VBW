@@ -1,0 +1,16 @@
+Globals = 172, 162, 708, 610, C
+SyntaxClass = 14, 11, 875, 635, 
+InterfaceClass = 15, 7, 722, 546, 
+Frmtest = 110, 110, 845, 549, , 6, 4, 752, 660, C
+StringClass = 32, 87, 872, 695, C
+VaribleClass = 14, 20, 866, 690, C
+ExpressionClass = 82, -2, 848, 617, C
+GlobalDeclarations = 66, 66, 690, 566, C
+FrmMain = 220, 220, 872, 710, , 8, 5, 744, 624, C
+MathClass = 45, 45, 741, 628, C
+FrmGFXView = 95, 37, 725, 521, , 13, 6, 728, 626, C
+FrmOptions = 154, 154, 784, 638, C, 176, 176, 596, 634, C
+GlobalFunctions = 76, 118, 728, 562, C
+FrmTextView = 110, 110, 762, 608, C, 12, 12, 748, 434, C
+FrmProgramSelect = 44, 44, 696, 542, C, 287, 106, 696, 502, C
+ErrorClass = 110, 110, 740, 594, C

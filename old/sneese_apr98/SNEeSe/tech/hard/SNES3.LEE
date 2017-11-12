@@ -1,0 +1,320 @@
+****************************************************************
+SNES3 Documentation v.0.0 Recopiled by calb
+****************************************************************
+
+1. Snes Select Colors
+2. Snes Rom Access
+3. Snes Graphics Info File V1.0
+4. SnesRom Pins
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Snes Select Colors
+-----------------
+
+The Nintendo Super Famicom is capable of displaying 256 colours
+from a palette of 32,768. These 256 colours are split into 8
+palettes of 32 colours each.
+
+To change the colours the following needs to be done:
+
+Loading the palette control register ($2121) with the colour number
+you wish to change (0-255, 0=background).
+Then load the colour into the palette data register first the low 8
+bits, followed by the high 7 bits (this gives you the maximum 32768
+colours possible $0000-$7fff).
+
+Colour data is made up of 3 components (Red,Green,Blue) each of
+5 bits (The Amiga uses exactly the same system, but only using 4 bits
+per component). Saying that, Nintendo being the stupid japanese idiots
+they are decided that R,G,B wasn't alphabetically correct and so opted
+to store the bits as B,G,R.
+
+                      00000 00000 00000
+                      \   / \   / \   /
+                       \ /   \ /   \ /
+                        B     G     R
+
+Examples:
+~~~~~~~~~
+         11111 00000 00000 = $7C00 (Bright Blue)
+         00000 11111 00000 = $03E0 (Bright Green)
+         00000 00000 11111 = $001F (Bright Red)
+         00000 00000 00000 = $0000 (Black)
+         11111 11111 11111 = $7FFF (White)
+
+Easy, isn't it?? (But remember to load the lowest 8 bits first, then
+                  the top 7 bits).
+
+Starr/QUARTEX
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Snes Access Rom
+----------------
+
+I unsubscribed from this mailing list after my suggestion that 
+maybe the processor would run faster when executing from RAM
+brought responses such as "if you want something to run that 
+fast you should use a PC" which quickly turned into a whole
+barrage of "my Amiga is faster than your PC" mails. Just the 
+sort of comments I was hoping to get from this mailing 
+list... )-: However I'm changing jobs and I don't know whether
+I'll have internet access at my new job, so I'd better make
+the most of it...
+
+So, for anyone like myself who wants to get the most out 
+of their SNES I thought I'd let you know that I've managed to
+run the program in FASTROM which has resulted in a 33% speed
+improvement - the 65816 runs at 3.58Mhz rather than 2.68Mhz.
+This is possible because the ROMs have a faster access time
+- hence the reason I thought it may be possible with RAM which
+typically has faster access times than ROM.
+
+So how's it done?
+
+The SNES lets you access ROM through bank $00 onwards and bank 
+$80 onwards such that locations $008000 and $808000, $008001 and
+$808001, $008002 and $808002 etc... all access the same locations.
+When accessing bank $00 onwards the 65816 runs at 2.68Mhz. However,
+when accessing bank $80 onwards the 65816 can run at 2.68Mhz or 
+3.58Mhz depending on how you set bit 0 of $420D.
+
+So all you have to do is assemble your program so that it
+starts at $808000, make sure you set the programming and 
+data banks to $80 (K and D) and set bit 0 of $420D. You'll 
+also need to mask off the bank part of the run/reset vector 
+and vertical blank interrupt locations. 
+
+Paul.
+
+PS. I also see that the source code for an early version of my
+GIF2SNES program has made it onto the ftp site by a somewhat
+indirect route (UK->NZ->AUS->USA). If someone wanted
+this source code let me know and I'll post the latest fully
+optimising version.
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+                SNES GRAPHICS INFO FILE V1.0
+                ----------------------------
+                     By DAX on 28/2/93
+
+This is a short text file on how the data for the gfx on the SNES
+are set up..
+Everything is based around an 8x8 pixel 'Tile' and thinking in
+terms of tiles makes the whole thing a lot easier.
+
+4 Colour mode - 2 Bitplanes
+---------------------------
+If you split the screen into 8x8 pixel tiles, the order of the
+graphics data is tile 0,1,2,3,4 etc.(with tile 0 being the first,
+and 1 being the one on the right of it.)
+
+Then for each tile, the data is stored as shown below.
+        00 01 02 03 04 05 06 07
+        10 11 12 13 14 15 16 17    Each number representing one pixel
+        20 21 22 23 24 25 26 27    in the 8x8 tile.
+        30 31 32 33 34 35 36 37
+        40 41 42 43 44 45 46 47
+        50 51 52 53 54 55 56 57
+        60 61 62 63 64 65 66 67
+        70 71 72 73 74 75 76 77
+         
+The data is stored in the SNES binary in the following format.
+        Bitplane 0 ..   Line 00-07 (One Byte)
+                        Line 10-17
+                        Line 20-27
+                        Line 30-37
+                        Line 40-47
+                        Line 50-57
+                        Line 60-67
+                        Line 70-77
+then    Bitplane 1 ..   Line 00-07
+                        Line 10-17
+                        Line 20-27
+                        Line 30-37
+                        Line 40-47
+                        Line 50-57
+                        Line 60-67
+                        Line 70-77
+then comes the data for the next tile (the one on the right).etc.
+
+16 Colour - 4 Bitplanes
+-----------------------
+The data for this mode is stored in the same format, with one
+main change. The data is stored in the format
+        Bitplane 0 ..   Line 00-07
+                               |
+                        Line 70-77
+ 
+        Bitplane 1 ..   Line 00-07
+                               |
+                        Line 70-77
+ 
+        Bitplane 2 ..   Line 00-07
+                               |
+                        Line 70-77
+ 
+        Bitplane 3 ..   Line 00-07
+                               |
+                        Line 70-77
+                         
+then the data for the next tile.
+ 
+256 Colour - 8 Bitplanes
+------------------------
+This is simply an expansion of the 4 and 16 colour modes.
+        Bitplane 0 ..   Line 00-07
+                               |
+                        Line 70-77
+ 
+        Bitplane 1 ..   Line 00-07
+                               |
+                        Line 70-77
+ 
+        Bitplane 2 ..   Line 00-07
+                               |
+                        Line 70-77
+ 
+        Bitplane 3 ..   Line 00-07
+                               |
+                        Line 70-77
+         
+        Bitplane 4 ..   Line 00-07
+                               |
+                        Line 70-77
+ 
+        Bitplane 5 ..   Line 00-07
+                               |
+                        Line 70-77
+ 
+        Bitplane 6 ..   Line 00-07
+                               |
+                        Line 70-77
+ 
+        Bitplane 7 ..   Line 00-07
+                               |
+                        Line 70-77
+ 
+then the data for the next tile.
+
+256 Colours - Mode 7 format
+---------------------------
+This has some very major differences to the other graphics
+data formats
+
+there are two mode7 modes, normal and EXTBG, the data is stored
+in the same way in both, apart from in EXTBG the Bitplane 7 value
+will be a priority bit for the pixel, which cuts the colours
+down to 128.
+
+Each byte of 'graphics data' is actually the colour value for that
+pixel on the screen, so if the value is 64, then the colour of
+that pixel will be the contents of colour register 64.
+
+The data is stored in VRAM differently to the other modes, with the
+tile numbers, and the graphics data 'interleaved', starting at
+$0000 in VRAM, with alternate bytes containing one byte of tile,
+one byte of gfx - this is shown below.
+
+        Word of VRAM.        HI                         LO
+        Bit  15  14  13  12  11  10  09  08  07  06  05  04  03  02  01  00
+content     |------------------------------||------------------------------|
+               Graphics data(CHAR DATA)             Tile number(NAME)
+
+Because of the storing of 16 bit data in reverse format (LO-HI) this
+means that if you set the VRAM addr to $0.the first byte written
+should be the tile name for that position on screen and the second
+byte should be the first byte of the Mode7 graphics data.if the
+VRAM addr is set to $1 the first byte written will be the tile name
+for that position on scr, and the second byte should be the second byte
+of the mode7 graphics data.
+  ETC
+
+In mode7 you can only have a maximum of 256 tiles, because of the fact
+that the mode7 data only takes up the first half of VRAM(32k) you can
+only have 16k of graphics data which is 256 tiles of 8x8 with
+256 colours.
+This is quite a limitation, but can be used quite effectively.
+
+The tile numbers are stored in a format according to a 128x128 tile
+screen so tile 128($80) would be the tile below 0($0) on the screen,
+and so on. so VRAM addr $0 is the top left tile, and $1 is the one
+on the right of it $80 is the one on the left side, one row down.
+
+the graphics data is stored based on an 8x8 tile again.
+but slightly different.
+Each byte(pixel) is stored so...
+                        Bit number    Contents
+                                0          Bitplane 0 pixel value
+                                1          Bitplane 1 pixel value
+                                2          Bitplane 2 pixel value
+                                3          Bitplane 3 pixel value
+                                4          Bitplane 4 pixel value
+                                5          Bitplane 5 pixel value
+                                6          Bitplane 6 pixel value
+                                7          Bitplane 7 pixel value /
+                                           (EXTBG mode - Priority value)
+
+The data is then stored in the sequence
+                00,01,02,03,04,05,06,07
+                10,11,12,13,14,15,16,16  (Look at diagram at start of file
+                    |      |      |       for explanation)
+                70,71,72,73,74,75,76,77
+
+with one byte for each position(pixel), according to the 8x8 tile format,
+with one tile after another.
+
+---------------------------------------------------------------------------
+I hope this text file helps those of you having trouble converting graphics
+for use on the SNES, I have been asked a few times recently for this info
+so I decided to type up this short text file on it.
+Hopefully it should explain it!
+
+If you have any further questions contact :-
+                Dax      or    Corsair
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+SnesRom Pins
+------------
+
+Here's the pinout to a 4Mbit/*Mbit mask Rom used in SNES carts as
+I've deduced from various specs and actual testing.
+
+1	A17   ------\__/------	+5v	32	
+2	A18   |		     |	*OE	31
+3	A15			A19	30
+4	A12			A14	29
+5	A7			A13	28
+6	A6			A8	27
+7	A5			A9	26
+8	A4			A11	25
+9	A3			A16	24
+10	A2			A10	23
+11	A1			*CE	22
+12	A0			D7	21
+13	D0			D6	20
+14	D1			D5	19
+15	D2			D4	18
+16	GND  |---------------|	D3	17
+
+The design approximates std EPROM/SRAM pinouts except for the upper
+address lines (A16-A19), and OE which sits where VPP or PRGM usually
+is for an EPROM. This pinout approximates Fujitsu's tentative mask ROM
+pinouts (a package called GAMEMEDC.ZIP seems to base itself on this and
+is consequently wrong). Nintendo uses Fujitsu chips in some carts, but
+from my testing and card-edge pinouts provided by other users,
+I conclude that Fujitsu must have modified the designs.
+
+NOTE!: Card-edge pin #40, address line 15 (A15) is not used by any
+cart I've seen. And ROM pin #3 (see above) that I've determined to
+be A15 is connected to card-edge pin#41, labeled on many pinouts
+schems as A16..not A15!!! Would some one please verify this
+inconsistency.
+
+
+
+

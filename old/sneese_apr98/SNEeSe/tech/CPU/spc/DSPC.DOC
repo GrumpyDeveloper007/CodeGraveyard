@@ -1,0 +1,50 @@
+DSPC - A SPC700 Disassembler
+----------------------------
+
+This is a disassembler for the sound processor in the SNES.  The
+instruction set was extracted from hbt-fasm, ALL other info from famidev
+messages with D Burton.
+
+usage: dspc infile
+
+-?
+Commands:
+
+drop bookmark   b
+dump            d address
+info            i
+jmp to bookmark j
+load file       l filename
+unassemble      u address
+quit            back to Dos
+
+Note: All numbers are in hex.
+
+
+Infile data format
+------------------
+
+The following is from a msg. with D Burton:
+
+> Any info on the structure & size of the header block?
+>
+
+the header is as follows :-
+
+	dw length_of_block,transfer_address
+
+	db start_of_data
+	.....
+	db end_of_data
+
+this is repeated for however many blocks u wanna load into the spc(often just
+one big block)
+then the final header reads:-
+
+	dw $0000,program_execution_address
+
+the zero length field tells it to get ready to run the module..
+
+I have assumed that spc700 data space is 64k.  This may or may not be
+correct.  If length_of_block+transfer_address exceedes the address
+space, block loading will be terminated.

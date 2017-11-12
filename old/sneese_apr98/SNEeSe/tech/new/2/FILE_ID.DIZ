@@ -1,0 +1,20 @@
+tRS'97 Presents
+Sn2 -The Frontends for Snes96, Snes96 .73 Beta (435k), Snes9x.
+Now with Joystic/Gamepad Support !!
+
+NOTE that you MUST copy sn2.exe into
+the same directory as the snes9x.exe or snes96.exe and 
+run sn2.exe now instead of snes96.exe.
+
+For all Cyrix users. There had been some problems with Cyrix and .73 Beta 
+Front End Speed util 2.4c and under. Now it is fixed. When you go into the
+beta menu (*) (see commands: ), and when it asks you for speed type 'cyrix'.
+Note: In the new Sn2 you just select 'detect' for Cyrix CPUs as well as others.
+There is NO MORE Cyrix option. I have implanted the data into the 'detect'
+option. So don't start showering me with questions.
+
+
+R^pper.
+
+P.S. Expect MUCH more to come verry soon. This is only the first release of the
+all new Sn2 ! Give me some time.

@@ -1,0 +1,2189 @@
+% This is m4 source code for the document in LaTeX format. m4 is just used
+% for including some files - latex2html doesn't process macros in them
+% otherwise. Note changequote below.
+changequote(%bq,%eq)
+%bq
+\documentclass[a4paper,12pt,oneside]{book}
+%eq
+include(midasdoc.sty)
+%bq
+
+\author{Petteri Kangaslampi}
+\title{MIDAS Sound System\\ \ \\ API Reference}
+
+\begin{document}
+
+\maketitle
+\pagenumbering{roman}
+\tableofcontents
+
+\newpage
+\pagenumbering{arabic}
+
+% ***************************************************************************
+% *
+% *     INTRODUCTION
+% *
+% ***************************************************************************
+
+\chapter{Introduction}
+
+
+% ---------------------------------------------------------------------------
+%       About this document
+% ---------------------------------------------------------------------------
+
+\section{About this document}
+
+This document contains a full programmer's reference for the MIDAS
+Application Programming interface. It includes complete descriptions of all
+constants, data structure and functions available in the API, plus examples
+on how to use them. It is not intended to be a tutorial on using MIDAS ---
+for that kind of information see
+\htmladdnormallink{MIDAS Programmer's Guide}{../prgguide/prgguide.html}.
+
+
+% ---------------------------------------------------------------------------
+%       Document organization
+% ---------------------------------------------------------------------------
+
+\section{Document organization}
+
+The document itself is divided into five different chapters, according to
+different functional groups. In addition to this introduction, the chapters
+cover configuration, initialization and overall system control, module
+playback, sample playback and stream playback. Each chapter is further
+divided into three sections: constants, data types and functions.
+
+
+
+
+% ***************************************************************************
+% *
+% *     CONFIGURATION, INITIALIZATION AND CONTROL
+% *
+% ***************************************************************************
+
+\chapter{Configuration, initialization and control}
+
+
+% ---------------------------------------------------------------------------
+%       Constants
+% ---------------------------------------------------------------------------
+
+\section{Constants}
+
+This section describes all constants used in MIDAS initialization and
+configuration. They are grouped according to the \mResWord{enum} used to
+define them.
+
+
+%----------------------------- MIDASoptions
+\mDocEntry{MIDASoptions}
+\begin{verbatim}
+enum MIDASoptions
+\end{verbatim}
+
+\subsubsection*{Description}
+
+These constants are used with the function \mDocRef{MIDASsetOption}
+to change different MIDAS configuration options.
+
+\subsubsection*{Values}
+
+\begin{description}
+    \item [MIDAS\_{}OPTION\_{}MIXRATE] Output mixing rate
+    \item [MIDAS\_{}OPTION\_{}OUTPUTMODE] Output mode, see \mResWord{enum}
+        \mDocRef{MIDASmodes}
+    \item [MIDAS\_{}OPTION\_{}MIXBUFLEN] Mixing buffer length, in
+        milliseconds
+    \item [MIDAS\_{}OPTION\_{}MIXBUFBLOCKS] The number of blocks the buffer
+        should be divided into
+\end{description}
+
+
+
+%----------------------------- MIDASmodes
+\mDocEntry{MIDASmodes}
+\begin{verbatim}
+enum MIDASmodes
+\end{verbatim}
+
+\subsubsection*{Description}
+
+These constants are used to describe different MIDAS output modes. They are
+used with the function \mDocRef{MIDASsetOption}, when changing the setting
+\mDocRefLabel{MIDAS\_{}OPTION\_{}OUTPUTMODE}{MIDASoptions}.
+
+\subsubsection*{Values}
+
+\begin{description}
+    \item [MIDAS\_{}MODE\_{}8BIT\_{}MONO] 8-bit mono output
+    \item [MIDAS\_{}MODE\_{}16BIT\_{}MONO] 16-bit mono output
+    \item [MIDAS\_{}MODE\_{}8BIT\_{}STEREO] 8-bit stereo output
+    \item [MIDAS\_{}MODE\_{}16BIT\_{}STEREO] 16-bit stereo output
+\end{description}
+
+
+
+
+% ---------------------------------------------------------------------------
+%       Data types
+% ---------------------------------------------------------------------------
+
+\newpage
+\section{Data types}
+
+This section describes all data types used in MIDAS initialization and
+configuration.
+
+
+
+
+% ---------------------------------------------------------------------------
+%       Functions
+% ---------------------------------------------------------------------------
+
+\newpage
+\section{Functions}
+
+This section describes all functions available for MIDAS initialization,
+configuration and system control. This includes error handling.
+
+
+
+
+%----------------------------- MIDASstartup
+\mDocEntry{MIDASstartup}
+\begin{verbatim}
+BOOL MIDASstartup(void)
+\end{verbatim}
+
+Prepares MIDAS Sound System for initialization and use.
+
+\subsubsection*{Input}
+
+None.
+
+\subsubsection*{Description}
+
+This function sets all MIDAS configuration variables to default values and
+prepares MIDAS for use. It must be called before any other MIDAS function,
+including \mDocRef{MIDASinit} and \mDocRef{MIDASsetOption}, is called. After
+this function has been called, \mDocRef{MIDASclose} can be safely called
+at any point and any number of times, regardless of whether MIDAS has been
+initialized or not. After calling this function, you can use
+\mDocRef{MIDASsetOption} to change MIDAS configuration before initializing
+MIDAS with \mDocRef{MIDASinit}.
+
+
+\subsubsection*{Return value}
+
+TRUE if successful, FALSE if not.
+
+\subsubsection*{Operating systems}
+
+All
+
+\subsubsection*{See also}
+
+\mDocRef{MIDASsetOption}, \mDocRef{MIDASinit}, \mDocRef{MIDASclose}
+
+
+
+
+%----------------------------- MIDASgetLastError
+\mDocEntry{MIDASgetLastError}
+\begin{verbatim}
+int MIDASgetLastError(void)
+\end{verbatim}
+
+Gets the MIDAS error code for last error.
+
+
+\subsubsection*{Input}
+
+None.
+
+\subsubsection*{Description}
+
+This function can be used to read the error code for most recent failure.
+When a MIDAS API function returns an error condition, this function can be
+used to determine the actual cause of the error, and this error can then be
+reported to the user or ignored, depending on the kind of response needed.
+Use \mDocRef{MIDASgetErrorMessage} to get a textual message corresponding to
+an error code.
+
+This function can be called at any point after \mDocRef{MIDASstartup} has
+been called.
+
+
+\subsubsection*{Return value}
+
+MIDAS error code for the most recent error.
+
+
+\subsubsection*{Operating systems}
+
+All
+
+
+\subsubsection*{See also}
+
+\mDocRef{MIDASgetErrorMessage}
+
+
+
+
+%----------------------------- MIDASgetErrorMessage
+\mDocEntry{MIDASgetErrorMessage}
+\begin{verbatim}
+char *MIDASgetErrorMessage(int errorCode)
+\end{verbatim}
+
+Gets an error message corresponding to an error code.
+
+
+\subsubsection*{Input}
+
+\begin{description}
+    \item [errorCode] The error code from \mDocRef{MIDASgetLastError}
+\end{description}
+
+
+\subsubsection*{Description}
+
+This function returns a textual error message corresponding to a MIDAS error
+code. It can be used for displaying an error message to the user. Use
+\mDocRef{MIDASgetLastError} to determine the error code.
+
+This function can be called at any point after \mDocRef{MIDASstartup} has
+been called.
+
+
+\subsubsection*{Return value}
+
+Error message string corresponding to the error code.
+
+
+\subsubsection*{Operating systems}
+
+All
+
+
+\subsubsection*{See also}
+
+\mDocRef{MIDASgetLastError}
+
+
+
+
+%----------------------------- MIDASinit
+\mDocEntry{MIDASinit}
+\begin{verbatim}
+BOOL MIDASinit(void)
+\end{verbatim}
+
+Initializes MIDAS Sound System.
+
+\subsubsection*{Input}
+
+None.
+
+\subsubsection*{Description}
+
+This function initializes all MIDAS Sound System components, and sets up
+the API. Apart from configuration functions, this function must be called
+before any other MIDAS functions are used.
+
+\subsubsection*{Return value}
+
+TRUE if successful, FALSE if not.
+
+\subsubsection*{Operating systems}
+
+All
+
+\subsubsection*{See also}
+
+\mDocRef{MIDASsetOption}, \mDocRef{MIDASclose}
+
+
+
+%----------------------------- MIDASclose
+\mDocEntry{MIDASclose}
+\begin{verbatim}
+BOOL MIDASclose(void)
+\end{verbatim}
+
+Uninitializes MIDAS Sound System.
+
+\subsubsection*{Input}
+
+None.
+
+\subsubsection*{Description}
+
+This function uninitializes all MIDAS Sound System components, deallocates
+all resources allocated, and shuts down all MIDAS processing. This function
+must always be called before exiting under MS-DOS and is also strongly
+recommended under other operating systems. After this function has been
+called, no MIDAS function may be called unless MIDAS is initialized again.
+
+\subsubsection*{Return value}
+
+TRUE if successful, FALSE if not.
+
+\subsubsection*{Operating systems}
+
+All
+
+\subsubsection*{See also}
+
+\mDocRef{MIDASinit}
+
+
+
+%----------------------------- MIDASdetectSD
+\mDocEntry{MIDASdetectSD}
+\begin{verbatim}
+BOOL MIDASdetectSD(void)
+\end{verbatim}
+
+Attempts to detect the Sound Device to use.
+
+\subsubsection*{Input}
+
+None.
+
+\subsubsection*{Description}
+
+This function attempts to detect the Sound Device that should be used. It
+is called internally by \mDocRef{MIDASinit}, and should not normally be
+called by user programs. Note that the function returns TRUE even if it fails
+to detect a Sound Device.
+
+\subsubsection*{Return value}
+
+TRUE if successful, FALSE if not.
+
+\subsubsection*{Operating systems}
+
+All
+
+\subsubsection*{See also}
+
+\mDocRef{MIDASinit}
+
+
+
+%----------------------------- MIDASsetOption
+\mDocEntry{MIDASsetOption}
+\begin{verbatim}
+BOOL MIDASsetOption(int option, int value)
+\end{verbatim}
+
+Sets a MIDAS option.
+
+\subsubsection*{Input}
+
+\begin{description}
+    \item [option] Option number (see \mResWord{enum}
+        \mDocRef{MIDASoptions} above)
+    \item [value] New value for option
+\end{description}
+
+
+\subsubsection*{Description}
+
+This function sets a value to a MIDAS option. The different number codes for
+different options are described above. All MIDAS configuration options must
+be set with this function {\bf before} \mDocRef{MIDASinit} is called.
+
+\subsubsection*{Return value}
+
+TRUE if successful, FALSE if not.
+
+\subsubsection*{Operating systems}
+
+All
+
+\subsubsection*{See also}
+
+\mDocRef{MIDASinit}
+
+
+
+%----------------------------- MIDASopenChannels
+\mDocEntry{MIDASopenChannels}
+\begin{verbatim}
+BOOL MIDASopenChannels(int numChans)
+\end{verbatim}
+
+Opens Sound Device channels for sound and music output.
+
+\subsubsection*{Input}
+
+\begin{description}
+    \item [numChans] Number of channels to open
+\end{description}
+
+
+\subsubsection*{Description}
+
+This function opens a specified number of channels for digital sound and
+music output. The channels opened can be used for playing streams, samples
+and modules. When \mDocRef{MIDASplayModule} is used to play modules, it will
+use the last possible channels for the module, so that the first {\tt
+(numChans - number-of-channels-in-module)} channels are available for effects
+and streams.
+
+If this function has not been called before \mDocRef{MIDASplayModule} is
+called, \mDocRef{MIDASplayModule} will open the channels it needs for
+module playback. However, if this function has been called, but the number of
+channels opened is inadequate for the module, \mDocRef{MIDASplayModule}
+will return an error and refuse to play the module.
+
+
+\subsubsection*{Return value}
+
+TRUE if successful, FALSE if not.
+
+
+\subsubsection*{Operating systems}
+
+All
+
+
+\subsubsection*{See also}
+
+\mDocRef{MIDAScloseChannels}, \mDocRef{MIDASplayModule}
+
+
+
+%----------------------------- MIDAScloseChannels
+\mDocEntry{MIDAScloseChannels}
+\begin{verbatim}
+BOOL MIDAScloseChannels(void)
+\end{verbatim}
+
+Closes Sound Device channels opened with \mDocRef{MIDASopenChannels}.
+
+
+\subsubsection*{Input}
+
+None.
+
+
+\subsubsection*{Description}
+
+This function closes Sound Device channels that were opened with
+\mDocRef{MIDASopenChannels}. Note that you may {\bf not} use this function to
+close channels that were opened by \mDocRef{MIDASplayModule} ---
+\mDocRef{MIDASstopModule} will do that automatically.
+
+
+\subsubsection*{Return value}
+
+TRUE if successful, FALSE if not.
+
+
+\subsubsection*{Operating systems}
+
+All
+
+
+\subsubsection*{See also}
+
+\mDocRef{MIDASopenChannels}, \mDocRef{MIDASplayModule},
+\mDocRef{MIDASstopModule}
+
+
+
+
+%----------------------------- MIDASstartBackgroundPlay
+\mDocEntry{MIDASstartBackgroundPlay}
+\begin{verbatim}
+BOOL MIDASstartBackgroundPlay(DWORD pollRate)
+\end{verbatim}
+
+Starts playing music and sound in the background.
+
+\subsubsection*{Input}
+
+\begin{description}
+    \item [pollRate] Polling rate (number of polls per second), 0 for default
+\end{description}
+
+
+\subsubsection*{Description}
+
+This function starts playing sound and music in the background.
+\mVariable{pollRate} controls the target polling rate --- number of polls per
+second. Polling might not be done at actually the set rate, although usually
+it will be faster. Under Win32 and Linux, a new thread will be created for
+playing. {\bf Under MS-DOS this function is currently ignored, and background
+playback starts immediately when MIDAS is initialized.}
+
+
+\subsubsection*{Return value}
+
+TRUE if successful, FALSE if not.
+
+
+\subsubsection*{Operating systems}
+
+All, but see MS-DOS note above.
+
+
+\subsubsection*{See also}
+
+\mDocRef{MIDASstopBackgroundPlay}, \mDocRef{MIDASpoll}
+
+
+
+
+%----------------------------- MIDASstopBackgroundPlay
+\mDocEntry{MIDASstopBackgroundPlay}
+\begin{verbatim}
+BOOL MIDASstopBackgroundPlay(void)
+\end{verbatim}
+
+Stops playing sound and music in the background.
+
+
+\subsubsection*{Input}
+
+None.
+
+
+\subsubsection*{Description}
+
+This function stops music and sound background playback that has been started
+with \mDocRef{MIDASstartBackgroundPlay}. Under Win32 and Linux, this function
+also destroys the thread created for playback. {\bf Under MS-DOS this
+function is currently ignored, and background playback starts immediately
+when MIDAS is initialized.}
+
+If background playback has been started with
+\mDocRef{MIDASstartBackgroundPlay}, this function {bf must} be called before
+the program exits.
+
+
+\subsubsection*{Return value}
+
+TRUE if successful, FALSE if not.
+
+
+\subsubsection*{Operating systems}
+
+All, but see MS-DOS note above.
+
+
+\subsubsection*{See also}
+
+\mDocRef{MIDASstartBackgroundPlay}, \mDocRef{MIDASpoll}
+
+
+
+
+%----------------------------- MIDASpoll
+\mDocEntry{MIDASpoll}
+\begin{verbatim}
+BOOL MIDASpoll(void)
+\end{verbatim}
+
+Polls the MIDAS sound and music player.
+
+
+\subsubsection*{Input}
+
+None.
+
+
+\subsubsection*{Description}
+
+This function can be used to poll MIDAS sound and music player manually. It
+plays music forward, mixes sound data, and sends it to output. When using
+manual polling, make sure you call \mDocRef{MIDASpoll} often enough to make
+sure there are no breaks in sound output --- at least two times during buffer
+length, preferably four times or more. Under multitasking operating systems
+such as Win32 and Linux, this may be difficult, so very short buffer sizes
+can't be used reliably.
+
+Also note that {\bf currently this function is not available under MS-DOS.}
+Under MS-DOS, playback is always done in background using the system timer
+(IRQ 0).
+
+
+\subsubsection*{Return value}
+
+TRUE if successful, FALSE if not.
+
+
+\subsubsection*{Operating systems}
+
+Win32, Linux
+
+
+\subsubsection*{See also}
+
+\mDocRef{MIDASstartBackgroundPlay}, \mDocRef{MIDASstopBackgroundPlay}
+
+
+
+
+%----------------------------- MIDASgetVersionString
+\mDocEntry{MIDASgetVersionString}
+\begin{verbatim}
+char *MIDASgetVersionString(void)
+\end{verbatim}
+
+Gets the current MIDAS version as a string.
+
+
+\subsubsection*{Input}
+
+None.
+
+
+\subsubsection*{Description}
+
+This function can be used to determine the MIDAS version being loaded. It
+returns a text string description of the version. Version numbers are usually
+of form ``x.y.z'', where ``x'' is the major version number, ``y'' minor
+version number and ``z'' patch level. In some occasions, ``z'' can be
+replaced with a textual message such as ``rc1'' for Release Candidate 1. All
+MIDAS versions with the major and minor version numbers equal have a
+compatible DLL API, and can be used interchangeably.
+
+
+\subsubsection*{Return value}
+
+MIDAS Sound System version number as a string.
+
+
+\subsubsection*{Operating systems}
+
+Win32, Linux
+
+
+\subsubsection*{See also}
+
+
+
+
+
+% ***************************************************************************
+% *
+% *     MODULE PLAYBACK
+% *
+% ***************************************************************************
+
+\chapter{Module playback}
+
+
+% ---------------------------------------------------------------------------
+%       Constants
+% ---------------------------------------------------------------------------
+
+\section{Constants}
+
+This section describes all constants used in MIDAS module playback. They are
+grouped according to the \mResWord{enum} used to define them.
+
+
+
+
+% ---------------------------------------------------------------------------
+%       Data types
+% ---------------------------------------------------------------------------
+
+\newpage
+\section{Data types}
+
+This section describes all data types used in MIDAS module playback.
+
+
+
+%----------------------------- MIDASmoduleInfo
+\mDocEntry{MIDASmoduleInfo}
+\begin{verbatim}
+typedef struct
+{
+    char        songName[32];
+    unsigned    songLength;
+    unsigned    numPatterns;
+    unsigned    numInstruments;
+    unsigned    numChannels;
+} MIDASmoduleInfo;
+\end{verbatim}
+
+Module information structure.
+
+
+\subsubsection*{Members}
+
+\begin{description}
+    \item [songName] Module song name, an ASCIIZ string
+    \item [songLength] Module song length in number of positions
+    \item [numPatterns] Number of patterns in module
+    \item [numInstruments] Number of instruments in module
+    \item [numChannels] The number of channels the module uses
+\end{description}
+
+
+\subsubsection*{Description}
+
+This structure is used with the function \mDocRef{MIDASgetModuleInfo} to
+query information about an module. \mDocRef{MIDASgetModuleInfo} fills a
+\mDocRef{MIDASmoduleInfo} structure with the information.
+
+
+
+
+%----------------------------- MIDASinstrumentInfo
+\mDocEntry{MIDASinstrumentInfo}
+\begin{verbatim}
+typedef struct
+{
+    char        instName[32];
+} MIDASinstrumentInfo;
+\end{verbatim}
+
+Instrument information structure.
+
+
+\subsubsection*{Members}
+
+\begin{description}
+    \item [instName] Instrument name, an ASCIIZ string
+\end{description}
+
+
+\subsubsection*{Description}
+
+This structure is used with the function \mDocRef{MIDASgetInstrumentInfo} to
+query information about an instrument in a module.
+\mDocRef{MIDASgetInstrumentInfo} fills a \mDocRef{MIDASinstrumentInfo}
+structure with the information.
+
+
+
+
+%----------------------------- MIDASplayStatus
+\mDocEntry{MIDASplayStatus}
+\begin{verbatim}
+typedef struct
+{
+    unsigned    position;
+    unsigned    pattern;
+    unsigned    row;
+    int         syncInfo;
+} MIDASplayStatus;
+\end{verbatim}
+
+Module status information structure.
+
+
+\subsubsection*{Members}
+
+\begin{description}
+    \item [position] Current playback position number
+    \item [pattern] Current playback pattern number
+    \item [row] Current playback row number
+    \item [syncInfo] Latest synchronization command infobyte, -1 if no
+        synchronization command has been encountered yet.
+\end{description}
+
+
+\subsubsection*{Description}
+
+This structure is used with the function \mDocRef{MIDASgetPlayStatus} to
+query the current module playback status. \mDocRef{MIDASgetPlayStatus} fills
+a \mDocRef{MIDASplayStatus} structure with the information.
+
+Some more information about the synchronization commands: In protracker and
+Scream Tracker 3 modules, the command \mResWord{Wxx} is used as a music
+synchronization command. The infobyte of this command is available as the
+music synchronization command infobyte above.
+
+
+
+
+%----------------------------- MIDASmodule
+\mDocEntry{MIDASmodule}
+\begin{verbatim}
+typedef ... MIDASmodule;
+\end{verbatim}
+
+\subsubsection*{Description}
+
+\mDocRef{MIDASmodule} is a module handle that defines a module that has been
+loaded into memory.
+
+
+
+
+% ---------------------------------------------------------------------------
+%       Functions
+% ---------------------------------------------------------------------------
+
+\newpage
+\section{Functions}
+
+This section describes all functions available for MIDAS module playback.
+
+
+
+
+%----------------------------- MIDASloadModule
+\mDocEntry{MIDASloadModule}
+\begin{verbatim}
+MIDASmodule MIDASloadModule(char *fileName)
+\end{verbatim}
+
+Loads a module file into memory.
+
+\subsubsection*{Input}
+
+\begin{description}
+    \item [fileName] Module file name
+\end{description}
+
+
+\subsubsection*{Description}
+
+This function loads a module file into memory. It checks the module format
+based on the module file header, and invokes the correct loader to load the
+module into memory in GMPlayer internal format. The module can then be played
+using \mDocRef{MIDASplayModule}, and deallocated from memory with
+\mDocRef{MIDASfreeModule}.
+
+
+\subsubsection*{Return value}
+
+Module handle if successful, NULL if not.
+
+
+\subsubsection*{Operating systems}
+
+All
+
+
+\subsubsection*{See also}
+
+\mDocRef{MIDASplayModule}, \mDocRef{MIDASfreeModule}
+
+
+
+
+%----------------------------- MIDASplayModule
+\mDocEntry{MIDASplayModule}
+\begin{verbatim}
+BOOL MIDASplayModule(MIDASmodule module, int numEffectChannels)
+\end{verbatim}
+
+Starts playing a module.
+
+\subsubsection*{Input}
+
+\begin{description}
+    \item [module] Module to be played
+    \item [numEffectChannels] Number of sound channels to leave open for
+        effects
+\end{description}
+
+
+\subsubsection*{Description}
+
+This functions starts playing a module that has been previously loaded with
+\mDocRef{MIDASloadModule}. If channels have not been previously opened using
+\mDocRef{MIDASopenChannels}, this function opens the channels necessary to
+play the module, and if \mVariable{numEffectChannels} is nonzero, it
+opens additional channels for sound effects. The module is always played on
+the last possible channels, so the first \mVariable{numEffectChannels} are
+available for effects and streams.
+
+{\bf Note!} Currently only one module can be played at a time.
+
+
+\subsubsection*{Return value}
+
+TRUE if successful, FALSE if not.
+
+
+\subsubsection*{Operating systems}
+
+All
+
+
+\subsubsection*{See also}
+
+\mDocRef{MIDASloadModule}, \mDocRef{MIDASstopModule},
+\mDocRef{MIDASopenChannels}
+
+
+
+
+%----------------------------- MIDASstopModule
+\mDocRef{MIDASstopModule}
+
+\begin{verbatim}
+BOOL MIDASstopModule(MIDASmodule module)
+\end{verbatim}
+
+Stops playing a module.
+
+\subsubsection*{Input}
+
+\begin{description}
+    \item [module] Module that is being played
+\end{description}
+
+
+\subsubsection*{Description}
+
+This function stops playing a module that has been played with
+\mDocRef{MIDASplayModyle}. If the channels were opened automatically by
+\mDocRef{MIDASplayModule}, this function will close them, but if they were
+opened manually with \mDocRef{MIDASopenChannels}, they will be left open.
+
+
+\subsubsection*{Return value}
+
+TRUE if successful, FALSE if not.
+
+\subsubsection*{Operating systems}
+
+All
+
+
+\subsubsection*{See also}
+
+\mDocRef{MIDASplayModule}, \mDocRef{MIDASopenChannels}
+
+
+
+
+%----------------------------- MIDASfreeModule
+\mDocEntry{MIDASfreeModule}
+\begin{verbatim}
+BOOL MIDASfreeModule(MIDASmodule module)
+\end{verbatim}
+
+Deallocates a module.
+
+
+\subsubsection*{Input}
+
+\begin{description}
+    \item [module] Module that should be deallocated
+\end{description}
+
+
+\subsubsection*{Description}
+
+This function deallocates a module loaded with \mDocRef{MIDASloadModule}. It
+should be called to free unused modules from memory, after they are no longer
+being played, to avoid memory leaks.
+
+
+\subsubsection*{Return value}
+
+TRUE if successful, FALSE if not.
+
+\subsubsection*{Operating systems}
+
+All
+
+
+\subsubsection*{See also}
+
+\mDocRef{MIDASloadModule}
+
+
+
+
+%----------------------------- MIDASgetPlayStatus
+\mDocEntry{MIDASgetPlayStatus}
+\begin{verbatim}
+BOOL MIDASgetPlayStatus(MIDASplayStatus *status)
+\end{verbatim}
+
+Gets module playback status.
+
+
+\subsubsection*{Input}
+
+\begin{description}
+    \item [status] Pointer to playback status structure where the status will
+        be written.
+\end{description}
+
+
+\subsubsection*{Description}
+
+This function reads the current module playback status, and writes it to
+\mVariable{*status}. The user needs to pass it a valid pointer to a
+\mDocRef{MIDASplayStatus} structure, which will be updated.
+
+
+\subsubsection*{Return value}
+
+TRUE if successful, FALSE if not. The current playback status is written to
+\mVariable{*status}.
+
+
+\subsubsection*{Operating systems}
+
+All
+
+
+\subsubsection*{See also}
+
+\mDocRef{MIDASplayModule}, \mDocRef{MIDASplayStatus}
+
+
+
+
+%----------------------------- MIDASsetPosition
+\mDocEntry{MIDASsetPosition}
+\begin{verbatim}
+BOOL MIDASsetPosition(int newPosition)
+\end{verbatim}
+
+Changes module playback position.
+
+
+\subsubsection*{Input}
+
+\begin{description}
+    \item [newPosition] New playback position
+\end{description}
+
+
+\subsubsection*{Description}
+
+This function changes the current module playback position. The song starts
+at position 0, and the length is available in the \mDocRef{MIDASmoduleInfo}
+structure. You should make sure that \mVariable{position} lies inside those
+limits. To skip backward or forward a single position, first read the current
+position with \mDocRef{MIDASgetPlayStatus}, and substract or add one to the
+current position.
+
+
+\subsubsection*{Return value}
+
+TRUE if successful, FALSE if not.
+
+
+\subsubsection*{Operating systems}
+
+All
+
+
+\subsubsection*{See also}
+
+\mDocRef{MIDASplayModule}, \mDocRef{MIDASgetPlayStatus},
+\mDocRef{MIDASgetModuleInfo}
+
+
+
+
+%----------------------------- MIDASsetMusicVolume
+\mDocEntry{MIDASsetMusicVolume}
+\begin{verbatim}
+BOOL MIDASsetMusicVolume(unsigned volume)
+\end{verbatim}
+
+Changes music playback volume.
+
+
+\subsubsection*{Input}
+
+\begin{description}
+    \item [volume] New music playback volume (0--64)
+\end{description}
+
+
+\subsubsection*{Description}
+
+This function changes the music playback master volume. It can be used, for
+example, for fading music in or out smoothly, or for adjusting the music
+volume relative to sound effects. The volume change only affects the song
+that is currently being played --- if a new song is started, the volume is
+reset. The default music volume is 64 (the maximum).
+
+
+\subsubsection*{Return value}
+
+TRUE if successful, FALSE if not.
+
+
+\subsubsection*{Operating systems}
+
+All
+
+
+\subsubsection*{See also}
+
+
+
+
+%----------------------------- MIDASgetModuleInfo
+\mDocEntry{MIDASgetModuleInfo}
+\begin{verbatim}
+BOOL MIDASgetModuleInfo(MIDASmodule module,
+    MIDASmoduleInfo *info)
+\end{verbatim}
+
+Gets information about a module.
+
+
+\subsubsection*{Input}
+
+\begin{description}
+    \item [module] Module handle for the module
+    \item [info] Pointer to a module info structure where the information
+        willl be written
+\end{description}
+
+
+\subsubsection*{Description}
+
+This function returns information about a module, including the module name
+and the number of channels used. The user needs to pass it a valid pointer to
+a \mDocRef{MIDASmoduleInfo} structure (\mVariable{*info}), where the
+information will be written.
+
+
+\subsubsection*{Return value}
+
+TRUE if successful, FALSE if not. The module information is written to
+\mVariable{*info}.
+
+
+\subsubsection*{Operating systems}
+
+All
+
+
+\subsubsection*{See also}
+
+\mDocRef{MIDASplayModule}, \mDocRef{MIDASmoduleInfo}
+
+
+
+
+%----------------------------- MIDASgetInstrumentInfo
+\mDocEntry{MIDASgetInstrumentInfo}
+\begin{verbatim}
+BOOL MIDASgetInstrumentInfo(MIDASmodule module,
+    int instNum, MIDASinstrumentInfo *info)
+\end{verbatim}
+
+Gets information about an instrument in a module.
+
+
+\subsubsection*{Input}
+
+\begin{description}
+    \item [module] Module handle for the module
+    \item [instNum] Instrument number
+    \item [info] Pointer to an instrument info structure where the information
+        willl be written
+\end{description}
+
+
+\subsubsection*{Description}
+
+This function returns information about an instrument in a module, including
+the instrument name. The user needs to pass it a valid pointer to a
+\mDocRef{MIDASinstrumentInfo} structure (\mVariable{*info}), where the
+information will be written. You should ensure that \mVariable{instNum} is a
+valid instrument number. Instrument numbers start from 0, although trackers
+traditionally number them from 1, and you can use\mDocRef{MIDASgetModuleInfo}
+to get the number of instruments available in a module.
+
+
+\subsubsection*{Return value}
+
+TRUE if successful, FALSE if not. The instrument information is written to
+\mVariable{*info}.
+
+
+\subsubsection*{Operating systems}
+
+All
+
+
+\subsubsection*{See also}
+
+\mDocRef{MIDASplayModule}, \mDocRef{MIDASgetModuleInfo},
+\mDocRef{MIDASmoduleInfo}
+
+
+
+
+% ***************************************************************************
+% *
+% *     SAMPLE PLAYBACK
+% *
+% ***************************************************************************
+
+\chapter{Sample playback}
+
+
+% ---------------------------------------------------------------------------
+%       Constants
+% ---------------------------------------------------------------------------
+
+\section{Constants}
+
+This section describes all constants used in MIDAS sample playback. They are
+grouped according to the \mResWord{enum} used to define them.
+
+
+%----------------------------- MIDASsampleTypes
+\mDocEntry{MIDASsampleTypes}
+\begin{verbatim}
+enum MIDASsampleTypes
+\end{verbatim}
+
+\subsubsection*{Description}
+
+These constants identify different sample types. They are used with the
+functions \mDocRef{MIDASloadRawSample}, \mDocRef{MIDASplayStreamFile} and
+\mDocRef{MIDASplayStreamPolling} to indicate the format of the sample data.
+The byte order of the sample data is always the system native order (little
+endian for Intel x86 systems).
+
+
+\subsubsection*{Values}
+
+\begin{description}
+    \item [MIDAS\_{}SAMPLE\_{}8BIT\_{}MONO] 8-bit mono sample, unsigned
+    \item [MIDAS\_{}SAMPLE\_{}8BIT\_{}STEREO] 8-bit stereo sample, unsigned
+    \item [MIDAS\_{}SAMPLE\_{}16BIT\_{}MONO] 16-bit mono sample, signed
+    \item [MIDAS\_{}SAMPLE\_{}16BIT\_{}STEREO] 16-bit stereo sample, signed
+\end{description}
+
+
+
+
+%----------------------------- MIDASloop
+\mDocEntry{MIDASloop}
+\begin{verbatim}
+enum MIDASloop
+\end{verbatim}
+
+\subsubsection*{Description}
+
+These constants are used to indicate the loop type of a sample or stream.
+
+\subsubsection*{Values}
+
+\begin{description}
+    \item [MIDAS\_{}LOOP\_{}NO] Sample or stream does not loop
+    \item [MIDAS\_{}LOOP\_{}YES] Sample or stream loops
+\end{description}
+
+
+
+
+%----------------------------- MIDASpanning
+\mDocEntry{MIDASpanning}
+\begin{verbatim}
+enum MIDASpanning
+\end{verbatim}
+
+\subsubsection*{Description}
+
+These constants are used to describe the panning position of a sound. Legal
+panning positions range from -64 (extreme left) to 64 (extreme right),
+inclusive, plus MIDAS\_{}PAN\_{}SURROUND for surround sound.
+
+
+\subsubsection*{Values}
+
+\begin{description}
+    \item [MIDAS\_{}PAN\_{}LEFT] Panning position full left
+    \item [MIDAS\_{}PAN\_{}MIDDLE] Panning position middle
+    \item [MIDAS\_{}PAN\_{}RIGHT] Panning position full right
+    \item [MIDAS\_{}PAN\_{}SURROUND] Surround sound
+\end{description}
+
+
+
+
+%----------------------------- MIDASchannels
+\mDocEntry{MIDASchannels}
+\begin{verbatim}
+enum MIDASchannels
+\end{verbatim}
+
+\subsubsection*{Description}
+
+These constants are used to indicate the channel number a sound should be
+played on. Legal channel numbers range from 0 upwards, depending on the
+number of open channels. In addition, MIDAS\_{}CHANNEL\_{}AUTO can be used
+with \mDocRef{MIDASplaySample}.
+
+
+\subsubsection*{Values}
+
+\begin{description}
+    \item [MIDAS\_{}CHANNEL\_{}AUTO] Select channel automatically, used with
+        \mDocRef{MIDASplaySample}
+\end{description}
+
+
+
+
+% ---------------------------------------------------------------------------
+%       Data types
+% ---------------------------------------------------------------------------
+
+\newpage
+\section{Data types}
+
+This section describes all data types used in MIDAS sample playback.
+
+
+%----------------------------- MIDASsample
+\mDocEntry{MIDASsample}
+\begin{verbatim}
+typedef ... MIDASsample;
+\end{verbatim}
+
+\subsubsection*{Description}
+
+\mDocRef{MIDASsample} is a sample handle that defines a sample that has been
+loaded into memory. The sample handle is used for identifying the sample when
+playing or deallocating it.
+
+
+
+
+%----------------------------- MIDASsamplePlayHandle
+\mDocEntry{MIDASsamplePlayHandle}
+\begin{verbatim}
+typedef ... MIDASsamplePlayHandle;
+\end{verbatim}
+
+\subsubsection*{Description}
+
+\mDocRef{MIDASsamplePlayHandle} is a sample playing handle. It describes a
+sample sound that is being played. The sample playing handle is used for
+controlling the attributes of the sound, such as panning or volume, and for
+stopping the sound.
+
+
+
+
+% ---------------------------------------------------------------------------
+%       Functions
+% ---------------------------------------------------------------------------
+
+\newpage
+\section{Functions}
+
+This section describes all functions available for MIDAS sample playback.
+
+
+
+
+%----------------------------- MIDASloadRawSample
+\mDocEntry{MIDASloadRawSample}
+\begin{verbatim}
+MIDASsample MIDASloadRawSample(char *filename, int sampleType,
+    int loopSample)
+\end{verbatim}
+
+Loads a raw sound effect sample.
+
+
+\subsubsection*{Input}
+
+\begin{description}
+    \item [filename] Sample file name
+    \item [sampleType] Sample type, see \mResWord{enum}
+        \mDocRef{MIDASsampleTypes}
+    \item [loopSample] Sample loop type, see \mResWord{enum}
+        \mDocRef{MIDASloop}
+\end{description}
+
+
+\subsubsection*{Description}
+
+This function loads a sound effect sample into memory and adds it to the
+Sound Device. The sample file must contain just the raw sample data, and all
+of it will be loaded into memory. If \mVariable{loopSample} is
+MIDAS\_{}LOOP\_{}YES, the whole sample will be looped. After the sample has
+been loaded, it can be played using \mDocRef{MIDASplaySample}, and it
+should be deallocated with \mDocRef{MIDASfreeSample} after it is no
+longer used.
+
+
+\subsubsection*{Return value}
+
+Sample handle if successful, NULL if failed.
+
+
+\subsubsection*{Operating systems}
+
+All
+
+
+\subsubsection*{See also}
+
+\mDocRef{MIDASplaySample}, \mDocRef{MIDASfreeSample}
+
+
+
+
+%----------------------------- MIDASfreeSample
+\mDocEntry{MIDASfreeSample}
+\begin{verbatim}
+BOOL MIDASfreeSample(MIDASsample sample)
+\end{verbatim}
+
+Deallocates a sound effect sample.
+
+
+\subsubsection*{Input}
+
+\begin{description}
+    \item [sample] Sample to be deallocated
+\end{description}
+
+
+\subsubsection*{Description}
+
+This function deallocates a sound effect sample that has been previously
+loaded with \mDocRef{MIDASloadRawSample}. It removes the sample from the
+Sound Device and deallocates the memory used. This function may not be called
+if the sample is still being played.
+
+
+\subsubsection*{Return value}
+
+TRUE if successful, FALSE if not.
+
+
+\subsubsection*{Operating systems}
+
+All
+
+
+\subsubsection*{See also}
+
+\mDocRef{MIDASloadRawSample}
+
+
+
+
+%----------------------------- MIDASsetAutoEffectChannels
+\mDocEntry{MIDASsetAutoEffectChannels}
+\begin{verbatim}
+BOOL MIDASsetAutoEffectChannels(unsigned firstChannel,
+    unsigned numChannels)
+\end{verbatim}
+
+Sets the range of channels that can be used as automatic effect channels.
+
+
+\subsubsection*{Input}
+
+\begin{description}
+    \item [firstChannel] First channel that can be used
+    \item [numChannels] Number of channels that can be used
+\end{description}
+
+
+\subsubsection*{Description}
+
+This function is used to set the range of channels that can be used as
+automatic effect channels by \mDocRef{MIDASplaySample}. When
+\mDocRef{MIDASplaySample} is passed MIDAS\_{}CHANNEL\_{}AUTO as the channel
+number, it will use one of these automatic channels to play the sound.
+
+
+\subsubsection*{Return value}
+
+TRUE if successful, FALSE if not.
+
+
+\subsubsection*{Operating systems}
+
+All
+
+
+\subsubsection*{See also}
+
+\mDocRef{MIDASplaySample}
+
+
+
+
+%----------------------------- MIDASplaySample
+\mDocEntry{MIDASplaySample}
+\begin{verbatim}
+MIDASsamplePlayHandle MIDASplaySample(MIDASsample sample,
+    unsigned channel, int priority, unsigned rate,
+    unsigned volume, int panning)
+\end{verbatim}
+
+Plays a sound effect sample.
+
+
+\subsubsection*{Input}
+
+\begin{description}
+    \item [sample] The sample that will be played
+    \item [channel] The channel number that is used to play the
+        sample. Use MIDAS\_{}CHANNEL\_{}AUTO to let \mDocRef{MIDASplaySample}
+        select the channel automatically. See \mResWord{enum}
+        \mDocRef{MIDASchannels}.
+    \item [priority] Sample playing priority. The higher the value the
+        more important the sample is considered.
+    \item [rate] Initial sample rate for the sample
+    \item [volume] Initial volume for the sample
+    \item [panning] Initial panning position for the sample. See
+        \mResWord{enum} \mDocRef{MIDASpanning}.
+\end{description}
+
+
+\subsubsection*{Description}
+
+This function is used to play a sound effect sample on a given channel. The
+sample will receive as initial parameters the values passed as arguments, and
+playing the sample will be started. If \mVariable{channel} is
+MIDAS\_{}CHANNEL\_{}AUTO, the channel will be selected automatically. The
+sample playing priority is used to choose the channel the sample will be
+played on in this case.
+
+This function returns a sample playing handle, that can later be used to stop
+the sample or change its parameters. This makes it possible to refer to
+samples without knowing the exact channel they are played on.
+
+
+\subsubsection*{Return value}
+
+Sample playing handle if successful, NULL if failed.
+
+
+\subsubsection*{Operating systems}
+
+All
+
+
+\subsubsection*{See also}
+
+\mDocRef{MIDASstopSample}, \mDocRef{MIDASsetAutoEffectChannels}
+
+
+
+
+%----------------------------- MIDASstopSample
+\mDocEntry{MIDASstopSample}
+\begin{verbatim}
+BOOL MIDASstopSample(MIDASsamplePlayHandle sample)
+\end{verbatim}
+
+Stops playing a sample.
+
+
+\subsubsection*{Input}
+
+\begin{description}
+    \item [sample] Sample to be stopped
+\end{description}
+
+
+\subsubsection*{Description}
+
+This function stops playing a sound effect sample started with
+\mDocRef{MIDASplaySample}. Playing the sound will stop, and the channel is
+freed for other samples to use. Note that \mVariable{sample} is
+the sample playing handle returned by \mDocRef{MIDASplaySample}.
+
+
+\subsubsection*{Return value}
+
+TRUE if successful, FALSE if not.
+
+
+\subsubsection*{Operating systems}
+
+All
+
+
+\subsubsection*{See also}
+
+\mDocRef{MIDASplaySample}
+
+
+
+
+%----------------------------- MIDASsetSampleRate
+\mDocEntry{MIDASsetSampleRate}
+\begin{verbatim}
+BOOL MIDASsetSampleRate(MIDASsamplePlayHandle sample,
+    unsigned rate)
+\end{verbatim}
+
+Changes the sample rate for a sound effect sample.
+
+
+\subsubsection*{Input}
+
+\begin{description}
+    \item [sample] Sample to be changed
+    \item [rate] New sample rate for the sample
+\end{description}
+
+
+\subsubsection*{Description}
+
+This function changes the sample rate for a sound effect sample that is being
+played.
+
+
+
+\subsubsection*{Return value}
+
+TRUE if successful, FALSE if not.
+
+
+\subsubsection*{Operating systems}
+
+All
+
+
+\subsubsection*{See also}
+
+\mDocRef{MIDASplaySample}
+
+
+
+
+%----------------------------- MIDASsetSampleVolume
+\mDocEntry{MIDASsetSampleVolume}
+\begin{verbatim}
+BOOL MIDASsetSampleVolume(MIDASsamplePlayHandle sample,
+    unsigned volume)
+\end{verbatim}
+
+Changes the volume for a sound effect sample.
+
+
+\subsubsection*{Input}
+
+\begin{description}
+    \item [sample] Sample to be changed
+    \item [rate] New volume for the sample (0--64)
+\end{description}
+
+
+\subsubsection*{Description}
+
+This function changes the volume for a sound effect sample that is being
+played.
+
+
+
+\subsubsection*{Return value}
+
+TRUE if successful, FALSE if not.
+
+
+\subsubsection*{Operating systems}
+
+All
+
+
+\subsubsection*{See also}
+
+\mDocRef{MIDASplaySample}
+
+
+
+
+%----------------------------- MIDASsetSamplePanning
+\mDocEntry{MIDASsetSamplePanning}
+\begin{verbatim}
+BOOL MIDASsetSamplePanning(MIDASsamplePlayHandle sample,
+    int panning)
+\end{verbatim}
+
+Changes the panning position of a sound effect sample.
+
+
+\subsubsection*{Input}
+
+\begin{description}
+    \item [sample] Sample to be changed
+    \item [panning] New panning position for the sample (see
+        \mResWord{enum} \mDocRef{MIDASpanning})
+\end{description}
+
+
+\subsubsection*{Description}
+
+This function changes the panning position of a sound effect sample that is
+being played. See description of \mResWord{enum} \mDocRef{MIDASpanning} for
+information about the panning position values.
+
+
+
+\subsubsection*{Return value}
+
+TRUE if successful, FALSE if not.
+
+
+\subsubsection*{Operating systems}
+
+All
+
+
+\subsubsection*{See also}
+
+\mDocRef{MIDASplaySample}
+
+
+
+
+%----------------------------- MIDASsetSamplePriority
+\mDocEntry{MIDASsetSamplePriority}
+\begin{verbatim}
+BOOL MIDASsetSamplePriority(MIDASsamplePlayHandle sample,
+    int priority)
+\end{verbatim}
+
+Changes the playing priority of a sound effect sample.
+
+
+\subsubsection*{Input}
+
+\begin{description}
+    \item [sample] Sample to be changed
+    \item [priority] New playing priority for the sample
+\end{description}
+
+
+\subsubsection*{Description}
+
+This function changes the playing priority a sound effect sample
+that is being played.
+
+
+
+\subsubsection*{Return value}
+
+TRUE if successful, FALSE if not.
+
+
+\subsubsection*{Operating systems}
+
+All
+
+
+\subsubsection*{See also}
+
+\mDocRef{MIDASplaySample}
+
+
+
+
+
+% ***************************************************************************
+% *
+% *     STREAM PLAYBACK
+% *
+% ***************************************************************************
+
+\chapter{Stream playback}
+
+
+% ---------------------------------------------------------------------------
+%       Constants
+% ---------------------------------------------------------------------------
+
+\section{Constants}
+
+This section describes all constants used in MIDAS stream playback. They are
+grouped according to the \mResWord{enum} used to define them. Note that
+stream playback properties, such as volume and panning, are controlled
+similarily those of samples.
+
+
+
+
+% ---------------------------------------------------------------------------
+%       Data types
+% ---------------------------------------------------------------------------
+
+\newpage
+\section{Data types}
+
+This section describes all data types used in MIDAS stream playback.
+
+
+%----------------------------- MIDASstreamHandle
+\mDocEntry{MIDASstreamHandle}
+\begin{verbatim}
+typedef ... MIDASstreamHandle;
+\end{verbatim}
+
+\subsubsection*{Description}
+
+\mDocRef{MIDASstreamHandle} is a stream handle that defines a digital audio
+stream that is being played. Streams only exist in the system when they are
+being played, so there is no separate ``playing handle'' data type.
+
+
+
+
+
+% ---------------------------------------------------------------------------
+%       Functions
+% ---------------------------------------------------------------------------
+
+\newpage
+\section{Functions}
+
+This section describes all functions available for MIDAS stream playback.
+
+
+
+
+%----------------------------- MIDASplayStreamFile
+\mDocEntry{MIDASplayStreamFile}
+\begin{verbatim}
+MIDASstreamHandle MIDASplayStreamFile(unsigned channel,
+    char *fileName, unsigned sampleType, unsigned sampleRate,
+    unsigned bufferLength, int loopStream)
+\end{verbatim}
+
+Starts playing a digital audio stream from a file.
+
+
+\subsubsection*{Input}
+
+\begin{description}
+    \item [channel] The channel number the stream will be played on
+    \item [fileName] Stream file name
+    \item [sampleType] Stream sample type, see \mResWord{enum}
+        \mDocRef{MIDASsampleTypes}
+    \item [sampleRate] Stream sample rate
+    \item [bufferLength] Stream playback buffer length in milliseconds
+    \item [loopStream] 1 if the stream should be looped, 0 if not
+\end{description}
+
+
+\subsubsection*{Description}
+
+This function starts playing a digital audio stream from a file. It allocates
+the stream buffer, creates a new thread that will read sample data from the
+file to the stream buffer, and starts the Sound Device to play the stream.
+The stream will continue playing until it is stopped with
+\mDocRef{MIDASstopStream}. When a stream is being played on a channel, that
+channel may not be used for other purposes.
+
+The stream buffer length should be at least around 500ms if the stream file
+is being read from a disc, to avoid breaks in stream playback
+
+
+\subsubsection*{Return value}
+
+MIDAS stream handle if successful, NULL if failed.
+
+
+\subsubsection*{Operating systems}
+
+Win32, Linux
+
+
+\subsubsection*{See also}
+
+\mDocRef{MIDASstopStream}
+
+
+
+
+%----------------------------- MIDASstopStream
+\mDocEntry{MIDASstopStream}
+\begin{verbatim}
+BOOL MIDASstopStream(MIDASstreamHandle stream)
+\end{verbatim}
+
+Stops playing a digital audio stream.
+
+
+\subsubsection*{Input}
+
+\begin{description}
+    \item [stream] The stream that will be stopped
+\end{description}
+
+
+\subsubsection*{Description}
+
+This function stops playing a digital audio stream. It stops the stream
+player thread, deallocates the stream buffer and closes the stream file. The
+stream playback channel can then be used for other purposes.
+
+
+\subsubsection*{Return value}
+
+TRUE if successful, FALSE if not.
+
+
+\subsubsection*{Operating systems}
+
+Win32, Linux
+
+
+\subsubsection*{See also}
+
+\mDocRef{MIDASplayStream}
+
+
+
+
+
+%----------------------------- MIDASplayStreamPolling
+\mDocEntry{MIDASplayStreamPolling}
+\begin{verbatim}
+MIDASstreamHandle MIDASplayStreamPolling(unsigned channel,
+    unsigned sampleType, unsigned sampleRate,
+    unsigned bufferLength)
+\end{verbatim}
+
+Starts playing a digital audio stream in polling mode.
+
+
+\subsubsection*{Input}
+
+\begin{description}
+    \item [channel] The channel number the stream will be played on
+    \item [sampleType] Stream sample type, see \mResWord{enum}
+        \mDocRef{MIDASsampleTypes}
+    \item [sampleRate] Stream sample rate
+    \item [bufferLength] Stream playback buffer length in milliseconds
+\end{description}
+
+
+\subsubsection*{Description}
+
+This function starts playing a digital audio stream in polling mode. It
+allocates and empty stream buffer, and starts the Sound Device to play the
+stream. Sample data can be fed to the stream buffer with
+\mDocRef{MIDASfeedSteramData}. The stream will continue playing until it is
+stopped with \mDocRef{MIDASstopStream}. When a stream is being played on a
+channel, that channel may not be used for other purposes.
+
+To avoid breaks in playback, the stream buffer size should be at least twice
+the expected polling period. That is, if you will be feeding data 5 times
+per second (every 200ms), the buffer should be at least 400ms long.
+
+
+\subsubsection*{Return value}
+
+MIDAS stream handle if successful, NULL if failed.
+
+
+\subsubsection*{Operating systems}
+
+Win32, Linux
+
+
+\subsubsection*{See also}
+
+\mDocRef{MIDASstopStream}, \mDocRef{MIDASfeedStreamData}
+
+
+
+
+%----------------------------- MIDASfeedStreamData
+\mDocEntry{MIDASfeedStreamData}
+\begin{verbatim}
+unsigned MIDASfeedStreamData(MIDASstreamHandle stream,
+    unsigned char *data, unsigned numBytes, BOOL feedAll);
+\end{verbatim}
+
+Feeds sound data to a digital audio stream buffer.
+
+
+\subsubsection*{Input}
+
+\begin{description}
+    \item [stream] The stream that will play the data
+    \item [data] Pointer to sound data
+    \item [numBytes] Number of bytes of sound data available
+    \item [feedAll] TRUE if the function should block until all sound data can
+        be fed
+\end{description}
+
+
+\subsubsection*{Description}
+
+This function is used to feed sample data to a stream that has been started
+with \mDocRef{MIDASplayStreamPolling}. Up to \mVariable{numBytes} bytes of
+new sample data from \mVariable{*data} will be copied to the stream
+buffer, and the stream buffer write position is updated accordingly. The
+function returns the number of bytes of sound data actually used. If
+\mVariable{feedAll} is TRUE, the function will block the current thread
+of execution until all sound data is used.
+
+
+\subsubsection*{Return value}
+
+The number of bytes of sound data actually used.
+
+
+\subsubsection*{Operating systems}
+
+Win32, Linux
+
+
+\subsubsection*{See also}
+
+\mDocRef{MIDASplayStreamPolling}
+
+
+
+
+%----------------------------- MIDASsetStreamRate
+\mDocEntry{MIDASsetStreamRate}
+\begin{verbatim}
+BOOL MIDASsetStreamRate(MIDASstreamHandle stream,
+    unsigned rate);
+\end{verbatim}
+
+Changes stream playback sample rate.
+
+
+\subsubsection*{Input}
+
+\begin{description}
+    \item [stream] Stream handle for the stream
+    \item [rate] New playback sample rate for the stream, in Hertz.
+\end{description}
+
+
+\subsubsection*{Description}
+
+This function changes the playback sample rate for a stream that is being
+played. The initial sample rate is given as an argument to the function that
+starts stream playback.
+
+Note that the stream playback buffer size is calculated based on the initial
+sample rate, so the stream sample rate should not be changed very far from
+that figure. In particular, playback sample rates over two times the initial
+value may cause breaks in stream playback. Too low rates, on the other hand,
+will increase latency.
+
+
+\subsubsection*{Return value}
+
+TRUE if successful, FALSE if not.
+
+
+\subsubsection*{Operating systems}
+
+Win32, Linux
+
+
+\subsubsection*{See also}
+
+\mDocRef{MIDASsetStreamVolume}, \mDocRef{MIDASsetStreamPanning}
+
+
+
+
+%----------------------------- MIDASsetStreamVolume
+\mDocEntry{MIDASsetStreamVolume}
+\begin{verbatim}
+BOOL MIDASsetStreamVolume(MIDASstreamHandle stream,
+    unsigned volume);
+\end{verbatim}
+
+Changes stream playback volume.
+
+
+\subsubsection*{Input}
+
+\begin{description}
+    \item [stream] Stream handle for the stream
+    \item [volume] New volume for the stream, 0--64.
+\end{description}
+
+
+\subsubsection*{Description}
+
+This function changes the playback volume for a stream that is being
+played. The initial volume is 64 (maximum).
+
+
+\subsubsection*{Return value}
+
+TRUE if successful, FALSE if not.
+
+
+\subsubsection*{Operating systems}
+
+Win32, Linux
+
+
+\subsubsection*{See also}
+
+\mDocRef{MIDASsetStreamRate}, \mDocRef{MIDASsetStreamPanning}
+
+
+
+
+%----------------------------- MIDASsetStreamPanning
+\mDocEntry{MIDASsetStreamPanning}
+\begin{verbatim}
+BOOL MIDASsetStreamPanning(MIDASstreamHandle stream,
+    int panning);
+\end{verbatim}
+
+Changes stream panning position.
+
+
+\subsubsection*{Input}
+
+\begin{description}
+    \item [stream] Stream handle for the stream
+    \item [panning] New panning position for the stream
+\end{description}
+
+
+\subsubsection*{Description}
+
+This function changes the panning position for a stream that is being played.
+The initial volume is 0 (center). See description of \mResWord{enum}
+\mDocRef{MIDASpanning} for information about the panning position values.
+
+
+\subsubsection*{Return value}
+
+TRUE if successful, FALSE if not.
+
+
+\subsubsection*{Operating systems}
+
+Win32, Linux
+
+
+\subsubsection*{See also}
+
+\mDocRef{MIDASsetStreamVolume}, \mDocRef{MIDASsetStreamRate}
+
+
+\end{document}
+%eq

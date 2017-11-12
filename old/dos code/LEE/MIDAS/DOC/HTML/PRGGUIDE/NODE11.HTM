@@ -1,0 +1,55 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<!--Converted with LaTeX2HTML 96.1-h (September 30, 1996) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
+<HTML>
+<HEAD>
+<TITLE>3.2 Streams</TITLE>
+<META NAME="description" CONTENT="3.2 Streams">
+<META NAME="keywords" CONTENT="prgguide">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<LINK REL=STYLESHEET HREF="prgguide.css">
+</HEAD>
+<BODY LANG="EN" >
+ <A NAME="tex2html190" HREF="node12.html"><IMG WIDTH=37 HEIGHT=24 ALIGN=BOTTOM ALT="next" SRC="../icons/next_motif.gif"></A> <A NAME="tex2html188" HREF="node9.html"><IMG WIDTH=26 HEIGHT=24 ALIGN=BOTTOM ALT="up" SRC="../icons/up_motif.gif"></A> <A NAME="tex2html182" HREF="node10.html"><IMG WIDTH=63 HEIGHT=24 ALIGN=BOTTOM ALT="previous" SRC="../icons/previous_motif.gif"></A> <A NAME="tex2html192" HREF="node1.html"><IMG WIDTH=65 HEIGHT=24 ALIGN=BOTTOM ALT="contents" SRC="../icons/contents_motif.gif"></A>  <BR>
+<B> Next:</B> <A NAME="tex2html191" HREF="node12.html">3.3 Channels</A>
+<B>Up:</B> <A NAME="tex2html189" HREF="node9.html">3 MIDAS concepts</A>
+<B> Previous:</B> <A NAME="tex2html183" HREF="node10.html">3.1 Samples</A>
+<BR> <P>
+<H1><A NAME="SECTION00420000000000000000">3.2 Streams</A></H1>
+<P>
+In MIDAS, streams are continuous flows of sample data. Unlike samples,
+streams are not stored in the Sound Devices themselves, but are instead read
+from the system memory as they are played. Because of this, the complete data
+for the stream does not need to be available when playing starts, but can
+instead be read from disk, or even generated on the fly, as playback
+proceeds. The playback properties of the stream -- sampling rate, volume and
+panning -- can be changed in real time just like those of a sample. However,
+as the sample data for the stream is not stored anywhere in the Sound Device,
+each stream can only be played once.
+<P>
+The MIDAS API offers three ways for playing streams: file playback, polling
+playback and callbacks. For file playback, the application simply supplies
+the system the name of the file containing the sample data for the stream,
+and playback proceeds automatically. In polling playback mode, the
+application opens the stream and periodically feeds new sample data to be
+played. In callback mode, the application sets a callback function that is
+called each time the stream buffer loops, and can there fill the buffer with
+new sample data.
+<P>
+The most obvious use for streams is to play long sections of digital sound or
+music directly from disk, without needing to load everything into memory
+first. Stream playback could also be used to mix the output of a separate
+sound generator, such as a speech synthesizer, with the rest of the sound and
+music in the system.
+<P>
+Currently streams can only be played with software mixing Sound Devices. In
+addition, file playback is only possible under operating systems that
+support multithreading.
+<P>
+<BR> <HR>
+<P><ADDRESS>
+<I>Petteri Kangaslampi <BR>
+Mon Jan 27 00:15:29 EET 1997</I>
+</ADDRESS>
+</BODY>
+</HTML>

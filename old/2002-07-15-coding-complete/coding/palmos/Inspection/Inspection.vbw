@@ -1,0 +1,11 @@
+FRMMain = 5, 110, 743, 603, C, 42, 29, 260, 275, C
+MODStorage = 88, 88, 643, 532, C
+FRMInspection1 = 30, 203, 709, 701, C, 518, 32, 726, 287, C
+PalmGlobalFunctions = 44, 44, 747, 544, C
+modInspdataDatabase = 28, 5, 716, 612, C
+FRMInspectionPaint = 8, -2, 750, 609, C, 279, 31, 488, 281, C
+FRMInspection3 = 12, 33, 724, 632, C, 27, 306, 240, 549, C
+SaveLoad = 7, 93, 750, 611, 
+modINSPMakeDatabase = 110, 110, 642, 558, C
+modINSPModelDatabase = 66, 66, 697, 558, C
+modInspEngDatabase = 88, 88, 620, 536, C

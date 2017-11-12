@@ -1,0 +1,200 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>7.0.9466</ProductVersion>
+    <SchemaVersion>1.0</SchemaVersion>
+    <ProjectGuid>{97FB3EBC-0898-4519-B4C8-CFFB77BC7F55}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ApplicationIcon />
+    <AssemblyKeyContainerName />
+    <AssemblyName>MyClasses</AssemblyName>
+    <AssemblyOriginatorKeyFile />
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>Library</OutputType>
+    <RootNamespace>MyClasses</RootNamespace>
+    <StartupObject />
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <OldToolsVersion>0.0</OldToolsVersion>
+    <UpgradeBackupLocation />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile />
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DocumentationFile />
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile />
+    <DefineConstants>TRACE</DefineConstants>
+    <DocumentationFile />
+    <DebugSymbols>false</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>none</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System">
+      <Name>System</Name>
+    </Reference>
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <Name>System.Drawing</Name>
+    </Reference>
+    <Reference Include="System.Windows.Forms">
+      <Name>System.Windows.Forms</Name>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Name>System.XML</Name>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ColumnSorter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Const.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DeviceIOCtlh.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MyFunctions.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="NtddNDish.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Packet32.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Packet32h.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PacketAARP.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PacketARP.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PacketCDP.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PacketDCERPC.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PacketDLSW.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PacketDNS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PacketEIGRP.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PacketETHERNET.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PacketHTTP.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PacketICMP.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PacketINTERNET.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PacketIPX.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PacketLLC.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PacketLOOPBACK.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PacketMSWBROWSER.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PacketMSWLOGON.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PacketNBDS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PacketNBNS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PacketNBSS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PacketNETBIOS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PacketParser.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PacketSMB.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PacketSMBMAILSLOT.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PacketSTP.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PacketTB.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PacketTCP.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PacketTFTP.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PacketUDP.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="WinService.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent />
+    <PostBuildEvent />
+  </PropertyGroup>
+</Project>

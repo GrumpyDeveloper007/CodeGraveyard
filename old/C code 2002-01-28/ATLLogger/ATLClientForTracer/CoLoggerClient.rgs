@@ -1,0 +1,25 @@
+HKCR
+{
+	ATLClientForTracer.CoLoggerClient.1 = s 'CoLoggerClient Class'
+	{
+		CLSID = s '{D97E8A55-C220-11D3-9739-0050047D51FB}'
+	}
+	ATLClientForTracer.CoLoggerClient = s 'CoLoggerClient Class'
+	{
+		CLSID = s '{D97E8A55-C220-11D3-9739-0050047D51FB}'
+		CurVer = s 'ATLClientForTracer.CoLoggerClient.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {D97E8A55-C220-11D3-9739-0050047D51FB} = s 'CoLoggerClient Class'
+		{
+			ProgID = s 'ATLClientForTracer.CoLoggerClient.1'
+			VersionIndependentProgID = s 'ATLClientForTracer.CoLoggerClient'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Apartment'
+			}
+			'TypeLib' = s '{D97E8A46-C220-11D3-9739-0050047D51FB}'
+		}
+	}
+}

@@ -1,0 +1,15 @@
+92193
+C:\EMULATOR\SNES.PRJ
+SNES.OPN
+novcs
+SNES.DEF
+837149324 0 1.0 -1 -1 0 0 0 0 source\adrmode.c
+838079966 0 1.0 -1 1 0 0 0 0 source\adrsmode.c
+838031938 0 1.0 -1 -1 0 0 0 0 source\cart.c
+838031800 0 1.0 -1 -1 0 0 0 0 source\cpu.c
+837856030 0 1.0 -1 -1 0 0 0 0 source\instr.c
+838031764 0 1.0 -1 -1 0 0 0 0 source\main.c
+837441104 0 1.0 -1 -1 0 0 0 0 source\memory.c
+837855656 0 1.0 -1 -1 0 0 0 0 source\opcodes.c
+836660708 0 1.0 -1 -1 0 0 0 0 source\utils.c
+837089896 0 1.0 -1 -1 0 0 0 0 source\vars.c

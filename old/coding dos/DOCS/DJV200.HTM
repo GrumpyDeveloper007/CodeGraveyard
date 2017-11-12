@@ -1,0 +1,145 @@
+<html>
+<head>
+<title>QuickStart Guide: DJGPP v2 Setup</title>
+</head>
+<body background="pics/newbg.jpg">
+<h1>DJGPP v2 Setup Instructions</h1>
+<p>
+<h3><b>Important:</b></h3>
+<p>
+<img src="pics/red-ball.gif" alt="*** ">
+All files should be unpacked by typing "<b>pkunzip -d file.zip</b>" or "<b>unzip file.zip.</b>"
+<p>
+V2.01 is available at <a href="ftp://ftp.simtel.net/pub/simtelnet/gnu/djgpp/"> simtelnet</a>, among others. The files are distributed in the following directories: <a href="ftp://ftp.simtel.net/pub/simtelnet/gnu/djgpp/v2/">v2/</a>, <a href="ftp://ftp.simtel.net/pub/simtelnet/gnu/djgpp/v2gnu/">v2gnu/</a> and <a href="ftp://ftp.simtel.net/pub/simtelnet/gnu/djgpp/v2misc/">v2misc/</a>. For C development, you need: (with their zip file sizes)
+<ul>
+<li> djdev201.zip - Development Kit and Runtime (1530K)
+<li> gcc2721b.zip  - GCC 2.7.2.1 (1090K)
+<li> bnu27b.zip  - GNU binutils 2.7 (1710K)
+<li> txi390b.zip - GNU texinfo 3.90 (438K)
+<li> csdpmi(1|2|3)b.zip - CWS's DPMI server (30-50K)
+</ul>
+Additionally, for C++, these are also needed:
+<ul>
+<li> gpp2721b.zip - G++ 2.7.2.1 (680K) 
+<li> lgp271b.zip - libg++ 2.7.1 (638K)
+</ul>
+The following tools are highly recommended for C or C++ programming:
+<ul>
+<li> gdb416b.zip - GNU Debugger 4.16 (520K)
+<li> mak375b.zip - GNU Make 3.75 (209K)
+</ul>
+Other things one might find useful:
+<ul>
+<li> djlsr201.zip - base library sources (1460K) 
+<li> lgp271s.zip - libg++ 2.7.1 sources (970K)
+</ul>
+<p>
+In general, for v2, *b.zip are binaries (and docs), and *sr*.zip and *s.zip are the sources.
+<p>
+<hr size=5>
+<p>
+<img src="pics/red-ball.gif" alt="*** ">
+After unpacking the files into a directory, you need to set up a few environment variables and make sure the compiler knows where to look for important things such as standard include files, etc. Let's assume you unzipped DJGPP into c:\djgpp.
+<p>
+<ul>
+ <li>Add the c:\djgpp\bin directory to your PATH variable. For example, if you have "set PATH=c:\;c:\dos" in your AUTOEXEC.BAT file, you would have to change it to "set PATH=c:\;c:\dos;c:\djgpp\bin".
+<p>
+<li>Set the DJGPP variable to point to the djgpp.env file. For example, add the line "set DJGPP=c:/djgpp/djgpp.env" to your AUTOEXEC.BAT file.
+<p>
+<li>set TMPDIR=c:\yourtempdir (DJGPP needs some temp space while building) 
+<p>
+<li>set EMU=c:\djgpp\bin\emu387.dxe (if your CPU doesn't have a math coprocessor)
+<p>
+<li>set 387=n (add this if you're adding the previous line)
+</ul>
+<p>
+<img src="pics/red-ball.gif" alt="*** ">
+The FAQ list has a complete list of other environment variables that you might want to set to suit your specific needs.
+<p>
+<hr size=5>
+<p>
+<a href="djsetup.html"> <img src="pics/previous.gif" alt="Previous"></A>
+<p>
+Copyright &copy; 1995-96 avly@castle.net All Rights Reserved
+<p>
+<em>All trademarks mentioned are of their respective companies.</em>
+<h4>Standard Disclaimer</h4>
+There are absolutely no guarantees, expressed or implied, on anything that you find in this document. I cannot be held responsible for anything that results from the use or misuse of this document.  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

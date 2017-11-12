@@ -1,0 +1,173 @@
+[Root]
+Most Recent Package=Standard Setup Package 1
+
+
+[Package|Standard Setup Package 1|Root]
+SubWizProgID=PDWizard.SetupPkgSubWiz
+BuildFolder=C:\coding\Package\InspectionPC
+
+[Package|Standard Setup Package 1|Configure DAO ISAMs]
+Applicable=No
+
+[Package|Standard Setup Package 1|Configure DAO ODBC]
+JetWorkspace=
+ODBCDirect=
+
+[Package|Standard Setup Package 1|Files Found]
+
+[Package|Standard Setup Package 1|Files Released]
+
+[Package|Standard Setup Package 1|Missing Dependency Information]
+E:\Program Files\Handspring\PalmCntl.ocx=
+E:\WINNT\system32\Flp32x20.ocx=
+E:\WINNT\system32\DateControl.ocx=
+E:\WINNT\system32\TxtBox.ocx=
+E:\Program Files\Common Files\System\ado\msado26.tlb=
+C:\Program Files\CDK402a\Common\Bin\C4.02\PalmCntl.ocx=
+C:\WINNT\system32\DateControl.ocx=
+C:\WINNT\system32\TxtBox.ocx=
+C:\Program Files\Common Files\System\ado\msado26.tlb=
+C:\coding\Globals\OCX\DateControl.ocx=
+
+[Package|Standard Setup Package 1|Out-of-Date Dependency Information]
+E:\WINNT\system32\comdlg32.ocx=
+C:\WINNT\system32\comdlg32.ocx=
+C:\WINNT\system32\MSCAL.OCX=
+
+[Package|Standard Setup Package 1|Files Added]
+c:\coding\palmos\inspection\pcsystem\bodywork.bmp=
+c:\coding\palmos\inspection\pcsystem\bodywork.key=
+c:\coding\palmos\inspection\pcsystem\bodywork.mdb=
+
+[Package|Standard Setup Package 1|Files Removed]
+e:\program files\common files\system\ado\msado26.tlb=
+c:\program files\common files\system\ado\msado26.tlb=
+
+[Package|Standard Setup Package 1|Files In Project]
+C:\coding\palmos\Inspection\PCSystem\Inspection.exe=Yes
+C:\WINNT\system32\msvbvm60.dll=Yes
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\OLEAUT32.DLL=Yes
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\OLEPRO32.DLL=Yes
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\ASYCFILT.DLL=Yes
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\STDOLE2.TLB=Yes
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\COMCAT.DLL=Yes
+C:\Program Files\Common Files\System\ado\msado26.tlb=No
+C:\WINNT\system32\TxtBox.ocx=Yes
+C:\WINNT\system32\comdlg32.ocx=Yes
+C:\WINNT\system32\MSMASK32.OCX=Yes
+C:\Program Files\ListPro3\BIN\Flp32a30.ocx=Yes
+C:\WINNT\system32\atl.dll=Yes
+C:\WINNT\system32\msvcrt.dll=Yes
+C:\WINNT\system32\MSINET.OCX=Yes
+C:\WINNT\system32\MSWINSCK.OCX=Yes
+C:\WINNT\system32\TABCTL32.OCX=Yes
+C:\Program Files\CDK402a\Common\Bin\C4.02\PalmCntl.ocx=Yes
+C:\WINNT\system32\MSCHRT20.OCX=Yes
+C:\WINNT\system32\MSADODC.OCX=Yes
+C:\WINNT\system32\MSSTDFMT.DLL=Yes
+C:\WINNT\system32\MSDATGRD.OCX=Yes
+C:\WINNT\system32\MSBIND.DLL=Yes
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\SETUP.EXE=Yes
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\SETUP1.EXE=Yes
+C:\WINNT\system32\VB6STKIT.DLL=Yes
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\ST6UNST.EXE=Yes
+C:\coding\palmos\Inspection\PCSystem\BodyWork.bmp=Yes
+C:\coding\palmos\Inspection\PCSystem\BodyWork.KEY=Yes
+C:\coding\palmos\Inspection\PCSystem\BodyWork.mdb=Yes
+C:\WINNT\system32\MSCAL.OCX=Yes
+C:\coding\Globals\OCX\DateControl.ocx=Yes
+
+[Package|Standard Setup Package 1|Configure Registry Files]
+Applicable=No
+
+[Package|Standard Setup Package 1|Configure Remote Servers]
+Applicable=No
+
+[Package|Standard Setup Package 1|Install Locations]
+F:\FTP\coding\palmos\Inspection\PCSystem\Inspection.exe=$(AppPath)
+E:\WINNT\system32\Msvbvm60.dll=$(WinSysPathSysFile)
+E:\Program Files\coding\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\OLEAUT32.DLL=$(WinSysPathSysFile)
+E:\Program Files\coding\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\OLEPRO32.DLL=$(WinSysPathSysFile)
+E:\Program Files\coding\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\ASYCFILT.DLL=$(WinSysPathSysFile)
+E:\Program Files\coding\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\STDOLE2.TLB=$(WinSysPathSysFile)
+E:\Program Files\coding\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\COMCAT.DLL=$(WinSysPathSysFile)
+E:\WINNT\system32\TxtBox.ocx=$(WinSysPath)
+E:\WINNT\system32\comdlg32.ocx=$(WinSysPath)
+E:\WINNT\system32\DateControl.ocx=$(WinSysPath)
+E:\WINNT\system32\msmask32.ocx=$(WinSysPath)
+E:\WINNT\system32\Flp32x20.ocx=$(WinSysPath)
+E:\WINNT\system32\MSINET.OCX=$(WinSysPath)
+E:\WINNT\system32\Mswinsck.ocx=$(WinSysPath)
+E:\WINNT\system32\TABCTL32.OCX=$(WinSysPath)
+E:\Program Files\Handspring\PalmCntl.ocx=$(WinSysPath)
+E:\WINNT\system32\mschrt20.ocx=$(WinSysPath)
+E:\Program Files\coding\Microsoft Visual Studio\VB98\Wizards\PDWizard\SETUP.EXE=$(AppPath)
+E:\Program Files\coding\Microsoft Visual Studio\VB98\Wizards\PDWizard\SETUP1.EXE=$(WinPath)
+E:\WINNT\system32\VB6STKIT.DLL=$(WinSysPathSysFile)
+E:\Program Files\coding\Microsoft Visual Studio\VB98\Wizards\PDWizard\ST6UNST.EXE=$(WinPath)
+C:\coding\palmos\Inspection\PCSystem\Inspection.exe=$(AppPath)
+C:\WINNT\system32\msvbvm60.dll=$(WinSysPathSysFile)
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\OLEAUT32.DLL=$(WinSysPathSysFile)
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\OLEPRO32.DLL=$(WinSysPathSysFile)
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\ASYCFILT.DLL=$(WinSysPathSysFile)
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\STDOLE2.TLB=$(WinSysPathSysFile)
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\COMCAT.DLL=$(WinSysPathSysFile)
+C:\WINNT\system32\TxtBox.ocx=$(WinSysPath)
+C:\WINNT\system32\comdlg32.ocx=$(WinSysPath)
+C:\WINNT\system32\DateControl.ocx=$(WinSysPath)
+C:\WINNT\system32\MSMASK32.OCX=$(WinSysPath)
+C:\Program Files\ListPro3\BIN\Flp32a30.ocx=$(WinSysPath)
+C:\WINNT\system32\atl.dll=$(WinSysPathSysFile)
+C:\WINNT\system32\msvcrt.dll=$(WinSysPathSysFile)
+C:\WINNT\system32\MSINET.OCX=$(WinSysPath)
+C:\WINNT\system32\MSWINSCK.OCX=$(WinSysPath)
+C:\WINNT\system32\TABCTL32.OCX=$(WinSysPath)
+C:\Program Files\CDK402a\Common\Bin\C4.02\PalmCntl.ocx=$(WinSysPath)
+C:\WINNT\system32\MSCHRT20.OCX=$(WinSysPath)
+C:\WINNT\system32\MSADODC.OCX=$(WinSysPath)
+C:\WINNT\system32\MSSTDFMT.DLL=$(WinSysPath)
+C:\WINNT\system32\MSDATGRD.OCX=$(WinSysPath)
+C:\WINNT\system32\MSBIND.DLL=$(WinSysPath)
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\SETUP.EXE=$(AppPath)
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\SETUP1.EXE=$(WinPath)
+C:\WINNT\system32\VB6STKIT.DLL=$(WinSysPathSysFile)
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\ST6UNST.EXE=$(WinPath)
+C:\coding\palmos\Inspection\PCSystem\BodyWork.bmp=$(AppPath)
+C:\coding\palmos\Inspection\PCSystem\BodyWork.KEY=$(AppPath)
+C:\coding\palmos\Inspection\PCSystem\BodyWork.mdb=$(AppPath)
+C:\WINNT\system32\MSCAL.OCX=$(WinSysPath)
+C:\coding\Globals\OCX\DateControl.ocx=$(WinSysPath)
+
+[Package|Standard Setup Package 1|Configure Shared Files]
+Applicable=Yes
+F:\FTP\coding\palmos\Inspection\PCSystem\Inspection.exe=No
+C:\coding\palmos\Inspection\PCSystem\Inspection.exe=No
+C:\coding\palmos\Inspection\PCSystem\BodyWork.bmp=No
+C:\coding\palmos\Inspection\PCSystem\BodyWork.KEY=No
+C:\coding\palmos\Inspection\PCSystem\BodyWork.mdb=No
+
+[Package|Standard Setup Package 1|Distribution]
+Type=single
+Size=
+Title=Inspection
+
+[Package|Standard Setup Package 1|Package]
+PackageFolder=C:\coding\Package\InspectionPC
+ProjectFolder=C:\coding\palmos\Inspection\PCSystem
+ServerSideCab=
+File1=C:\coding\Package\InspectionPC\setup.exe
+File2=C:\coding\Package\InspectionPC\Setup.Lst
+File3=C:\coding\Package\InspectionPC\Inspection.CAB
+Handler1=PDWizard.FolderDplySubWiz
+Handler2=PDWizard.WebPostDplySubWiz
+
+[Package|Standard Setup Package 1|IconGroups]
+Group0=Inspection
+PrivateGroup0=-1
+Parent0=$(Programs)
+
+[Package|Standard Setup Package 1|Inspection]
+Icon1=Inspection.exe
+Title1=Inspection
+StartIn1=$(AppPath)
+Key1=Icon1

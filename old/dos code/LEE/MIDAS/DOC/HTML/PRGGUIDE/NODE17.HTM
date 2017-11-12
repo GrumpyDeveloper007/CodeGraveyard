@@ -1,0 +1,82 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<!--Converted with LaTeX2HTML 96.1-h (September 30, 1996) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
+<HTML>
+<HEAD>
+<TITLE>4.2 Description of all modules</TITLE>
+<META NAME="description" CONTENT="4.2 Description of all modules">
+<META NAME="keywords" CONTENT="prgguide">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<LINK REL=STYLESHEET HREF="prgguide.css">
+</HEAD>
+<BODY LANG="EN" >
+ <A NAME="tex2html258" HREF="node18.html"><IMG WIDTH=37 HEIGHT=24 ALIGN=BOTTOM ALT="next" SRC="../icons/next_motif.gif"></A> <A NAME="tex2html256" HREF="node15.html"><IMG WIDTH=26 HEIGHT=24 ALIGN=BOTTOM ALT="up" SRC="../icons/up_motif.gif"></A> <A NAME="tex2html250" HREF="node16.html"><IMG WIDTH=63 HEIGHT=24 ALIGN=BOTTOM ALT="previous" SRC="../icons/previous_motif.gif"></A> <A NAME="tex2html260" HREF="node1.html"><IMG WIDTH=65 HEIGHT=24 ALIGN=BOTTOM ALT="contents" SRC="../icons/contents_motif.gif"></A>  <BR>
+<B> Next:</B> <A NAME="tex2html259" HREF="node18.html">4.3 Calling conventions</A>
+<B>Up:</B> <A NAME="tex2html257" HREF="node15.html">4 The system</A>
+<B> Previous:</B> <A NAME="tex2html251" HREF="node16.html">4.1 Overview of system </A>
+<BR> <P>
+<H1><A NAME="SECTION00520000000000000000">4.2 Description of all modules</A></H1>
+<P>
+<H2><A NAME="SECTION00521000000000000000">4.2.1 Sound Devices</A></H2>
+<P>
+Sound Devices are at the very heart of MIDAS. They provide the basic
+functionality for playing audio, they manage the samples loaded in the
+system, and provide a common programming interface for all supported sound
+hardware. Normally a user does not use the Sound Devices directly, but rather
+uses MIDAS upper level programming interfaces and libraries to play sound.
+However, internally MIDAS is very much centered around Sound Devices, and
+anyone doing any lower-level MIDAS programming or just examining the system
+source code can't avoid working with them.
+<P>
+A single Sound Device can contain information for one or more sound card. In
+that case the cards are usually different models of the same sound card - for
+example, the Sound Blaster series Sound Device includes five different sound
+card types: Sound Blaster 1.0, 1.5, 2.0, Pro and 16.
+<P>
+Internally, a Sound Device is represented by one large data structure. The
+structure contains a set of variables for configuring the Sound Device, plus
+a number of function pointers. These function pointers are then used to
+call the Sound Device functions. This ensures that any code working with
+MIDAS Sound Devices only has to maintain a pointer to the current Sound
+Device structure in use, and can use any supported Sound Device without code
+modification.
+<P>
+<H2><A NAME="SECTION00522000000000000000">4.2.2 Generic Module Player</A></H2>
+<P>
+Generic Module Player, or GMPlayer for short, takes care of all module
+playing in MIDAS. Modules in different formats are converted to GMPlayer
+internal <EM>gmpModule</EM>        structure format when loaded to memory,
+so that a single module player can handle all formats. To maintain best
+possible compatibility with all trackers, however, GMPlayer implements some
+commands and features differently depending on the original module format.
+This ensures that playback quality is not compromised.
+<P>
+GMPlayer is not limited for playing a single module only, in fact it can be
+used to play an unlimited number of songs simultaneously. This way sound
+effects can be composed as small song fragments, to eliminate the need for
+long samples.
+<P>
+GMPlayer is not dependent on the underlying sound hardware -- it operates as
+easily with no sound output at all as it does with an advanced wavetable
+sound card. At initialization phase, GMPlayer is passed a pointer to the
+Sound Device that should be used for music playback, and afterwards it
+directs all sounds to that Sound Device.
+<P>
+<H2><A NAME="SECTION00523000000000000000">4.2.3 MIDAS kernel</A></H2>
+<P>
+The MIDAS &quot;kernel&quot; consists of smaller modules used by all system components.
+This includes memory management functions, error handling routines, file management
+functions and common utility functions. These kernel functions ensure that
+MIDAS does not depend on the underlying operating system any C runtime
+libraries -- all dependencies are encapsulated in single modules.
+<P>
+<HR><A NAME="tex2html258" HREF="node18.html"><IMG WIDTH=37 HEIGHT=24 ALIGN=BOTTOM ALT="next" SRC="../icons/next_motif.gif"></A> <A NAME="tex2html256" HREF="node15.html"><IMG WIDTH=26 HEIGHT=24 ALIGN=BOTTOM ALT="up" SRC="../icons/up_motif.gif"></A> <A NAME="tex2html250" HREF="node16.html"><IMG WIDTH=63 HEIGHT=24 ALIGN=BOTTOM ALT="previous" SRC="../icons/previous_motif.gif"></A> <A NAME="tex2html260" HREF="node1.html"><IMG WIDTH=65 HEIGHT=24 ALIGN=BOTTOM ALT="contents" SRC="../icons/contents_motif.gif"></A>  <BR>
+<B> Next:</B> <A NAME="tex2html259" HREF="node18.html">4.3 Calling conventions</A>
+<B>Up:</B> <A NAME="tex2html257" HREF="node15.html">4 The system</A>
+<B> Previous:</B> <A NAME="tex2html251" HREF="node16.html">4.1 Overview of system </A>
+<P><ADDRESS>
+<I>Petteri Kangaslampi <BR>
+Mon Jan 27 00:15:29 EET 1997</I>
+</ADDRESS>
+</BODY>
+</HTML>

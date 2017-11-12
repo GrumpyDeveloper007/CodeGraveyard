@@ -1,0 +1,9 @@
+2002-05-03 Added Save index for config screens, Set focus to config employee
+2002-05-03 Changed finish date search in reports to be inclusive
+2002-06-03 Changed reports to include requested new fields -Dirt In Paint,Filler Repair, Panel Fitment, Panel Alignment, Part Problem, Cleaning Problem
+2002-06-02 Changed engineer to Panel Engineer + Painter Engineer
+2002-06-03 Added Make/Model Config screen, and CarInfo Sync button
+2002-06-03 Added 'About' screen with contact information
+2002-06-04 Added Get Model/Make information from carinfo
+2002-06-04 Changed reports to include Make/Model information
+2002-06-06 Added both Painter and Panel Engineer

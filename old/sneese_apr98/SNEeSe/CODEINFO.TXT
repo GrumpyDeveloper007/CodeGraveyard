@@ -1,0 +1,42 @@
+
+ SNEeSe Source Release V0.14 
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+ Just a quick explanation of this code :
+
+ It is upto date as of release 0.14, I will of course update it soon.
+
+ The biggest addition, the SPC code in a reasonable state, it is now
+mostly macro-ised and it works under Mario. ;-)
+
+ If DJGPP crashes during compilation of any .S file don't panic just
+re-run it, its a problem with macro expansion in the assembler.
+
+ A lot of commented code is redundant in this release, but some may be
+useful later on so I have left it. You must have a directory structure
+that looks like this :
+
+
+\SNEESE
+\DJGPP
+      \ALLEGRO
+
+ ALLEGRO is usually installed within DJGPP's directory so it should be
+no problem?
+
+ ALLEGRO is used even more in this release, I like it, if you don't
+then I suggest you start. Its saves me work which is what I need at present.
+A lot of code in various modules has changed. A new file called memhi.s
+exists and contains most of the hirom mapping stuff (not all of it!).
+
+ If you find this code useful a mention might be nice ;)
+ I will always help people struggling to write emulators for SNES,
+especially those who are writing for other than IBM so you can email
+me on :
+
+        savoury.snax@usa.net
+
+ I will be putting up my own docs on snes on the homepage WHEN I GET TIME!
+
+
+                           T H E   E N D

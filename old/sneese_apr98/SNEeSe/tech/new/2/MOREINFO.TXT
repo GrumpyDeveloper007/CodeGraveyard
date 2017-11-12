@@ -1,0 +1,43 @@
+    ***This is an old and an unupdated file from Snes96sp***
+
+True Or Falce Facts About Snes96sp
+
+Lots of ppl had asked me lots of questions on IRC. So here are facts
+and fictions about Snes96sp or Sn2.
+
+True:
+
+-It speeds up Snes96 Emulation Speed
+-It is made in **********.
+-It use some frames
+-It was NOT made from bat2exec or exe2com, or any other re-assembling
+ programs.
+-I am NOT the person who made Snes96 or Snes97.
+-There MIGHT be a speed patch for GenEmu.
+-It was made by R^pper (me).
+
+False: -All miths about Snes96
+
+-It was made from bat2exec
+
+What this program does:
+ This is a Snes96 FrontEnd Utility. It looks at your CPU speed and when you
+pick "detect" option it adjustes Snes96 frame skipping to the best possible
+option to be compatible with your pc. I AM STILL NOT GIVING SOURCE CODES TO
+ANYONE. This program is NOT any part of Snes96. And to all those people who
+asked me "This was NOT made by bat2exec !" Here's the proof. It's ONLY 1 file.
+It has a VGA logo (NOT POSSIBLE TO MAKE IN A .bat FILE). It has OPTION MENU.
+Not the corny "choice" Proof -Over here you can tipe in commands, and select
+menus. In the corny "choice" command you can only pick "A B C D E F G H, etc.."
+To others who asked me "will you continue with your work ?" And the answer is
+"yes I am, and I will continue to make other utils for other emulators". To
+get them you can contact me on IRC in EFNet, my nick is usualy R^pper and I am
+an op on #EmuLand . Any questions, comments /msg me.
+ Joystic Support files are copyrighted By JoyEmu 3.3, SZP. I am not the maker 
+of nether JoyEmu or Snes96. Just this little front end utility.
+
+My Homepage: http://www.geocities.com/Area51/Cavern/1014
+(sorry for the inconvineance of it being "Geocities" I will change it as soon
+as I can, so please don't complain.)
+
+R^pper.

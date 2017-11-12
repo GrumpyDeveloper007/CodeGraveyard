@@ -1,0 +1,253 @@
+Introduction
+------------
+TRaCER is a disassembler that takes assembled/compiled 65c816 code for
+the Super Nintendo Entertainment System (SNES), and converts it into
+valid, re-useable source code.  TRaCER was originally written to become
+a 65c816 realtime debugger, but due to the desire for a decent PC 65c816
+disassembler, it became what it is now.
+
+My experiences with PC disassemblers such as DSFX and DISASM v2.0 were
+not good ones.
+
+DSFX's disassembled results were not easily re-useable by most assemblers
+such as Tricks Assembler and x816. Plus, it couldn't handle stack-relative
+operators such as "LDA ($C8,Y),S" or such simple things as "MVN $01, $00".
+This bothered me, as I originally learned 6502/65c816 on the Apple II, the
+original home for the 65xxx series processor. I really *REALLY* hate when
+people don't follow the standard 65c816 syntax that William D. Mensch, Jr.
+originally created.
+
+DISASM v2.0, despite being efficient and having many options which I found
+useful, did not run under an MSDOS window via Windows 95 due to DPMI
+limitations. And to add to the disappointment, it was horribly slow.
+
+Even though I totally respect the amount of time and effort put into making
+DSFX and DISASM v2.0, my own desires finally made me give in, and so it be-
+came that I wrote TRaCER.
+
+TRaCER is no longer Shareware! I felt the Shareware fee was fair, but I
+found that no one was registering it. Why charge and make people feel
+guilty when you can make *EVERYONE* happy? :-)
+
+Here are some features which will be incorporated into TRaCER during it's
+growth:
+     * HiROM support
+     * Pseudo-op support (BLT, BGE, JML, TAD, TAS, TDA, TSA, SWA, etc.)
+     * Three-pass optimization
+     * Code vs. data distinguishment
+     * Subroutine and branch labelling
+     * Subroutine tracing (multi-pass)
+     * Cycle counting
+     * Commenting for NES & SNES registers
+
+
+Using TRaCER
+------------
+To disassemble binaries, simply type 'TRACER' following by the filename of
+the binary you wish to disassemble, and press <Enter>. There are a few
+command-line options you can use which modify the output of the disassembly.
+Below is a summary of the options available.
+
+Usage: TRaCER [-abfiknorstv] [file]
+
+Options:
+Options:
+     -a: 16-bit accumulator
+     -b: Disassemble from NMI/VBL vector
+     -f: Trace SEP/REP sizing
+     -i: 16-bit index registers
+     -k: Skip iNES header
+     -n: NES (65C02) compatible output
+     -o: Output to file 'OUTPUT.DIS'
+     -r: Real 65c816 addressing mode
+     -s: Skip SMC/SWC header
+     -t: TrueSource output
+     -v: Disassemble from reset vector
+
+The amount of command-line options are very miniscule right now. All of
+the above options are initially disabled; to enable any of them, simply
+include the command itself before the filename (e.g. TRACER -s FILE.SMC).
+
+Once given a proper binary file, TRaCER will begin to disassemble the
+file, sending all disassembled output to standard out. It can be re-
+directed to a file via standard DOS syntax (TRaCER FILE.SMC > OUTPUT).
+Control-Break is ignored, but Control-C (^C) may be used in the middle of
+operation to stop TRaCER prematurely.
+
+Here is a small explanation of what each command-line option does.
+
+-a: 16-bit accumulator
+       This sets the accumulator's default size to 16-bits.
+       [Default is 8-bit]
+-b: Disassemble from NMI/VBL vector
+       This option will start disassembly at whatever the SNES image's
+       NMI/VBL vector is. This is found at file-offset $7FFA (add 512 bytes
+       for a .SMC image). If used in conjunction with the -v option, which-
+       ever option is defined LAST in the command-line will be used.
+       [Default is off]
+-i: 16-bit index registers
+       Same as -a, except for the index registers.
+       [Default is 8-bit]
+-k: Skip iNES header
+       This option skips the first 16 bytes of the file, avoiding the
+       standard interNES header. Very useful for examining code which has
+       the .NES extension.
+       [Default is off]
+-n: NES (65C02) compatible output
+       This option turns on 65c02 support, and disabled 65c816 opcodes.
+       All opcodes which are unknown for the 65c02 chipset will be labelled
+       as '???'.
+       [Default is off]
+-o: Output to file 'OUTPUT.DIS'
+       This option will send all disassembled output to a file called
+       'OUTPUT.DIS'. Otherwise, results will be written directly to the
+       screen. Yes, you may consider this option useless if you do some-
+       thing like: TRACER -F -S DEMO.SMC > OUTPUT.DIS :-).
+       [Default is off]
+-r: Real 65C816 addressing mode
+       This option allows standard LoROM disassembly to be turned off,
+       allowing the PC (program counter) to be reset to $0000 instead of
+       $8000 (as the Super Nintendo requires for LoROM disassembly).
+       Default is off.
+       [Default is off]
+-s: Skip SMC/SWC header
+       This option skips the first 512 bytes of the file, avoiding the
+       standard Super Magicom/Super Wildcard header. Very useful for ex-
+       amining code which has the .SMC or .SWC extension.
+       Default is off.
+       [Default is off]
+-t: TrueSource output
+       This option turns on "TrueSource" output; the current bank, PC,
+       and hex-values will not be shown, allowing for code to be re-
+       assembled without too many problems.
+       [Default is off]
+-v: Disassemble from reset vector
+       This option will start disassembly at whatever the SNES image's
+       reset vector is. This is found at file-offset $7FFC (add 512 bytes
+       for a .SMC image). This is useful for certain games, such as Kemco's
+       "Lagoon". If used in conjunction with the -b option, whichever option
+       is defined LAST in the command-line will be used.
+       [Default is off]
+-f: Trace REP/SEP sizing
+       This allows the disassembler to follow REP/SEP opcodes which change
+       the size of the accumulator and X/Y index registers during execution.
+       If used, all operands which use immediate values will take note of
+       the sizes of each register independantly. Initially, A/X/Y are 8 bit.
+
+       Example source:
+
+              SEP #$30
+              LDA #$8F
+              STA $2100
+              REP #$10
+              LDX #$00FF
+              LDA #$2A
+              SEP #$10
+
+       TRaCER with the -f option enabled will disassemble the above code
+       exactly how it is shown above, while DISASM v2.0 and DSFX will show
+       the following:
+
+              SEP #$30
+              LDA #$8F
+              STA $2100
+              REP #$10
+              LDX #$FF     ; Error occurs here.
+              BRK $A9
+              ROL
+              SEP #$10
+
+       [Default is off]
+
+
+Technical Notes
+---------------
+TRaCER is written in Borland Pascal v7.0 (protected-mode), with assembly
+subroutines/functions to achieve ultimate speed and efficiency.
+
+Minor error checking is performed at this time.
+
+
+Related Points of Interest
+--------------------------
+http://www.futureone.com/~damaged/
+   This is the Damaged Cybernetics home page. It contains all types of
+   information on the NES, SNES, Genesis, PSX, and other gray-area units
+   such as the GameGear, Turbo Express, GameBoy, and etc.
+
+http://www.winternet.com/~shadow/
+   This is a relay page, which provides you with a dynamic link to my real
+   home page (as i'm now on dynamic PPP). Here, you can find just about any
+   information relating to the NES & SNES, plus get some insight on who I am
+   personally.
+
+http://iceonline.com/home/thebrain/vsmc/vsmc.htm
+   This is the Virtual SuperMagicom home page. It's the best working SNES
+   emulator i've ever encountered, not to mention that i've helped with
+   bits and pieces of the actual project in relation to register emulation.
+
+http://www.nfinity.com/~swhalen/
+   This is the Node 99 home page, run by AvatarZ of #SNESEmu himself. Be
+   sure to check it out, as it has the most recent releases of many MANY
+   emulators, not to mention lots of useful links to other miscellania.
+
+
+History
+-------
+TRaCER started out originally as a PC 65c816 debugger (i.e. realtime code
+tracer) in early April of 1996. I began to notice that writing a realtime
+code tracer would be quite a task, and therefore left the work up to The
+Brain, the author of the Virtual SuperMagicom SNES emulator.
+
+As an SNES programmer, I quickly noticed how SNES disassemblers on the PC
+did not follow standard 65c816 syntax, nor follow the standard opcode lay-
+out which William D. Mensch, Jr. originally intended. There are no such
+opcodes as 'BLT', 'BGE', nor 'JML' -- they are all pseudo-ops, as their
+original opcodes are 'BCC', 'BCS', and 'JMP', respectively. Last, but not
+least, other disassemblers felt that the length of a BRK/COP instruction
+was 1 byte, which is not correct -- it is 2.
+
+My biggest complaint was that neither DISASM v2.0 nor DSFX had what I call
+REP/SEP following, which allows the disassembler to change the size of the
+accumulator and/or X/Y indexes during disassembly. TRaCER is the only dis-
+assembler for the PC, to my knowledge, which incorporates this simple, yet
+useful function.
+
+
+Contacts, and Closing Words
+---------------------------
+If you have written anything for the SNES, i'd love to see it, even if it
+consists of horrible bugs. Just EMail me a copy of your product. All work
+received will be kept confidential.
+
+Methods of contact:
+
+           IRC: Y0SHi
+           WWW: http://www.winternet.com/~shadow/
+         EMail: yoshi@bendnet.com (preferred)
+                shadow@winternet.com
+                yoshi@alpha.pulsar.net
+                yoshi@usa.net
+                yoshi@crystalis.com
+     SnailMail: Crystalis Software
+                P.O. Box 2014
+                Corvallis, OR 97339
+
+The easiest way to contact me is via IRC on channel #SNES or #SNESEmu.
+
+Thanks goes out to the following individuals who have helped support my
+work on the NES, SNES, and IBM PC:
+
+MindRape, Royce, AvatarZ, The_Brain, calc, Riff, Gau, minus, dmessiah,
+Archimede, Procyon, DANZiG, WildFire, Landy, Geggin of Censor, bmfrosty,
+DaRkHaLF, grazzt, NamkraD, and last (but FAR from least), minus.
+
+A special Thank You goes out to Riff (mjperry@winternet.com); without him,
+TRaCER's bugs would still exist today. He's helped me numerous times
+regarding anything (and everything!) in relation to TRaCER's internal code.
+
+                                                             Yoshi
+
+---
+EOF
+

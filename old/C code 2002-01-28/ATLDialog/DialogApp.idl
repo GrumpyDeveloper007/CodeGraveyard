@@ -1,0 +1,20 @@
+// DialogApp.idl : IDL source for DialogApp.dll
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (DialogApp.tlb) and marshalling code.
+
+import "oaidl.idl";
+import "ocidl.idl";
+
+[
+	uuid(B1D97822-21DF-11D1-ACD3-204C4F4F5020),
+	version(1.0),
+	helpstring("DialogApp 1.0 Type Library")
+]
+library DIALOGAPPLib
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+
+};

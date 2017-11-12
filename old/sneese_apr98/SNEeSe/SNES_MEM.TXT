@@ -1,0 +1,39 @@
+
+                         Super Nintendo Memory Map
+                      By Yoshi of Damaged Cybernetics
+                                  [Image]
+Memory addresses labeled as [SHADOWED] are just areas of memory which are
+supposed to be the same as the Master Area (which is labeled [*MASTER*]).
+
+Programs that are shadowed can usually be executed there in the high-speed
+mode.
+
+Interesting thing is that in LoROM, the Save RAM is 256 KB. However in
+HiROM, the Save RAM is 128K. According to our sources, this is correct.
+
+                       MODE 20 (LoROM - 32 KB Banks)
+                 RESET, BRK, NMI should point to Bank $00
+    Title     Bank Range    Address Range                  Total Size
+
+    Game ROM  $00 to $3F    $8000 to $FFFF [*MASTER*]      16 Mb
+              $80 to $BF    $8000 to $FFFF [SHADOWED]      16 Mb
+              $00 to $3F    $0000 to $1FFF                 512 KB
+    Work RAM  $7E to $7F    $0000 to $FFFF                 128 KB
+              $80 to $BF    $0000 to $1FFF                 512 KB
+    Save RAM  $70 to $7F    $0000 to $7FFF                 256 KB
+
+                       MODE 21 (HiROM - 64 KB Banks)
+                 RESET, BRK, NMI should point to Bank $C0
+    Title     Bank Range    Address Range                  Total Size
+              $00 to $3F    $8000 to $FFFF [SHADOWED]      16 Mb
+    Game ROM  $80 to $BF    $8000 to $FFFF [SHADOWED]      16 Mb
+              $C0 to $FF    $0000 to $FFFF [*MASTER*]      32 Mb
+              $00 to $3F    $0000 to $1FFF                 512 KB
+    Work RAM  $7E to $7F    $0000 to $FFFF                 128 KB
+              $80 to $BF    $0000 to $1FFF                 512 KB
+    Save RAM  $30 to $3F    $6000 to $7FFF                 128 KB
+
+                                  [Image]
+                       © 1995, 96 Damaged Cybernetics
+
+                                  [Image]

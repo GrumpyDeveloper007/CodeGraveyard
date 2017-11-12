@@ -1,0 +1,11 @@
+HKCR
+{
+	NoRemove AppID
+	{
+		{B1D97823-21DF-11D1-ACD3-204C4F4F5020} = s 'DialogApp'
+		'DialogApp.EXE'
+		{
+			val AppID = s {B1D97823-21DF-11D1-ACD3-204C4F4F5020}
+		}
+	}
+}

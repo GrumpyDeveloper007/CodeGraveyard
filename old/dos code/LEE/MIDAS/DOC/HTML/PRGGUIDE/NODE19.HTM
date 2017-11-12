@@ -1,0 +1,43 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<!--Converted with LaTeX2HTML 96.1-h (September 30, 1996) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
+<HTML>
+<HEAD>
+<TITLE>4.4 Error handling</TITLE>
+<META NAME="description" CONTENT="4.4 Error handling">
+<META NAME="keywords" CONTENT="prgguide">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<LINK REL=STYLESHEET HREF="prgguide.css">
+</HEAD>
+<BODY LANG="EN" >
+ <A NAME="tex2html278" HREF="node20.html"><IMG WIDTH=37 HEIGHT=24 ALIGN=BOTTOM ALT="next" SRC="../icons/next_motif.gif"></A> <A NAME="tex2html276" HREF="node15.html"><IMG WIDTH=26 HEIGHT=24 ALIGN=BOTTOM ALT="up" SRC="../icons/up_motif.gif"></A> <A NAME="tex2html272" HREF="node18.html"><IMG WIDTH=63 HEIGHT=24 ALIGN=BOTTOM ALT="previous" SRC="../icons/previous_motif.gif"></A> <A NAME="tex2html280" HREF="node1.html"><IMG WIDTH=65 HEIGHT=24 ALIGN=BOTTOM ALT="contents" SRC="../icons/contents_motif.gif"></A>  <BR>
+<B> Next:</B> <A NAME="tex2html279" HREF="node20.html">5 Operating system specific </A>
+<B>Up:</B> <A NAME="tex2html277" HREF="node15.html">4 The system</A>
+<B> Previous:</B> <A NAME="tex2html273" HREF="node18.html">4.3 Calling conventions</A>
+<BR> <P>
+<H1><A NAME="SECTION00540000000000000000">4.4 Error handling</A></H1>
+<P>
+The section above already gave a brief introduction to MIDAS error handling,
+but this section will describe it in detail.
+<P>
+MIDAS uses a common method for handling errors throughout the system. All
+functions return an error code, and it is up to the caller to decide how to
+handle the error condition. Most functions simply pass the error code to
+their caller, but it is recommended that the function does as much clean-up
+as possible before doing so. In particular, all allocated memory should be
+deallocated and all open files closed.
+<P>
+When MIDAS is compiled in DEBUG mode, the error handling system has
+additional functionality. It will build up a list of all errors that
+occurred, with the name of the function that raised the error. When errors
+are then passed upwards in the function call stack, all functions are added
+to the list. Thus the error exit not only reports what error occurred, but
+also what function caused the error and where it was called.
+<P>
+<BR> <HR>
+<P><ADDRESS>
+<I>Petteri Kangaslampi <BR>
+Mon Jan 27 00:15:29 EET 1997</I>
+</ADDRESS>
+</BODY>
+</HTML>

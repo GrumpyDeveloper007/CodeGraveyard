@@ -1,0 +1,23 @@
+HKCR
+{
+	ELFLIB.cStrings.1 = s 'cStrings Class'
+	{
+		CLSID = s '{BD9DD02F-CF3C-11D3-B60F-93EEA1CC2573}'
+	}
+	ELFLIB.cStrings = s 'cStrings Class'
+	{
+		CLSID = s '{BD9DD02F-CF3C-11D3-B60F-93EEA1CC2573}'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {BD9DD02F-CF3C-11D3-B60F-93EEA1CC2573} = s 'cStrings Class'
+		{
+			ProgID = s 'ELFLIB.cStrings.1'
+			VersionIndependentProgID = s 'ELFLIB.cStrings'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'both'
+			}
+		}
+	}
+}

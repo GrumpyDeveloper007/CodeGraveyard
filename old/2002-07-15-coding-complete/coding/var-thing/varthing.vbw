@@ -1,0 +1,10 @@
+ParseClass = 10, 9, 750, 640, C
+Definitions = 8, 6, 765, 628, C
+Class = 36, 34, 753, 646, C, 7, 3, 745, 686, C
+StringClass = 21, 34, 782, 635, C
+GlobalDeclarations = 88, 88, 737, 542, C
+GlobalFunctions = 73, 94, 722, 548, C
+FrmMain = 44, 44, 659, 558, C, 66, 66, 681, 580, C
+ReduencyChecker = 15, 10, 761, 573, C, 12, 1, 734, 631, C
+ClassUpdater = 13, 10, 767, 578, C, 26, 46, 722, 579, C
+FRMResizer = 0, 0, 555, 448, C, 25, 4, 775, 668, C

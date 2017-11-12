@@ -1,0 +1,4 @@
+Parts ordered not as partnumbers, but as part name and description
+Jobs are allocated to engineers in hour units, jobs are allocated to individuals
+jobs have mutiple allocation blocks
+engineers are split into sub-groups, pannel beaters, painter etc

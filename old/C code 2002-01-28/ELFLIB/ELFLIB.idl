@@ -1,0 +1,43 @@
+// ELFLIB.idl : IDL source for ELFLIB.dll
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (ELFLIB.tlb) and marshalling code.
+
+import "oaidl.idl";
+import "ocidl.idl";
+	
+	[
+		object,
+		uuid(BD9DD02E-CF3C-11D3-B60F-93EEA1CC2573),
+		dual,
+		helpstring("IcStrings Interface"),
+		pointer_default(unique)
+	]
+	interface IcStrings : IDispatch
+	{
+		[propget, id(1), helpstring("property NumTokens")] HRESULT NumTokens([out, retval] long *pVal);
+		[propget, id(2), helpstring("property Tokens")] HRESULT Tokens(long TokenNumber, [out, retval] BSTR *pVal);
+		[id(3), helpstring("method IsOperator")] HRESULT IsOperator(BSTR *pVal,long pPosition);
+	};
+
+[
+	uuid(BD9DD020-CF3C-11D3-B60F-93EEA1CC2573),
+	version(1.0),
+	helpstring("ELFLIB 1.0 Type Library")
+]
+library ELFLIBLib
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+
+	
+	[
+		uuid(BD9DD02F-CF3C-11D3-B60F-93EEA1CC2573),
+		helpstring("cStrings Class")
+	]
+	coclass cStrings
+	{
+		[default] interface IcStrings;
+	};
+};

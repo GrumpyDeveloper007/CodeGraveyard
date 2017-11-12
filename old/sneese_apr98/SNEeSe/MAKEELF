@@ -1,0 +1,44 @@
+
+elf.exe : screenl.o main.o romload.o cpu.o helper.o mem.o memhi.o memhard.o memdma.o gui.o spc.o elf.o irq.o
+	gxx -g -o elf.exe main.o romload.o cpu.o helper.o mem.o memhi.o memhard.o memdma.o elf.o gui.o spc.o screenl.o irq.o -LD:../djgpp/allegro -lallegro
+
+screenL.o: screenL.S tilesL.S hdma.S spriteL.S mem.h cpu.h screen.h
+	screen.bat
+
+gui.o: gui.cc font4.h
+	gcc -g -c -Wall gui.cc -DDEBUG -DELF
+
+main.o: main.cc
+	gcc -g -c -Wall main.cc -DDEBUG -DELF
+
+romload.o: romload.cc
+	gcc -g -c -Wall romload.cc -DDEBUG -DELF
+
+cpu.o: cpu.S cpu0.S cpu1.S cpu2.S cpu3.S cpu4.S cpu5.S cpu6.S cpu7.S cpu8.S cpu9.S cpuA.S cpuB.S cpuC.S cpuD.S cpuE.S cpuF.S cpumacro.S addr.S
+	gcc -g -c -Wall -Wa,-L cpu.S -DDEBUG -DELF
+
+spc.o: spc.S spc0.S spc1.S spc2.S spc3.S spc4.S spc5.S spc6.S spc7.S spc8.S spc9.S spcA.S spcB.S spcC.S spcD.S spcE.S spcF.S spcmacro.S spcaddr.S
+	gcc -g -c -Wall -Wa,-L spc.S -DDEBUG -DELF
+
+mem.o: mem.S
+	gcc -g -c -Wall -Wa,-L mem.S -DDEBUG -DELF
+
+memhi.o: memhi.S
+	gcc -g -c -Wall -Wa,-L memhi.S -DDEBUG -DELF
+
+memhard.o: memhard.S
+	gcc -g -c -Wall -Wa,-L memhard.S -DDEBUG -DELF
+
+memdma.o: memdma.S
+	gcc -g -c -Wall -Wa,-L memdma.S -DDEBUG -DELF
+
+irq.o: irq.S
+	gcc -g -c -Wall -Wa,-L irq.S -DDEBUG -DELF
+
+helper.o: helper.c
+	gcc -g -c -Wall helper.c -DDEBUG -DELF
+
+elf.o: elf.cc  working.cc moveregs.cc statdata.cc screen.cc
+	gcc -g -c -Wall elf.cc -DDEBUG -DELF
+
+

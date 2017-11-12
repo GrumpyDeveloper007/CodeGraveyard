@@ -1,0 +1,71 @@
+// VBTest.idl : IDL source for VBTest.dll
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (VBTest.tlb) and marshalling code.
+
+import "oaidl.idl";
+import "ocidl.idl";
+	
+	[
+		object,
+		uuid(2F6E4231-2A8F-11D1-A988-002018349816),
+		dual,
+		helpstring("IBase Interface"),
+		pointer_default(unique)
+	]
+	interface IBase : IDispatch
+	{
+		[id(1), helpstring("method MethodBase")] HRESULT MethodBase();
+	};
+
+	[
+		object,
+		uuid(2F6E422E-2A8F-11D1-A988-002018349816),
+		dual,
+		helpstring("IDerived Interface"),
+		pointer_default(unique)
+	]
+	interface IDerived : IBase
+	{
+		//[id(1), helpstring("method MethodBase")] HRESULT MethodBase();
+		[id(2), helpstring("method MethodDerived")] HRESULT MethodDerived();
+	};
+	
+
+
+
+
+[
+	uuid(2F6E4220-2A8F-11D1-A988-002018349816),
+	version(1.0),
+	helpstring("VBTest 1.0 Type Library")
+]
+library VBTESTLib
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+
+	[
+		uuid(2F6E4232-2A8F-11D1-A988-002018349816),
+		helpstring("VBTest1 Class")
+	]
+	coclass VBTest1
+	{
+		[default] interface IBase;
+	};
+
+	
+	[
+		uuid(2F6E422F-2A8F-11D1-A988-002018349816),
+		helpstring("VBTest2 Class")
+	]
+	coclass VBTest2
+	{
+		interface IBase;
+		[default] interface IDerived;
+	};
+
+	
+
+};

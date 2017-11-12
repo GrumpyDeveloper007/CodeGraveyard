@@ -1,0 +1,154 @@
+1. 8-bit Data Transmission Commands. Group I
+
+------------------------------------------------------------------------
+Mnemonic  Operand  Code Bytes Cycles Operation                    Flag
+------------------------------------------------------------------------
+  MOV    A, #inm    E8    2     2     A <- inm                  N......Z
+  MOV    A, (X)     E6    1     3     A <- (X)                  N......Z
+  MOV    A, (X)+    BF    1     4     A <- (X) with auto inc    N......Z
+  MOV    A, dp      E4    2     3     A <- (dp)                 N......Z
+  MOV    A, dp+X    F4    2     4     A <- (dp+X)               N......Z
+  MOV    A, labs    E5    3     4     A <- (abs)                N......Z
+  MOV    A, labs+X  F5    3     5     A <- (abs+X)              N......Z
+  MOV    A, labs+Y  F6    3     5     A <- (abs+Y)              N......Z
+  MOV    A, (dp+X)  E7    2     6     A <- ((dp+X+1)(dp+X))     N......Z
+  MOV    A, (dp)+Y  F7    2     6     A <- ((dp+1)(dp)+Y)       N......Z
+  MOV    X, #inm    CD    2     2     X <- inm                  N......Z
+  MOV    X, dp      F8    2     3     X <- (dp)                 N......Z
+  MOV    X, dp+Y    F9    2     4     X <- (dp+Y)               N......Z
+  MOV    X, labs    E9    3     4     X <- (abs)                N......Z
+  MOV    Y, #inm    8D    2     2     Y <- inm                  N......Z
+  MOV    Y, dp      EB    2     3     Y <- (dp)                 N......Z
+  MOV    Y, dp+X    FB    2     4     Y <- (dp+X)               N......Z
+  MOV    Y, labs    EC    3     4     Y <- (abs)                N......Z
+------------------------------------------------------------------------
+
+2. 8-BIT DATA TRANSMISSION COMMANDS. GROUP 2.
+
+------------------------------------------------------------------------
+Mnemonic  Operand  Code Bytes Cycles Operation                    Flag
+------------------------------------------------------------------------
+  MOV    (X),A      C6    1     4     A -> (X)                  ........
+  MOV    (X)+,A     AF    1     4     A -> (X) with auto inc    ........
+  MOV    dp,A       C4    2     4     A -> (dp)                 ........
+  MOV    dp+X,A     D4    2     5     A -> (dp+X)               ........
+  MOV    labs,A     C5    3     5     A -> (abs)                ........
+  MOV    labs+X,A   D5    3     6     A -> (abs+X)              ........
+  MOV    labs+Y,A   D6    3     6     A -> (abs+Y)              ........
+  MOV    (dp+X),A   C7    2     7     A -> ((dp+X+1)(dp+X))     ........
+  MOV    (dp)+Y,A   D7    2     7     A -> ((dp+1)(dp)+Y)       ........
+  MOV    dp,X       D8    2     4     X -> (dp)                 ........
+  MOV    dp+Y,X     D9    2     5     X -> (dp+Y)               ........
+  MOV    labs,X     C9    3     5     X -> (abs)                ........
+  MOV    dp,Y       CB    2     4     X -> (dp)                 ........
+  MOV    dp+X,Y     DB    2     5     X -> (dp+X)               ........
+  MOV    labs,Y     CC    3     5     X -> (abs)                ........
+------------------------------------------------------------------------
+
+3. 8-BIT DATA TRANSMISSIN COMMANDS, GROUP 3.
+
+------------------------------------------------------------------------
+Mnemonic  Operand   Code Bytes Cycles Operation                    Flag
+------------------------------------------------------------------------
+  MOV    A, X        7D    1     2     A <- X                   N......Z
+  MOV    A, Y        DD    1     2     A <- Y                   N......Z
+  MOV    X, A        5D    1     2     X <- A                   N......Z
+  MOV    Y, A        FD    1     2     Y <- A                   N......Z
+  MOV    X, SP       9D    1     2     X <- SP                  N......Z
+  MOV    SP, X       BD    1     2    SP <- X                   ........
+  MOV    dp(d),dp(s) FA    3     5    (dp(d)) <- (dp(s))        ........
+  MOV    dp,#inm     8F    3     5    (dp) <- inm               ........
+------------------------------------------------------------------------
+
+4. 8-BIT ARITHMETIC OPERATION COMMANDS.
+
+------------------------------------------------------------------------
+Mnemonic  Operand   Code Bytes Cycles Operation                    Flag
+------------------------------------------------------------------------
+  ADC    A,(X)       86    1     3     A <- A+(X)+C            NV..H..ZC
+  ADC    A,dp        84    2     3     A <- A+(dp)+C           NV..H..ZC
+  ADC    A,dp+X      94    2     4     A <- A+(dp+X)+C         NV..H..ZC
+  ADC    A,labs      85    3     4     A <- A+(abs)+C          NV..H..ZC
+  ADC    A,labs+X    95    3     5     A <- A+(abs+X)+C        NV..H..ZC
+  ADC    A,labs+Y    96    3     5     A <- A+(abs+Y)+C        NV..H..ZC
+  ADC    A,(dp+X)    87    2     6     A <- A+((dp+X+1)(dp+X)) NV..H..ZC
+  ADC    A,(dp)+Y    97    2     6     A <- A+((dp+1)(dp)+Y)   NV..H..ZC
+  ADC    (X),(Y)     99    1     5   (X) <- (X)+(Y)+C          NV..H..ZC
+  ADC    dp(d),dp(s) 89    3     6 (dp(d))<-(dp(d))+(dp(s))+C  NV..H..ZC
+  ADC    dp,#inm     98    3     5  (dp) <- (dp)+inm+C         NV..H..ZC
+------------------------------------------------------------------------
+  SBC    A,#inm      A8    2     2     A <- A-inm-!C           NV..H..ZC
+  SBC    A,(X)       A6    1     3     A <- A-(X)-!C           NV..H..ZC
+  SBC    A,dp        A4    2     3     A <- A-(dp)-!C          NV..H..ZC
+  SBC    A,dp+X      B4    2     4     A <- A-(dp+X)-!C        NV..H..ZC
+  SBC    A,labs      A5    3     4     A <- A-(abs)-!C         NV..H..ZC
+  SBC    A,labs+X    B5    3     5     A <- A-(abs+X)-!C       NV..H..ZC
+  SBC    A,labs+Y    B6    3     5     A <- A-(abs+Y)-!C       NV..H..ZC
+  SBC    A,(dp+X)    A7    2     6  A <- A-((dp+X+1)(dp+X))-!C NV..H..ZC
+  SBC    A,(dp)+Y    B7    2     6  A <- A-((dp+1)(dp)+Y)-!C   NV..H..ZC
+  SBC    (X),(Y)     B9    1     5   (X) <- (X)-(Y)-!C         NV..H..ZC
+  SBC    dp(d),dp(s) A9    3     6 (dp(d))<-(dp(d))-(dp(s))-!C NV..H..ZC
+  SBC    dp,#inm     B8    3     5  (dp) <- (dp)-inm-!C        NV..H..ZC
+------------------------------------------------------------------------
+  CMP    A,(X)       66    1     3     A-(X)                   N......ZC
+  CMP    A,dp+X      74    2     4     A-(dp+X)                N......ZC
+  CMP    A,labs      65    3     4     A-(abs)                 N......ZC
+  CMP    A,labs+X    75    3     5     A-(abs+X)               N......ZC
+  CMP    A,labs+Y    76    3     5     A-(abs+Y)               N......ZC
+  CMP    A,(dp+X)    67    2     6     A-((dp+X+1)(dp+X))      N......ZC
+  CMP    A,(dp)+Y    77    2     6     A-((dp+1)(dp)+Y)        N......ZC
+  CMP    (X),(Y)     79    1     5     (X)-(Y)                 N......ZC
+  CMP    dp(d),dp(s) 69    3     6     (dp(d))-(dp(s))         N......ZC
+  CMP    X,dp        3E    2     3     X-(dp)                  N......ZC
+  CMP    X,labs      1E    3     4     X-(abs)                 N......ZC
+  CMP    Y,#inm      AD    2     2     Y-inm                   N......ZC
+  CMP    Y,labs      5E    3     4     Y-(abs)                 N......ZC
+------------------------------------------------------------------------
+
+ 
+11. DECIMAL COMPENSATION COMMANDS.
+  
+-----------------------------------------------------------------------
+Mnemonic  Operand   Code Bytes Cycles Operation                  Flag
+-----------------------------------------------------------------------
+  DAA       A        DF    1     3    decimal adjust for add  N......ZC
+  DAS       A        BE    1     3    decimal adjust for sub  N......ZC
+-----------------------------------------------------------------------
+
+12. BRANCHING COMMANDS.            
+  
+-----------------------------------------------------------------------
+Mnemonic  Operand   Code Bytes Cycles Operation                  Flag
+-----------------------------------------------------------------------
+  CBNE   dp,rel      2E    3    5/7  compare A with (dp) then BNE   ...
+  CBNE  dp+X,rel     DE    3    6/8  compare A with (dp+X) then BNE ...
+  DBNZ   dp,rel      6E    3    5/7  decrement memory (dp) then JNZ ...
+-----------------------------------------------------------------------
+
+13. SUB-ROUTINE CALL RETURN COMMANDS.
+
+-----------------------------------------------------------------------
+Mnemonic  Operand   Code Bytes Cycles Operation               NVPBHIZC   
+-----------------------------------------------------------------------
+  PCALL   upage      4F    2     6   upage call               ........ 
+  TCALL     n        n1    1     8   table call               ........ 
+  BRK                0F    1     8   software interrupt       ...1.0.. 
+                                                                       
+  RET1               7F    1     6   return from interrupt   (Restored)
+-----------------------------------------------------------------------
+
+15. BIT OPERATION COMMANDS.
+  
+  TSET1    labs      0E    3     6 test and set bits with A   N......Z.
+  TCLR1    labs      4E    3     6 test and clear bits with A N......Z.
+  
+  AND1   C,mem.bit   4A    3     4  C <- C AND (mem.bit)      ........C
+  AND1   C,/mem.bit  6A    3     4  C <- C AND !(mem.bit)     ........C                 
+  OR1    C,mem.bit   0A    3     5  C <- C OR  (mem.bit)      ........C               
+  OR1    C,/mem.bit  2A    3     5  C <- C OR  !(mem.bit)     ........C                
+  EOR1   C,mem.bit   8A    3     5  C <- C EOR (mem.bit)      ........C               
+  NOT1   mem.bit     EA    3     5  complement (mem.bit)      .........                     
+  MOV1   C,mem.bit   AA    3     4  C <- (mem.bit)            ........C          
+  MOV1   mem.bit,C   CA    3     6  C -> (mem.bit)            ......... 
+-----------------------------------------------------------------------
+

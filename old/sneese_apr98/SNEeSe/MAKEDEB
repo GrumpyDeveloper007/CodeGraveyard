@@ -1,0 +1,36 @@
+
+debug.exe : main.o romload.o cpu.o helper.o mem.o memhi.o memhard.o memdma.o screenL.o gui.o spc.o
+	gxx -g -o debug.exe main.o romload.o cpu.o helper.o mem.o memhi.o memhard.o memdma.o screenL.o gui.o spc.o -LD:../djgpp/allegro -lallegro
+
+gui.o: gui.cc font4.h
+	gcc -c -Wall -g gui.cc -DDEBUG -DBUGFIND
+
+main.o: main.cc
+	gcc -c -Wall -g main.cc -DDEBUG -DBUGFIND
+
+romload.o: romload.cc
+	gcc -c -Wall -g romload.cc -DDEBUG -DBUGFIND
+
+cpu.o: cpu.S cpu0.S cpu1.S cpu2.S cpu3.S cpu4.S cpu5.S cpu6.S cpu7.S cpu8.S cpu9.S cpuA.S cpuB.S cpuC.S cpuD.S cpuE.S cpuF.S cpumacro.S addr.S
+	gcc -c -Wall -g -Wa,-L cpu.S -DDEBUG -DBUGFIND
+
+spc.o: spc.S spc0.S spc1.S spc2.S spc3.S spc4.S spc5.S spc6.S spc7.S spc8.S spc9.S spcA.S spcB.S spcC.S spcD.S spcE.S spcF.S spcmacro.S spcaddr.S
+	gcc -c -Wall -g -Wa,-L spc.S -DDEBUG -DBUGFIND
+
+mem.o: mem.S
+	gcc -c -Wall -g -Wa,-L mem.S -DDEBUG -DBUGFIND
+
+memhi.o: memhi.S
+	gcc -c -Wall -g -Wa,-L memhi.S -DDEBUG -DBUGFIND
+
+memhard.o: memhard.S
+	gcc -c -Wall -g -Wa,-L memhard.S -DDEBUG -DBUGFIND
+
+memdma.o: memdma.S
+	gcc -c -Wall -g -Wa,-L memdma.S -DDEBUG -DBUGFIND
+
+screenL.o: screenL.S tilesL.S hdma.S spriteL.S
+	gcc -c -Wall -g -Wa,-L screenL.S -DDEBUG -DBUGFIND
+
+helper.o: helper.c
+	gcc -c -Wall -g helper.c -DDEBUG -DBUGFIND

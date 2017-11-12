@@ -1,0 +1,80 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<!--Converted with LaTeX2HTML 96.1-h (September 30, 1996) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
+<HTML>
+<HEAD>
+<TITLE>4.3 Calling conventions</TITLE>
+<META NAME="description" CONTENT="4.3 Calling conventions">
+<META NAME="keywords" CONTENT="prgguide">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<LINK REL=STYLESHEET HREF="prgguide.css">
+</HEAD>
+<BODY LANG="EN" >
+ <A NAME="tex2html269" HREF="node19.html"><IMG WIDTH=37 HEIGHT=24 ALIGN=BOTTOM ALT="next" SRC="../icons/next_motif.gif"></A> <A NAME="tex2html267" HREF="node15.html"><IMG WIDTH=26 HEIGHT=24 ALIGN=BOTTOM ALT="up" SRC="../icons/up_motif.gif"></A> <A NAME="tex2html261" HREF="node17.html"><IMG WIDTH=63 HEIGHT=24 ALIGN=BOTTOM ALT="previous" SRC="../icons/previous_motif.gif"></A> <A NAME="tex2html271" HREF="node1.html"><IMG WIDTH=65 HEIGHT=24 ALIGN=BOTTOM ALT="contents" SRC="../icons/contents_motif.gif"></A>  <BR>
+<B> Next:</B> <A NAME="tex2html270" HREF="node19.html">4.4 Error handling</A>
+<B>Up:</B> <A NAME="tex2html268" HREF="node15.html">4 The system</A>
+<B> Previous:</B> <A NAME="tex2html262" HREF="node17.html">4.2 Description of all </A>
+<BR> <P>
+<H1><A NAME="SECTION00530000000000000000">4.3 Calling conventions</A></H1>
+<P>
+All internal MIDAS Sound System functions use the same calling conventions and
+a similar method for returning data. This simplifies programming, as all
+functions behave consistently, and ensures that error codes get handled
+properly.
+<P>
+<H2><A NAME="SECTION00531000000000000000">4.3.1 Error codes</A></H2>
+<P>
+All functions in MIDAS Sound System return an error code. There is no
+exception to this, and all other data is returned using pointers (see below).
+This simplifies error handling, and makes sure error codes always get handled
+properly. In addition, when MIDAS is compiled with DEBUG mode on, the error
+handling functions can supply detailed information about the errors that
+happened, such as which function originally caused the error and what
+functions called it.
+<P>
+<H2><A NAME="SECTION00532000000000000000">4.3.2 Returning data</A></H2>
+<P>
+As the return value of the function is always reserved for the error code,
+all other data will need to be returned by using pointers. All MIDAS
+functions that return data will accept as their last arguments pointers to
+the variables that will hold the return values. Make sure you <B>always</B>
+pass these functions legal pointers as the return variables even if you don't
+need the return values -- memory corruption may occur otherwise.
+<P>
+For example, to query the current volume on channel 3 in the default Sound
+Device, you can use:
+<P>
+<PRE>
+unsigned vol;
+...
+midasSD-&gt;GetVolume(3, &amp;vol);
+...</PRE>
+<P>
+Note that in a real-life program you also need to handle the returned error
+code.
+<P>
+[TODO:OS-Specific] <B>MS-DOS Note!</B> Code using MIDAS needs to have the
+compiler ''SS==DS'' -assumption disabled. This is because the stack used by
+the timer interrupt (and thus most of MIDAS code plus any user callbacks)
+might be different from the main program stack, and the compiler should
+therefore not generate code that uses data segment variables via the stack
+segment. Because of this, any pointers that you pass to MIDAS functions need
+to point to data segment variables -- in other words, in the example above,
+<PRE>
+unsigned vol;</PRE>
+needs to be changed to
+<PRE>
+static unsigned vol;</PRE>
+to ensure the local variable gets placed in data segment. Pointers to global
+variables can naturally be used without any modifications.
+<P>
+<HR><A NAME="tex2html269" HREF="node19.html"><IMG WIDTH=37 HEIGHT=24 ALIGN=BOTTOM ALT="next" SRC="../icons/next_motif.gif"></A> <A NAME="tex2html267" HREF="node15.html"><IMG WIDTH=26 HEIGHT=24 ALIGN=BOTTOM ALT="up" SRC="../icons/up_motif.gif"></A> <A NAME="tex2html261" HREF="node17.html"><IMG WIDTH=63 HEIGHT=24 ALIGN=BOTTOM ALT="previous" SRC="../icons/previous_motif.gif"></A> <A NAME="tex2html271" HREF="node1.html"><IMG WIDTH=65 HEIGHT=24 ALIGN=BOTTOM ALT="contents" SRC="../icons/contents_motif.gif"></A>  <BR>
+<B> Next:</B> <A NAME="tex2html270" HREF="node19.html">4.4 Error handling</A>
+<B>Up:</B> <A NAME="tex2html268" HREF="node15.html">4 The system</A>
+<B> Previous:</B> <A NAME="tex2html262" HREF="node17.html">4.2 Description of all </A>
+<P><ADDRESS>
+<I>Petteri Kangaslampi <BR>
+Mon Jan 27 00:15:29 EET 1997</I>
+</ADDRESS>
+</BODY>
+</HTML>

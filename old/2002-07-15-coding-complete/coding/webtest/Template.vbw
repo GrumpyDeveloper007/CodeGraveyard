@@ -1,0 +1,13 @@
+MDIMain = 0, 0, 682, 579, C, 27, 69, 666, 580, C
+FRMLogin = 198, 198, 735, 646, C, 198, 198, 731, 646, C
+GlobalFunctions = 47, 28, 745, 546, C
+GlobalDeclarations = 176, 176, 709, 624, C
+FRMSystemDetails = 0, 0, 0, 0, C, 88, 88, 621, 536, C
+FRMUserManager = 220, 220, 757, 668, C, 110, 110, 643, 558, C
+FRMPrinterSetup = 88, 88, 625, 536, C, 22, 22, 555, 470, C
+FRMReports = 44, 44, 577, 492, C, 44, 44, 577, 492, C
+ProjectNameMain = 71, 110, 715, 496, C
+FRMHollyMain = 8, 9, 755, 529, C, 34, 12, 718, 564, C
+FRMHollyView = 44, 50, 735, 592, , 24, 37, 751, 625, C
+InterProjectFiles = 83, 87, 724, 570, C
+FRMHollyViewWEB = 25, 57, 753, 532, C, 22, 9, 753, 650, C

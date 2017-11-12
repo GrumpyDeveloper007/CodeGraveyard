@@ -1,0 +1,39 @@
+
+SNEeSe.exe : main.o romload.o cpu.o helper.o mem.o memdma.o memhard.o memhi.o screenL.o gui.o spc.o irq.o
+	gxx -s -o SNEeSe.exe main.o romload.o cpu.o helper.o mem.o memdma.o memhard.o memhi.o screenL.o gui.o spc.o irq.o -LD:/djgpp/allegro -lallegro
+
+gui.o: gui.cc font4.h
+	gcc -O3 -c -Wall gui.cc
+
+main.o : main.cc
+	gcc -O3 -c -Wall main.cc
+
+romload.o: romload.cc
+	gcc -O3 -c -Wall romload.cc
+
+screenL.o: screenL.S tilesL.S spriteL.S mem.h cpu.h screen.h
+	gcc -O3 -c -Wall -Wa,-L screenL.S
+
+mem.o: mem.S
+	gcc -O3 -c -Wall -Wa,-L mem.S
+
+memhi.o: memhi.S
+	gcc -O3 -c -Wall -Wa,-L memhi.S
+
+memhard.o: memhard.S
+	gcc -O3 -c -Wall -Wa,-L memhard.S
+
+memdma.o: memdma.S
+	gcc -O3 -c -Wall -Wa,-L memdma.S
+
+cpu.o: cpu.S cpu0.S cpu1.S cpu2.S cpu3.S cpu4.S cpu5.S cpu6.S cpu7.S cpu8.S cpu9.S cpuA.S cpuB.S cpuC.S cpuD.S cpuE.S cpuF.S cpumacro.S addr.s
+	gcc -O3 -c -Wall -Wa,-L cpu.S
+
+spc.o: spc.S spc0.S spc1.S spc2.S spc3.S spc4.S spc5.S spc6.S spc7.S spc8.S spc9.S spcA.S spcB.S spcC.S spcD.S spcE.S spcF.S spcmacro.S spcaddr.S
+	gcc -O3 -c -Wall -Wa,-L spc.S
+
+helper.o: helper.c
+	gcc -O3 -c -Wall helper.c
+
+irq.o: irq.S hdma.S mem.h misc.h cpu.h screen.h
+	gcc -O3 -c -Wall -Wa,-L irq.S

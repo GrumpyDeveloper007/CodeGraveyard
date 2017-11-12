@@ -1,0 +1,39 @@
+
+asawy@cwv.net
+
+> I did try to send my SNES emulator source code to you to let you see
+> what I had and maybe let you fix yours or point out errors in mine. I
+> don't have much information on the graphics registers so I couldn't tell
+> you a thing about it! I just don't have enough info to figure it out.
+> Believe me I tried. I would appreciate any help you could give me on
+> this. Thanks.
+
+> Are you sure about that JSR opcode using PB instead of DB. In absolute
+> addressing mode, I have it using DB. Is that wrong? Maybe that's my
+> problem.
+
+> Oops!  You must have been refering to the JSL opcode using PB instead
+> of DB. Right? Does the BRK function get called if the I flag is set. 
+> That might be what is wrong. My emulator does 1FFF loops decrementing
+> the X register and then has a lot of BRK functions and never stops. It
+> just keeps pushing PC on the stack. I thought maybe the way around this
+> problem was if the I flag was set, it would just skip over to the next
+> instruction after the BRK. Is that wrong?
+
+> I have fixed the BRK opcode. It seemed to work when the address in
+> Emulation Mode was FFFE, and in Native Mode it worked at FFF6 (not
+> FFE6). Mario World still doesn't work. It returns from a subroutine just
+> before all the BRKs, when there didn't seem to be a jump before it. 
+> I'll have to trace through everything again to figure it out. It seems
+> to return from a subroutine somewhere between 0000-1FFF at segments 
+> 00-3F (stack memory). Write back. Tell me of your progress.
+
+
+> I fixed Mario World (mostly)!  I had two major problems (really stupid
+> ones.) First, when in emulation mode I had it copying the 8 low bits
+> into the entire 16 bits (ex. 08 moved into the entire X register 0008
+> instead of FF08 if the high bits had FF in them). Second, when using
+> indexed addressing modes, you have to use the lower 8 bits of the X and
+> Y registers instead of the entire 16 bits. I have all the  opcodes
+> working nearly perfectly now. I think it's time to start on the
+> graphics. Write me back. I would like to hear from you. Bye

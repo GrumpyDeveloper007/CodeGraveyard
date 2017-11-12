@@ -1,0 +1,13 @@
+te:0
+te:1
+te:2
+te:3
+Opening Screen
+Screen Opened
+Screen opened.
+Init sliders
+screen cleared
+Init devices success
+Plotted mouse
+opened console
+Close down

@@ -1,0 +1,25 @@
+Microsoft (R) Help Compiler
+HCRTF 4.03.0002
+Copyright (c) Microsoft Corp 1990 - 1995. All rights reserved.
+PhoneSystem.HPJ
+    HC3048: Warning: topic #1 of D:\coding\PhoneSystem\PhoneSystem.RTF : 
+	Nonscrolling region defined after scrolling region.
+    HC3048: Warning: topic #2 of D:\coding\PhoneSystem\PhoneSystem.RTF : 
+	Nonscrolling region defined after scrolling region.
+    HC3048: Warning: topic #3 of D:\coding\PhoneSystem\PhoneSystem.RTF : 
+	Nonscrolling region defined after scrolling region.
+    HC3048: Warning: topic #4 of D:\coding\PhoneSystem\PhoneSystem.RTF : 
+	Nonscrolling region defined after scrolling region.
+    HC3048: Warning: topic #5 of D:\coding\PhoneSystem\PhoneSystem.RTF : 
+	Nonscrolling region defined after scrolling region.
+    HC3048: Warning: topic #6 of D:\coding\PhoneSystem\PhoneSystem.RTF : 
+	Nonscrolling region defined after scrolling region.
+6	Topics
+0	Jumps
+0	Keywords
+0	Bitmaps
+
+
+Created D:\coding\PhoneSystem\PhoneSystem.hlp, 8,394 bytes
+Compile time: 0 minutes, 0 seconds
+0 notes, 6 warnings

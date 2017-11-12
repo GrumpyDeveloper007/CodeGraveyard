@@ -1,0 +1,536 @@
+<!-- 09/08/97 07:24:09 NetAddress (generation 2.0) &copy; 1997 USA.NET, Inc. -->
+<HTML><HEAD><TITLE>NetAddress: Read Message</title></head>
+<BODY BACKGROUND="/images/background.jpg" BGCOLOR="#C3C3EC">
+<CENTER>
+<TABLE WIDTH=624 BORDER=0>
+<TR>
+<TD WIDTH=312 ALIGN=LEFT><FONT SIZE="-1">savoury.snax@usa.net</font></td>
+<TD WIDTH=312 ALIGN=RIGHT><FONT SIZE="-1">September 8, 1997</font></td>
+</tr>
+</table>
+<TABLE WIDTH=628 BGCOLOR=#FFFFFF BORDER=1>
+<TR>
+<TD>
+<TABLE WIDTH=628 CELLPADDING=0 CELLSPACING=0 BORDER=3>
+<TR>
+<TD><A
+HREF="http://netaddress.usa.net"><IMG SRC="/images/masthead1.gif" BORDER=0 HEIGHT=31 WIDTH=200 ALT="[NetAddress]"></a><A
+HREF="http://netaddress.usa.net/NA/Door/GHTQZT/Help?PageID=READMSG"><IMG SRC="/images/masthead2.gif" BORDER=0 HEIGHT=31 WIDTH=105 ALT="[Help]"></a><A
+HREF="http://netaddress.usa.net/NA/Door/GHTQZT/Feedback"><IMG SRC="/images/masthead3.gif" BORDER=0 HEIGHT=31 WIDTH=105 ALT="[Feedback]"></a><A
+HREF="http://netaddress.usa.net/NA/Content/GHTQZT/Othersvcs"><IMG SRC="/images/masthead4a.gif" BORDER=0 HEIGHT=31 WIDTH=105 ALT="[groovy]"></a><A
+HREF="http://www.usa.net/"><IMG SRC="/images/masthead5.gif" BORDER=0 HEIGHT=31 WIDTH=105 ALT="[USA.NET]"></a></td>
+</tr>
+</table>
+<TABLE WIDTH=624 CELLPADDING=0 CELLSPACING=0 BORDER=0>
+<TR>
+<TD><IMG SRC="/images/inmast2a.gif" BORDER=0 HEIGHT=29 WIDTH=624 ALT="[Tabs]" USEMAP="#tab.map"></td>
+</tr>
+</table>
+<TABLE WIDTH=624 CELLPADDING=0 CELLSPACING=0 BORDER=0>
+<TR ALIGN=BOTTOM>
+<TD WIDTH=166>
+<IMG SRC="/images/getmail.gif" BORDER=0 HEIGHT=43 WIDTH=166 ALT="[Get Mail]">
+</td>
+<TD WIDTH=458 ALIGN=RIGHT>
+<A HREF="/NA/Message/GHTQZT/Forward?Q=mx03-BieXjo0759"><IMG SRC="/images/mail-forward.gif" BORDER=0></a><A HREF="/NA/Message/GHTQZT/Reply?Q=mx03-BieXjo0759"><IMG SRC="/images/mail-reply.gif" BORDER=0></a><A HREF="/NA/Message/GHTQZT/Read?Q=mx03-BieXjo0759&Headers=On"><IMG SRC="/images/mail-headoff.gif" BORDER=0></a>
+</td>
+</tr>
+</table>
+<CENTER>
+<TABLE WIDTH=628 BORDER=0>
+<TR>
+<HR>
+</tr>
+</table>
+<TABLE WIDTH=628 BORDER=0>
+<TR>
+<TD ALIGN=CENTER><A
+HREF="http://adforce.imgis.com/?adlink|2|198|28|1|24684431"><IMG SRC="http://adforce.imgis.com/?adserv|2|198|28|1|24684431" BORDER=0 WIDTH=468 HEIGHT=60 ALT=""></a>
+</td>
+</tr>
+</table>
+</center>
+<CENTER>
+<HR>
+<TABLE BORDER=0 CELLPADDING=2 WIDTH=620>
+<TR VALIGN=TOP>
+<TD WIDTH=70></td>
+<TD WIDTH=530></td>
+</tr>
+<TR VALIGN=TOP>
+<TD ALIGN=RIGHT><B>Folder:</b></td>
+<TD>Inbox</td>
+</tr>
+<TR VALIGN=TOP>
+<TD ALIGN=RIGHT><B>Status:</b></td>
+<TD><B><FONT COLOR=#FF0000>OLD</font>, Message 3 of 25</b></td>
+</tr>
+<TR VALIGN=TOP>
+<TD ALIGN=RIGHT><B>To:</b></td>
+<TD>savoury.snax@usa.net</td>
+</tr>
+<TR>
+<TD ALIGN=RIGHT><B>Received:</b></td>
+<TD>Fri, 05 Sep 1997 17:35:18 MDT</td>
+</tr>
+<TR>
+<TD ALIGN=RIGHT><B>From:</b></td>
+<TD>Arcane &lt;Arcane29@hotmail.com&gt;</td>
+</tr>
+<TR>
+<TD ALIGN=RIGHT><B>Subject:</b></td>
+<TD>Pcx saver</td>
+</tr>
+</table>
+<HR>
+<TABLE BORDER=0 WIDTH=608>
+<TR>
+<TD WIDTH=608>
+<TABLE BORDER=0 WIDTH=596>
+<TR>
+<TD WIDTH=596>
+<PRE>
+Well here's the PCX saver that I tried updating...  I'm not sure if it
+works, cause I couldn't test it, and I usually program in C not C++.  I
+commented out parts of the code that's in C, and tried replacing it best
+in C++.  I also included my PCX loader and saver file incase you want to
+look at it.  Please let me know if there are any problems.
+
+-=- Arcane -=-
+
+</pre>
+</td>
+</tr>
+</table>
+<TABLE BORDER=0 WIDTH=596>
+<TR>
+<TD WIDTH=596>
+<PRE>
+struct PCXHeader
+ {
+ unsigned char Manufacturer;
+ unsigned char Version;
+ unsigned char Encoding;
+ unsigned char BitsPerPixel;
+ unsigned short Xmin,Ymin,Xmax,Ymax;
+ unsigned short Hdpi;
+ unsigned short Vdpi;
+ unsigned char ColourMap[48];   // ignored cos I dont know what it is!
+ unsigned char Reserved;
+ unsigned char NPlanes;
+ unsigned short BytesPerLine;
+ unsigned short PaletteInfo;
+ unsigned short HScreen;
+ unsigned short VScreen;
+ unsigned char Filler[54];      // pad out to 128 bytes in size
+ };
+
+void OutputScreen()
+ {
+ char Temp[10];
+ char FileName[13]="PICCYxxx.PCX";
+
+ int c;
+
+ itoa(ScreenCount,Temp,10);
+ ScreenCount++;
+ if (ScreenCount&gt;999)
+  ScreenCount=0;
+
+ int a=strlen(Temp);
+ switch (a)
+  {
+  case 1:
+   FileName[5]='0';
+   FileName[6]='0';
+   FileName[7]=Temp[0];
+   break;
+  case 2:
+   FileName[5]='0';
+   FileName[6]=Temp[0];
+   FileName[7]=Temp[1];
+   break;
+  case 3:
+   FileName[5]=Temp[0];
+   FileName[6]=Temp[1];
+   FileName[7]=Temp[2];
+   break;
+  default:
+   break;
+
+  }
+
+ fstream PicOut(FileName,ios::out|ios::binary);
+
+ PCXHeader PCXInfo;
+
+ PCXInfo.Manufacturer=10;
+ PCXInfo.Version=5;
+ PCXInfo.Encoding=1;
+ PCXInfo.BitsPerPixel=8;
+ PCXInfo.Xmin=0;
+ PCXInfo.Ymin=0;
+ PCXInfo.Xmax=255;
+ PCXInfo.Ymax=255;
+ PCXInfo.Reserved=0;
+ PCXInfo.NPlanes=1;
+ PCXInfo.BytesPerLine=256;
+ PCXInfo.PaletteInfo=1;
+ PCXInfo.HScreen=320;
+ PCXInfo.VScreen=200;
+
+ PicOut.write((unsigned char *)&PCXInfo,sizeof(PCXHeader));
+
+ char Byte;
+ unsigned char Data[2];
+ unsigned long Count=0;
+ unsigned long RunLength;
+ unsigned char *Ptr=(unsigned char *)BKG+(64+(256+2*64)*64);
+
+ while(1)
+  {
+  for(RunLength=0; RunLength &lt; 63; ++RunLength)
+   {
+   // Make sure we didn't hit the end of the file.
+   if(RunLength+Count &gt;= 256*256)
+    break;
+
+   // Make sure we didn't hit the end of the line.
+   if(RunLength+(Count%256) &gt;= 256)
+    break;
+
+   Data[1]=Ptr[RunLength+Count];
+
+   if(RunLength == 0)
+    {
+    Data[0] = Data[1];
+    continue;
+    }
+
+   if(Data[1] != Data[0])
+    break;
+   }
+
+   if(RunLength == 1)
+    {
+    if(Data[0] &gt;= 192)
+     {
+     PicOut.write(0xC1,1);
+     PicOut.write(Data[0],1);
+//     fputc(0xC1, PcxFile);
+//     fputc(Data[0], PcxFile);
+     }
+    else
+     {
+     PicOut.write(Data[0],1);
+//     fputc(Data[0], PcxFile);
+     }
+    Count += RunLength;
+    continue;
+    }
+
+   if(RunLength == 2)
+    {
+    if(Data[0] &gt;= 192)
+     {
+     PicOut.write(0xC2,1);
+     PicOut.write(Data[0],1);
+//     fputc(0xC2, PcxFile);
+//     fputc(Data[0], PcxFile);
+     }
+    else
+     {
+     PicOut.write(Data[0],1);
+     PicOut.write(Data[0],1);
+//     fputc(Data[0], PcxFile);
+//     fputc(Data[0], PcxFile);
+     }
+    Count += RunLength;
+    continue;
+    }
+
+   if(RunLength &gt; 2)
+    {
+    PicOut.write(192+RunLength,1);
+    PicOut.write(Data[0],1);
+//    fputc(192+RunLength, PcxFile);
+//    fputc(Data[0], PcxFile);
+    Count += RunLength;
+    continue;
+    }
+
+   if(RunLength == 0)
+    break;
+   }
+  }
+
+/*
+ for (c=0;c&lt;256;c++)
+  {
+  PicOut.write(Ptr,256);
+  Ptr+=(256+2*64);
+  }
+*/
+
+ Byte=12;
+
+ PicOut.write((unsigned char *)&Byte,1);
+ for (c=0;c&lt;256;c++)
+  {
+  Byte=SNES_Palette[15*256*4+c*4]*4;
+  PicOut.write((unsigned char *)&Byte,1);
+  Byte=SNES_Palette[15*256*4+c*4+1]*4;
+  PicOut.write((unsigned char *)&Byte,1);
+  Byte=SNES_Palette[15*256*4+c*4+2]*4;
+  PicOut.write((unsigned char *)&Byte,1);
+  }
+ }
+
+</pre>
+</td>
+</tr>
+</table>
+<TABLE BORDER=0 WIDTH=596>
+<TR>
+<TD WIDTH=596>
+<PRE>
+#include &lt;stdio.h&gt;
+#include "pcx.h"
+
+unsigned long Width, Height;
+unsigned long Color[256];
+
+FILE *PcxFile;
+
+char LoadPcxHead(char *PcxName)
+{
+  if((PcxFile = fopen(PcxName, "rb")) == NULL)
+    return 0;
+
+  fread(&PcxHead, sizeof(PcxHead), 1, PcxFile);
+
+  if(PcxHead.Manufacturer != 0x0A)
+    return 0;
+  if(PcxHead.Version != 5)
+    return 0;
+
+  Width  = PcxHead.BytesPerLine;
+/* Can't use PcxHead.XMax-PcxHead.XMin+1 cause it has to be even... */
+  Height = PcxHead.YMax-PcxHead.YMin+1;
+
+  fclose(PcxFile);
+
+  return 1;
+}
+
+char LoadPcxData(char *PcxName, unsigned char *PicData)
+{
+  unsigned char Data[2];
+  unsigned long Count = 0;
+
+  if((PcxFile = fopen(PcxName, "rb")) == NULL)
+    return 0;
+
+  fseek(PcxFile, -768, SEEK_END);
+
+  fread(&Pal, sizeof(Pal), 1, PcxFile);
+
+  fseek(PcxFile, 128, SEEK_SET);
+
+  while(Count &lt; Width*Height)
+  {
+    Data[0] = fgetc(PcxFile);
+
+    if(Data[0] &gt; 192)
+    {
+      Data[1] = fgetc(PcxFile);
+      memset(PicData+Count, Data[1], Data[0]-192);
+      Count += Data[0]-192;
+    }
+    else
+    {
+      PicData[Count] = Data[0];
+      Count++;
+    }
+  }
+  fclose(PcxFile);
+
+  return 1;
+}
+
+char SavePcx(char *PcxName, unsigned char *PicData)
+{
+  unsigned char Data[2];
+  unsigned long Count = 0;
+  unsigned long RunLength;
+
+  PcxHead.Manufacturer = 0x0A;
+  PcxHead.Version = 5;
+  PcxHead.Encoding = 1;
+  PcxHead.BitsPerPixelPerPlane = 8;
+  PcxHead.XMin = 0;
+  PcxHead.YMin = 0;
+  PcxHead.XMax = Width-1;
+  PcxHead.YMax = Height-1;
+  PcxHead.HResolution = 0;
+  PcxHead.VResolution = 0;
+
+  for(Count = 0; Count &lt; 48; ++Count)
+    PcxHead.Colormap[Count] = 0;
+
+  PcxHead.Reserved = 0;
+  PcxHead.NPlanes = 1;
+
+  if(Width%2 != 1)
+    PcxHead.BytesPerLine = Width;
+  else
+    PcxHead.BytesPerLine = Width+1;
+
+  PcxHead.PaletteInfo = 1;
+
+
+  for(Count = 0; Count &lt; 58; ++Count)
+    PcxHead.Filler[Count] = 0;
+
+  if((PcxFile = fopen(PcxName, "wb")) == NULL)
+    return 0;
+
+  fwrite(&PcxHead, sizeof(PcxHead), 1, PcxFile);
+
+  Count = 0;
+
+  while(1)
+  {
+    for(RunLength = 0; RunLength &lt; 63; ++RunLength)
+    {
+      if(RunLength+Count &gt;= Width*Height)
+        break;
+      if(RunLength+(Count%Width) &gt;= Width)
+        break;
+
+      Data[1] = PicData[RunLength+Count];
+
+      if(RunLength == 0)
+      {
+        Data[0] = Data[1];
+        continue;
+      }
+      if(Data[1] != Data[0])
+        break;
+    }
+
+    if(RunLength == 1)
+    {
+      if(Data[0] &gt;= 192)
+      {
+        fputc(0xC1, PcxFile);
+        fputc(Data[0], PcxFile);
+      }
+      else
+      {
+        fputc(Data[0], PcxFile);
+      }
+      Count += RunLength;
+      continue;
+    }
+
+    if(RunLength == 2)
+    {
+      if(Data[0] &gt;= 192)
+      {
+        fputc(0xC2, PcxFile);
+        fputc(Data[0], PcxFile);
+      }
+      else
+      {
+        fputc(Data[0], PcxFile);
+        fputc(Data[0], PcxFile);
+      }
+      Count += RunLength;
+      continue;
+    }
+
+    if(RunLength &gt; 2)
+    {
+      fputc(192+RunLength, PcxFile);
+      fputc(Data[0], PcxFile);
+      Count += RunLength;
+      continue;
+    }
+
+    if(RunLength == 0)
+      break;
+  }
+
+  fputc(0x0C, PcxFile);
+  fwrite(&Pal, sizeof(Pal), 1, PcxFile);
+
+  fflush(PcxFile);
+  fclose(PcxFile);
+
+  return 1;
+}
+
+</pre>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+<P>
+<TABLE BORDER=3>
+<TR>
+<TD BGCOLOR="#C0C0C0">
+<TABLE BORDER=0>
+<TR>
+<FORM ACTION="/NA/Message/GHTQZT/MoveMsg" METHOD=POST>
+<TD HEIGHT=30 VALIGN=MIDDLE BGCOLOR="#C0C0C0">
+<INPUT TYPE="HIDDEN" NAME="Q" VALUE="mx03-BieXjo0759">
+<INPUT TYPE="HIDDEN" NAME="N" VALUE="mx03-BieVWm0423">
+<INPUT TYPE="SUBMIT" VALUE="Move To">
+<SELECT NAME="F">
+<OPTION VALUE="5021254">Inbox
+</select>
+</td>
+<TD WIDTH=20></td>
+<TD HEIGHT=30 VALIGN=MIDDLE BGCOLOR="#C0C0C0"><A HREF="/NA/Message/GHTQZT/Delete?Q=mx03-BieXjo0759&N=mx03-BieVWm0423"><IMG SRC="/images/mail-delete.gif" BORDER=0></a><A HREF="/NA/Message/GHTQZT/Read?Q=mx05-BigNXn0167"><IMG SRC="/images/mail-previous.gif" BORDER=0></a><A HREF="/NA/Message/GHTQZT/Read?Q=mx03-BieVWm0423"><IMG SRC="/images/mail-next.gif" BORDER=0></a></td>
+</form>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+<P>
+<FONT SIZE="-1">
+[ <A HREF="http://netaddress.usa.net/NA/Door/GHTQZT/Welcome">Welcome</a> |
+ <A HREF="http://netaddress.usa.net/NA/Mail/GHTQZT/List">Get Mail</a> |
+ <A HREF="http://netaddress.usa.net/NA/Mail/GHTQZT/Send">Send Mail</a> |
+ <A HREF="http://netaddress.usa.net/NA/Mail/GHTQZT/History">History</a> |
+ <A HREF="http://netaddress.usa.net/NA/Content/GHTQZT/Newsroom">News Room</a> |
+ <A HREF="http://netaddress.usa.net/NA/Rules/GHTQZT/List">Mail Rules</a> |
+ <A HREF="http://netaddress.usa.net/NA/Options/GHTQZT/Preferences">Preferences</a> |
+ <A HREF="http://netaddress.usa.net/NA/Door/GHTQZT/Logout">Logout</a> ]
+</font>
+<BR>
+</td>
+</tr>
+</table>
+<CENTER>
+<FONT SIZE="-1">
+<B><FONT COLOR=#FF0000>Net</font><I>Address</i></b><SUP>&copy;</sup> 1997
+<A HREF="http://www.usa.net/">USA.NET</a>, Inc.
+</font>
+</center>
+<MAP NAME="tab.map">
+<AREA SHAPE="rect" COORDS="  6,5, 77,28" HREF="http://netaddress.usa.net/NA/Door/GHTQZT/Welcome">
+<AREA SHAPE="rect" COORDS=" 87,5,147,28" HREF="http://netaddress.usa.net/NA/Mail/GHTQZT/List">
+<AREA SHAPE="rect" COORDS="155,5,222,28" HREF="http://netaddress.usa.net/NA/Mail/GHTQZT/Send">
+<AREA SHAPE="rect" COORDS="230,5,290,28" HREF="http://netaddress.usa.net/NA/Mail/GHTQZT/History">
+<AREA SHAPE="rect" COORDS="298,5,369,28" HREF="http://netaddress.usa.net/NA/Content/GHTQZT/Newsroom">
+<AREA SHAPE="rect" COORDS="377,5,455,28" HREF="http://netaddress.usa.net/NA/Rules/GHTQZT/List">
+<AREA SHAPE="rect" COORDS="463,5,545,28" HREF="http://netaddress.usa.net/NA/Options/GHTQZT/Preferences">
+<AREA SHAPE="rect" COORDS="553,5,613,28" HREF="http://netaddress.usa.net/NA/Door/GHTQZT/Logout">
+</map>
+</body>
+

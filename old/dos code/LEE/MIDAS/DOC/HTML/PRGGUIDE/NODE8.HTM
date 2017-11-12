@@ -1,0 +1,127 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<!--Converted with LaTeX2HTML 96.1-h (September 30, 1996) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
+<HTML>
+<HEAD>
+<TITLE>2.3 An example program</TITLE>
+<META NAME="description" CONTENT="2.3 An example program">
+<META NAME="keywords" CONTENT="prgguide">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<LINK REL=STYLESHEET HREF="prgguide.css">
+</HEAD>
+<BODY LANG="EN" >
+ <A NAME="tex2html152" HREF="node9.html"><IMG WIDTH=37 HEIGHT=24 ALIGN=BOTTOM ALT="next" SRC="../icons/next_motif.gif"></A> <A NAME="tex2html150" HREF="node5.html"><IMG WIDTH=26 HEIGHT=24 ALIGN=BOTTOM ALT="up" SRC="../icons/up_motif.gif"></A> <A NAME="tex2html146" HREF="node7.html"><IMG WIDTH=63 HEIGHT=24 ALIGN=BOTTOM ALT="previous" SRC="../icons/previous_motif.gif"></A> <A NAME="tex2html154" HREF="node1.html"><IMG WIDTH=65 HEIGHT=24 ALIGN=BOTTOM ALT="contents" SRC="../icons/contents_motif.gif"></A>  <BR>
+<B> Next:</B> <A NAME="tex2html153" HREF="node9.html">3 MIDAS concepts</A>
+<B>Up:</B> <A NAME="tex2html151" HREF="node5.html">2 Getting started</A>
+<B> Previous:</B> <A NAME="tex2html147" HREF="node7.html">2.2 Linking with MIDAS</A>
+<BR> <P>
+<H1><A NAME="SECTION00330000000000000000">2.3 An example program</A></H1>
+<P>
+This section describes a very simple example program that uses MIDAS for
+playing music. First, the complete program source is given in both C and
+Delphi format, and after that the operation of the program is described line
+by line. To keep the program as short as possible, all error checking is
+omitted, and therefore it should not be used as a template for building real
+applications -- the other example programs included in the MIDAS
+distribution are more suitable for that.
+<P>
+Both versions of the program should be compiled as console applications in
+the Win32 environment. Under MS-DOS and Linux the default compiler settings
+are fine.
+<P>
+<H2><A NAME="SECTION00331000000000000000">2.3.1 C program</A></H2>
+<P>
+<PRE>
+ 1  #include &lt;stdio.h&gt;
+ 2  #include &lt;conio.h&gt;
+ 3  #include &quot;midasdll.h&quot;
+ 4
+ 5  int main(void)
+ 6  {
+ 7      MIDASmodule module;
+ 8
+ 9      MIDASstartup();
+10      MIDASinit();
+11      MIDASstartBackgroundPlay(0);
+12
+13      module = MIDASloadModule(&quot;..\\data\\templsun.xm&quot;);
+14      MIDASplayModule(module, 0);
+15
+16      puts(&quot;Playing - press any key&quot;);
+17      getch();
+18
+19      MIDASstopModule(module);
+20      MIDASfreeModule(module);
+21
+22      MIDASstopBackgroundPlay();
+23      MIDASclose();
+24
+25      return 0;
+26  }</PRE>
+<P>
+<H2><A NAME="SECTION00332000000000000000">2.3.2 Delphi program</A></H2>
+<P>
+<PRE>
+1   uses midasdll;
+2
+3   var module : MIDASmodule;
+4
+5   BEGIN
+6       MIDASstartup;
+7       MIDASinit;
+8       MIDASstartBackgroundPlay(0)
+9
+10      module := MIDASloadModule('..\data\templsun.xm');
+11      MIDASplayModule(module, 0);
+12
+13      WriteLn('Playing - Press Enter');
+14      ReadLn;
+15
+16      MIDASstopModule(module);
+17      MIDASfreeModule(module);
+18
+19      MIDASstopBackgroundPlay;
+20      MIDASclose;
+21  END.</PRE>
+<P>
+<H2><A NAME="SECTION00333000000000000000">2.3.3 Program description</A></H2>
+<P>
+Apart from minor syntax differences, the C and Delphi versions of the program
+work nearly identically. This section describes the operation of the programs
+line by line. The line numbers below are given in pairs: first for C, second
+for Delphi.
+<P>
+<DL ><DT><STRONG>1-3, 1</STRONG>
+<DD> Includes necessary system and MIDAS definition files
+    <DT><STRONG>7, 3</STRONG>
+<DD> Defines a variable for the module that will be played
+    <DT><STRONG>9, 6</STRONG>
+<DD> Resets the MIDAS internal state -- This needs to be done
+        before MIDAS is configured and initialized.
+    <DT><STRONG>10, 7</STRONG>
+<DD> Initializes MIDAS
+    <DT><STRONG>11, 8</STRONG>
+<DD> Starts playing sound in the background
+    <DT><STRONG>13, 10</STRONG>
+<DD> Loads the module file
+    <DT><STRONG>14, 11</STRONG>
+<DD> Starts playing the module we just loaded, leaving no
+        channels available for sound effects.
+    <DT><STRONG>16-17, 13-14</STRONG>
+<DD> Simply waits for a keypress
+    <DT><STRONG>19, 16</STRONG>
+<DD> Stops playing the module
+    <DT><STRONG>20, 17</STRONG>
+<DD> Deallocates the module we loaded
+    <DT><STRONG>22, 19</STRONG>
+<DD> Stops playing sound in the background
+    <DT><STRONG>23, 20</STRONG>
+<DD> Uninitializes the MIDAS Sound System
+<P>
+</DL><BR> <HR>
+<P><ADDRESS>
+<I>Petteri Kangaslampi <BR>
+Mon Jan 27 00:15:29 EET 1997</I>
+</ADDRESS>
+</BODY>
+</HTML>

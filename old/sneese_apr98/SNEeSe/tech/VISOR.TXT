@@ -1,0 +1,51 @@
+
+--------------------------------------------------------------------
+*************** USE THIS SOFTWARE IN OWN RISK **********************
+--------------------------------------------------------------------
+   *********************************************************
+   *****                                                    **
+   ***** Snes Tile Visor/Editor ( Visor ) v.01. Lord Esnes   **
+   *****                                                    **
+   *********************************************************
+
+This program is a snes tile editor. This can be used to do traduction
+version of the games.
+
+Keys
+----
+
+ESC  -> Exit.
+F2   -> Save the fixed game to a file called : fixed.smc
+
+1    -> Decode 16 colors tiles.
+2    -> Decode 4 colors tiles.
+
+n    -> Up a screen.
+m    -> Down a screen.
+UP   -> Up a line.
+DOWN -> Down a line.
+
+Editor screen:
+
+Exit  -> Go to main screen.
+Save  -> Save the changes to memory.
+FlipX -> Not Implemented.
+FlipY -> Not Implemented.
+
+Running
+-------
+
+Try :
+visor nameofgame
+
+-------------------------------------------------------------------
+Go to the Esnes main page and click in the banner, if you want
+help to improve ESNES (snes emulator), and Visor (Snes tile editor)
+-------------------------------------------------------------------
+LordEsnes calb@gsyc.inf.uc3m.es
+http://www.gsyc.inf.uc3m.es/~calb/esnes/esnese.html
+IRC: EFNET #emu (esnes or LordEsnes)
+-------------------------------------------------------------------
+
+
+

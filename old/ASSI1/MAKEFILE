@@ -1,0 +1,4 @@
+maina.exe : sample.o sample.cc
+	gcc -c -g sample.cc
+	gxx -g -o maina.exe sample.o updater.o graflib.o
+

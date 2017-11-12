@@ -1,0 +1,107 @@
+I don't know if this is of any use, but -
+
+Usual headings of websites
+Company Profile OR About <Company Name>
+Services
+Products
+Downloads
+FAQ
+Links
+Contact
+(Feedback?)
+
+Company Profile
+-Mission
+-Market
+-Result
+-Values
+
+Services - 
+Bespoke system design
+Plam based software
+(Web design) ?
+
+Development  
+ As well as our own applications we are willing to quote on enhancement or support for any application providing we have access to the source code.
+ 
+
+
+Products -
+
+S-Invoice - A simple invoice program designed to be used for the service sector
+Features -
+ - Customer Database
+ - Easy to learn, Easy to use
+ - VAT Quarter Report
+ - Multiple Payments on one invoice
+ - Overdue invoice tracking/reporting
+ - Product Database
+ - Customisable Invoice
+ - Estimates(quotes)
+ - Credit Notes
+ - Multiple invoice copies
+
+This product can be used as a starting point for a customised soloution.
+
+Phone System - A program designed to process the outputs of anamogue/digital(ISDN) phone system
+To product reports on phone use, such as 
+ - duration
+ - number of calls
+ - average call duration
+ - usage by extension(user)
+ - Incoming/outgoing call 
+ - Transfered calls
+ - Reports by number(depending on phone system)
+
+The program runs on any windows system and uses the serial port to communicate with the phone system.
+
+Contact -
+ pyrodesign@ntlworld.com
+
+
+
+
+
+
+
+----------------------------------------------------
+
+Notes -
+Customer Database
+Minimal typing
+Customer Information At Your Fingertips
+Reports
+Easy to learn, Easy to use
+Localisation
+Customisable Backdrops
+- use company logo?
+Limited/ Apporite use of colour, enough to help hightlight information without overuse
+Mutiple payments to one invoice
+Simplyfied entry+editing
+cost effective
+Network support(multiuser)
+User control(password/access level control)
+Scan/Print barcodes
+Pricing scales for x10 x100 qty
+Invoice/ delivery notes
+Estimates(quotes) can be converted to invoices
+Payment terms definable
+No limit of number of items on invoice
+Customer Statements
+Credit notes(refunds,partial/complete)
+Support all printers supported by windows
+Mail merge export to spread sheet
+Label printing
+
+------------------------
+Approved by the Institute of Chartered Accounts of England and Wales
+DREAM is designed around the concept of a 'unified ledger'. 
+This means that your accounts are completely integrated - you do not have to maintain
+ physically separate ledgers and duplicate entries between them. 'Modular' reconciliations
+ are completely eliminated. Immediate benefits of the DREAM design are that: 
+
+All data is instantly updated 
+Analysis/Reporting is based directly on Core Accounts data 
+The system reflects your organisation's exact business rules 
+Complete integration offers considerable ‘month end’ time saving 
+Cross ‘Modular’ reporting/drill down is completely flexible and very simple 

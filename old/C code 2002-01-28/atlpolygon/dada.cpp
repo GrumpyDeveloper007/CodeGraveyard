@@ -1,0 +1,8 @@
+// dada.cpp : Implementation of Cdada
+#include "stdafx.h"
+#include "Polygon.h"
+#include "dada.h"
+
+/////////////////////////////////////////////////////////////////////////////
+// Cdada
+

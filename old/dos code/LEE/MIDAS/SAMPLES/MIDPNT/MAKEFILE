@@ -1,0 +1,95 @@
+#* MidpNT.mak
+#*
+#* Make script for MIDAS Module Player for Windows NT
+#*
+#* $Id: makefile 1.3 1997/01/14 17:41:19 pekangas Exp $
+#*
+#* Copyright 1996 Petteri Kangaslampi
+
+MIDASDIR = ..\..
+MIDASINCDIR = $(MIDASDIR)\include
+MIDASLIBDIR = $(MIDASDIR)\lib
+
+!ifdef VISUALC
+
+CC = cl
+CPP = cl
+CCOPTS =  -c -MT -Zi -Yd -W3 -WX -YX -Zp1 -nologo -O2 -G5 -D__VC32__ -DDEBUG \
+        -DNOTIMER -I$(MIDASINCDIR)
+CPPOPTS = $(CCOPTS)
+LIBNAME = midas06_visualc.lib
+LINKCMD = link /DEBUG /DEBUGTYPE:CV @MidpNT.lk $(MIDASLIBDIR)\$(LIBNAME)
+RC = rc
+RCOPTS =
+RCMAKERES = /r /fo MidpNT.res temp.rc
+
+
+!else
+
+CC = wcc386
+CPP = wpp386
+CCOPTS = -fh -fhq -w3 -d2 -bt=nt -mf -d__WC32__ -dDEBUG -dNOTIMER -i$(MIDASINCDIR)
+CPPOPTS = $(CCOPTS)
+RC = wrc
+RCOPTS = -bt=nt
+RCMAKERES = /r temp.rc /fo=MidpNT.res
+LIBNAME = midas06_watcom.lib
+LINKCMD = wlink libpath $(MIDASLIBDIR) debug all library $(LIBNAME) @midpnt.wlk
+
+!endif
+
+
+MidpNT.exe :    MidpNT.obj MidpMIDAS.obj MidpList.obj MidpView.obj \
+                SongInfo.obj ViewList.obj InstList.obj Archivers.obj \
+                Registry.obj \
+                $(MIDASLIBDIR)\$(LIBNAME) \
+                MidpNT.res
+        $(LINKCMD)
+!ifndef VISUALC
+        $(RC) $(RCOPTS) MidpNT.res MidpNT.exe
+!endif
+
+MidpNT.res :    MidpNT.rc
+        del temp.rc
+        copy incwin.rc+MidpNT.rc temp.rc
+        $(RC) $(RCOPTS) $(RCMAKERES)
+
+MidpNT.obj :    MidpNT.cpp midpres.h MidpNT.h MidpList.h MidpView.h \
+                SongInfo.h MidpModeless.h ViewList.h InstList.h \
+                Archivers.h Registry.h
+        $(CPP) MidpNT.cpp $(CPPOPTS)
+
+MidpMIDAS.obj : MidpMIDAS.cpp MidpNT.h
+        $(CPP) MidpMIDAS.cpp $(CPPOPTS)
+
+MidpList.obj :  MidpList.cpp MidpList.h
+        $(CPP) MidpList.cpp $(CPPOPTS)
+
+MidpView.obj :  MidpView.cpp MidpNT.h MidpView.h
+        $(CPP) MidpView.cpp $(CPPOPTS)
+
+SongInfo.obj :  SongInfo.cpp SongInfo.h MidpView.h MidpNT.h MidpRes.h \
+                MidpModeless.h ViewList.h
+        $(CPP) SongInfo.cpp $(CPPOPTS)
+
+ViewList.obj :  ViewList.cpp ViewList.h MidpView.h MidpList.h
+        $(CPP) ViewList.cpp $(CPPOPTS)
+
+InstList.obj :  InstList.cpp InstList.h MidpView.h MidpNT.h MidpRes.h \
+                MidpModeless.h ViewList.h
+        $(CPP) InstList.cpp $(CPPOPTS)
+
+Archivers.obj : Archivers.cpp Archivers.h MidpNT.h
+        $(CPP) Archivers.cpp $(CPPOPTS)
+
+Registry.obj :  Registry.cpp Registry.h MidpNT.h
+        $(CPP) Registry.cpp $(CPPOPTS)
+
+
+#* $Log: makefile $
+#* Revision 1.3  1997/01/14 17:41:19  pekangas
+#* ?
+#*
+# Revision 1.2  1996/08/02  20:14:53  pekangas
+# Added Visual C support
+#

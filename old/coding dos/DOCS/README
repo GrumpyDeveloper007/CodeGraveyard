@@ -1,0 +1,36 @@
+4:14 AM
+March 8, 1997
+
+DJGPP Tutorials v2.55
+
+Hello,
+
+This is an update to my tutorials on DJGPP:
+
+Setup
+  djsetup.txt
+  djsetup.html
+    djv112.txt
+    djv112.html
+    djv200.txt
+    djv200.html
+Graphics
+  djgfx.txt
+  djgfx.html
+ASM
+  djasm.txt
+  djasm.html
+
+The file that links them all together is djgpp.html.
+
+I'm as busy as ever now because of work so there won't be any major 
+changes or additions. (Unless someone finds a glaring inaccuracy)
+
+Just remember that the latest version can be found at
+http://www.castle.net/~avly/djgpp.html.
+
+Happy coding!
+
+-icbm @EFNET-IRC (Hello #c, #gamecode, and all my pals!)
+avly@fermion.com
+

@@ -1,0 +1,744 @@
+****************************************************************
+SNES2 Documentation v.0.0 Recopiled by calb
+****************************************************************
+
+1. Direct Memory Access (DMA) and Visual RAM example
+2. Famicon CPU G65SC802 / G65SC816 Instructionset
+3. Registers perform absolute multiplication
+4. Sprites, and VRAM.
+5. Memory Map.
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+Direct Memory Access (DMA) and Visual RAM example
+---------------------------------------------------------------
+
+It's probably best to start by explaning "normal" DMA. The SNES
+supports 8 DMA channels which allow data to be copied to VRAM
+extremely quickly, bypassing the 65c816 processor. Each channel
+consists of the following registers.
+
+    Byte    $43?0    DMA channel ? control register
+    Byte    $43?1    DMA channel ? destination
+    Word    $43?2    DMA channel ? source address offset
+    Byte    $43?4    DMA channel ? source address bank
+    Word    $43?5    DMA channel ? transfer bytes
+
+    where ? is 0..7
+
+A value of $01 written to the DMA channel control register at
+$43?0 indicates that we're using "normal" DMA. The graphics
+register destination is formed by using $21 as the high byte
+of the address and using the byte specified at $43?1 as the
+low byte. Hence you can DMA to any of the graphics registers
+between $2100..$21FF.
+
+There is also a DMA control register.
+
+    Byte    $420B    DMA control register
+
+Here bit 0 enables channel 0, bit 1 enables channel 1 etc...
+
+For example, suppose I wanted to copy a 32 x 32 character
+screen map (ie. $800 bytes) from location $18000 in ROM into
+location $0000 of VRAM. I could do this using DMA channel 0
+with the following code (A is 8-bits, X & Y are 16-bits).
+
+    ldx.w #$0000    ; set VRAM pointer to $0000
+    stx $2116
+    lda #$01        ; control value for "normal" DMA
+    sta $4300
+    lda #$18        ; dma to $2118
+    sta $4301
+    ldx.w #$8000    ; source offset
+    stx $4302
+    lda #$01        ; source bank
+    sta $4304
+    ldx.w #$0800    ; number of bytes
+    stx $4305
+    lda #$01        ; enable DMA channel 0
+    sta $420B
+
+And that's all there is to it. After completion of the last
+instruction "sta $420B" the $800 bytes at $18000 will have
+been copied into VRAM at location $0000.
+
+HDMA allows you to use any combination of these DMA channels
+to modify graphics registers just before the start of every
+horizontal scan line.
+
+To use HDMA you have to write a value of $00 or $02 to the
+DMA channel control register at $43?0 to indicate "horizontal"
+DMA. Writing $00 indicates a byte is to be DMA'd each scan
+line, writing $02 indicates a word. The DMA channel destination
+at $43?1 works just as before with "normal" DMA. The source
+address offset and bank registers at $43?2 & $43?4 will point
+to a HDMA table. The transfer bytes register at $43?5 is not
+used.
+
+The format of the HDMA table depends on the value you have
+written to the DMA channel control register. If you have
+written $00 then a byte will be written to the selected
+graphics register each scan line. The table should have the
+following format.
+
+hdma_table
+    Byte n ; number of bytes that follow (7-bit value 0..127)
+    Byte value_1, value_2, value_3 ... value_n
+    Byte n ; number of bytes that follow (7-bit value 0..127)
+    Byte value_1, value_2, value_3 ... value_n
+    .
+    etc
+    .
+    Byte 0 ; ends list
+
+The table is made up of a number of entries. The first byte
+in each entry is a count on the number of bytes that follow.
+The table is terminated by a 0 entry.
+
+If you have written $02 to the DMA channel control register
+then a word will be written to the selected graphics register
+each scan line. The table should have the following format.
+
+hdma_table
+    Byte n ; # times to repeat next word (7-bit value 0..127)
+    Word value
+    Byte n ; # times to repeat next word (7-bit value 0..127)
+    Word value
+    .
+    etc
+    .
+    Byte 0 ; ends list
+
+The table is made up of a number of entries. The first byte of
+each entry indicates the number of times the following word is
+to be repeated. The table is terminated by a 0 entry.
+
+The only other thing you'll need to know is that there is a
+HDMA control register.
+
+    Byte    $420C    HDMA control register
+
+This is the same format as the DMA control register at $420B,
+ie. bit 0 enables HDMA channel 0, bit 1 enables channel 1 etc...
+
+For example, suppose halfway down the screen I want to scroll
+graphics plane 0 left by 128 pixels.
+
+    lda #$02        ; word format HDMA (count, word)
+    sta $4300
+    lda #$0D        ; plane 0 x-scroll at $210D
+    sta $4301
+    ldx.w #hdma_table&$FFFF ; hdma table offset
+    stx $4302
+    lda #hdma_table/$10000 ; hdma table bank
+    sta $4304
+    lda #$01        ; enable HDMA channel 0
+    sta $420c
+
+    .
+    .
+    .
+
+hdma_table
+    dc.b 112       ; for first 112 scan lines
+    dc.w 0         ; set plane 0 x-scroll to 0
+    dc.b 1         ; on next scan line
+    dc.w 128       ; set plane 0 x-scroll to 128
+    dc.b 0
+
+You can use HDMA channels in combination, ie. you could use HDMA
+channel 0 to select a colour register and HDMA channel 1 to write
+the RGB data for that colour register.
+
+I don't have access to any of the official Nintendo documentation
+so I may not have entirely understood everything about HDMA but
+this is a much as I've been able to work out. Maybe there are other
+(H)DMA modes too?
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+********************************************************
+*                                                      *
+* Famicon CPU G65SC802 / G65SC816 Instructionset       *
+*                                                      *
+* Compiled by Carnivore/BeerMacht on 23-Aug-92         *
+* using BeerMon V0.43                                  *
+*                                                      *
+* FreeWare!                                            *
+*                                                      *
+********************************************************
+
+
+>_00060000  e2 30        sep #$30       a,x,y:8bit   ;â0
+>_00060002  69 12        adc #$12                    ;i.
+>_00060004  65 12        adc $12                     ;e.
+>_00060006  75 12        adc $12,x                   ;u.
+>_00060008  72 12        adc ($12)                   ;r.
+>_0006000a  61 12        adc ($12,x)                 ;a.
+>_0006000c  71 12        adc ($12),y                 ;q.
+>_0006000e  67 12        adc [$12]                   ;g.
+>_00060010  77 12        adc [$12],y                 ;w.
+>_00060012  6d 34 12     adc $1234                   ;m4.
+>_00060015  7d 34 12     adc $1234,x                 ;}4.
+>_00060018  79 34 12     adc $1234,y                 ;y4.
+>_0006001b  6f 56 34 12  adc $123456                 ;oV4.
+>_0006001f  7f 56 34 12  adc $123456,x               ;V4.
+>_00060023  63 12        adc $12,s                   ;c.
+>_00060025  73 12        adc ($12,s),y               ;s.
+>_00060027  29 12        and #$12                    ;).
+>_00060029  25 12        and $12                     ;%.
+>_0006002b  35 12        and $12,x                   ;5.
+>_0006002d  32 12        and ($12)                   ;2.
+>_0006002f  21 12        and ($12,x)                 ;!.
+>_00060031  31 12        and ($12),y                 ;1.
+>_00060033  27 12        and [$12]                   ;'.
+>_00060035  37 12        and [$12],y                 ;7.
+>_00060037  2d 34 12     and $1234                   ;-4.
+>_0006003a  3d 34 12     and $1234,x                 ;=4.
+>_0006003d  39 34 12     and $1234,y                 ;94.
+>_00060040  2f 56 34 12  and $123456                 ;/V4.
+>_00060044  3f 56 34 12  and $123456,x               ;?V4.
+>_00060048  23 12        and $12,s                   ;#.
+>_0006004a  33 12        and ($12,s),y               ;3.
+>_0006004c  0a           asl a                       ;.
+>_0006004d  06 12        asl $12                     ;..
+>_0006004f  16 12        asl $12,x                   ;..
+>_00060051  0e 34 12     asl $1234                   ;.4.
+>_00060054  1e 34 12     asl $1234,x                 ;.4.
+>_00060057  89 12        bit #$12                    ;..
+>_00060059  24 12        bit $12                     ;$.
+>_0006005b  34 12        bit $12,x                   ;4.
+>_0006005d  2c 34 12     bit $1234                   ;,4.
+>_00060060  3c 34 12     bit $1234,x                 ;<4.
+>_00060063  c9 12        cmp #$12                    ;É.
+>_00060065  c5 12        cmp $12                     ;Å.
+>_00060067  d5 12        cmp $12,x                   ;Õ.
+>_00060069  d2 12        cmp ($12)                   ;Ò.
+>_0006006b  c1 12        cmp ($12,x)                 ;Á.
+>_0006006d  d1 12        cmp ($12),y                 ;Ñ.
+>_0006006f  c7 12        cmp [$12]                   ;Ç.
+>_00060071  d7 12        cmp [$12],y                 ;×.
+>_00060073  cd 34 12     cmp $1234                   ;Í4.
+>_00060076  dd 34 12     cmp $1234,x                 ;Ý4.
+>_00060079  d9 34 12     cmp $1234,y                 ;Ù4.
+>_0006007c  cf 56 34 12  cmp $123456                 ;ÏV4.
+>_00060080  df 56 34 12  cmp $123456,x               ;ßV4.
+>_00060084  c3 12        cmp $12,s                   ;Ã.
+>_00060086  d3 12        cmp ($12,s),y               ;Ó.
+>_00060088  e0 12        cpx #$12                    ;à.
+>_0006008a  e4 12        cpx $12                     ;ä.
+>_0006008c  ec 34 12     cpx $1234                   ;ì4.
+>_0006008f  c0 12        cpy #$12                    ;À.
+>_00060091  c4 12        cpy $12                     ;Ä.
+>_00060093  cc 34 12     cpy $1234                   ;Ì4.
+>_00060096  3a           dec a                       ;:
+>_00060097  c6 12        dec $12                     ;Æ.
+>_00060099  d6 12        dec $12,x                   ;Ö.
+>_0006009b  ce 34 12     dec $1234                   ;Î4.
+>_0006009e  de 34 12     dec $1234,x                 ;Þ4.
+>_000600a1  49 12        eor #$12                    ;I.
+>_000600a3  45 12        eor $12                     ;E.
+>_000600a5  55 12        eor $12,x                   ;U.
+>_000600a7  52 12        eor ($12)                   ;R.
+>_000600a9  41 12        eor ($12,x)                 ;A.
+>_000600ab  51 12        eor ($12),y                 ;Q.
+>_000600ad  47 12        eor [$12]                   ;G.
+>_000600af  57 12        eor [$12],y                 ;W.
+>_000600b1  4d 34 12     eor $1234                   ;M4.
+>_000600b4  5d 34 12     eor $1234,x                 ;]4.
+>_000600b7  59 34 12     eor $1234,y                 ;Y4.
+>_000600ba  4f 56 34 12  eor $123456                 ;OV4.
+>_000600be  5f 56 34 12  eor $123456,x               ;_V4.
+>_000600c2  43 12        eor $12,s                   ;C.
+>_000600c4  53 12        eor ($12,s),y               ;S.
+>_000600c6  1a           inc a                       ;.
+>_000600c7  e6 12        inc $12                     ;æ.
+>_000600c9  f6 12        inc $12,x                   ;ö.
+>_000600cb  ee 34 12     inc $1234                   ;î4.
+>_000600ce  fe 34 12     inc $1234,x                 ;þ4.
+>_000600d1  a9 12        lda #$12                    ;©.
+>_000600d3  a5 12        lda $12                     ;¥.
+>_000600d5  b5 12        lda $12,x                   ;µ.
+>_000600d7  b2 12        lda ($12)                   ;².
+>_000600d9  a1 12        lda ($12,x)                 ;¡.
+>_000600db  b1 12        lda ($12),y                 ;±.
+>_000600dd  a7 12        lda [$12]                   ;§.
+>_000600df  b7 12        lda [$12],y                 ;·.
+>_000600e1  ad 34 12     lda $1234                   ;­4.
+>_000600e4  bd 34 12     lda $1234,x                 ;½4.
+>_000600e7  b9 34 12     lda $1234,y                 ;¹4.
+>_000600ea  af 56 34 12  lda $123456                 ;¯V4.
+>_000600ee  bf 56 34 12  lda $123456,x               ;¿V4.
+>_000600f2  a3 12        lda $12,s                   ;£.
+>_000600f4  b3 12        lda ($12,s),y               ;³.
+>_000600f6  a2 12        ldx #$12                    ;¢.
+>_000600f8  a6 12        ldx $12                     ;¦.
+>_000600fa  b6 12        ldx $12,y                   ;¶.
+>_000600fc  ae 34 12     ldx $1234                   ;®4.
+>_000600ff  be 34 12     ldx $1234,y                 ;¾4.
+>_00060102  a0 12        ldy #$12                    ; .
+>_00060104  a4 12        ldy $12                     ;¤.
+>_00060106  b4 12        ldy $12,x                   ;´.
+>_00060108  ac 34 12     ldy $1234                   ;¬4.
+>_0006010b  bc 34 12     ldy $1234,x                 ;¼4.
+>_0006010e  46 12        lsr $12                     ;F.
+>_00060110  56 12        lsr $12,x                   ;V.
+>_00060112  4e 34 12     lsr $1234                   ;N4.
+>_00060115  5e 34 12     lsr $1234,x                 ;^4.
+>_00060118  09 12        ora #$12                    ;..
+>_0006011a  05 12        ora $12                     ;..
+>_0006011c  15 12        ora $12,x                   ;..
+>_0006011e  12 12        ora ($12)                   ;..
+>_00060120  01 12        ora ($12,x)                 ;..
+>_00060122  11 12        ora ($12),y                 ;..
+>_00060124  07 12        ora [$12]                   ;..
+>_00060126  17 12        ora [$12],y                 ;..
+>_00060128  0d 34 12     ora $1234                   ;.4.
+>_0006012b  1d 34 12     ora $1234,x                 ;.4.
+>_0006012e  19 34 12     ora $1234,y                 ;.4.
+>_00060131  0f 56 34 12  ora $123456                 ;.V4.
+>_00060135  1f 56 34 12  ora $123456,x               ;.V4.
+>_00060139  03 12        ora $12,s                   ;..
+>_0006013b  13 12        ora ($12,s),y               ;..
+>_0006013d  2a           rol a                       ;*
+>_0006013e  26 12        rol $12                     ;&.
+>_00060140  36 12        rol $12,x                   ;6.
+>_00060142  2e 34 12     rol $1234                   ;.4.
+>_00060145  3e 34 12     rol $1234,x                 ;>4.
+>_00060148  6a           ror a                       ;j
+>_00060149  66 12        ror $12                     ;f.
+>_0006014b  76 12        ror $12,x                   ;v.
+>_0006014d  6e 34 12     ror $1234                   ;n4.
+>_00060150  7e 34 12     ror $1234,x                 ;~4.
+>_00060153  e9 12        sbc #$12                    ;é.
+>_00060155  e5 12        sbc $12                     ;å.
+>_00060157  f5 12        sbc $12,x                   ;õ.
+>_00060159  f2 12        sbc ($12)                   ;ò.
+>_0006015b  e1 12        sbc ($12,x)                 ;á.
+>_0006015d  f1 12        sbc ($12),y                 ;ñ.
+>_0006015f  e7 12        sbc [$12]                   ;ç.
+>_00060161  f7 12        sbc [$12],y                 ;÷.
+>_00060163  ed 34 12     sbc $1234                   ;4.
+>_00060166  fd 34 12     sbc $1234,x                 ;ý4.
+>_00060169  f9 34 12     sbc $1234,y                 ;ù4.
+>_0006016c  ef 56 34 12  sbc $123456                 ;ïV4.
+>_00060170  ff 56 34 12  sbc $123456,x               ;ÿV4.
+>_00060174  e3 12        sbc $12,s                   ;ã.
+>_00060176  f3 12        sbc ($12,s),y               ;ó.
+>_00060178  85 12        sta $12                     ;..
+>_0006017a  95 12        sta $12,x                   ;..
+>_0006017c  92 12        sta ($12)                   ;..
+>_0006017e  81 12        sta ($12,x)                 ;..
+>_00060180  91 12        sta ($12),y                 ;..
+>_00060182  87 12        sta [$12]                   ;..
+>_00060184  97 12        sta [$12],y                 ;..
+>_00060186  8d 34 12     sta $1234                   ;.4.
+>_00060189  9d 34 12     sta $1234,x                 ;.4.
+>_0006018c  99 34 12     sta $1234,y                 ;.4.
+>_0006018f  8f 56 34 12  sta $123456                 ;.V4.
+>_00060193  9f 56 34 12  sta $123456,x               ;.V4.
+>_00060197  83 12        sta $12,s                   ;..
+>_00060199  93 12        sta ($12,s),y               ;..
+>_0006019b  86 12        stx $12                     ;..
+>_0006019d  96 12        stx $12,y                   ;..
+>_0006019f  8e 34 12     stx $1234                   ;.4.
+>_000601a2  84 12        sty $12                     ;..
+>_000601a4  94 12        sty $12,x                   ;..
+>_000601a6  8c 34 12     sty $1234                   ;.4.
+>_000601a9  64 12        stz $12                     ;d.
+>_000601ab  74 12        stz $12,x                   ;t.
+>_000601ad  9c 34 12     stz $1234                   ;.4.
+>_000601b0  9e 34 12     stz $1234,x                 ;.4.
+>_000601b3  14 12        trb $12                     ;..
+>_000601b5  1c 34 12     trb $1234                   ;.4.
+>_000601b8  04 12        tsb $12                     ;..
+>_000601ba  0c 34 12     tsb $1234                   ;.4.
+>_000601bd  c2 30        rep #$30       a,x,y:16bit  ;Â0
+>_000601bf  69 34 12     adc #$1234                  ;i4.
+>_000601c2  29 34 12     and #$1234                  ;)4.
+>_000601c5  89 34 12     bit #$1234                  ;.4.
+>_000601c8  c9 34 12     cmp #$1234                  ;É4.
+>_000601cb  e0 34 12     cpx #$1234                  ;à4.
+>_000601ce  c0 34 12     cpy #$1234                  ;À4.
+>_000601d1  49 34 12     eor #$1234                  ;I4.
+>_000601d4  a9 34 12     lda #$1234                  ;©4.
+>_000601d7  a2 34 12     ldx #$1234                  ;¢4.
+>_000601da  a0 34 12     ldy #$1234                  ; 4.
+>_000601dd  09 34 12     ora #$1234                  ;.4.
+>_000601e0  e9 34 12     sbc #$1234                  ;é4.
+>_000601e3  e2 30        sep #$30       a,x,y:8bit   ;â0
+>_000601e5  90 fe        bcc $601e5                  ;.þ
+>_000601e7  b0 fc        bcs $601e5                  ;°ü
+>_000601e9  f0 fa        beq $601e5                  ;ðú
+>_000601eb  30 f8        bmi $601e5                  ;0ø
+>_000601ed  d0 f6        bne $601e5                  ;Ðö
+>_000601ef  10 f4        bpl $601e5                  ;.ô
+>_000601f1  80 f2        bra $601e5                  ;.ò
+>_000601f3  50 f0        bvc $601e5                  ;Pð
+>_000601f5  70 ee        bvs $601e5                  ;pî
+>_000601f7  18           clc                         ;.
+>_000601f8  d8           cld                         ;Ø
+>_000601f9  58           cli                         ;X
+>_000601fa  b8           clv                         ;¸
+>_000601fb  ca           dex                         ;Ê
+>_000601fc  88           dey                         ;.
+>_000601fd  e8           inx                         ;è
+>_000601fe  c8           iny                         ;È
+>_000601ff  ea           nop                         ;ê
+>_00060200  f4 34 12     pea $1234                   ;ô4.
+>_00060203  d4 12        pei ($12)                   ;Ô.
+>_00060205  62 fd ff     per $60205                  ;býÿ
+>_00060208  48           pha                         ;H
+>_00060209  8b           phb                         ;.
+>_0006020a  0b           phd                         ;.
+>_0006020b  4b           phk                         ;K
+>_0006020c  08           php                         ;.
+>_0006020d  da           phx                         ;Ú
+>_0006020e  5a           phy                         ;Z
+>_0006020f  68           pla                         ;h
+>_00060210  ab           plb                         ;«
+>_00060211  2b           pld                         ;+
+>_00060212  28           plp                         ;(
+>_00060213  fa           plx                         ;ú
+>_00060214  7a           ply                         ;z
+>_00060215  38           sec                         ;8
+>_00060216  f8           sed                         ;ø
+>_00060217  78           sei                         ;x
+>_00060218  aa           tax                         ;ª
+>_00060219  a8           tay                         ;¨
+>_0006021a  5b           tcd                         ;[
+>_0006021b  7b           tdc                         ;{
+>_0006021c  3b           tsc                         ;;
+>_0006021d  ba           tsx                         ;º
+>_0006021e  8a           txa                         ;.
+>_0006021f  9a           txs                         ;.
+>_00060220  9b           txy                         ;.
+>_00060221  98           tya                         ;.
+>_00060222  fb           xce                         ;û
+>_00060223  00 12        brk #$12                    ;..
+>_00060225  82 fd ff     brl $60225                  ;.ýÿ
+>_00060228  02 12        cop #$12                    ;..
+>_0006022a  dc 34 12     jml ($1234)                 ;Ü4.
+>_0006022d  4c 34 12     jmp $1234                   ;L4.
+>_00060230  6c 34 12     jmp ($1234)                 ;l4.
+>_00060233  7c 34 12     jmp ($1234,x)               ;|4.
+>_00060236  5c 56 34 12  jmp $123456                 ;\V4.
+>_0006023a  22 56 34 12  jsl $123456                 ;"V4.
+>_0006023e  20 34 12     jsr $1234                   ; 4.
+>_00060241  fc 34 12     jsr ($1234,x)               ;ü4.
+>_00060244  54 34 12     mvn $1234                   ;T4.
+>_00060247  44 34 12     mvp $1234                   ;D4.
+>_0006024a  c2 30        rep #$30    a,x,y:16bit     ;Â0
+>_0006024c  40           rti                         ;@
+>_0006024d  6b           rtl                         ;k
+>_0006024e  60           rts                         ;`
+>_0006024f  e2 30        sep #$30       a,x,y:8bit   ;â0
+>_00060251  db           stp                         ;Û
+>_00060252  cb           wai                         ;Ë
+>_00060253  eb           xba                         ;ë
+
+- EOT -
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+
+
+Registers perform absolute multiplication
+------------------------------------------------------
+
+Take a look at this:
+
+
+    Address: $4202/$4203
+       Name: WRMPYA/WRMPYB
+Description: Multiplier and multiplicand
+
+
+  D7   D6   D5   D4   D3   D2   D1   D0
+
+|           MULTIPLICAND-A              |       $4202
+|_______________________________________|
+
+  D7   D6   D5   D4   D3   D2   D1   D0
+
+|            MULTIPLIER-B               |       $4203
+|_______________________________________|
+
+
+These registers perform absolute multiplication by multiplying
+multiplicand A by multiplier B and return product C which can
+be read from $4216/$4217 RDMPY.
+
+Set register A, then B.  After the B register is set, it will
+take 8 machine cycles for the multiplication to be completed.
+
+* The A register will not be destroyed by the multiplication
+process.
+
+^^^ does not refer to the accumulator. it means the
+multiplicand
+
+Also, there is 8/16 multiply that shares the mode 7 matrix
+registers:
+
+set 16 bit multiplier to $211b and 8 bit multiplicand to $211c
+the 24 bit product will be placed in $2134-$2136.
+
+The shift-add routine is a great way to multiply.  I'm
+suprised that so many so-called assembly programmers don't know
+how to do it. Regardless of how fast it is, the hardware stuff
+blows it away.
+
+There is also a hardware divide:
+
+$4204/4205 is the 16 bit dividend, $4206 is the 8bit divisor, the
+quotient will be put in $4214, and the remainder in $4216/4217.
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+From:     vic@physci.psu.edu (Vic Ricker)
+To:       "Super Famicom Development Group" 
+            <famidev@busop.cit.wayne.edu>
+Subject:  Re:  some programming questions
+Date:     Tue, 9 Nov 93 20:20:35 EST
+
+>Hi Folks.
+
+>I need help with a few SNES programming questions... 
+
+>(1) Can anyone tell me how to make noises come out of 
+> my SNES?
+
+Insert your favorite cart, power up the TV, switch the snes 
+power to ON.. :-)
+
+>(3) Is the sprite position table held in RAM or VRAM? 
+> And how do the 5 address bits in $2101 relate to this 
+> location?
+
+The sprite images are stored in VRAM.  The palettes for the 
+sprites are stored in CGRAM.  The coordinates and char 
+attributes are stored in OAM.
+
+The format of each OBJ is:
+
+OBJ H position: 8 bits
+OBJ V position: 8 bits
+V flip: 1 bit
+H flip: 1 bit
+OBJ priority: 2 bits
+color palette: 3 bits
+character name: 9 bits
+
+there are 128 of these in sequence making 512 bytes then 
+32 bytes follow in the format:
+size: 1 bit
+x msb: 1 bit
+
+there are 128 of these (one for every OBJ) making 32 more 
+bytes.
+
+$2101 is OBJSEL
+
+it chooses the size of sprites to use and also sets the 
+address of the images in VRAM.  the top 3 bits chose the 
+size:
+
+000 means 8x8 and 16x16 sprites
+001 8x8 and 32x32
+010 8x8 and 64x64
+011 16x16 and 32x32
+100 16x16 and 64x64
+101 32x32 and 64x64
+
+the other bits are the address in vram of the sprite images.
+
+
+$2102-$2103 is OAMADDL/H
+the lower 9 bits are the address for accessing the OAM. 
+(like $2116 for VRAM)
+the high bit (15) enables priority rotation (causes OBJ's 
+to change priority as to keep them from disappearing totally 
+when time out and range over occur.)
+
+$2104 is OAMDATA
+
+it is the write register for the OAM. 
+(like $2118-$2119 for VRAM)
+
+
+$2138 is *OAMDATA
+
+it is the read register for the OAM.
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+Memory Maps
+-------------------------------------------------------------------
+Version 1.0
+
+
+Corsair + Kari presents the first doc of Fami hardware register
+locations and brief explanation of them..
+
+If you would like to add any info found in this list please leave
+a mail message to Corsair or RamRaider on GRAVEYARD BBS +44-91-5160560
+or anything to do with the FAMICON/SNES..
+
+We have an INTERNET address if ya want it leave true e-mail!
+
+Or better still if ya can get the Programmers handbook (Both) please call
+and leave mail :) , or even the 100,000 quid SCSI SNASM board for FAMICON
+development :)
+
+Also if you want more info contact us the same way..
+
+We are esp looking for contacts to help get to grips with this new platform
+everybody welcome!
+
+Special greetings to Starr/QUARTEX and any other True Console Dude! 
+
+Memory Map
+~~~~~~~~~~ 
+Bank    Address
+~~~~    ~~~~~~~
+
+ 00-    0000-1fff       Lo RAM  (same as at $7e0000-$7e1fff)
+ 7d     2100-2142(?)    Videochip Registers
+        4300-437f       DMA Registers
+
+        8000-ffff
+
+ROM:This contains 32k block of game ROM.
+    So, the games are divided to 32k chunks
+    which locate always at address $8000-$ffff,
+    but in different banks. This means that the first
+    32k of game is at $008000-$00ffff and next 32k
+    is at $018000-$01ffff etc.
+
+ 7e     0000-1fff       Lo RAM
+                        (same as always at $0000-$1fff)
+        2000-ffff       RAM    \ I'm not sure about
+ 7f     0000-ffff       RAM    / this RAM
+
+   Up : 7e - 7f 128 kb ram ???
+
+ 7f-ff  all             Not used???
+
+$ffec($fffc) contains reset vector and $ffea($fffa)
+is NMI vector. The NMI is actually vertical blank
+interrupt.
+
+Video Chip
+~~~~~~~~~~
+size    loc.
+~~~~    ~~~~
+  B     2100    Screen fade  x000bbbb
+                x=screen on/off  b=brightness(0-f)
+  B     2106    Screen Pixelation xxxxbbbb  x=pixel size
+                b=planes to expand
+  B     2107    Plane 0 location in vram  xxxxxxab
+                x=address ab=32/64 width xy
+  B     2108    Plane 1 location in vram  xxxxxxab as above
+  B     2109    Plane 2 location in vram  xxxxxxab as above
+  B     210a    Plane 3 location in vram  xxxxxxab as above
+  B     210b    Tile VRAM address  aaaabbbb a=Playfield 0
+                b=Playfield 1
+  B     210c    Tile VRAM address  ccccdddd c=Playfield 2
+                d=Playfield 3
+ 2B     210d    Plane 0 scroll x   8+3 bits (0-7ff) put first
+                8 bits and then
+ 2B     210e    Plane 0 scroll y   8+3 bits  (0-7ff)
+                3 highest bits
+ 2B     210f    Plane 1 scroll x                as above
+ 2B     2110    Plane 1 scroll y                as above
+ 2B     2111    Plane 2 scroll x                as above
+ 2B     2112    Plane 2 scroll y                as above
+ 2B     2113    Plane 3 scroll x                as above
+ 2B     2114    Plane 3 scroll y                as above
+ B      2115    Video port control
+ W      2116    Video port address (lo-hi)
+ W      2118    Video port data (lo-hi) (address is
+                                   incremented by 2)
+ B      2121    Palette color nr
+ B      2122    Palette color data
+ B      212C    Playfield Enable xxxxabcd
+                a-d = playfield number..
+ B      2133    Screen mode  0000ab0c a=Interlace Y
+                b=Overscan  c=Interlace X??
+     2140-2142  Audio Registers????
+
+I/O
+~~~
+W B     420b    Start dma (enable bits) bits:
+                76543210 = dma nr (8 DMA's)
+R B     4212    Pad ready to be read
+R W     4218    Pad 0 data
+                76543210 = A-B-Select-Start-U-D-L-R
+        4219
+                76543210 = X-Y-Top Left-Top Right-0000
+R W     421a    Pad 1 data              as above
+R W     421c    Pad 2 data              as above
+R W     421e    Pad 3 data              as above
+
+DMA registers  ($4300-$437f)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  B     43X0    DMA control reg??(not sure!)
+  B     43X1    DMA destination (Access only to some of
+                the video chip
+                    registers ($2100-$21ff)
+                    $18=video port  $22=color palette
+  W     43X2    Source address lo-hi  16 lowest bits
+  B     43X4    Source Bank addr. 8 highest bits
+  W     43X5    Transfer size lo-hi
+
+        X=dma number (0-7)  DMA #0= 4300-4305
+                            DMA #1= 4310-4315 ...
+                            DMA #7= 4370-4375
+
+ Symbols:  size: B=byte long    2B=put 2 bytes
+           W=word long R=read only  W=write only
+
+Screen Details
+~~~~~~~~~~~~~~
+Famicom Tile format is simple. Each Tile is 4 planes
+and 8x8 bits. 32 bytes are used per Tile .
+
+PLANES 1  &  2                  PLANES  3  &    4
+    byte0   byte1                  byte 16   byte 17
+    byte2   byte3                  byte 18   byte 19
+    byte4   byte5                  byte 20   byte 21
+     .....                              .......
+    byte14  byte15                 byte 30   byte 31
+
+Screen Map
+~~~~~~~~~~
+Famicom can use only Tiles $0-$3ff, max 1024 chars.
+16 bits:   YX?c ccNN NNNN NNNN
+           fedc ba98 7654 3210
+
+  Y = mirror y     X = mirror x   ?=unknown
+  ccc = palette nr (8 palettes)
+  NN.. = character number
+
+Screen Resolution is normally 32x30 - 64 bytes / line
+
+Screen VRAM Location
+~~~~~~~~~~~~~~~~~~~~
+Screen Width 32x32 offset for x,y       0,0   = 0
+
+Screen Width 64x32 offset for x,y       0,0   = 0
+                                        33,0  = $400
+
+Screen Width 32x60 offset for x,y       0,0   = 0
+                                        0,31  = $400
+
+Screen Width 64x60 offset for x,y       0,0   = 0
+                                        33,0  = $400
+                                        0,31  = $800
+                                        33,31 = $c00
+
+As can be seen if a wider mode is selected the extra
+height/width follow after the main screen in memory.

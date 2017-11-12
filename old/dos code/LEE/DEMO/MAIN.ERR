@@ -1,0 +1,21 @@
+cpp\MAIN.CPP(103): Error! E059: (col 10) unable to open '\coding\include\other\std.h' 
+cpp\MAIN.CPP(104): Error! E059: (col 10) unable to open '\coding\include\other\seal.h' 
+cpp\MAIN.CPP(114): Error! E336: (col 22) declaration specifiers are required to declare 'PAUDIOMODULE' 
+cpp\MAIN.CPP(114): Error! E498: (col 15) syntax error before 'pModule'; probable cause: incorrectly spelled type name 
+cpp\MAIN.CPP(186): Error! E029: (col 8) symbol 'inp2' has not been declared 
+cpp\MAIN.CPP(189): Error! E029: (col 2) symbol 'outp2' has not been declared 
+cpp\MAIN.CPP(233): Error! E029: (col 9) symbol 'outp2' has not been declared 
+cpp\MAIN.CPP(418): Error! E029: (col 7) symbol 'outp2' has not been declared 
+cpp\MAIN.CPP(424): Error! E029: (col 2) symbol 'AStopModule' has not been declared 
+cpp\MAIN.CPP(425): Error! E029: (col 2) symbol 'ACloseVoices' has not been declared 
+cpp\MAIN.CPP(427): Error! E029: (col 2) symbol 'ACloseAudio' has not been declared 
+cpp\MAIN.CPP(428): Error! E029: (col 18) symbol 'pModule' has not been declared 
+cpp\MAIN.CPP(433): Error! E029: (col 14) symbol 'AUpdateAudio' has not been declared 
+cpp\MAIN.CPP(443): Error! E029: (col 8) symbol 'outp2' has not been declared 
+cpp\MAIN.CPP(530): Error! E006: (col 16) syntax error; probable cause: missing ';' 
+cpp\MAIN.CPP(531): Error! E029: (col 13) symbol 'AInitialize' has not been declared 
+cpp\MAIN.CPP(532): Error! E029: (col 2) symbol 'info' has not been declared 
+cpp\MAIN.CPP(533): Error! E029: (col 17) symbol 'AUDIO_FORMAT_16BITS' has not been declared 
+cpp\MAIN.CPP(533): Error! E029: (col 39) symbol 'AUDIO_FORMAT_STEREO' has not been declared 
+cpp\MAIN.CPP(537): Error! E029: (col 33) symbol 'pModule' has not been declared 
+cpp\MAIN.CPP(560): Error! E133: (col 2) too many errors: compilation aborted 

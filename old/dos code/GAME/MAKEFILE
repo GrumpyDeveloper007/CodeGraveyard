@@ -1,0 +1,22 @@
+
+##
+#  ITS A COMMENT!
+##
+
+main_cpp_opts = /d2 /fpi87 /fp5 /mf /4r /zc
+link_opts = /k9216
+
+main.exe : obj\main.obj obj\graphics.obj obj\font1.obj obj\font2.obj \coding\include\xavier.lib \coding\include\elf.lib
+           wcl386 $(main_cpp_opts) $(link_opts) /fe=main.exe obj\*.obj \coding\include\xavier.lib \coding\include\elf.lib
+
+obj\main.obj : main.cpp graphics.h
+               wpp386 $(main_cpp_opts) main.cpp /fo=obj\main.obj
+
+obj\graphics.obj : graphics.cpp
+                   wpp386 $(main_cpp_opts) graphics.cpp /fo=obj\graphics.obj
+
+obj\font1.obj : fonts\font1.cpp
+                wpp386 $(main_cpp_opts) fonts\font1.cpp /fo=obj\font1.obj
+
+obj\font2.obj : fonts\font2.cpp
+                wpp386 $(main_cpp_opts) fonts\font2.cpp /fo=obj\font2.obj

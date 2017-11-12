@@ -1,0 +1,106 @@
+Type=Exe
+Object={1A028BB9-0262-48D8-9B67-D74CE4C2A7E8}#2.0#0; IngotTextBoxCtl.dll
+Object={A54BEB34-AAB3-4A8D-B736-42CB4DA7D664}#2.0#0; IngotComboBoxCtl.dll
+Object={B671DAA2-FC97-499C-B9A7-0549F8958881}#2.1#0; IngotListBoxCtl.dll
+Object={447880A9-6A37-43B3-A92E-F125FFBE2493}#2.1#0; IngotGridCtl.dll
+Object={BAE83016-CA11-4D8A-BBFA-0AE9863B82DE}#2.1#0; IngotLabelCtl.dll
+Object={EAF2306E-B8A1-4C42-8162-52DC2B50FB61}#2.0#0; IngotGraphicButtonCtl.dll
+Object={9F4EED48-8EC7-4316-A47D-F6161874E478}#2.0#0; IngotButtonCtl.dll
+Object={899CE9D8-3C9F-48DF-B418-E338294B00E3}#2.0#0; IngotCheckBoxCtl.dll
+Object={C4C9371C-9674-41BC-8457-C81D40452EF3}#2.0#0; IngotRadioButtonCtl.dll
+Object={F9885939-2FBB-491F-8EC3-DBC61CCFA7DB}#2.0#0; IngotGraphicCtl.dll
+Object={54171E73-16D6-4021-A96E-E59C0FE780E9}#2.0#0; IngotShapeCtl.dll
+Object={4CF6EC4A-5332-45D4-9D02-D706976B3293}#2.0#0; IngotFilmstripCtl.dll
+Object={5C9FF9A1-ECD4-4497-B2E9-2B37FB857A3C}#2.0#0; IngotMovieCtl.dll
+Object={93970B41-0278-445B-97E5-6C8A2781DE54}#2.0#0; IngotHScrollBarCtl.dll
+Object={D4F6D5BF-C017-4CA4-B58C-2B2D0FD0F327}#2.0#0; IngotVScrollBarCtl.dll
+Object={FF5D5B85-C842-49E2-9041-93D081104427}#2.1#0; IngotSliderCtl.dll
+Object={84BE8A4A-3F9A-44E9-9B5E-E76D4888BA67}#2.0#0; IngotToneCtl.dll
+Object={3BEA4409-5768-4458-895E-EB07BC6B3D8E}#2.0#0; IngotScannerCtl.dll
+Object={4BA93651-C72B-4D5A-8529-AD4762F41507}#2.0#0; IngotSerialCtl.dll
+Object={B7E73D48-F8B8-4F3A-AC45-B1ABC241C59C}#2.0#0; IngotINetHTTPCtl.dll
+Object={0C426B8D-6068-4B10-B3F7-86EB8F674721}#2.0#0; IngotSignatureCtl.dll
+Object={96128832-F328-4785-BC98-3501C116F559}#2.1#0; IngotSocketCtl.dll
+Object={1A298ECE-60AD-4C91-BB12-3092A2250D21}#2.0#0; IngotTimerCtl.dll
+Reference=*\G{145D349E-2822-11D4-9FC8-00104BD1D5F3}#2.0#0#..\..\..\Program Files\AppForge\Platforms\Win32\TargetImage\afSystem.dll#AppForge System Functions
+Reference=*\G{145D34A0-2822-11D4-9FC8-00104BD1D5F3}#2.0#0#..\..\..\Program Files\AppForge\Platforms\Win32\TargetImage\afNum.dll#AppForge Numeric Functions
+Reference=*\G{0868825A-72D8-11D4-A2D3-00105A11C62D}#2.0#0#..\..\..\Program Files\AppForge\Platforms\Win32\TargetImage\afPDBLib.dll#AppForge PDB Functions
+Form=FRMMain.frm
+Form=FRMDesigner.frm
+Form=FRMSelectTemplate.frm
+Form=FRMDetails1.frm
+Form=FRMDetails2.frm
+Module=PalmGlobalFunctions; ..\PalmGlobalFunctions.bas
+Startup="FRMMain"
+HelpFile=""
+ExeName32="WindowSurvey.exe"
+Command32=""
+Name="WindowSurvey"
+HelpContextID="0"
+CompatibleMode="0"
+MajorVer=1
+MinorVer=0
+RevisionVer=133
+AutoIncrementVer=0
+ServerSupportFiles=0
+VersionCompanyName="AppForge"
+CompilationType=0
+OptimizationType=0
+FavorPentiumPro(tm)=0
+CodeViewDebugInfo=0
+NoAliasing=0
+BoundsCheck=0
+OverflowCheck=0
+FlPointCheck=0
+FDIVCheck=0
+UnroundedFP=0
+StartMode=0
+Unattended=0
+Retained=0
+ThreadPerObject=0
+MaxNumberOfThreads=1
+
+[AppForge Global]
+IsAppForgeProject=True
+TwipsPerPixelX=15
+TwipsPerPixelY=15
+ProjectVersion=2.0
+DefaultFormColor=16777215
+DefaultFormHeight=160
+DefaultFormWidth=160
+IngotStyleID=300
+DefaultFontName=AFPalm
+DefaultFontSize=9
+TargetDevice=SOFTWARE\AppForge\DesignTargets\PalmOS
+numCompileTargets=1
+CompileTarget1=SOFTWARE\AppForge\DesignTargets\PalmOS
+AutoSaveProject=True
+SpacesInNameEnabled=False
+IconFileName=
+LastSettingsDialog=Palm OS Settings
+MODID=55DD5489-FCC8-472D-A11A-8221675BEECE
+LastCompileVersion=2.1.1 (0322)
+
+[MS Transaction Server]
+AutoRefresh=1
+
+[AppForge Components And Ingot Dependencies Section]
+NumIngotFileDependencies=0
+NumComponentDependencies=3
+ComponentDependency1={847A8926-7E09-406B-AD58-638A0FEF0E90}
+ComponentDependency2={DF9D123A-F19F-496C-A986-C6CE12DAFF18}
+NumFontDependencies=0
+ComponentDependency3={F7DDA30A-6BE7-4DDE-A46D-77DD4ECC9BED}
+
+[AppForge Palm Pipe]
+CreatorID=TES1
+RequestDeviceValidation=True
+CurrentUser=DarkElf
+
+[AppForge Project Compile Errors]
+NumErrors=0
+Error1=ERROR|C:\coding\palmos\WindowSurvey\FRMDesigner.frm|568|Parameter 2 is not optional.|1082
+Error2=WARNING|D:\coding\palmos\WindowSurvey\FRMMain.frm|0|Ingot OPTAlign on form FRMMain will overlap the Caption Tab on PalmOS devices. Property 'Top' should be at least 15.|3000
+Error3=WARNING|D:\coding\palmos\WindowSurvey\FRMMain.frm|0|Ingot OPTAlign on form FRMMain will overlap the Caption Tab on PalmOS devices. Property 'Top' should be at least 15.|3000
+Error4=WARNING|D:\coding\palmos\WindowSurvey\FRMMain.frm|0|Ingot OPTAlign on form FRMMain will overlap the Caption Tab on PalmOS devices. Property 'Top' should be at least 15.|3000
+Error5=WARNING|D:\coding\palmos\WindowSurvey\FRMMain.frm|0|Ingot CMDReDraw on form FRMMain will overlap the Caption Tab on PalmOS devices. Property 'Top' should be at least 15.|3000

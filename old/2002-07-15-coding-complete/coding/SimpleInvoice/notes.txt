@@ -1,0 +1,19 @@
+Notes - 
+
+sale-> invoice
+enter customer details/find customer
+click on 'ok' to move to the next screen
+enter qty/ or leave blank
+enter product
+enter description, if exsiting product description will appear
+enter unit cost, if qty>0
+enter net cost, if qty=0
+change default vat value?
+discount can be entered by right-clicking on 'unit cost' or 'net cost'
+enter handling/carriage charge
+enter amount paid
+
+click on 'ok' to print invoice or click on 'estimate' to create an estimate(quote)
+customer details caaan be chnged by clicking on 'customer search'
+to cancel the invoice click on 'clear'
+

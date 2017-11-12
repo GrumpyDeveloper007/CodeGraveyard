@@ -1,0 +1,29 @@
+main.exe : obj\main.obj obj\helper.obj obj\screen.obj obj\cpu.obj obj\mem.obj obj\addr.obj obj\romload.obj obj\screenas.obj
+        wcl386 /mf /ot /d2 -fpi87 -fp3 /l=dos4g /fe=main.exe obj\*.obj \coding\include\xavier.lib
+
+obj\screenas.obj : screenas.asm
+        wasm -4p -d1 -fo=obj\screenas.obj -mf screenas.asm
+
+obj\main.obj : main.cc
+        wpp386 /d2 /mf /fo=obj\main.obj main.cc
+
+obj\helper.obj : helper.c
+        wcc386 /d2 /mf /fo=obj\helper.obj helper.c
+
+obj\screen.obj : screen.cc
+        wpp386 /d2 /mf /fo=obj\screen.obj screen.cc
+
+obj\cpu.obj : cpu.cc
+        wpp386 /d2 /mf /fo=obj\cpu.obj cpu.cc
+
+obj\mem.obj : mem.cc
+        wpp386 /d2 /mf /fo=obj\mem.obj mem.cc
+
+obj\addr.obj : addr.cc
+        wpp386 /d2 /mf /fo=obj\addr.obj addr.cc
+
+obj\romload.obj : romload.cc
+        wpp386 /d2 /mf /fo=obj\romload.obj romload.cc
+
+
+

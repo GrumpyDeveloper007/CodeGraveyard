@@ -1,0 +1,448 @@
+‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹
+‹‹‹‹‹ ‹‹‹‹‹‹‹‹‹‹‹ ‹‹‹‹‹‹‹‹‹‹‹ ‹‹‹‹‹ ‹‹‹‹‹‹‹‹‹‹‹ ‹‹‹‹‹‹‹‹‹‹‹ ‹‹‹‹‹ ‹‹‹‹‹‹‹‹‹‹‹
+›€€€€ ›€€€€ €€€€€ ›€€€€ €€€€€ ›€€€€ ›€€€€ €€€€€ ›€€€€ €€€€€ ›€€€€ ›€€€€ €€€€€
+€€€€€ €€€€€ €€€€€ €€€€€ ﬂﬂﬂﬂﬂ €€€€€ €€€€€ ﬂﬂﬂﬂﬂ €€€€€ €€€€€ €€€€€ €€€€€ €€€€€
+€€€€€ €€€€€ €€€€€ ﬂﬂﬂﬂﬂﬂ€€€€€ €€€€€ €€€€€ €€€€€ €€€€€ €€€€€ €€€€€ €€€€€ﬂ€€€€€
+€€€€€ €€€€€ €€€€€ €€€€€ €€€€€ €€€€€ €€€€€ €€€€€ €€€€€ €€€€€ €€€€€ €€€€€ €€€€€
+€€€€€ €€€€€ €€€€€ €€€€€ €€€€€ €€€€€ €€€€€ €€€€€ €€€€€ €€€€€ €€€€€ €€€€€ €€€€€
+ﬂﬂﬂﬂﬂ ﬂﬂﬂﬂﬂ ﬂﬂﬂﬂﬂ ﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂ ﬂﬂﬂﬂﬂ ﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂ ﬂﬂﬂﬂﬂ ﬂﬂﬂﬂﬂ ﬂﬂﬂﬂﬂ ﬂﬂﬂﬂﬂ ﬂﬂﬂﬂﬂ
+ﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂ
+
+                           SPC Explorer 2.0 1995
+                          Recompiled with Phase/2
+                         Fully Documented by SoBeR
+                           Source Code Included!
+                       ____         ____         ____
++=====================(____)===--==(____)-=====-(____)--=====================--+
+
+
+SPC Explorer 2.0 '95
+Documentation written by SoBeR.
+
+
+SPC Explorer History
+--------------------
+
+This program was initially written by Larry Alldredge in early 1993.
+At the time, the program was in binary form, assembled with a home brew
+assembler and slated for use with the Romulator (ugh!). Since it was an
+original concept, someone stuck an SMC header onto it, thereby converting
+it into SMC form. Later, I fixed a few bugs, documented the program and
+recompiled it. I was using it to experiment with the SPC-700. Recently
+I augmented the documentation with other SPC-700 related into, and here
+it is, the SPC Explorer 2.0 '95!
+
+
+SPC Explorer Idea
+-----------------
+
+The SPC Explorer is a small utility (currently in SMC format AND with
+available source code) for manipulating the four SPC-700 registers of
+the Super Nintendo (Super Famicom) console. The sound coprocessor
+(SPC-700) is powerful, and runs parallel to the 65C816 CPU, hence
+it is a real coprocessor. It can (and does) continue to execute it's
+sound program even when the CPU has crashed or is in a loop. Since it
+works asynchronously from the CPU, it needs to constantly monitor the
+four addresses. It can also send output to the four addresses. This
+is how the SPC-700 communicates with the outside world.
+
+The four SPC-700 related addresses are:
+
+HEX       DEC        OCT       BIN
+---------------------------------------------
+$2140     8512       20500     10000101000000
+$2141     8513       20501     10000101000001
+$2142     8514       20502     10000101000010
+$2143     8515       20503     10000101000011
+---------------------------------------------
+
+
+Using SPC Explorer
+------------------
+
+Using the program is very simple. The program allows both reading and
+writing of the SNES's APU registers ($2140-2143). If you are using
+the SMC format version, simply send it to your copier or load it
+from disk. When the program is executed, you should see a blue background
+with an ugly white font.
+
+Keep in mind that the SPC-700 comes up with it's loader routine. If you
+change it, or force the SPC-700 to write to a register, or whatever, you
+may need to reset the SNES to get the SPC-700 back into it's loader routine.
+
+
+The screen looks something like this:
+
+_______________________________________
+
+0000 <-- (Joy pad values, for debuging only)
+
+         SPC EXPLORER '95
+
+     REGISTER   READ   WRITE
+       $2140  =  00 <-- 00
+       $2141  =  00 <-- 00
+       $2142  =  00 <-- 00
+       $2143  =  00 <-- 00
+
+
+  A BUTTON...............WRITE
+  UP/DOWN.........APU REGISTER
+  PAD LEFT/RIGHT..SELECT DIGIT
+  TOP LEFT......DECREASE DIGIT
+  TOP RIGHT.....INCREASE DIGIT
+
+-----------------------------------------
+
+
+Key Explanations
+----------------
+
+Use the Pad Up & Down to select the register you want to manipulate.
+
+Use the Pad Left & Right to select the hex digit you want to change.
+
+Use the Top Left & Top Right to decrease/increase the hex digit that
+is currently under your cursor. (The cursor appears as a darker shade
+of blue highlighting the hex digit you are working with.)
+
+And finally, use the [A] button to write the current value into the
+selected register.
+
+You can only manipulate the WRITE side of the values. The READ side is
+updated automatically in real time.
+
+For Example:
+
+$2143  =  00 <-- 00
+  |        |      |
+  |        |      |__________ Value to write to the register when A is pressed
+  |        |_________________ Value read from the register (real time)
+  |__________________________ Register to work with (Up/Down to select)
+
+
+* All values in HEX *
+
+
+First, there is the register address ($2140..$2143). Following the
+address is an equal sign. The value immediately after the equal
+sign is the "READ" (Peek) value. The entire "READ" column (four, one
+for each register) is updated continuously in real time. The value
+to the right of the <-- is the "WRITE" (Poke) value. This is the
+value that will be written to the register the next time the A button
+is pressed.
+
+
+SPC-700 Sample Program
+----------------------
+
+Here's a quick little demonstration of getting output from the SPC-700.
+(Note that the SPC-700 writes to $F4..$F7 which is $2140..$2143 on the
+65C816 side.) After the program executes, you will need to reset the
+SNES to get the SPC-700 back into it's loader routine.
+
+This program writes a constant value ($42) to F6 (APUIO2, $2142 SNES side).
+
+4000 20              CLRP
+4001 8F 42 F6        MOV   F6,#$42 ; F6 = APUIO2 = $2142
+4004 FF              STOP
+
+
+LAST WORDS
+----------
+
+I am including the Sid-Player source. It emulates the C64's SID using the SPC.
+If you're pretty familiar with the SID, this is a good start to see how the
+SPC coprocessor approach differs from the SID way of doing sound.
+The source was released by Censor.
+
+Sid-Player Related Files
+------------------------
+
+INTROSID.S          ==        Sid Player Main Source
+SPC_CODE.S          ==        SPC Code (Vblank) Source
+SPC_CODE.BIN        ==        .BIN of above, used in INTROSID.S <line 540>
+GIANNA.BIN          ==        .BIN of Gianna Sisters C64 ripped <line 60>
+SIDPLAY!.SMC        ==        Sid Player (Compiled & Executable!)
+
+*Sid_Player was written on Amiga and uses extended filenames and has
+ amiga-type device refferences like SNES:/SOURCES/CODE/ETC. If you
+ are recompiling the code on a PC based cross assembler, please
+ compensate for this in lines 60 and 540 of INTROSID.S
+
+
+PS!
+===
+
+Greets to all my console buds in NaPaLM! -SoBeR
+
+============================================================================
+
+<The following algorithm breakdown & SPC info written by Antitrack>
+
+
+SPC-700 LOADING ALGORITHM
+-------------------------
+
+/*
+ * Algorithm to load data into the SPC700 and execute.
+ *
+ * Format of data table to be loaded:
+ * ---------------------------------------------------------
+ * dw length in bytes of data (not including 2 header words)
+ * dw address in SPC address space
+ * db data bytes
+ * ^^^ Repeat above as needed.
+ * dw 0 is last entry
+ * dw address for SPC to start executing
+ *
+ * Notation of pseudo code:
+ * .b indicates an 8 bit memory reference <byte>
+ * .w indicates a 16 bit memory reference <word>
+ *
+ * Memory locations used:
+ * APUIO0 = $2140 = F4 SPC
+ * APUIO1 = $2141 = F5 SPC
+ * APUIO2 = $2142 = F6 SPC
+ * APUIO3 = $2143 = F7 SPC
+ *
+ * l is a local 8 bit variable that holds the handshaking byte
+ * x is a local 16 bit variable that holds the count
+ * table is a 16 bit address of the data table described above
+ *
+ */
+
+while ((apuio0.b != 0xAA) && (apuio1.b != 0xBB))
+  ;                              /* Wait for SPC to be ready */
+
+l.b = 0xCC;
+while (1) {
+  /* Set up for this chunk */
+  x.w = *table.w++;              /* Get the length */
+  apuio2.b = *table.b++;         /* Load the SPC space address */
+  apuio3.b = *table.b++;
+  apuio1.b = (x.w >= 1 ? 1 : 0); /* 1 for load / 0 for execute */
+  apuio0.b = l.b;                /* Load the handshaking byte */
+  while (apuio0.b != l.b)        /* Wait for SPC to acknowledge */
+    ;
+  if (x.w < 1)                   /* All done */
+    break;
+
+  /* Load this chunk */
+  l.b = 0;
+  do {
+    apuio1.b = *table.b++;       /* Load the data byte */
+    apuio0.b = l.b;              /* Load the handshaking byte */
+    while (apuio0.b != l.b)      /* Wait for SPC to acknowledge */
+      ;
+    l.b++;
+  } while (--x.w != 0);
+
+  l.b += 3;                      /* Adjust handshaking for next chunk */
+  if (l.b == 0)
+    l.b += 3;
+}
+
+
+SPC-700 Programming Info
+------------------------
+
+<Again, written by Antitrack>
+
+
+A try to stumble into the inner secret of a nasty chip.
+
+By Antitrack.
+
+
+Chapter 1:
+----------
+
+
+FACTS
+
+* The SPC 700 is a very stupid sound chip with about the worst handling
+  that you have seen in your lifetime.
+
+* This chip is a co processor. He has a quite large instruction set
+  (contrary to the Amiga's COPPER, who has a very small one) and 64KB RAM
+  memory, of which you can use atleast 32KB.  (or so)
+
+* All program and data that is supposed to be run by this chip must be
+  moved to the SPC's own ram with a small loop that pokes each byte of
+  your SPC assembler program and (e.g. sample-)data into four memory
+  locations : $2140 - $2143. They are your only chance to communicate with
+  the SPC.
+
+* These four memory locations have different meanings for read and write;
+  if you read (LDA) $2140, you get the data from memory loc. 00f4 (or so)
+  of the sound chip.
+
+* On power-on, the SPC 700 jumps (much like the main processor) to a very
+  small ROM area that resides from $ffc0 to $ffff inside the SPC.
+  (This chip REALLY follows the black box principle, eh...) This program
+  at $ffc0 is waiting to get the data in the right format on his input ports
+  at $00f4/5/6/7 , which are $2140/1/2/3 from the 65c816's (e.g. your's )
+  point of view.
+
+* Your main program will therefore have to follow the SPC's conditions and
+  poke all the program and data for the SPC into 2140/1/2/3 in a special
+  order.
+
+* When transmission is completed, you will also have transmitted the start
+  address of your SPC code, and the SPC will start to execute your program
+  there.
+
+
+
+--------------------QUESTIONS.
+
+
+Q: How do I move my program and data to the SPC then, what format do I have
+to use?
+
+
+A: First, your SPC data/code has to be moved from ROM to the extra RAM at
+e.g. $7f0000 . Dont ask me why it has to be in RAM, probably it doesnt
+but all the existing routines that send data to the SPC do something like
+that.
+
+Your data/code has to be in groups which I will call "chunks". A valid chunk
+looks like that:
+
+first word: number of bytes to transmit to SPC           -+
+sec. word : start address where to move data to the SPC   |  one chunk
+byte 4-???? : your data/code                             -+
+
+You can have as many chunks as you want to , but the last chunk must be like
+that:
+
+first word : $0000
+second word: Start address of your code.
+
+
+Q: So if you are right, this means: After I transmitted all my code and
+data, and my own SPC code takes over the control, I might encounter problems
+if my SPC program has to communicate with the outer world (the 65c816).
+What if the main program wants to change sounds? What if a background melody
+shall always play on two voices, and extra two voices will be used for
+sound effects whenever the player sprite e.g. picks up an object?
+
+A: That is sure a point. Your own code will have to look at memory locations
+$00f4/00f5/00f6/00f7 , because they are the only accessible from outside
+at $2140/1/2/3. The easiest way would be: As soon as any of $f4-$f7 change,
+jump into the Boot ROM at $ffc0 (?) so the SPC is executing his receive
+routine again. Then you *probably* can send another SPC chunk with new
+sound and code to the SPC....
+
+Q: This only helps if a complete new tune is to be played, this doesnt help
+if a melody using two voices shall still remain....
+
+A: Thats true. The best approach is to send own command bytes to the SPC and
+your SPC code has to check out $f4-$f7 constantly and react to it.....
+A command byte like $00 could mean: sound off,
+                    $01           : play tune 1
+                    .
+                    .
+                    .
+                    $0f          : play tune $0f
+                    $10           : play jingle (fx) 01
+                    .
+                    .
+                    .
+                    $ff           : jump to $ffc0 (??) the receive 
+ROM routine
+
+
+
+Q: is there another approach?
+
+A: Yes there is. As you probably know, all important addresses of the
+SPC 700 reside inside its own RAM's zeropage:
+
+Address         / register          / usage
+0000            Volume left
+0001            Volume right
+0002            Pitch low
+0003            Pitch high          (The total 14 bits of pitch 
+height)
+0004            SRCN                Designates source number from 0-
+255
+0005            ADSR 1
+0006            ADSR 2
+0007            GAIN            Envelope can be freely designated by 
+your code
+0008            ENVX            Present val of envelope with DSP 
+rewrites
+0009            VALX            Present wave height val
+
+(and so on...)
+
+Your approach would be to move only sample data there, and/or (lots of) very
+small chunks of data with a target address in the zeropage, and a starting
+address of e.g. $ffc0. The small chunks would access zeropage addresses e.g.
+for the volume etc and thus result in tones; if this is done every frame
+you might end up with a music player quite similar to the C64 styled ones.
+
+
+Q: So anyway, in what format exactly do I have to move data to the SPC?
+
+A: I have the following source code for you, but let me explain it a bit
+BEFORE you start to dig into it.
+
+I've already mentioned the general "chunk" format. The loop does the 
+following:
+
+
+- move ram destination address to $2142/3 (akku: 16 bit)
+- move either #$00 or #$01 into 2141, this depends if you have more than $0100
+  bytes of data for the SPC;
+
+- first time (first chunk you transmit): move constant #$cc into 2140
+
+- loop: poke each byte that you want to be transmitted into 2140 (word)
+  the higher 7-15 bits of your accu-word contain the number of bytes already
+  moved (e.g. 00 on the start)
+
+- cmp $2140 with this number of bytes already moved (lower 8 bits of this
+  number only!) and wait if its not equal.
+
+- until the loop is over.
+
+- for the next chunk header this is repeated, but not #$cc is moved into
+  2140 but "nn" (lobyte of number of bytes moved) +3 or +6 if it was 00 when
+  +3 was used.
+
+EXAMPLE:
+
+        move #$0400 to 2142 /word access
+
+        move #$01 to 2141
+        move #$cc to 2140
+
+        move "gg00" to 2140 where "gg" is the first real code/data byte for
+        the SPC
+
+        wait till 2140 is #$00
+
+        move hh01 to 2140 where "hh" is the second byte of SPC code or data
+
+        wait till 2140 is #$01
+
+        move ii02 to 2140 where "ii" is the 3rd byte of data for the SPC
+
+        wait till 2140 is #$02
+
+
+       lets say "ii" was the last byte. Now we add #$04 (3+carry) to #$02
+       (#$02 being the number-1 of how many bytes we moved to the SPC), we
+       will push it onto the stack), now :
+
+       fetch the next header , poke target RAM address into $2142 (word)
+       poke 00 or 01 into 2141 depending of how many bytes to send,
+       poke #$06 into 2140 (06 : number of bytes sent from last chunk-1 + 3 )
+
+
+==END OF TEXT===========================[ Read the included source! ]========
+                                                                     SoBeR 95
+=============================================================================

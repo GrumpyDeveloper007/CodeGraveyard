@@ -1,0 +1,10 @@
+A quick last minute addition:
+
+MIDAS now requires that it is linked as CASE SENSITIVE. Therefore
+you'll need to give wlink the option
+	option caseexact
+Otherwise wrong functions may get called. The linker will give you
+a bunch of warnings if you don't do this as well.
+
+
+Petteri	

@@ -1,0 +1,11 @@
+2002-01-10 Added Graph view to project global forms(printer object)
+2002-01-10 Added screen.mousepointer to reports
+2002-01-10 Changed so boxes dissapear correctly (when reports are selected)
+2002-01-10 Changed date box procedure so search only activates when right report is selected
+2002-01-14 Changed user report, to include direction selection
+2002-01-17 Added period user report, changed ISDN to KXTD in options+interface
+2002-01-17 Added hide to menu
+*
+2002-07-02 Upldated to listPro3
+
+

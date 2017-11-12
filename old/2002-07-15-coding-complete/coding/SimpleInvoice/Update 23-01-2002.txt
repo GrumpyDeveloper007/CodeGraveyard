@@ -1,0 +1,20 @@
+changed invoice enquiry, reports, contact name to company name
+Invoice screen disabled autocase on po number
+Changed the way company name works on customer search, added 'M' button to disable autocase
+added invoice report, like vat report except uses invoice date, displayed in invoce date order
+Fixed field size check on customer search, should not be able to enter more than max
+Changed order of columns in customer grid on customer search
+
+Added Print statement to invoice enquiry, Haven't added the address details yet
+
+Changed description coloum on printout to auto-wordwrap multiline text
+
+to do-
+Add a way to cancel invoices, need to know where invoice should show-up once canceled. Also can 
+they be brough back after being canceled. How much of the invoice need to be saved?
+
+
+
+
+
+

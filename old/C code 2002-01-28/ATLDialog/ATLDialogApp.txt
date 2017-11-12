@@ -1,0 +1,29 @@
+1. Create an ATL COM AppWizard project
+2. Select Executable (EXE) as the Server Type
+3. Use the ATL Object Wizard to insert a new dialog
+4. Adjust the style of the dialog resource to center itself
+5. Tidy up the message loop in _tWinMain():
+		while (GetMessage(&msg, 0, 0, 0) == TRUE)
+		{
+			TranslateMessage(&msg);
+			DispatchMessage(&msg);
+		}
+6. #include the dialog header at the top of the app's cpp file
+7. Create and show the dialog just before the message loop
+		CDlg dlg;
+		dlg.Create(NULL);
+		dlg.ShowWindow(SW_SHOWNORMAL);
+8. Adjust OnOK() and OnCancel() to cope with modeless windows and shut down the exe when necessary
+LRESULT CDlg::OnOK(WORD wNotifyCode, WORD wID, HWND hWndCtl, BOOL& bHandled)
+{
+	DestroyWindow();
+	PostQuitMessage(0);
+	return 0;
+}
+
+LRESULT CDlg::OnCancel(WORD wNotifyCode, WORD wID, HWND hWndCtl, BOOL& bHandled)
+{
+	DestroyWindow();
+	PostQuitMessage(0);
+	return 0;
+}

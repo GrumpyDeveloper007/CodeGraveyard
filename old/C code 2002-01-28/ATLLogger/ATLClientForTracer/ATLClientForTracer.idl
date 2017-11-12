@@ -1,0 +1,41 @@
+// ATLClientForTracer.idl : IDL source for ATLClientForTracer.dll
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (ATLClientForTracer.tlb) and marshalling code.
+
+import "oaidl.idl";
+import "ocidl.idl";
+	[
+		object,
+		uuid(D97E8A54-C220-11D3-9739-0050047D51FB),
+	
+		helpstring("ICoLoggerClient Interface"),
+		pointer_default(unique)
+	]
+	interface ICoLoggerClient : IUnknown
+	{
+		[helpstring("method Initialize")] HRESULT Initialize();
+		[helpstring("method UnInitialize")] HRESULT UnInitialize();
+		[helpstring("method Log")] HRESULT Log([in] BSTR str);
+	};
+
+[
+	uuid(D97E8A46-C220-11D3-9739-0050047D51FB),
+	version(1.0),
+	helpstring("ATLClientForTracer 1.0 Type Library")
+]
+library ATLCLIENTFORTRACERLib
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+
+	[
+		uuid(D97E8A55-C220-11D3-9739-0050047D51FB),
+		helpstring("CoLoggerClient Class")
+	]
+	coclass CoLoggerClient
+	{
+		[default] interface ICoLoggerClient;
+	};
+};

@@ -1,0 +1,352 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<!--Converted with LaTeX2HTML 96.1-h (September 30, 1996) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
+<HTML>
+<HEAD>
+<TITLE>Functions</TITLE>
+<META NAME="description" CONTENT="Functions">
+<META NAME="keywords" CONTENT="apiref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<LINK REL=STYLESHEET HREF="apiref.css">
+</HEAD>
+<BODY LANG="EN" >
+ <A NAME="tex2html321" HREF="node17.html"><IMG WIDTH=37 HEIGHT=24 ALIGN=BOTTOM ALT="next" SRC="../icons/next_motif.gif"></A> <A NAME="tex2html319" HREF="node13.html"><IMG WIDTH=26 HEIGHT=24 ALIGN=BOTTOM ALT="up" SRC="../icons/up_motif.gif"></A> <A NAME="tex2html315" HREF="node15.html"><IMG WIDTH=63 HEIGHT=24 ALIGN=BOTTOM ALT="previous" SRC="../icons/previous_motif.gif"></A> <A NAME="tex2html323" HREF="node1.html"><IMG WIDTH=65 HEIGHT=24 ALIGN=BOTTOM ALT="contents" SRC="../icons/contents_motif.gif"></A>  <BR>
+<B> Next:</B> <A NAME="tex2html322" HREF="node17.html">5 Stream playback</A>
+<B>Up:</B> <A NAME="tex2html320" HREF="node13.html">4 Sample playback</A>
+<B> Previous:</B> <A NAME="tex2html316" HREF="node15.html">Data types</A>
+<BR> <P>
+<H1><A NAME="SECTION00530000000000000000">Functions</A></H1>
+<P>
+This section describes all functions available for MIDAS sample playback.
+<P>
+<BR> <HR><A NAME="MIDASloadRawSample">&#160;</A><H2><A NAME="SECTION00531000000000000000">4.3.1 MIDASloadRawSample</A></H2>
+<A NAME="1159">&#160;</A>
+<PRE>
+MIDASsample MIDASloadRawSample(char *filename, int sampleType,
+    int loopSample)</PRE>
+<P>
+Loads a raw sound effect sample.
+<P>
+<H3><A NAME="SECTION00531100000000000000">Input</A></H3>
+<P>
+<DL ><DT><STRONG>filename</STRONG>
+<DD> Sample file name
+    <DT><STRONG>sampleType</STRONG>
+<DD> Sample type, see <TT>enum</TT>
+        <A HREF="node14.html#MIDASsampleTypes">MIDASsampleTypes</A>
+    <DT><STRONG>loopSample</STRONG>
+<DD> Sample loop type, see <TT>enum</TT>
+        <A HREF="node14.html#MIDASloop">MIDASloop</A>
+<P>
+</DL><H3><A NAME="SECTION00531200000000000000">Description</A></H3>
+<P>
+This function loads a sound effect sample into memory and adds it to the
+Sound Device. The sample file must contain just the raw sample data, and all
+of it will be loaded into memory. If <B>loopSample</B> is
+MIDAS_LOOP_YES, the whole sample will be looped. After the sample has
+been loaded, it can be played using <A HREF="node16.html#MIDASplaySample">MIDASplaySample</A>, and it
+should be deallocated with <A HREF="node16.html#MIDASfreeSample">MIDASfreeSample</A> after it is no
+longer used.
+<P>
+<H3><A NAME="SECTION00531300000000000000">Return value</A></H3>
+<P>
+Sample handle if successful, NULL if failed.
+<P>
+<H3><A NAME="SECTION00531400000000000000">Operating systems</A></H3>
+<P>
+All
+<P>
+<H3><A NAME="SECTION00531500000000000000">See also</A></H3>
+<P>
+<A HREF="node16.html#MIDASplaySample">MIDASplaySample</A>, <A HREF="node16.html#MIDASfreeSample">MIDASfreeSample</A>
+<P>
+<BR> <HR><A NAME="MIDASfreeSample">&#160;</A><H2><A NAME="SECTION00532000000000000000">4.3.2 MIDASfreeSample</A></H2>
+<A NAME="1189">&#160;</A>
+<PRE>
+BOOL MIDASfreeSample(MIDASsample sample)</PRE>
+<P>
+Deallocates a sound effect sample.
+<P>
+<H3><A NAME="SECTION00532100000000000000">Input</A></H3>
+<P>
+<DL ><DT><STRONG>sample</STRONG>
+<DD> Sample to be deallocated
+<P>
+</DL><H3><A NAME="SECTION00532200000000000000">Description</A></H3>
+<P>
+This function deallocates a sound effect sample that has been previously
+loaded with <A HREF="node16.html#MIDASloadRawSample">MIDASloadRawSample</A>. It removes the sample from the
+Sound Device and deallocates the memory used. This function may not be called
+if the sample is still being played.
+<P>
+<H3><A NAME="SECTION00532300000000000000">Return value</A></H3>
+<P>
+TRUE if successful, FALSE if not.
+<P>
+<H3><A NAME="SECTION00532400000000000000">Operating systems</A></H3>
+<P>
+All
+<P>
+<H3><A NAME="SECTION00532500000000000000">See also</A></H3>
+<P>
+<A HREF="node16.html#MIDASloadRawSample">MIDASloadRawSample</A>
+<P>
+<BR> <HR><A NAME="MIDASsetAutoEffectChannels">&#160;</A><H2><A NAME="SECTION00533000000000000000">4.3.3 MIDASsetAutoEffectChannels</A></H2>
+<A NAME="1200">&#160;</A>
+<PRE>
+BOOL MIDASsetAutoEffectChannels(unsigned firstChannel,
+    unsigned numChannels)</PRE>
+<P>
+Sets the range of channels that can be used as automatic effect channels.
+<P>
+<H3><A NAME="SECTION00533100000000000000">Input</A></H3>
+<P>
+<DL ><DT><STRONG>firstChannel</STRONG>
+<DD> First channel that can be used
+    <DT><STRONG>numChannels</STRONG>
+<DD> Number of channels that can be used
+<P>
+</DL><H3><A NAME="SECTION00533200000000000000">Description</A></H3>
+<P>
+This function is used to set the range of channels that can be used as
+automatic effect channels by <A HREF="node16.html#MIDASplaySample">MIDASplaySample</A>. When
+<A HREF="node16.html#MIDASplaySample">MIDASplaySample</A> is passed MIDAS_CHANNEL_AUTO as the channel
+number, it will use one of these automatic channels to play the sound.
+<P>
+<H3><A NAME="SECTION00533300000000000000">Return value</A></H3>
+<P>
+TRUE if successful, FALSE if not.
+<P>
+<H3><A NAME="SECTION00533400000000000000">Operating systems</A></H3>
+<P>
+All
+<P>
+<H3><A NAME="SECTION00533500000000000000">See also</A></H3>
+<P>
+<A HREF="node16.html#MIDASplaySample">MIDASplaySample</A>
+<P>
+<BR> <HR><A NAME="MIDASplaySample">&#160;</A><H2><A NAME="SECTION00534000000000000000">4.3.4 MIDASplaySample</A></H2>
+<A NAME="1215">&#160;</A>
+<PRE>
+MIDASsamplePlayHandle MIDASplaySample(MIDASsample sample,
+    unsigned channel, int priority, unsigned rate,
+    unsigned volume, int panning)</PRE>
+<P>
+Plays a sound effect sample.
+<P>
+<H3><A NAME="SECTION00534100000000000000">Input</A></H3>
+<P>
+<DL ><DT><STRONG>sample</STRONG>
+<DD> The sample that will be played
+    <DT><STRONG>channel</STRONG>
+<DD> The channel number that is used to play the
+        sample. Use MIDAS_CHANNEL_AUTO to let <A HREF="node16.html#MIDASplaySample">MIDASplaySample</A>
+        select the channel automatically. See <TT>enum</TT>
+        <A HREF="node14.html#MIDASchannels">MIDASchannels</A>.
+    <DT><STRONG>priority</STRONG>
+<DD> Sample playing priority. The higher the value the
+        more important the sample is considered.
+    <DT><STRONG>rate</STRONG>
+<DD> Initial sample rate for the sample
+    <DT><STRONG>volume</STRONG>
+<DD> Initial volume for the sample
+    <DT><STRONG>panning</STRONG>
+<DD> Initial panning position for the sample. See
+        <TT>enum</TT> <A HREF="node14.html#MIDASpanning">MIDASpanning</A>.
+<P>
+</DL><H3><A NAME="SECTION00534200000000000000">Description</A></H3>
+<P>
+This function is used to play a sound effect sample on a given channel. The
+sample will receive as initial parameters the values passed as arguments, and
+playing the sample will be started. If <B>channel</B> is
+MIDAS_CHANNEL_AUTO, the channel will be selected automatically. The
+sample playing priority is used to choose the channel the sample will be
+played on in this case.
+<P>
+This function returns a sample playing handle, that can later be used to stop
+the sample or change its parameters. This makes it possible to refer to
+samples without knowing the exact channel they are played on.
+<P>
+<H3><A NAME="SECTION00534300000000000000">Return value</A></H3>
+<P>
+Sample playing handle if successful, NULL if failed.
+<P>
+<H3><A NAME="SECTION00534400000000000000">Operating systems</A></H3>
+<P>
+All
+<P>
+<H3><A NAME="SECTION00534500000000000000">See also</A></H3>
+<P>
+<A HREF="node16.html#MIDASstopSample">MIDASstopSample</A>, <A HREF="node16.html#MIDASsetAutoEffectChannels">MIDASsetAutoEffectChannels</A>
+<P>
+<BR> <HR><A NAME="MIDASstopSample">&#160;</A><H2><A NAME="SECTION00535000000000000000">4.3.5 MIDASstopSample</A></H2>
+<A NAME="1241">&#160;</A>
+<PRE>
+BOOL MIDASstopSample(MIDASsamplePlayHandle sample)</PRE>
+<P>
+Stops playing a sample.
+<P>
+<H3><A NAME="SECTION00535100000000000000">Input</A></H3>
+<P>
+<DL ><DT><STRONG>sample</STRONG>
+<DD> Sample to be stopped
+<P>
+</DL><H3><A NAME="SECTION00535200000000000000">Description</A></H3>
+<P>
+This function stops playing a sound effect sample started with
+<A HREF="node16.html#MIDASplaySample">MIDASplaySample</A>. Playing the sound will stop, and the channel is
+freed for other samples to use. Note that <B>sample</B> is
+the sample playing handle returned by <A HREF="node16.html#MIDASplaySample">MIDASplaySample</A>.
+<P>
+<H3><A NAME="SECTION00535300000000000000">Return value</A></H3>
+<P>
+TRUE if successful, FALSE if not.
+<P>
+<H3><A NAME="SECTION00535400000000000000">Operating systems</A></H3>
+<P>
+All
+<P>
+<H3><A NAME="SECTION00535500000000000000">See also</A></H3>
+<P>
+<A HREF="node16.html#MIDASplaySample">MIDASplaySample</A>
+<P>
+<BR> <HR><A NAME="MIDASsetSampleRate">&#160;</A><H2><A NAME="SECTION00536000000000000000">4.3.6 MIDASsetSampleRate</A></H2>
+<A NAME="1257">&#160;</A>
+<PRE>
+BOOL MIDASsetSampleRate(MIDASsamplePlayHandle sample,
+    unsigned rate)</PRE>
+<P>
+Changes the sample rate for a sound effect sample.
+<P>
+<H3><A NAME="SECTION00536100000000000000">Input</A></H3>
+<P>
+<DL ><DT><STRONG>sample</STRONG>
+<DD> Sample to be changed
+    <DT><STRONG>rate</STRONG>
+<DD> New sample rate for the sample
+<P>
+</DL><H3><A NAME="SECTION00536200000000000000">Description</A></H3>
+<P>
+This function changes the sample rate for a sound effect sample that is being
+played.
+<P>
+<H3><A NAME="SECTION00536300000000000000">Return value</A></H3>
+<P>
+TRUE if successful, FALSE if not.
+<P>
+<H3><A NAME="SECTION00536400000000000000">Operating systems</A></H3>
+<P>
+All
+<P>
+<H3><A NAME="SECTION00536500000000000000">See also</A></H3>
+<P>
+<A HREF="node16.html#MIDASplaySample">MIDASplaySample</A>
+<P>
+<BR> <HR><A NAME="MIDASsetSampleVolume">&#160;</A><H2><A NAME="SECTION00537000000000000000">4.3.7 MIDASsetSampleVolume</A></H2>
+<A NAME="1264">&#160;</A>
+<PRE>
+BOOL MIDASsetSampleVolume(MIDASsamplePlayHandle sample,
+    unsigned volume)</PRE>
+<P>
+Changes the volume for a sound effect sample.
+<P>
+<H3><A NAME="SECTION00537100000000000000">Input</A></H3>
+<P>
+<DL ><DT><STRONG>sample</STRONG>
+<DD> Sample to be changed
+    <DT><STRONG>rate</STRONG>
+<DD> New volume for the sample (0-64)
+<P>
+</DL><H3><A NAME="SECTION00537200000000000000">Description</A></H3>
+<P>
+This function changes the volume for a sound effect sample that is being
+played.
+<P>
+<H3><A NAME="SECTION00537300000000000000">Return value</A></H3>
+<P>
+TRUE if successful, FALSE if not.
+<P>
+<H3><A NAME="SECTION00537400000000000000">Operating systems</A></H3>
+<P>
+All
+<P>
+<H3><A NAME="SECTION00537500000000000000">See also</A></H3>
+<P>
+<A HREF="node16.html#MIDASplaySample">MIDASplaySample</A>
+<P>
+<BR> <HR><A NAME="MIDASsetSamplePanning">&#160;</A><H2><A NAME="SECTION00538000000000000000">4.3.8 MIDASsetSamplePanning</A></H2>
+<A NAME="1271">&#160;</A>
+<PRE>
+BOOL MIDASsetSamplePanning(MIDASsamplePlayHandle sample,
+    int panning)</PRE>
+<P>
+Changes the panning position of a sound effect sample.
+<P>
+<H3><A NAME="SECTION00538100000000000000">Input</A></H3>
+<P>
+<DL ><DT><STRONG>sample</STRONG>
+<DD> Sample to be changed
+    <DT><STRONG>panning</STRONG>
+<DD> New panning position for the sample (see
+        <TT>enum</TT> <A HREF="node14.html#MIDASpanning">MIDASpanning</A>)
+<P>
+</DL><H3><A NAME="SECTION00538200000000000000">Description</A></H3>
+<P>
+This function changes the panning position of a sound effect sample that is
+being played. See description of <TT>enum</TT> <A HREF="node14.html#MIDASpanning">MIDASpanning</A> for
+information about the panning position values.
+<P>
+<H3><A NAME="SECTION00538300000000000000">Return value</A></H3>
+<P>
+TRUE if successful, FALSE if not.
+<P>
+<H3><A NAME="SECTION00538400000000000000">Operating systems</A></H3>
+<P>
+All
+<P>
+<H3><A NAME="SECTION00538500000000000000">See also</A></H3>
+<P>
+<A HREF="node16.html#MIDASplaySample">MIDASplaySample</A>
+<P>
+<BR> <HR><A NAME="MIDASsetSamplePriority">&#160;</A><H2><A NAME="SECTION00539000000000000000">4.3.9 MIDASsetSamplePriority</A></H2>
+<A NAME="1288">&#160;</A>
+<PRE>
+BOOL MIDASsetSamplePriority(MIDASsamplePlayHandle sample,
+    int priority)</PRE>
+<P>
+Changes the playing priority of a sound effect sample.
+<P>
+<H3><A NAME="SECTION00539100000000000000">Input</A></H3>
+<P>
+<DL ><DT><STRONG>sample</STRONG>
+<DD> Sample to be changed
+    <DT><STRONG>priority</STRONG>
+<DD> New playing priority for the sample
+<P>
+</DL><H3><A NAME="SECTION00539200000000000000">Description</A></H3>
+<P>
+This function changes the playing priority a sound effect sample
+that is being played.
+<P>
+<H3><A NAME="SECTION00539300000000000000">Return value</A></H3>
+<P>
+TRUE if successful, FALSE if not.
+<P>
+<H3><A NAME="SECTION00539400000000000000">Operating systems</A></H3>
+<P>
+All
+<P>
+<H3><A NAME="SECTION00539500000000000000">See also</A></H3>
+<P>
+<A HREF="node16.html#MIDASplaySample">MIDASplaySample</A>
+<P>
+<HR><A NAME="tex2html321" HREF="node17.html"><IMG WIDTH=37 HEIGHT=24 ALIGN=BOTTOM ALT="next" SRC="../icons/next_motif.gif"></A> <A NAME="tex2html319" HREF="node13.html"><IMG WIDTH=26 HEIGHT=24 ALIGN=BOTTOM ALT="up" SRC="../icons/up_motif.gif"></A> <A NAME="tex2html315" HREF="node15.html"><IMG WIDTH=63 HEIGHT=24 ALIGN=BOTTOM ALT="previous" SRC="../icons/previous_motif.gif"></A> <A NAME="tex2html323" HREF="node1.html"><IMG WIDTH=65 HEIGHT=24 ALIGN=BOTTOM ALT="contents" SRC="../icons/contents_motif.gif"></A>  <BR>
+<B> Next:</B> <A NAME="tex2html322" HREF="node17.html">5 Stream playback</A>
+<B>Up:</B> <A NAME="tex2html320" HREF="node13.html">4 Sample playback</A>
+<B> Previous:</B> <A NAME="tex2html316" HREF="node15.html">Data types</A>
+<P><ADDRESS>
+<I>Petteri Kangaslampi <BR>
+Mon Jan 27 00:19:24 EET 1997</I>
+</ADDRESS>
+</BODY>
+</HTML>

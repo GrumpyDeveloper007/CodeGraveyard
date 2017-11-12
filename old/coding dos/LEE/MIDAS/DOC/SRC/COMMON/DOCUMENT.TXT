@@ -1,0 +1,46 @@
+Programmer's Guide
+------------------
+
+Introduction
+        Welcome
+        What is MIDAS?
+        Quick start
+                Minimal module player
+        About this manual
+
+The system
+        Overview of system architechture
+        Description of all modules
+                Sound Devices
+                GMPlayer
+                MIDAS kernel
+        Naming conventions
+        Calling conventions
+        Error handling
+
+Sound Devices
+        Introduction
+        Configuration
+                Port, IRQ and DMA
+                Sound Cards
+                Output modes
+                Sound quality
+        Samples
+                Sample types
+                Looping
+                Loading samples
+        Playing sounds
+                Playing samples
+                Modifying sound
+        Streams
+
+Simplified MIDAS API
+        Initialization
+        Configuration
+        Playing modules
+        Playing streams
+        Playing samples
+
+OS Specific Issues
+        MS-DOS timer
+        MS-DOS stream support

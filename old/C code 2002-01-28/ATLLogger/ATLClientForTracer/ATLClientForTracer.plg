@@ -1,0 +1,47 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: ATLClientForTracer - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "c:\windows\TEMP\RSP50E2.TMP" with contents
+[
+/nologo /MTd /W3 /Gm /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_MBCS" /D "_USRDLL" /Fp"Debug/ATLClientForTracer.pch" /Yu"stdafx.h" /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"C:\ArticleNo3\ATLLogApp\ATLClientForTracer\ATLClientForTracer.cpp"
+"C:\ArticleNo3\ATLLogApp\ATLClientForTracer\CoLoggerClient.cpp"
+]
+Creating command line "cl.exe @c:\windows\TEMP\RSP50E2.TMP" 
+Creating temporary file "c:\windows\TEMP\RSP50E3.TMP" with contents
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /incremental:yes /pdb:"Debug/ATLClientForTracer.pdb" /debug /machine:I386 /def:".\ATLClientForTracer.def" /out:"Debug/ATLClientForTracer.dll" /implib:"Debug/ATLClientForTracer.lib" /pdbtype:sept 
+.\Debug\ATLClientForTracer.obj
+.\Debug\StdAfx.obj
+.\Debug\ATLClientForTracer.res
+.\Debug\CoLoggerClient.obj
+]
+Creating command line "link.exe @c:\windows\TEMP\RSP50E3.TMP"
+Creating temporary file "c:\windows\TEMP\RSP50E4.BAT" with contents
+[
+@echo off
+regsvr32 /s /c ".\Debug\ATLClientForTracer.dll"
+echo regsvr32 exec. time > ".\Debug\regsvr32.trg"
+]
+Creating command line "c:\windows\TEMP\RSP50E4.BAT"
+Compiling...
+ATLClientForTracer.cpp
+CoLoggerClient.cpp
+Generating Code...
+Linking...
+   Creating library Debug/ATLClientForTracer.lib and object Debug/ATLClientForTracer.exp
+<h3>Output Window</h3>
+Performing registration
+
+
+
+<h3>Results</h3>
+ATLClientForTracer.dll - 0 error(s), 0 warning(s)
+</pre>
+</body>
+</html>

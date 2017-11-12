@@ -1,0 +1,33 @@
+; This file is maintained by HCW. Do not modify this file directly.
+
+[OPTIONS]
+ERRORLOG=SimpleInvoice.err
+DBCS=Yes
+LCID=0x809 0x0 0x0 ; English (United Kingdom)
+REPORT=Yes
+HLP=SimpleInvoice.hlp
+
+[FILES]
+SimpleInvoice.RTF
+..\Globals\Global Help RTF.rtf
+
+[MAP]
+AccountConfig=11
+CreditNote=9
+CustomerSearch=5
+GLOBAL_About=801
+GLOBAL_DatabaseView=800
+GLOBAL_PrintPreview=802
+GLOBAL_PrintPreviewGraph=803
+HandlingSetup=29
+Invoice=6
+InvoiceEnquiry=8
+Options=1
+Payment=10
+PDAInterface=7
+PrinterSetup=3
+ProductConfig=2
+Reports=4
+
+[WINDOWS]
+Main="Simple Invoice Help (www.pyrodesign.co.uk)",,27649,,(r12632256)

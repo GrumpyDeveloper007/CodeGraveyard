@@ -1,0 +1,44 @@
+// atltest.idl : IDL source for atltest.dll
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (atltest.tlb) and marshalling code.
+
+import "oaidl.idl";
+import "ocidl.idl";
+	
+	[
+		object,
+		uuid(9BBD6DB0-CEBD-11D3-B60F-D39622D2A572),
+		dual,
+		helpstring("IcStrings Interface"),
+		pointer_default(unique)
+	]
+	interface IcStrings : IDispatch
+	{
+		[propget, id(1), helpstring("property NumTokens")] HRESULT NumTokens([out, retval] long *pVal);
+		[propput, id(1), helpstring("property NumTokens")] HRESULT NumTokens([in] long newVal);
+//		[propget, id(2), helpstring("property strr")] HRESULT strr(BSTR *pparam, [out, retval] BSTR *pVal);
+//		[propput, id(2), helpstring("property strr")] HRESULT strr(BSTR *pparam, [in] BSTR newVal);
+	};
+
+[
+	uuid(9BBD6DA0-CEBD-11D3-B60F-D39622D2A572),
+	version(1.0),
+	helpstring("atltest 1.0 Type Library")
+]
+library ATLTESTLib
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+
+	
+	[
+		uuid(9BBD6DB1-CEBD-11D3-B60F-D39622D2A572),
+		helpstring("cStrings Class")
+	]
+	coclass cStrings
+	{
+		[default] interface IcStrings;
+	};
+};

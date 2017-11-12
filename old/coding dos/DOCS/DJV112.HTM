@@ -1,0 +1,128 @@
+<html>
+<head>
+<title>QuickStart Guide: DJGPP v1.12 Setup</title>
+</head>
+<body background="pics/newbg.jpg">
+<h1>DJGPP v1.12 Setup Instructions</h1>
+<p>
+<h3><b>Important:</b></h3>
+<p>
+<img src="pics/red-ball.gif" alt="*** ">
+All files should be unpacked by typing "<b>pkunzip -d -o -n file.zip</b>" or "<b>unzip -fo file.zip.</b>"
+<p>
+<img src="pics/red-ball.gif" alt="*** ">
+Maintenance files have to be installed <i>last</i> and <i>in order</i>: m1, m2,... After unzipping a maintenance file, you need to <i>run a batch file</i> that it installs <i>before</i> continuing with the next maintenance file.
+<p>
+<p>
+Version 1.12 is available at all Simtel mirrors. Try <a href="ftp://ftp.simtel.net/pub/simtelnet/gnu/djgpp/">simtelnet</a>. The files are distributed in the following directories: <a href="ftp://ftp.simtel.net/pub/simtelnet/gnu/djgpp/v1/">v1/</a>, <a href="ftp://ftp.simtel.net/pub/simtelnet/gnu/djgpp/v1gnu/">v1gnu/</a> and <a href="ftp://ftp.simtel.net/pub/simtelnet/gnu/djgpp/v1misc/">v1misc/</a>.So which files should you get? Well, you need: (with their zip file sizes)
+<ul>
+ <li> djeoe112.zip - execution-only environment (120K)
+ <li> djdev112.zip - basic development libs (460K)
+ <li> bnu252bn.zip - binary utilities (1004K)
+ <li> gcc263bn.zip - GCC binaries (630K)
+ <li> txi310bn.zip - online info reader (154K)
+ <li> djdoc112.zip - base documentation (224K)
+ <li> dj112m1.zip  - maintenance files (1104K combined)
+ <li> dj112m2.zip  
+ <li> dj112m3.zip
+ <li> dj112m4.zip
+</ul>
+Additionally, for C++, these are needed:
+<ul>
+ <li> gpp263.zip   - G++ binaries (682K)
+ <li> lgp262bn.zip - C++ libs (434K)
+</ul>
+And, whether it be C or C++ programming, the following tools are highly recommended:
+<ul>
+  <li> gdb412bn.zip - GNU debugger (660K)
+  <li> mak371bn.zip - GNU make (102K)
+  <li> *dc.zip      - all other manuals; for C/C++: bnu252dc.zip, gcc263dc.zip, gdb412dc.zip, mak371dc.zip, txi310dc.zip; for C++: lgp262dc.zip      
+</ul>
+<p>
+In general, for v1.12, *bn.zip are binaries, *sr*.zip and *s?.zip are sources, and *dc.zip are docs. Get the <a href="ftp://ftp.simtel.net/pub/simtelnet/gnu/djgpp/00_index.txt">index file</a> for a complete listing with short descriptions at simtelnet. 
+<p>
+<hr size=5>
+<p>
+<img src="pics/red-ball.gif" alt="*** ">
+After unpacking the files into a directory, you need to set up a few environment variables and make sure the compiler knows where to look for important things such as standard include files, etc. Let's assume you unzipped DJGPP into c:\djgpp.
+<p>
+<ul>
+ <li>Add the c:\djgpp\bin directory to your PATH variable. For example, if you have "set PATH=c:\;c:\dos" in your AUTOEXEC.BAT file, you would have to change it to "set PATH=c:\;c:\dos;c:\djgpp\bin".
+<p>
+ <li>Set the DJGPP variable to point to the djgpp.env file. For example, add the line "set DJGPP=c:/djgpp/djgpp.env" to your AUTOEXEC.BAT file.
+<p>
+ <li> set TMPDIR=c:\yourtempdir (DJGPP needs some temp space while building) 
+<p>
+ <li> set GO32TMP=c:\yourtempdir (DJGPP needs some temp space while building)
+<p>
+ <li> set GO32=driver c:\djgpp\drv\yourgraphics.drv gw 640 gh 480 nc 256(specify your graphics driver and specify the color and resolution)
+<p>
+ <li> set GO32=emu c:\djgpp\bin\emu387 (if your CPU doesn't have a math coprocessor)
+</ul>
+<p>
+<img src="pics/red-ball.gif" alt="*** ">
+The FAQ list has a complete list of other environment variables that you might want to set to suit your specific needs.
+<p>
+<hr size=5>
+<p>
+<a href="djsetup.html"><img src="pics/previous.gif" alt="Previous"></a>
+<p>
+Copyright &copy; 1995-96 avly@castle.net All Rights Reserved
+<p>
+<em>All trademarks mentioned are of their respective companies.</em>
+<h4>Standard Disclaimer</h4>
+There are absolutely no guarantees, expressed or implied, on anything that you find in this document. I cannot be held responsible for anything that results from the use or misuse of this document.
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

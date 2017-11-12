@@ -1,0 +1,251 @@
+-------------------------------------------------------------------------------
+65816 Cross Assembler (c) 1994 Jeremy Gordon
+-------------------------------------------------------------------------------
+
+you are free to use this program, you are free to do anything you want with
+products of this program.....you are free to distribute this program....you
+may <not> charge any money for this program....you may <not> distribute this
+program in a modified form.
+
+please don't modify the source and redistribute; if you have any worthwhile
+changes (or bugfixes) please mail them to me (jgordon@animator.slip.umd.edu)
+and I will incorperate them into an official release of the program, so that
+everyone can share in your additions.
+
+as this program is free software, i do not accept any liability for this
+program whatsoever. please let me know if you like (don't like) this program
+so that I can have some motivation to improve on it....
+
+
+-------------------------------------------------------------------------------
+general
+-------------------------------------------------------------------------------
+
+this assembler is based upon the two pass model, (avoids future reference
+problems, and allows for generation of relocatable object code...) unlike
+others such as snesasm/trasm which are one pass design, which have other
+advantages...
+
+despite this, it still is <very fast>, and contains unoptimized lookup code
+(waiting to be optimized with hash tables), so future versions may be even
+faster....as well as support relocatable object code (allowing a library of
+assembly functions to be kept) 
+
+see the future section at the end for more details...
+
+-------------------------------------------------------------------------------
+intruction set & addressing modes
+-------------------------------------------------------------------------------
+
+the entire western design center 65C816 instruction set is implemented, and
+following thier guidelines:
+
+	lda	#<expr
+
+forces the instruction to two bytes (opcode, value)
+
+	lda	#expr
+
+forces the instruction to three bytes (opcode, word value)
+
+	lda 	#>expr
+
+forces the instruction to be assembled to four bytes (opcode, low, mid, high) 
+the WDC standard "|" and "!" to specify word length are <not> implemented in
+this assembler, in fact they are used as the "or" and "not" operators....so
+don't use them to force word lenght....the assembler defaults to word length;
+even if the argument is clearly not word length....ie: unlike snesasm.exe
+
+
+	lda 	#$10000
+	lda	#$0
+
+both mean the same thing....generate a three byte long instruction, $AD $00 $00
+
+
+                    >>>>>>>>>>>>please note<<<<<<<<<<<<
+
+please recognize that if you don't specify, the operand defaults to <word>
+length....this means you <must> check to make sure that you symbol is not
+long.....for example consider the following:
+
+
+	start	lda mydata
+		pad
+	mydata	dcb "this doesn't do what you think"
+
+
+even though it is obvious here that the programmer intended the "lda myData"
+to load the data specified in the dcb statment, the lda will only load from
+the address (myData & $ffff)  because the default is word length...and due to
+the "pad" mydata is in the <next> bank, so what the programmer really wanted
+was
+
+	start	lda >mydata
+		pad
+	mydata	dcb "that's more like it"
+
+-------------------------------------------------------------------------------
+expression evaluation & constants
+-------------------------------------------------------------------------------
+
+the prefix $ denotes a hex constant, and no prefix denotes a deicmal constant
+expressions may use the following operators:
+
+	-	  unary minus (negate using two's compelment)
+	+,-,*,/   the usual following order of operations
+	^,&,|,!,% xor, and, or, not, mod
+	<<,>>	  shift left, and shift right
+	{,}	  the left and right parentheses ( the "(" and ")" imply
+		  an addressing mode...and are not valid in expressions
+	==	  condition assembly, kinda.... "120==200" evaluates to "0"
+		  (false) whereas "{2*3}==6" would evaluate to "1" (true)
+	:b,:w,:l  these are "typecasting" operators, to be used in place of
+		  all the "&ff" and "$ffff"'s....so you force symbols to be
+		  of word length by "mysymbol:w"
+
+so:
+	{{2+3}*5>>2}&$ff
+
+means, 2+3, then multiply by five, then shift right 2, then and with
+the hex $ff.  
+		
+-------------------------------------------------------------------------------
+reserved symbols & snes cartridge info
+-------------------------------------------------------------------------------
+
+the maximum label length is 15 characters, the label cannot start with a number.
+the labels are case insensitive.
+
+the following symbols are reserved; and are used to define the snes interrupt
+vectors...
+
+_country	the country code (set via an "equ" directive)
+_version	the version code (0=version 1, 1=version 2, etc...)
+_reset		the reset interrupt vector
+
+_coprocessor	the coprocessor interrupt vector
+_break		the break interrupt vector (same as the irq in emulation mode)
+_abort		the abort interrupt vector
+_irq		the irq interrupt vector
+_nmi		the NMI interrupt vector
+
+please note that the break and irq both point to only one vector in emulation
+mode. so in the following code:
+
+	e_irq	equ $8000
+	e_break equ $8200	
+
+would set the vector to $8000, and then set it to $8200...
+also there is a unified reset vector, that both native an emulation mode use...
+so e_reset, and n_reset refer to the same thing...
+
+you can set the emulation mode and native mode interrupts separately, by
+affixing an "e" or an "n" to the begining of the label. for example:
+
+	_nmi  equ	$8000
+	e_nmi equ	$8100
+
+would set both native and emulation vectors to be $8000, and then the emulation
+mode vector would be changed to $8100. (note the easiest way to set these labels, 
+instead of the equ, would be to just put them at the proper place in the code,
+ie:
+
+	_nmi
+	vblank		lda #$00
+			sta $210d
+			sta $210d
+
+multiple labels to the same location are <definitely> allowed...but they must
+be on seperate lines....
+
+ie:
+
+_reset
+start     	lda $234
+
+and not:
+
+_reset start	lda $234
+
+
+local labels are also allowed, they are labels that consist of only "-" symbols
+so the following are all valid (but are local, and do not show up in the symbol
+table):
+
+		lda $ff	
+	- 	sbc $01
+		bne -	
+
+	--	sta $1212
+			    ; note you can use local labels in expressions
+		ldy ---5    ; this is taken as "--" minus 5 !! cool eh?
+			    ; but now "--" is undefined so the following line
+			    ; will error on "label '--' undefined
+		bne --	
+
+-------------------------------------------------------------------------------
+assembler directives
+-------------------------------------------------------------------------------
+
+	"equ" 	equate a label with value, for example
+
+_reset equ $8000
+
+	"bin"	include a binary source file, (larger than 32k is fine, it will
+		be properly loaded into the top half of the next bank) ex:
+
+	bin graphics/mypic.set
+
+	"inl"	include a program file (like the init.h header distriuted with
+		the test program) 
+
+	inl include/init.h
+
+	"pad"	pad to the beginning of the next bank, also an argument can be
+		given, then, the file is padded untill the location specified
+
+	    <<<<note>>>> current bug, due to incomplete hirom support, if you
+		try to pad below the value you are at, the assembler will become
+		confused, ie:
+
+	pad	$9000
+	pad	$3000     <----should pad over the bank boundry, but is broken
+
+	"dcb"	variables, byte, word, and double word...
+	"dcw" 	
+	"dcd"
+
+	"org" 	specify where to begin assembling code....
+
+
+-------------------------------------------------------------------------------
+coming attractions
+-------------------------------------------------------------------------------
+
+the assembler <basically> support hirom compilation....in -hi mode, all code is
+generated in 64k banks, data files are loaded correctly, etc....however, I
+<don't> know how to tell the snes/swc that my game is hirom....and I don't know
+if there is something I'm missing, so....if anybody wants to mail me on the subject
+there will be complete hirom support. for now, it compiles in 64k banks, so if
+you know which bits to toggle to set the snes/swc for hirom, everything else
+<is> correct :) 
+
+ * macros
+
+ * 65816 simulator: a text mode debugger, that allows you to step through your
+    program line by line, and watch registers/key memory locations....
+    written in g++ with curses (compilable under dos/os2 with emx/bsdcurses)
+
+ * real mode version using borlandc ??? (for 286's, depends upon requests....)
+
+-------------------------------------------------------------------------------
+Thanks & Acknowledgements
+-------------------------------------------------------------------------------
+
+special thanks to _Norm (John Corey) and SirJinx for alpha testing....
+
+special thanks to Norman Yen for his snesasm.exe and trasm.exe and the sources
+	to them....without which smc.c wouldn't be happening...
+
+special thanks to JackRippr for the Amiga compilation...

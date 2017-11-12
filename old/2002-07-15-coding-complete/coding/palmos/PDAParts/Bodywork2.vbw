@@ -1,0 +1,8 @@
+FRMMain = 99, 95, 654, 539, C, 269, 33, 487, 279, C
+FRMSelectPart = 21, 110, 745, 631, C, 505, 37, 719, 319, C
+FRMPartDetails = 88, 88, 643, 532, C, 22, 22, 254, 302, C
+FRMSummary = 44, 44, 599, 488, C, 510, 43, 741, 311, C
+modPartsDatabase = 53, 40, 744, 607, C
+MODStorage = 0, 0, 0, 0, C
+modParamDatabase = 176, 176, 731, 620, C
+modReturnDatabase = 154, 154, 709, 598, C

@@ -1,0 +1,12 @@
+modAddressDB = 66, 66, 708, 601, C
+modMain = 88, 88, 643, 532, C
+frmMain = 34, 18, 721, 551, C, 531, 16, 735, 256, C
+frmDetails = 32, 37, 753, 614, C, 290, 271, 494, 514, C
+frmNew = 66, 66, 703, 556, C, 53, 283, 260, 525, C
+FRMEstimate = 44, 19, 734, 619, C, 262, 12, 466, 255, C
+modProductDatabase = 107, 91, 717, 520, C
+FRMFindProduct = 7, 44, 744, 588, , 30, 23, 235, 265, C
+modELF2InvoiceDatabase = 0, 0, 738, 597, C
+PalmGlobalFunctions = 44, 44, 603, 488, C
+modELF2LineDatabase = 110, 110, 669, 554, C
+modELF2StaticDatabase = 176, 176, 735, 620, C

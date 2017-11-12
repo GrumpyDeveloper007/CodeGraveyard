@@ -1,0 +1,379 @@
+[Root]
+Most Recent Package=SInvoice Setup Package
+
+
+[Package|Setup Package|Root]
+SubWizProgID=PDWizard.SetupPkgSubWiz
+BuildFolder=D:\coding\Package\SimpleInvoice
+
+[Package|Setup Package|Configure DAO ISAMs]
+Applicable=No
+
+[Package|Setup Package|Configure DAO ODBC]
+JetWorkspace=
+ODBCDirect=
+
+[Package|Setup Package|Files Found]
+
+[Package|Setup Package|Files Released]
+TXTBOX.OCX=
+minvoice.mdb=
+
+[Package|Setup Package|Missing Dependency Information]
+D:\coding\Globals\OCX\DateControl.ocx=
+D:\coding\Globals\OCX\TxtBox.ocx=
+E:\Program Files\Common Files\System\ado\msado25.tlb=
+D:\coding\SimpleInvoice\DateControl.ocx=
+D:\coding\SimpleInvoice\TxtBox.ocx=
+E:\WINNT\system32\Flp32x20.ocx=
+E:\WINNT\system32\DateControl.ocx=
+E:\WINNT\system32\TxtBox.ocx=
+E:\Farpoint\redist\Mfc42.dll=
+E:\Farpoint\redist\Msvcrt.dll=
+
+[Package|Setup Package|Out-of-Date Dependency Information]
+
+[Package|Setup Package|Files In Project]
+D:\coding\SimpleInvoice\SInvoice.exe=Yes
+D:\coding\SimpleInvoice\SIMPLEINVOICE.HLP=Yes
+D:\coding\SimpleInvoice\SInvoice.mdb=Yes
+D:\coding\SimpleInvoice\SInvoice.bmp=Yes
+E:\WINNT\system32\Msvbvm60.dll=Yes
+E:\Program Files\coding\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\OLEAUT32.DLL=Yes
+E:\Program Files\coding\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\OLEPRO32.DLL=Yes
+E:\Program Files\coding\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\ASYCFILT.DLL=Yes
+E:\Program Files\coding\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\STDOLE2.TLB=Yes
+E:\Program Files\coding\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\COMCAT.DLL=Yes
+E:\WINNT\system32\Comdlg32.ocx=Yes
+E:\WINNT\system32\MSMASK32.OCX=Yes
+E:\WINNT\system32\MSINET.OCX=Yes
+E:\WINNT\system32\Mswinsck.ocx=Yes
+E:\WINNT\system32\TABCTL32.OCX=Yes
+E:\Program Files\coding\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\MDAC_TYP.EXE=Yes
+E:\Program Files\coding\Microsoft Visual Studio\VB98\Wizards\PDWizard\SETUP.EXE=Yes
+E:\Program Files\coding\Microsoft Visual Studio\VB98\Wizards\PDWizard\SETUP1.EXE=Yes
+E:\WINNT\system32\VB6STKIT.DLL=Yes
+E:\Program Files\coding\Microsoft Visual Studio\VB98\Wizards\PDWizard\ST6UNST.EXE=Yes
+E:\WINNT\system32\TxtBox.ocx=Yes
+E:\WINNT\system32\DateControl.ocx=Yes
+E:\WINNT\system32\Flp32x20.ocx=Yes
+E:\Farpoint\redist\Mfc42.dll=Yes
+E:\Farpoint\redist\Msvcrt.dll=Yes
+
+[Package|Setup Package|Configure Registry Files]
+Applicable=No
+
+[Package|Setup Package|Configure Remote Servers]
+Applicable=No
+
+[Package|Setup Package|Install Locations]
+D:\coding\SimpleInvoice\MInvoice.exe=$(AppPath)
+E:\WINNT\system32\MSVBVM60.DLL=$(WinSysPathSysFile)
+E:\Program Files\coding\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\OLEAUT32.DLL=$(WinSysPathSysFile)
+E:\Program Files\coding\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\OLEPRO32.DLL=$(WinSysPathSysFile)
+E:\Program Files\coding\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\ASYCFILT.DLL=$(WinSysPathSysFile)
+E:\Program Files\coding\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\STDOLE2.TLB=$(WinSysPathSysFile)
+E:\Program Files\coding\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\COMCAT.DLL=$(WinSysPathSysFile)
+E:\Program Files\Common Files\System\ado\msado25.tlb=$(WinSysPath)
+D:\coding\Globals\OCX\TxtBox.ocx=$(WinSysPath)
+E:\WINNT\system32\COMDLG32.OCX=$(WinSysPath)
+E:\WINNT\system32\THREED32.OCX=$(WinSysPath)
+E:\Program Files\coding\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\MFC40.DLL=$(WinSysPathSysFile)
+E:\Program Files\coding\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\MSVCRT40.DLL=$(WinSysPathSysFile)
+D:\coding\Globals\OCX\DateControl.ocx=$(WinSysPath)
+E:\WINNT\system32\MSMASK32.OCX=$(WinSysPath)
+E:\Program Files\coding\Lstpro20\BIN\Flp32x20.ocx=$(WinSysPath)
+E:\WINNT\system32\mfc42.dll=$(WinSysPathSysFile)
+E:\WINNT\system32\msvcrt.dll=$(WinSysPathSysFile)
+E:\Program Files\coding\Microsoft Visual Studio\VB98\Wizards\PDWizard\SETUP.EXE=$(AppPath)
+E:\Program Files\coding\Microsoft Visual Studio\VB98\Wizards\PDWizard\SETUP1.EXE=$(WinPath)
+E:\WINNT\system32\VB6STKIT.DLL=$(WinSysPathSysFile)
+E:\Program Files\coding\Microsoft Visual Studio\VB98\Wizards\PDWizard\ST6UNST.EXE=$(WinPath)
+D:\coding\Package\SimpleInvoice\BlankDataBase\MInvoice.mdb=$(AppPath)
+D:\coding\SimpleInvoice\SInvoice.exe=$(AppPath)
+C:\WIN98\SYSTEM\Msvbvm60.dll=$(WinSysPathSysFile)
+C:\Program Files\coding\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\OLEAUT32.DLL=$(WinSysPathSysFile)
+C:\Program Files\coding\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\OLEPRO32.DLL=$(WinSysPathSysFile)
+C:\Program Files\coding\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\ASYCFILT.DLL=$(WinSysPathSysFile)
+C:\Program Files\coding\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\STDOLE2.TLB=$(WinSysPathSysFile)
+C:\Program Files\coding\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\COMCAT.DLL=$(WinSysPathSysFile)
+D:\coding\SimpleInvoice\TxtBox.ocx=$(WinSysPath)
+C:\WIN98\SYSTEM\Comdlg32.ocx=$(WinSysPath)
+C:\WIN98\SYSTEM\THREED32.OCX=$(WinSysPath)
+C:\Program Files\coding\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\MFC40.DLL=$(WinSysPathSysFile)
+C:\Program Files\coding\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\MSVCRT40.DLL=$(WinSysPathSysFile)
+D:\coding\SimpleInvoice\DateControl.ocx=$(WinSysPath)
+C:\WIN98\SYSTEM\MSMASK32.OCX=$(WinSysPath)
+C:\Program Files\coding\Lstpro20\BIN\Flp32x20.ocx=$(WinSysPath)
+C:\WIN98\SYSTEM\MFC42.DLL=$(WinSysPathSysFile)
+C:\WIN98\SYSTEM\MSVCRT.DLL=$(WinSysPathSysFile)
+C:\WIN98\SYSTEM\MSINET.OCX=$(WinSysPath)
+C:\WIN98\SYSTEM\Mswinsck.ocx=$(WinSysPath)
+C:\WIN98\SYSTEM\tabctl32.ocx=$(WinSysPath)
+D:\coding\SimpleInvoice\SIMPLEINVOICE.HLP=$(AppPath)
+C:\Program Files\coding\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\MDAC_TYP.EXE=$(AppPath)
+C:\Program Files\coding\Microsoft Visual Studio\VB98\Wizards\PDWizard\SETUP.EXE=$(AppPath)
+C:\Program Files\coding\Microsoft Visual Studio\VB98\Wizards\PDWizard\SETUP1.EXE=$(WinPath)
+C:\WIN98\SYSTEM\Vb6stkit.dll=$(WinSysPathSysFile)
+C:\Program Files\coding\Microsoft Visual Studio\VB98\Wizards\PDWizard\ST6UNST.EXE=$(WinPath)
+D:\coding\SimpleInvoice\SInvoice.mdb=$(AppPath)
+D:\coding\SimpleInvoice\SInvoice.bmp=$(AppPath)
+E:\WINNT\system32\MSINET.OCX=$(WinSysPath)
+E:\WINNT\system32\Mswinsck.ocx=$(WinSysPath)
+E:\WINNT\system32\TABCTL32.OCX=$(WinSysPath)
+E:\Program Files\coding\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\MDAC_TYP.EXE=$(AppPath)
+E:\WINNT\system32\TxtBox.ocx=$(WinSysPath)
+E:\WINNT\system32\DateControl.ocx=$(WinSysPath)
+E:\WINNT\system32\Flp32x20.ocx=$(WinSysPath)
+E:\Farpoint\redist\Mfc42.dll=$(WinSysPath)
+E:\Farpoint\redist\Msvcrt.dll=$(WinSysPath)
+
+[Package|Setup Package|Configure Shared Files]
+Applicable=Yes
+D:\coding\SimpleInvoice\MInvoice.exe=No
+D:\coding\Package\SimpleInvoice\BlankDataBase\MInvoice.mdb=No
+D:\coding\SimpleInvoice\SInvoice.exe=No
+D:\coding\SimpleInvoice\SIMPLEINVOICE.HLP=No
+C:\Program Files\coding\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\MDAC_TYP.EXE=Yes
+D:\coding\SimpleInvoice\SInvoice.mdb=No
+D:\coding\SimpleInvoice\SInvoice.bmp=No
+E:\Program Files\coding\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\MDAC_TYP.EXE=No
+
+[Package|Setup Package|Distribution]
+Type=single
+Size=
+Title=SInvoice
+
+[Package|Setup Package|Files Added]
+d:\coding\simpleinvoice\sinvoice.mdb=
+d:\coding\simpleinvoice\sinvoice.bmp=
+E:\Farpoint\redist\Mfc42.dll=
+E:\Farpoint\redist\Msvcrt.dll=
+
+[Package|Setup Package|Files Removed]
+
+[Package|Setup Package|Package]
+PackageFolder=D:\coding\Package\SimpleInvoice
+ProjectFolder=D:\coding\SimpleInvoice
+ServerSideCab=
+File1=D:\coding\Package\SimpleInvoice\setup.exe
+File2=D:\coding\Package\SimpleInvoice\Setup.Lst
+File3=D:\coding\Package\SimpleInvoice\SInvoice.CAB
+Handler1=PDWizard.FolderDplySubWiz
+Handler2=PDWizard.WebPostDplySubWiz
+
+[Package|Setup Package|IconGroups]
+Group0=SimpleInvoice
+PrivateGroup0=-1
+Parent0=$(Programs)
+
+[Package|Setup Package|SimpleInvoice]
+Icon1=SInvoice.exe
+Title1=SInvoice
+StartIn1=$(AppPath)
+Key1=Icon1
+
+
+[Package|SInvoice Setup Package|Root]
+SubWizProgID=PDWizard.SetupPkgSubWiz
+BuildFolder=c:\coding\Package\SimpleInvoice
+
+[Package|SInvoice Setup Package|Configure DAO ISAMs]
+Applicable=No
+
+[Package|SInvoice Setup Package|Configure DAO ODBC]
+JetWorkspace=
+ODBCDirect=
+
+[Package|SInvoice Setup Package|Files Found]
+Mfc42.dll=C:\Farpoint\redist\Mfc42.dll
+
+[Package|SInvoice Setup Package|Files Released]
+
+[Package|SInvoice Setup Package|Missing Dependency Information]
+E:\WINNT\system32\Flp32x20.ocx=
+E:\WINNT\system32\DateControl.ocx=
+E:\WINNT\system32\TxtBox.ocx=
+E:\Farpoint\redist\Mfc42.dll=
+E:\Farpoint\redist\Msvcrt.dll=
+D:\Program Files\AppForge\Platforms\Win32\TargetImage\afPDBLib.dll=
+E:\Program Files\Common Files\System\ado\msado26.tlb=
+E:\Program Files\Handspring\PalmCntl.ocx=
+D:\coding\palmos\SIPalmDll\ELF2Dll.dll=
+C:\Farpoint\redist\Mfc42.dll=
+C:\WINNT\system32\DateControl.ocx=
+C:\WINNT\system32\TxtBox.ocx=
+C:\Program Files\CDK402a\Common\Bin\C4.02\PalmCntl.ocx=
+C:\Program Files\Common Files\System\ado\msado26.tlb=
+
+[Package|SInvoice Setup Package|Out-of-Date Dependency Information]
+E:\WINNT\system32\comdlg32.ocx=
+C:\WINNT\system32\comdlg32.ocx=
+
+[Package|SInvoice Setup Package|Files Added]
+mfc42.dll=
+e:\farpoint\redist\msvcrt.dll=
+d:\coding\simpleinvoice\sinvoice.bmp=
+d:\coding\simpleinvoice\sinvoice.mdb=
+D:\coding\SimpleInvoice\Release\SInvoiceBack.bmp=
+D:\coding\palmos\SIPalmDll\ELF2Dll.dll=
+D:\coding\palmos\SIPalm\SIPalm.prc=
+D:\coding\palmos\SIPalm\ELF2Line.pdb=
+D:\coding\palmos\SIPalm\ELF2Static.pdb=
+D:\coding\palmos\SIPalm\Product.PDB=
+D:\coding\palmos\SIPalm\ELF2Invoice.pdb=
+C:\coding\SimpleInvoice\SInvoice.mdb=
+C:\coding\SimpleInvoice\SInvoice.bmp=
+
+[Package|SInvoice Setup Package|Files Removed]
+e:\program files\coding\microsoft visual studio\vb98\wizards\pdwizard\redist\mdac_typ.exe=
+c:\program files\common files\system\ado\msado26.tlb=
+
+[Package|SInvoice Setup Package|Files In Project]
+C:\coding\SimpleInvoice\SInvoice.exe=Yes
+C:\WINNT\system32\msvbvm60.dll=Yes
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\OLEAUT32.DLL=Yes
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\OLEPRO32.DLL=Yes
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\ASYCFILT.DLL=Yes
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\STDOLE2.TLB=Yes
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\COMCAT.DLL=Yes
+C:\Program Files\Common Files\System\ado\msado26.tlb=Yes
+C:\Program Files\CDK402a\Common\Bin\C4.02\PalmCntl.ocx=Yes
+C:\WINNT\system32\TxtBox.ocx=Yes
+C:\WINNT\system32\comdlg32.ocx=Yes
+C:\WINNT\system32\DateControl.ocx=Yes
+C:\WINNT\system32\MSMASK32.OCX=Yes
+C:\Program Files\ListPro3\BIN\Flp32a30.ocx=Yes
+C:\WINNT\system32\atl.dll=Yes
+C:\WINNT\system32\msvcrt.dll=Yes
+C:\WINNT\system32\MSWINSCK.OCX=Yes
+C:\WINNT\system32\TABCTL32.OCX=Yes
+C:\WINNT\system32\MSCHRT20.OCX=Yes
+C:\WINNT\system32\MSADODC.OCX=Yes
+C:\WINNT\system32\MSSTDFMT.DLL=Yes
+C:\WINNT\system32\MSDATGRD.OCX=Yes
+C:\WINNT\system32\MSBIND.DLL=Yes
+C:\coding\SimpleInvoice\SIMPLEINVOICE.HLP=Yes
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\SETUP.EXE=Yes
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\SETUP1.EXE=Yes
+C:\WINNT\system32\VB6STKIT.DLL=Yes
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\ST6UNST.EXE=Yes
+C:\Farpoint\redist\Mfc42.dll=Yes
+C:\coding\SimpleInvoice\SInvoice.bmp=Yes
+
+[Package|SInvoice Setup Package|Configure Registry Files]
+Applicable=No
+
+[Package|SInvoice Setup Package|Configure Remote Servers]
+Applicable=No
+
+[Package|SInvoice Setup Package|Install Locations]
+D:\coding\SimpleInvoice\SInvoice.exe=$(AppPath)
+E:\WINNT\system32\Msvbvm60.dll=$(WinSysPathSysFile)
+E:\Program Files\coding\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\OLEAUT32.DLL=$(WinSysPathSysFile)
+E:\Program Files\coding\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\OLEPRO32.DLL=$(WinSysPathSysFile)
+E:\Program Files\coding\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\ASYCFILT.DLL=$(WinSysPathSysFile)
+E:\Program Files\coding\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\STDOLE2.TLB=$(WinSysPathSysFile)
+E:\Program Files\coding\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\COMCAT.DLL=$(WinSysPathSysFile)
+E:\WINNT\system32\TxtBox.ocx=$(WinSysPath)
+E:\WINNT\system32\Comdlg32.ocx=$(WinSysPath)
+E:\WINNT\system32\DateControl.ocx=$(WinSysPath)
+E:\WINNT\system32\MSMASK32.OCX=$(WinSysPath)
+E:\WINNT\system32\Flp32x20.ocx=$(WinSysPath)
+E:\WINNT\system32\MSINET.OCX=$(WinSysPath)
+E:\WINNT\system32\Mswinsck.ocx=$(WinSysPath)
+E:\WINNT\system32\TABCTL32.OCX=$(WinSysPath)
+D:\coding\SimpleInvoice\SIMPLEINVOICE.HLP=$(AppPath)
+E:\Program Files\coding\Microsoft Visual Studio\VB98\Wizards\PDWizard\SETUP.EXE=$(AppPath)
+E:\Program Files\coding\Microsoft Visual Studio\VB98\Wizards\PDWizard\SETUP1.EXE=$(WinPath)
+E:\WINNT\system32\VB6STKIT.DLL=$(WinSysPathSysFile)
+E:\Program Files\coding\Microsoft Visual Studio\VB98\Wizards\PDWizard\ST6UNST.EXE=$(WinPath)
+E:\Farpoint\redist\Mfc42.dll=$(WinSysPath)
+E:\Farpoint\redist\Msvcrt.dll=$(WinSysPath)
+D:\coding\SimpleInvoice\SInvoice.bmp=$(AppPath)
+D:\coding\SimpleInvoice\SInvoice.mdb=$(AppPath)
+E:\Program Files\Common Files\System\ado\msado26.tlb=$(WinSysPath)
+D:\Program Files\AppForge\Platforms\Win32\TargetImage\afPDBLib.dll=$(WinSysPath)
+E:\Program Files\Handspring\PalmCntl.ocx=$(WinSysPath)
+E:\WINNT\system32\MSCHRT20.OCX=$(WinSysPath)
+D:\coding\SimpleInvoice\Release\SInvoiceBack.bmp=$(AppPath)
+D:\coding\palmos\SIPalmDll\ELF2Dll.dll=$(WinSysPath)
+D:\coding\palmos\SIPalm\SIPalm.prc=$(AppPath)
+D:\coding\palmos\SIPalm\ELF2Line.pdb=$(AppPath)
+D:\coding\palmos\SIPalm\ELF2Static.pdb=$(AppPath)
+D:\coding\palmos\SIPalm\Product.PDB=$(AppPath)
+D:\coding\palmos\SIPalm\ELF2Invoice.pdb=$(AppPath)
+C:\coding\SimpleInvoice\SInvoice.exe=$(AppPath)
+C:\WINNT\system32\msvbvm60.dll=$(WinSysPathSysFile)
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\OLEAUT32.DLL=$(WinSysPathSysFile)
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\OLEPRO32.DLL=$(WinSysPathSysFile)
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\ASYCFILT.DLL=$(WinSysPathSysFile)
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\STDOLE2.TLB=$(WinSysPathSysFile)
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\COMCAT.DLL=$(WinSysPathSysFile)
+C:\Program Files\CDK402a\Common\Bin\C4.02\PalmCntl.ocx=$(WinSysPath)
+C:\WINNT\system32\TxtBox.ocx=$(WinSysPath)
+C:\WINNT\system32\comdlg32.ocx=$(WinSysPath)
+C:\WINNT\system32\DateControl.ocx=$(WinSysPath)
+C:\WINNT\system32\MSMASK32.OCX=$(WinSysPath)
+C:\Program Files\ListPro3\BIN\Flp32a30.ocx=$(WinSysPath)
+C:\WINNT\system32\atl.dll=$(WinSysPathSysFile)
+C:\WINNT\system32\msvcrt.dll=$(WinSysPathSysFile)
+C:\WINNT\system32\MSWINSCK.OCX=$(WinSysPath)
+C:\WINNT\system32\TABCTL32.OCX=$(WinSysPath)
+C:\WINNT\system32\MSCHRT20.OCX=$(WinSysPath)
+C:\WINNT\system32\MSADODC.OCX=$(WinSysPath)
+C:\WINNT\system32\MSSTDFMT.DLL=$(WinSysPath)
+C:\WINNT\system32\MSDATGRD.OCX=$(WinSysPath)
+C:\WINNT\system32\MSBIND.DLL=$(WinSysPath)
+C:\coding\SimpleInvoice\SIMPLEINVOICE.HLP=$(AppPath)
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\SETUP.EXE=$(AppPath)
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\SETUP1.EXE=$(WinPath)
+C:\WINNT\system32\VB6STKIT.DLL=$(WinSysPathSysFile)
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\ST6UNST.EXE=$(WinPath)
+C:\Farpoint\redist\Mfc42.dll=$(WinSysPath)
+C:\coding\SimpleInvoice\SInvoice.mdb=$(AppPath)
+C:\coding\SimpleInvoice\SInvoice.bmp=$(AppPath)
+C:\Program Files\Common Files\System\ado\msado26.tlb=$(WinSysPath)
+
+[Package|SInvoice Setup Package|Configure Shared Files]
+Applicable=Yes
+D:\coding\SimpleInvoice\SInvoice.exe=No
+D:\coding\SimpleInvoice\SIMPLEINVOICE.HLP=No
+D:\coding\SimpleInvoice\SInvoice.bmp=No
+D:\coding\SimpleInvoice\SInvoice.mdb=No
+D:\coding\SimpleInvoice\Release\SInvoiceBack.bmp=No
+D:\coding\palmos\SIPalm\SIPalm.prc=No
+D:\coding\palmos\SIPalm\ELF2Line.pdb=No
+D:\coding\palmos\SIPalm\ELF2Static.pdb=No
+D:\coding\palmos\SIPalm\Product.PDB=No
+D:\coding\palmos\SIPalm\ELF2Invoice.pdb=No
+C:\coding\SimpleInvoice\SInvoice.exe=No
+C:\coding\SimpleInvoice\SIMPLEINVOICE.HLP=No
+C:\coding\SimpleInvoice\SInvoice.mdb=No
+C:\coding\SimpleInvoice\SInvoice.bmp=No
+
+[Package|SInvoice Setup Package|Distribution]
+Type=single
+Size=
+Title=SimpleInvoice
+
+[Package|SInvoice Setup Package|IconGroups]
+Group0=SimpleInvoice
+PrivateGroup0=-1
+Parent0=$(Programs)
+
+[Package|SInvoice Setup Package|SimpleInvoice]
+Icon1=SInvoice.exe
+Title1=SimpleInvoice
+StartIn1=$(AppPath)
+Key1=Icon1
+
+[Package|SInvoice Setup Package|Package]
+PackageFolder=c:\coding\Package\SimpleInvoice
+ProjectFolder=C:\coding\SimpleInvoice
+ServerSideCab=
+File1=c:\coding\Package\SimpleInvoice\setup.exe
+File2=c:\coding\Package\SimpleInvoice\Setup.Lst
+File3=c:\coding\Package\SimpleInvoice\SInvoice.CAB
+Handler1=PDWizard.FolderDplySubWiz
+Handler2=PDWizard.WebPostDplySubWiz

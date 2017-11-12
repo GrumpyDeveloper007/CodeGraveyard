@@ -1,0 +1,15 @@
+FRMMain = 107, 32, 662, 476, C, 334, 4, 538, 244, C
+FRMSelectPart = 21, 110, 745, 631, C, 550, 5, 751, 246, C
+FRMPartDetails = 88, 88, 643, 532, C, 6, 6, 207, 255, C
+FRMSummary = 13, 115, 754, 605, C, 21, 265, 222, 505, C
+MODStorage = 198, 198, 753, 642, C
+modParamDatabase = 176, 176, 731, 620, C
+modReturnDatabase = 154, 154, 709, 598, C
+modBODYPartsDatabase = 0, 0, 0, 0, C
+FRMJobView = 220, 220, 773, 668, C, 274, 262, 496, 506, C
+FRMConfig = 154, 154, 707, 602, C, 518, 253, 723, 515, C
+modInspEngDatabase = 88, 88, 641, 536, C
+modINSPConstDatabase = 220, 220, 773, 668, C
+PalmGlobalFunctions = 44, 44, 597, 492, C
+modELF3EstimateDatabase = 220, 220, 773, 668, C
+modELF3EstimatePartDatabase = 22, 22, 575, 470, C

@@ -1,0 +1,20 @@
+Notes on: spriteL.S
+
+Finally... converted all 32x32 and 64x64 sprite plotters to the same new
+format of the 8x8 and 16x16 tile plotters... the new spriteL.S requires
+the new tilesL.S to function... and the (RENDER_SPRITE) sprite renderers
+are rewritten... and sprites are no-longer misclipped onto left-side...
+
+The problem with clipping was, when a sprite was checked that had an X
+position of 0x100, the low byte of zero was being subtracted, and the
+result in this case is always zero, so the sprite, which shouldn't be
+on the screen in the first place (just off by the right border) is
+drawn at position 0 (just on by the left border). I got the idea by
+looking at the code which checks if the sprite is on the current
+scanline... it has the potential of having the same problem (with
+worse symptoms), but you obviously caught that one...
+
+It's a little easy to get confused by the new code, but it's fine once
+you get used to it... most of it is in macro's, that could be redone...
+I did it that way so I could optimize and debug it all at once, since
+it was all practically the same code in the first place...

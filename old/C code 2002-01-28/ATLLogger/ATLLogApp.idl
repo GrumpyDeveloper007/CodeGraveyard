@@ -1,0 +1,42 @@
+// ATLLogApp.idl : IDL source for ATLLogApp.dll
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (ATLLogApp.tlb) and marshalling code.
+
+import "oaidl.idl";
+import "ocidl.idl";
+	[
+		object,
+		uuid(C82C8B65-C218-11D3-9739-0050047D51FB),
+	
+		helpstring("ICoLogger Interface"),
+		pointer_default(unique)
+	]
+	interface ICoLogger : IUnknown
+	{
+		[helpstring("method Initialize")] HRESULT Initialize();
+		[helpstring("method DisplayText")] HRESULT DisplayText();
+		[helpstring("method Log")] HRESULT Log([in] BSTR Message);
+		[helpstring("method UnInitialize")] HRESULT UnInitialize();
+	};
+
+[
+	uuid(C82C8B56-C218-11D3-9739-0050047D51FB),
+	version(1.0),
+	helpstring("ATLLogApp 1.0 Type Library")
+]
+library ATLLOGAPPLib
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+
+	[
+		uuid(C82C8B66-C218-11D3-9739-0050047D51FB),
+		helpstring("CoLogger Class")
+	]
+	coclass CoLogger
+	{
+		[default] interface ICoLogger;
+	};
+};

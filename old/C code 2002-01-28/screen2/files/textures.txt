@@ -1,0 +1,6 @@
+NUMTEXTURES 4
+TEXTURE 0 texture1.tga
+TEXTURE 1 texture2.tga
+TEXTURE 2 texture3.tga
+TEXTURE 3 texture4.tga
+

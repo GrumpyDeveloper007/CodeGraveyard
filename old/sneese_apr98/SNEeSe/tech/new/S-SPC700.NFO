@@ -1,0 +1,34 @@
+‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹
+‹‹‹‹‹ ‹‹‹‹‹‹‹‹‹‹‹ ‹‹‹‹‹‹‹‹‹‹‹ ‹‹‹‹‹ ‹‹‹‹‹‹‹‹‹‹‹ ‹‹‹‹‹‹‹‹‹‹‹ ‹‹‹‹‹ ‹‹‹‹‹‹‹‹‹‹‹
+›€€€€ ›€€€€ €€€€€ ›€€€€ €€€€€ ›€€€€ ›€€€€ €€€€€ ›€€€€ €€€€€ ›€€€€ ›€€€€ €€€€€
+€€€€€ €€€€€ €€€€€ €€€€€ ﬂﬂﬂﬂﬂ €€€€€ €€€€€ ﬂﬂﬂﬂﬂ €€€€€ €€€€€ €€€€€ €€€€€ €€€€€
+€€€€€ €€€€€ €€€€€ ﬂﬂﬂﬂﬂﬂ€€€€€ €€€€€ €€€€€ €€€€€ €€€€€ €€€€€ €€€€€ €€€€€ﬂ€€€€€
+€€€€€ €€€€€ €€€€€ €€€€€ €€€€€ €€€€€ €€€€€ €€€€€ €€€€€ €€€€€ €€€€€ €€€€€ €€€€€
+€€€€€ €€€€€ €€€€€ €€€€€ €€€€€ €€€€€ €€€€€ €€€€€ €€€€€ €€€€€ €€€€€ €€€€€ €€€€€
+ﬂﬂﬂﬂﬂ ﬂﬂﬂﬂﬂ ﬂﬂﬂﬂﬂ ﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂ ﬂﬂﬂﬂﬂ ﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂ ﬂﬂﬂﬂﬂ ﬂﬂﬂﬂﬂ ﬂﬂﬂﬂﬂ ﬂﬂﬂﬂﬂ ﬂﬂﬂﬂﬂ
+ﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂ
+
+
+                           SPC Explorer 2.0 1995
+                        ~~~~~~~~~~~~~~~~~~~~~~~~~~
+                          Recompiled with Phase/2
+                         Fully Documented by SoBeR
+                           Source Code Included!
+                              Lots of SPC info!
+
+                       ____         ____         ____
++=====================(____)===--==(____)-=====-(____)--=====================+
+
+Please read SPCEXP95.TXT which is the full documentation and explanation of
+included files.
+
+SPCDIS.LZH included in this archive is the C source code to an SPC
+disassembler. It may require modification depending on the platform you
+are using to compile the disassembler. Written by Jeremy Gordon.
+
+SPC700.SRC included in this archive is a disassembly of Sid-emulation
+routines with explanation. Altough I'd like to take the credit for it,
+I can't. I believe it was done by Antitrack.
+                                                                        SoBeR
++============================================================================+
+

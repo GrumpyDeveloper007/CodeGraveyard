@@ -1,0 +1,53 @@
+65816 Cross Assembler v2.00 (c)1994 Jeremy Gordon
+
+DOS/OS2
+-------------------
+
+65816.exe <requires> a 386sx or better to run...I am not interested in playing
+around with 16 bit compilers, or the dos memory management scheme....and
+almost everyone these days has at lease a 386 so.....sorry....if anyone wants
+to port this to borlandc, feel free, let me know.....I have a few suggestions,
+and can help point you in the right direction
+
+65816.exe was compiled under os/2 using the emx environment, version 08h...
+to run under os/2 the file emx.dll is necessary (included in this archive)
+however, the exe is emxbound, so under dos, <no> additional file is needed,
+so you can delete the emx.dll file if you are running under dos....
+
+65816.exe supports vcpi memory, and xms memory, it does not support dpmi....
+if there is interest I can rebind using a dpmi version of emx so that this
+program can be run under things like windows....
+
+***the message "DPMI not supported" is not an error in the program***
+it means that you are using a DPMI based memory manager, to use this program
+you must disable that memory manager....
+
+
+UNIX
+--------------------
+
+65816.tgz is a tar archive that has been compressed using "gzip"
+the easiest way to uncompress and untar it is....
+
+mkdir 65816
+cd 65816
+cat ../65816.tgz | gunzip | tar -xvf -
+
+then check the makefile, make sure that you have gcc (you may have to port
+a little if you don't, I'm not sure) and "make"
+
+this program has been successfully tested on:
+
+SGI Indigo2 Extreme, Sun (bsd), Decstation, Linux (SYSVR4)
+
+if you have any problems compiling let me know....if you have successfully
+ported to another machine, and have additions to the source/makefile, also
+let me know via email or irc, so that I can credit you, and make the addtions
+to the code so more people can benifit...
+
+
+AMIGA
+-------------------
+
+was compiled using SAS... contact JackRippr if there are any problems.... 
+

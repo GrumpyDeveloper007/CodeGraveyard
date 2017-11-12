@@ -1,0 +1,23 @@
+HKCR
+{
+	VBTest.VBTest1.1 = s 'VBTest1 Class'
+	{
+		CLSID = s '{2F6E4232-2A8F-11D1-A988-002018349816}'
+	}
+	VBTest.VBTest1 = s 'VBTest1 Class'
+	{
+		CLSID = s '{2F6E4232-2A8F-11D1-A988-002018349816}'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {2F6E4232-2A8F-11D1-A988-002018349816} = s 'VBTest1 Class'
+		{
+			ProgID = s 'VBTest.VBTest1.1'
+			VersionIndependentProgID = s 'VBTest.VBTest1'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'both'
+			}
+		}
+	}
+}

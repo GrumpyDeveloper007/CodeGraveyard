@@ -1,0 +1,26 @@
+HKCR
+{
+	Polygon.dada.1 = s 'dada Class'
+	{
+		CLSID = s '{1DED6827-CEA5-11D3-B60F-F5AF6A7AE873}'
+	}
+	Polygon.dada = s 'dada Class'
+	{
+		CLSID = s '{1DED6827-CEA5-11D3-B60F-F5AF6A7AE873}'
+		CurVer = s 'Polygon.dada.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {1DED6827-CEA5-11D3-B60F-F5AF6A7AE873} = s 'dada Class'
+		{
+			ProgID = s 'Polygon.dada.1'
+			VersionIndependentProgID = s 'Polygon.dada'
+			ForceRemove 'Programmable'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Apartment'
+			}
+			'TypeLib' = s '{2885EDF8-A26B-11D1-B49B-00C04F98EFE0}'
+		}
+	}
+}

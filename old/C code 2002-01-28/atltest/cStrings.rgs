@@ -1,0 +1,23 @@
+HKCR
+{
+	Atltest.cStrings.1 = s 'cStrings Class'
+	{
+		CLSID = s '{9BBD6DB1-CEBD-11D3-B60F-D39622D2A572}'
+	}
+	Atltest.cStrings = s 'cStrings Class'
+	{
+		CLSID = s '{9BBD6DB1-CEBD-11D3-B60F-D39622D2A572}'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {9BBD6DB1-CEBD-11D3-B60F-D39622D2A572} = s 'cStrings Class'
+		{
+			ProgID = s 'Atltest.cStrings.1'
+			VersionIndependentProgID = s 'Atltest.cStrings'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'both'
+			}
+		}
+	}
+}

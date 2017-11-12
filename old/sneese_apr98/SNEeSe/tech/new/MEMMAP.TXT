@@ -1,0 +1,17 @@
+
+     - Mode 20 :
+                       0000-1fffh  2000h-2fffh 3000h-7fffh 8000h-ffffh
+
+      Banks   0  - 3fh  LOW RAM      PPU       FX/DSP          ROM
+      Banks  80h - bfh  LOW RAM      PPU       FX/DSP      SHADOW ROM
+      Bank         7eh  LOW RAM                 HIGH ROM
+      Bank         7fh              EXTENDED RAM
+      Banks  70h - 74h                    SRAM
+
+
+   Only there is  8Kb of LOW RAM it is always the same.
+   Only there is  4Kb for PPU it is alwyas the sam.e
+   The shadow ROM = ROM. I want say bank = 0 = 80, bank = 1 = 81 ...
+
+           
+                                           Regards.Carlos.

@@ -1,0 +1,18 @@
+AnimData 128,128,128,128,3
+[castle]
+[town000]
+[town001]
+[orctown]
+AnimData 32,32,128,128,8
+[peon000]
+[peon001]
+[peon002]
+[peon003]
+[peon004]
+[peon005]
+[peon006]
+[peon007]
+
+EndAnim
+
+

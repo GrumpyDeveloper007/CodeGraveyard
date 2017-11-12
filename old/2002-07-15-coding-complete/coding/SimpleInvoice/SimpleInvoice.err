@@ -1,0 +1,47 @@
+Microsoft (R) Help Compiler
+HCRTF 4.03.0002
+Copyright (c) Microsoft Corp 1990 - 1995. All rights reserved.
+SimpleInvoice.HPJ
+    HC3048: Warning: topic #1 of C:\coding\SimpleInvoice\SimpleInvoice.RTF : 
+	Nonscrolling region defined after scrolling region.
+    HC3048: Warning: topic #2 of C:\coding\SimpleInvoice\SimpleInvoice.RTF : 
+	Nonscrolling region defined after scrolling region.
+    HC3048: Warning: topic #3 of C:\coding\SimpleInvoice\SimpleInvoice.RTF : 
+	Nonscrolling region defined after scrolling region.
+    HC3048: Warning: topic #4 of C:\coding\SimpleInvoice\SimpleInvoice.RTF : 
+	Nonscrolling region defined after scrolling region.
+    HC3048: Warning: topic #5 of C:\coding\SimpleInvoice\SimpleInvoice.RTF : 
+	Nonscrolling region defined after scrolling region.
+    HC3048: Warning: topic #6 of C:\coding\SimpleInvoice\SimpleInvoice.RTF : 
+	Nonscrolling region defined after scrolling region.
+    HC3048: Warning: topic #7 of C:\coding\SimpleInvoice\SimpleInvoice.RTF : 
+	Nonscrolling region defined after scrolling region.
+    HC3048: Warning: topic #8 of C:\coding\SimpleInvoice\SimpleInvoice.RTF : 
+	Nonscrolling region defined after scrolling region.
+    HC3048: Warning: topic #9 of C:\coding\SimpleInvoice\SimpleInvoice.RTF : 
+	Nonscrolling region defined after scrolling region.
+    HC3048: Warning: topic #10 of C:\coding\SimpleInvoice\SimpleInvoice.RTF : 
+	Nonscrolling region defined after scrolling region.
+    HC3048: Warning: topic #11 of C:\coding\SimpleInvoice\SimpleInvoice.RTF : 
+	Nonscrolling region defined after scrolling region.
+    HC3048: Warning: topic #12 of C:\coding\SimpleInvoice\SimpleInvoice.RTF : 
+	Nonscrolling region defined after scrolling region.
+    HC3048: Warning: topic #13 of C:\coding\SimpleInvoice\SimpleInvoice.RTF : 
+	Nonscrolling region defined after scrolling region.
+    HC3048: Warning: topic #1 of C:\coding\SimpleInvoice\..\Globals\Global Help RTF.rtf : 
+	Nonscrolling region defined after scrolling region.
+    HC3048: Warning: topic #2 of C:\coding\SimpleInvoice\..\Globals\Global Help RTF.rtf : 
+	Nonscrolling region defined after scrolling region.
+    HC3048: Warning: topic #3 of C:\coding\SimpleInvoice\..\Globals\Global Help RTF.rtf : 
+	Nonscrolling region defined after scrolling region.
+    HC3048: Warning: topic #4 of C:\coding\SimpleInvoice\..\Globals\Global Help RTF.rtf : 
+	Nonscrolling region defined after scrolling region.
+17	Topics
+0	Jumps
+0	Keywords
+0	Bitmaps
+
+
+Created C:\coding\SimpleInvoice\SimpleInvoice.hlp, 19,557 bytes
+Compile time: 0 minutes, 0 seconds
+0 notes, 17 warnings

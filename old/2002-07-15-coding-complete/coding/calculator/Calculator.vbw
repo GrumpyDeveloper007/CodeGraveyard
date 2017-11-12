@@ -1,0 +1,7 @@
+FrmCalculator = 44, 44, 674, 544, C, 22, 22, 652, 522, C
+Globals = 66, 66, 696, 566, C
+VaribleClass = 82, 134, 755, 506, C
+StringClass = 0, 0, 0, 0, C
+ExpressionClass = 0, 0, 0, 0, C
+GlobalDeclarations = 0, 0, 0, 0, C
+ErrorClass = 44, 44, 717, 416, C

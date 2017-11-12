@@ -1,0 +1,292 @@
+<html>
+<head>
+<title>DJGPP QuickAsm Programming Guide</title>
+</head>
+<body background="pics/newbg.jpg">
+<center>
+<h2>DJGPP QuickAsm Programming Guide</h2>
+</center>
+Okay, so this tutorial has long been overdue, I've been putting it off for a couple of months; but right now I'm in the mood to write it so here it is. This is just a short tutorial on doing assembly code using DJGPP. I am NOT teaching how to code x86 asm (get another tutorial or book); but I'll try to show how to do both inline and external asm in DJGPP. I assume you are already familiar with "standard" Intel asm, as used in TASM, MASM, etc.
+<p>
+I highly suggest reading the FAQ lists first, <a href="ftp://ftp.simtel.net/pub/simtelnet/gnu/djgpp/v1/faq102.zip">faq102.zip</a> and <a href="ftp://ftp.simtel.net/pub/simtelnet/gnu/djgpp/v2/faq202b.zip">faq202b.zip</a>, and the online docs, inside the txi*.zip package. There is also a newsgroup, <a href="news:comp.os.msdos.djgpp">comp.os.msdos.djgpp</a>. The main site is located at <a href="http://www.delorie.com/djgpp/">DJGPP Homepage</a>, where the most up-to-date information is available on DJGPP and where the <a href="http://www.delorie.com/djgpp/mail-archives/">mail archives</a> are kept. I find many helpful articles in the mail archives.
+<p>
+<hr size=6>
+<h3>AT&amp;T x86 Asm Syntax</h3>
+DJGPP uses AT&amp;T asm syntax. This is a little bit different from the regular Intel format. The main differences are:
+<ul>
+<li>AT&amp;T syntax uses the opposite order for source and destination operands, source followed by destination.
+<li>Register operands are preceded by the "%" character, including sections.
+<li>Immediate operands are preceded by the "$" character.
+<li>The size of memory operands are specified using the last character of the opcode. These are "b" (8-bit), "w" (16-bit), and "l" (32-bit). 
+</ul>
+Here are some examples: (Intel equivalent in parentheses)
+<pre>
+	movw %bx, %ax   (mov ax, bx)
+	xorl %eax, %eax (xor eax, eax)
+	movw $1, %ax    (mov ax,1)
+	movb X, %ah     (mov ah, byte ptr X)
+	movw X, %ax     (mov ax, word ptr X)
+	movl X, %eax    (mov eax, X)
+</pre>
+Most opcodes are identical between AT&amp;T and Intel format, except for these:
+<pre>
+	movsSD (movsx) 
+	movzSD (movzx)
+</pre>
+Where S and D are the source and destination operand size suffixes, respectively. For example, "movswl %ax, %ecx (movsx ecx, ax)".
+<pre>
+	cbtw        (cbw)
+	cwtl        (cwde) 
+	cwtd        (cwd) 
+	cltd        (cdq)
+	lcall $S,$O (call far S:O)
+	ljmp $S,$O  (jump far S:O)
+	lret $V     (ret far V)
+</pre>
+<img src="pics/gotcha.gif" alt="[GOTCHA!] " align=middle>
+Opcode prefixes should NOT be written on the same line as the instruction they act upon. For example, "rep" and "stosd" should be two separate instructions, but the latter immediately following the former.
+<p>
+Memory references are a little bit different too. The usual Intel memory reference of the form
+<p> 
+SECTION:[BASE + INDEX*SCALE + DISP]
+<p>
+is written as
+<p>
+SECTION:DISP(BASE, INDEX, SCALE).
+<p>
+Here are some examples: (Intel equivalent in parentheses)
+<pre>
+	movl 4(%ebp), %eax            (mov eax, [ebp+4])
+	addl (%eax,%eax,4), %ecx      (add ecx, [eax + eax*4])
+	movb $4, %fs:(%eax)           (mov fs:eax, 4)
+	movl _array(,%eax,4), %eax    (mov eax, [4*eax + array])
+	movw _array(%ebx,%eax,4), %cx (mov cx, [ebx + 4*eax + array])
+</pre>
+Jump instructions always use the smallest displacements. The following instructions always work in byte displacements only, however: "jcxz", "jecxz", "loop", "loopz", "loope", "loopnz" and "loopne". As suggested in the online docs, a "jcxz foo" could be expanded to work:
+<pre>
+	  jcxz cx_zero
+	  jmp cx_nonzero
+	cx_zero: 
+	  jmp foo
+	cx_nonzero:
+</pre>
+<img src="pics/gotcha.gif" alt="[GOTCHA!] " align=middle>
+The online docs also caution on "mul" and "imul" instructions. The expanding multiply instructions are done using ONE operand. For example, "imul $ebx, $ebx" will NOT put the result in "edx:eax". Use the single operand form "imul %ebx" to get the expanded result.  
+<p>
+<hr size=6>
+<h3>Inline Asm</h3>
+I'll start with inline asm first, because it seems to be the more frequently asked question. This is the basic syntax, as described in the online help:
+<p>
+__asm__(asm statements : outputs : inputs : registers-modified);
+<p>
+The four fields are:
+<ul>
+<li>asm statements - AT&amp;T form, separated by newline
+<li>outputs - constraint followed by name in parentheses, separated by comma
+<li>inputs - constraint followed by name in parentheses, separated by comma
+<li>registers-modified - names separated by comma
+</ul>
+The simplest example:
+<pre>
+	__asm__("
+	  pushl %eax\n
+	  movl $1, %eax\n 
+	  popl %eax"
+	);
+</pre>
+<img src="pics/gotcha.gif" alt="[GOTCHA!] " align=middle>
+You don't always have to use the other three fields, as long as you don't want to specify any input/output variables and you're NOT accidentally clobbering any registers.
+<p>
+Let's spice it up with <b>input variables</b>.
+<pre>
+	int i = 0;
+	__asm__("
+	  pushl %%eax\n
+	  movl %0, %%eax\n
+	  addl $1, %%eax\n
+	  movl %%eax, %0\n
+	  popl %%eax"
+	  :
+	  : "g" (i)
+	);
+	  /* i++; */
+</pre>
+Don't panic yet! =) I'll try to explain first. Our input variable is "i" and we want to increment it by 1. We don't have any output variables, nor clobbered registers (we save "eax" ourselves). Therefore the second and last fields are empty.
+<p>
+<img src="pics/gotcha.gif" alt="[GOTCHA!] " align=middle>
+Since the input field is specified, we need to leave a blank colon for the output field, but none for the last field, since it isn't used. Leave a newline or at least one space between two blank colons.
+<p>
+Let's move on to the <b>input field</b>. Constraints are just instructions you give to the compiler to handle the variables they act upon. They are enclosed in double quotes. So what does the '"g"' mean? '"g"' lets the compiler decide where to load the value of "i" into, as long as the asm instructions accept it. In general, most of your input variables can be constrained as '"g"', letting the compiler decide how to load them (gcc might even optimize it!). Other commonly used  constraints are "r" (load into any available register), "a" (ax/eax), "b" (bx/ebx), "c" (cx/ecx), "d" (dx/edx), "D" (di/edi), "S" (si/esi), etc.   
+<p>
+The one input we have will be referred to as "%0" inside the asm statements. If we have two inputs, they will be "%0" and "%1", in the order listed in the input fields (see next example). For N inputs and <b>NO</b> outputs, "%0" through "%N-1" will correspond to the inputs, in the order they are listed.
+<p>
+<img src="pics/gotcha.gif" alt="[GOTCHA!] " align=middle>
+If <b>ANY</b> of the input, output, or registers-modified fields are used, register names inside the asm statements must be preceded with two percent ("%") characters, instead of one. Constrast this example with the first one, which didn't use any of the last three fields.
+<p>
+Let's do <b>two inputs</b> and introduce "<b>volatile</b>":
+<pre>
+	int i=0, j=1;
+	__asm__ __volatile__("
+	  pushl %%eax\n
+	  movl %0, %%eax\n
+	  addl %1, %%eax\n
+	  movl %%eax, %0\n
+	  popl %%eax"
+	  :
+	  : "g" (i), "g" (j)
+	);
+	  /* i = i + j; */
+</pre>
+Okay, this time around we have two inputs. No problem, the only thing we have to remember is "%0" corresponds to the first input ("i" in this case), and "%1" to "j", which is listed after "i".
+<p>
+<img src="pics/gotcha.gif" alt="[GOTCHA!] " align=middle>
+Oh yeah, what exactly is this "<b>volatile</b>" thing? It just prevents the compiler from modifying your asm statements (reordering, deleting, combining, etc.), and assemble them as they are (yes, gcc will optimize if it feels like it!). I suggest using "volatile" most of the time, and from here on we'll be using it.
+<p>
+Let's do one which uses the <b>output field</b> this time.
+<pre>
+	int i=0;
+	__asm__ __volatile__("
+	  pushl %%eax\n
+	  movl $1, %%eax\n
+	  movl %%eax, %0\n
+	  popl %%eax"
+	  : "=g" (i)
+	);
+	  /* i=1; */ 
+</pre>
+This looks almost exactly like one of our previous input field examples; and it is really not very different. All output constraints are preceded by an equal ("=") character. They are also referred from "%0" to "%N-1" inside the asm statements, in the order they are listed in the output field. You might ask what happens if one uses both the <b>input and output fields</b>? Well, the next example will show you how to use them together.
+<pre>
+	int i=0, j=1, k=0;
+	__asm__ __volatile__("
+	  pushl %%eax\n
+	  movl %1, %%eax\n
+	  addl %2, %%eax\n
+	  movl %%eax, %0\n
+	  popl %%eax"
+	  : "=g" (k)
+	  : "g" (i), "g" (j)
+	);
+	  /* k = i + j; */
+</pre>
+Okay, the only unclear part is just the numbering of the variables inside the asm statements. I'll explain.
+<p>
+<img src="pics/gotcha.gif" alt="[GOTCHA!] " align=middle>
+When using <b>both input and output fields</b>:
+<p>
+<img src="pics/red-ball.gif" alt="*** ">
+%0   ... %K are the outputs
+<p>
+<img src="pics/red-ball.gif" alt="*** ">
+%K+1 ... %N are the inputs
+<p>
+In our example, "%0" refers to "k", "%1" to "i", and "%2" to "j". Simple, no?
+<p>
+So far we haven't used the last field, <b>registers-modified</b>, at all. If we need to use any register inside our asm statements, we either have to "push" or "pop" them explicitly, or list them in this field and let gcc take care of that. Here's the previous example, without the explicit "eax" save and restore.
+<pre>
+	int i=0, j=1, k=0;
+	__asm__ __volatile__("
+	  movl %1, %%eax\n
+	  addl %2, %%eax\n
+	  movl %%eax, %0"
+	  : "=g" (k)
+	  : "g" (i), "g" (j)
+	  : "ax", "memory"
+	);
+	  /* k = i + j; */
+</pre>
+We tell gcc that we're using register "eax" in the registers-modified field and it will take care of saving or restoring, if necessary. A 16-bit register name covers 32-, 16- or 8-bit registers.
+<p>  
+<img src="pics/gotcha.gif" alt="[GOTCHA!] " align=middle>
+If we are also touching memory (writing to vars, etc.), it's recommended to specify '"memory"' in the registers-modified field. This means all our examples here should have had this specified (well, except the very first one), but I chose not to bring this up until now, just for simplicity.
+<p>
+<b>Local labels</b> inside your inline asm should be terminated with either "b" or "f", for backward and forward references, respectively.
+<p>
+For example,
+<pre>
+	__asm__ __volatile__("
+	0:\n
+	  ...
+	  jmp 0b\n
+	  ...
+	  jmp 1f\n
+	  ...
+	1:\n
+	  ...
+	);  
+</pre>
+<hr size=6>
+<h3>External Asm</h3>
+Blah... Okay fine. Here's a clue: Get some of your C/C++ files, and compile them as "gcc -S file.c" Then inspect file.S. The basic layout is:
+<pre>
+  .file "myasm.S"
+
+  .data
+    somedata: .word 0
+    ...
+ 
+  .text
+    .globl __myasmfunc
+    __myasmfunc:
+      ...
+      ret
+</pre>
+Macros, macros! There's an include file in <libc/asmdefs.h> which is convenient for writing external asm files. Just include it on top of your asm source and use the macros accordingly. For example, here's myasm.S:
+<pre>
+  #include &lt;libc/asmdefs.h&gt;
+
+  .file "myasm.S"
+
+  .data
+    .align 2
+    somedata: .word  0
+    ...
+
+  .text
+    .align 4
+    FUNC(__MyExternalAsmFunc)
+    ENTER
+      movl   ARG1, %eax
+      ...
+      jmp    mylabel
+      ...
+    mylabel:
+      ...
+    LEAVE
+</pre>
+That should be a good skeleton for your external asm code.
+<p>
+<hr size=6>
+<h3>Other Resources</h3>
+The best way to learn all these is to look at others' code. There's some inline asm code in the "sys/farptr.h" file. Also, if you run Linux, FreeBSD, etc., somewhere in the kernel source tree (i386/ or something), there are plenty of asm sources. Check the <a href="ftp://x2ftp.oulu.fi/pub/msdos/programming/djgpp2/">djgpp2/</a> dir at x2ftp.oulu.fi, for graphics/gaming libraries that have sources.
+<p>
+If you have asm code that needs to be converted from Intel to AT&amp;T syntax, or just want to stick with regular Intel syntax, you can:
+<ul>
+<li>Get <a href="http://www.dcs.warwick.ac.uk/~jules/nasm1.html">NASM</a>, a free assembler which takes Intel asm format and produces COFF binaries compatible with DJGPP
+<li>Get MASM and compile your sources to COFF format (object file format used by DJGPP)
+<li>Get <a href="ftp://x2ftp.oulu.fi/pub/msdos/programming/convert/ta2asv08.zip">ta2asv08.zip</a>, a TASM to AT&amp;T asm converter
+<li>Get <a href="ftp://x2ftp.oulu.fi/pub/msdos/programming/convert/o2cv10.arj">o2cv10.arj</a> to convert .OBJ/.LIB between TASM and DJGPP
+<li>Search the <a href="http://www.delorie.com/djgpp/mail-archives/">mail archives</a> for a sed script that converts Intel to AT&amp;T syntax
+</ul>
+<p>
+<hr size=5>
+1/12/97 icbm@IRC 
+<p>
+GREETS IdealNet & EFNET IRC #c and #gamecode 
+
+<p>
+Thanks to all people behind DJGPP!
+<p>
+Mail me corrections/suggestions/complaints/crap at <a href="mailto:avly@castle.net">avly@castle.net</a>
+<p>
+Copyright &copy; 1996 avly@castle.net All Rights Reserved
+<p>
+All trademarks mentioned are of their respective companies.
+<h4>Standard Disclaimer</h4>
+There are absolutely no guarantees, expressed or implied, on anything that you find in this document. I cannot be held responsible for anything that results from the use or misuse of this document.
+</body>
+</html>
+
+
+
+
+

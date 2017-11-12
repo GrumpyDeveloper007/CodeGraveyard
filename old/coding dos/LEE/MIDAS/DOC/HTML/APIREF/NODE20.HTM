@@ -1,0 +1,302 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<!--Converted with LaTeX2HTML 96.1-h (September 30, 1996) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
+<HTML>
+<HEAD>
+<TITLE>Functions</TITLE>
+<META NAME="description" CONTENT="Functions">
+<META NAME="keywords" CONTENT="apiref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<LINK REL=STYLESHEET HREF="apiref.css">
+</HEAD>
+<BODY LANG="EN" >
+ <A NAME="tex2html366" HREF="node21.html"><IMG WIDTH=37 HEIGHT=24 ALIGN=BOTTOM ALT="next" SRC="../icons/next_motif.gif"></A> <A NAME="tex2html364" HREF="node17.html"><IMG WIDTH=26 HEIGHT=24 ALIGN=BOTTOM ALT="up" SRC="../icons/up_motif.gif"></A> <A NAME="tex2html360" HREF="node19.html"><IMG WIDTH=63 HEIGHT=24 ALIGN=BOTTOM ALT="previous" SRC="../icons/previous_motif.gif"></A> <A NAME="tex2html368" HREF="node1.html"><IMG WIDTH=65 HEIGHT=24 ALIGN=BOTTOM ALT="contents" SRC="../icons/contents_motif.gif"></A>  <BR>
+<B> Next:</B> <A NAME="tex2html367" HREF="node21.html">  About this document </A>
+<B>Up:</B> <A NAME="tex2html365" HREF="node17.html">5 Stream playback</A>
+<B> Previous:</B> <A NAME="tex2html361" HREF="node19.html">Data types</A>
+<BR> <P>
+<H1><A NAME="SECTION00630000000000000000">Functions</A></H1>
+<P>
+This section describes all functions available for MIDAS stream playback.
+<P>
+<BR> <HR><A NAME="MIDASplayStreamFile">&#160;</A><H2><A NAME="SECTION00631000000000000000">5.3.1 MIDASplayStreamFile</A></H2>
+<A NAME="1303">&#160;</A>
+<PRE>
+MIDASstreamHandle MIDASplayStreamFile(unsigned channel,
+    char *fileName, unsigned sampleType, unsigned sampleRate,
+    unsigned bufferLength, int loopStream)</PRE>
+<P>
+Starts playing a digital audio stream from a file.
+<P>
+<H3><A NAME="SECTION00631100000000000000">Input</A></H3>
+<P>
+<DL ><DT><STRONG>channel</STRONG>
+<DD> The channel number the stream will be played on
+    <DT><STRONG>fileName</STRONG>
+<DD> Stream file name
+    <DT><STRONG>sampleType</STRONG>
+<DD> Stream sample type, see <TT>enum</TT>
+        <A HREF="node14.html#MIDASsampleTypes">MIDASsampleTypes</A>
+    <DT><STRONG>sampleRate</STRONG>
+<DD> Stream sample rate
+    <DT><STRONG>bufferLength</STRONG>
+<DD> Stream playback buffer length in milliseconds
+    <DT><STRONG>loopStream</STRONG>
+<DD> 1 if the stream should be looped, 0 if not
+<P>
+</DL><H3><A NAME="SECTION00631200000000000000">Description</A></H3>
+<P>
+This function starts playing a digital audio stream from a file. It allocates
+the stream buffer, creates a new thread that will read sample data from the
+file to the stream buffer, and starts the Sound Device to play the stream.
+The stream will continue playing until it is stopped with
+<A HREF="node20.html#MIDASstopStream">MIDASstopStream</A>. When a stream is being played on a channel, that
+channel may not be used for other purposes.
+<P>
+The stream buffer length should be at least around 500ms if the stream file
+is being read from a disc, to avoid breaks in stream playback
+<P>
+<H3><A NAME="SECTION00631300000000000000">Return value</A></H3>
+<P>
+MIDAS stream handle if successful, NULL if failed.
+<P>
+<H3><A NAME="SECTION00631400000000000000">Operating systems</A></H3>
+<P>
+Win32, Linux
+<P>
+<H3><A NAME="SECTION00631500000000000000">See also</A></H3>
+<P>
+<A HREF="node20.html#MIDASstopStream">MIDASstopStream</A>
+<P>
+<BR> <HR><A NAME="MIDASstopStream">&#160;</A><H2><A NAME="SECTION00632000000000000000">5.3.2 MIDASstopStream</A></H2>
+<A NAME="1319">&#160;</A>
+<PRE>
+BOOL MIDASstopStream(MIDASstreamHandle stream)</PRE>
+<P>
+Stops playing a digital audio stream.
+<P>
+<H3><A NAME="SECTION00632100000000000000">Input</A></H3>
+<P>
+<DL ><DT><STRONG>stream</STRONG>
+<DD> The stream that will be stopped
+<P>
+</DL><H3><A NAME="SECTION00632200000000000000">Description</A></H3>
+<P>
+This function stops playing a digital audio stream. It stops the stream
+player thread, deallocates the stream buffer and closes the stream file. The
+stream playback channel can then be used for other purposes.
+<P>
+<H3><A NAME="SECTION00632300000000000000">Return value</A></H3>
+<P>
+TRUE if successful, FALSE if not.
+<P>
+<H3><A NAME="SECTION00632400000000000000">Operating systems</A></H3>
+<P>
+Win32, Linux
+<P>
+<H3><A NAME="SECTION00632500000000000000">See also</A></H3>
+<P>
+<A HREF="#MIDASplayStream">MIDASplayStream</A>
+<P>
+<BR> <HR><A NAME="MIDASplayStreamPolling">&#160;</A><H2><A NAME="SECTION00633000000000000000">5.3.3 MIDASplayStreamPolling</A></H2>
+<A NAME="1326">&#160;</A>
+<PRE>
+MIDASstreamHandle MIDASplayStreamPolling(unsigned channel,
+    unsigned sampleType, unsigned sampleRate,
+    unsigned bufferLength)</PRE>
+<P>
+Starts playing a digital audio stream in polling mode.
+<P>
+<H3><A NAME="SECTION00633100000000000000">Input</A></H3>
+<P>
+<DL ><DT><STRONG>channel</STRONG>
+<DD> The channel number the stream will be played on
+    <DT><STRONG>sampleType</STRONG>
+<DD> Stream sample type, see <TT>enum</TT>
+        <A HREF="node14.html#MIDASsampleTypes">MIDASsampleTypes</A>
+    <DT><STRONG>sampleRate</STRONG>
+<DD> Stream sample rate
+    <DT><STRONG>bufferLength</STRONG>
+<DD> Stream playback buffer length in milliseconds
+<P>
+</DL><H3><A NAME="SECTION00633200000000000000">Description</A></H3>
+<P>
+This function starts playing a digital audio stream in polling mode. It
+allocates and empty stream buffer, and starts the Sound Device to play the
+stream. Sample data can be fed to the stream buffer with
+<A HREF="#MIDASfeedSteramData">MIDASfeedSteramData</A>. The stream will continue playing until it is
+stopped with <A HREF="node20.html#MIDASstopStream">MIDASstopStream</A>. When a stream is being played on a
+channel, that channel may not be used for other purposes.
+<P>
+To avoid breaks in playback, the stream buffer size should be at least twice
+the expected polling period. That is, if you will be feeding data 5 times
+per second (every 200ms), the buffer should be at least 400ms long.
+<P>
+<H3><A NAME="SECTION00633300000000000000">Return value</A></H3>
+<P>
+MIDAS stream handle if successful, NULL if failed.
+<P>
+<H3><A NAME="SECTION00633400000000000000">Operating systems</A></H3>
+<P>
+Win32, Linux
+<P>
+<H3><A NAME="SECTION00633500000000000000">See also</A></H3>
+<P>
+<A HREF="node20.html#MIDASstopStream">MIDASstopStream</A>, <A HREF="node20.html#MIDASfeedStreamData">MIDASfeedStreamData</A>
+<P>
+<BR> <HR><A NAME="MIDASfeedStreamData">&#160;</A><H2><A NAME="SECTION00634000000000000000">5.3.4 MIDASfeedStreamData</A></H2>
+<A NAME="1350">&#160;</A>
+<PRE>
+unsigned MIDASfeedStreamData(MIDASstreamHandle stream,
+    unsigned char *data, unsigned numBytes, BOOL feedAll);</PRE>
+<P>
+Feeds sound data to a digital audio stream buffer.
+<P>
+<H3><A NAME="SECTION00634100000000000000">Input</A></H3>
+<P>
+<DL ><DT><STRONG>stream</STRONG>
+<DD> The stream that will play the data
+    <DT><STRONG>data</STRONG>
+<DD> Pointer to sound data
+    <DT><STRONG>numBytes</STRONG>
+<DD> Number of bytes of sound data available
+    <DT><STRONG>feedAll</STRONG>
+<DD> TRUE if the function should block until all sound data can
+        be fed
+<P>
+</DL><H3><A NAME="SECTION00634200000000000000">Description</A></H3>
+<P>
+This function is used to feed sample data to a stream that has been started
+with <A HREF="node20.html#MIDASplayStreamPolling">MIDASplayStreamPolling</A>. Up to <B>numBytes</B> bytes of
+new sample data from <B>*data</B> will be copied to the stream
+buffer, and the stream buffer write position is updated accordingly. The
+function returns the number of bytes of sound data actually used. If
+<B>feedAll</B> is TRUE, the function will block the current thread
+of execution until all sound data is used.
+<P>
+<H3><A NAME="SECTION00634300000000000000">Return value</A></H3>
+<P>
+The number of bytes of sound data actually used.
+<P>
+<H3><A NAME="SECTION00634400000000000000">Operating systems</A></H3>
+<P>
+Win32, Linux
+<P>
+<H3><A NAME="SECTION00634500000000000000">See also</A></H3>
+<P>
+<A HREF="node20.html#MIDASplayStreamPolling">MIDASplayStreamPolling</A>
+<P>
+<BR> <HR><A NAME="MIDASsetStreamRate">&#160;</A><H2><A NAME="SECTION00635000000000000000">5.3.5 MIDASsetStreamRate</A></H2>
+<A NAME="1364">&#160;</A>
+<PRE>
+BOOL MIDASsetStreamRate(MIDASstreamHandle stream,
+    unsigned rate);</PRE>
+<P>
+Changes stream playback sample rate.
+<P>
+<H3><A NAME="SECTION00635100000000000000">Input</A></H3>
+<P>
+<DL ><DT><STRONG>stream</STRONG>
+<DD> Stream handle for the stream
+    <DT><STRONG>rate</STRONG>
+<DD> New playback sample rate for the stream, in Hertz.
+<P>
+</DL><H3><A NAME="SECTION00635200000000000000">Description</A></H3>
+<P>
+This function changes the playback sample rate for a stream that is being
+played. The initial sample rate is given as an argument to the function that
+starts stream playback.
+<P>
+Note that the stream playback buffer size is calculated based on the initial
+sample rate, so the stream sample rate should not be changed very far from
+that figure. In particular, playback sample rates over two times the initial
+value may cause breaks in stream playback. Too low rates, on the other hand,
+will increase latency.
+<P>
+<H3><A NAME="SECTION00635300000000000000">Return value</A></H3>
+<P>
+TRUE if successful, FALSE if not.
+<P>
+<H3><A NAME="SECTION00635400000000000000">Operating systems</A></H3>
+<P>
+Win32, Linux
+<P>
+<H3><A NAME="SECTION00635500000000000000">See also</A></H3>
+<P>
+<A HREF="node20.html#MIDASsetStreamVolume">MIDASsetStreamVolume</A>, <A HREF="node20.html#MIDASsetStreamPanning">MIDASsetStreamPanning</A>
+<P>
+<BR> <HR><A NAME="MIDASsetStreamVolume">&#160;</A><H2><A NAME="SECTION00636000000000000000">5.3.6 MIDASsetStreamVolume</A></H2>
+<A NAME="1375">&#160;</A>
+<PRE>
+BOOL MIDASsetStreamVolume(MIDASstreamHandle stream,
+    unsigned volume);</PRE>
+<P>
+Changes stream playback volume.
+<P>
+<H3><A NAME="SECTION00636100000000000000">Input</A></H3>
+<P>
+<DL ><DT><STRONG>stream</STRONG>
+<DD> Stream handle for the stream
+    <DT><STRONG>volume</STRONG>
+<DD> New volume for the stream, 0-64.
+<P>
+</DL><H3><A NAME="SECTION00636200000000000000">Description</A></H3>
+<P>
+This function changes the playback volume for a stream that is being
+played. The initial volume is 64 (maximum).
+<P>
+<H3><A NAME="SECTION00636300000000000000">Return value</A></H3>
+<P>
+TRUE if successful, FALSE if not.
+<P>
+<H3><A NAME="SECTION00636400000000000000">Operating systems</A></H3>
+<P>
+Win32, Linux
+<P>
+<H3><A NAME="SECTION00636500000000000000">See also</A></H3>
+<P>
+<A HREF="node20.html#MIDASsetStreamRate">MIDASsetStreamRate</A>, <A HREF="node20.html#MIDASsetStreamPanning">MIDASsetStreamPanning</A>
+<P>
+<BR> <HR><A NAME="MIDASsetStreamPanning">&#160;</A><H2><A NAME="SECTION00637000000000000000">5.3.7 MIDASsetStreamPanning</A></H2>
+<A NAME="1386">&#160;</A>
+<PRE>
+BOOL MIDASsetStreamPanning(MIDASstreamHandle stream,
+    int panning);</PRE>
+<P>
+Changes stream panning position.
+<P>
+<H3><A NAME="SECTION00637100000000000000">Input</A></H3>
+<P>
+<DL ><DT><STRONG>stream</STRONG>
+<DD> Stream handle for the stream
+    <DT><STRONG>panning</STRONG>
+<DD> New panning position for the stream
+<P>
+</DL><H3><A NAME="SECTION00637200000000000000">Description</A></H3>
+<P>
+This function changes the panning position for a stream that is being played.
+The initial volume is 0 (center). See description of <TT>enum</TT>
+<A HREF="node14.html#MIDASpanning">MIDASpanning</A> for information about the panning position values.
+<P>
+<H3><A NAME="SECTION00637300000000000000">Return value</A></H3>
+<P>
+TRUE if successful, FALSE if not.
+<P>
+<H3><A NAME="SECTION00637400000000000000">Operating systems</A></H3>
+<P>
+Win32, Linux
+<P>
+<H3><A NAME="SECTION00637500000000000000">See also</A></H3>
+<P>
+<A HREF="node20.html#MIDASsetStreamVolume">MIDASsetStreamVolume</A>, <A HREF="node20.html#MIDASsetStreamRate">MIDASsetStreamRate</A>
+<P>
+<HR><A NAME="tex2html366" HREF="node21.html"><IMG WIDTH=37 HEIGHT=24 ALIGN=BOTTOM ALT="next" SRC="../icons/next_motif.gif"></A> <A NAME="tex2html364" HREF="node17.html"><IMG WIDTH=26 HEIGHT=24 ALIGN=BOTTOM ALT="up" SRC="../icons/up_motif.gif"></A> <A NAME="tex2html360" HREF="node19.html"><IMG WIDTH=63 HEIGHT=24 ALIGN=BOTTOM ALT="previous" SRC="../icons/previous_motif.gif"></A> <A NAME="tex2html368" HREF="node1.html"><IMG WIDTH=65 HEIGHT=24 ALIGN=BOTTOM ALT="contents" SRC="../icons/contents_motif.gif"></A>  <BR>
+<B> Next:</B> <A NAME="tex2html367" HREF="node21.html">  About this document </A>
+<B>Up:</B> <A NAME="tex2html365" HREF="node17.html">5 Stream playback</A>
+<B> Previous:</B> <A NAME="tex2html361" HREF="node19.html">Data types</A>
+<P><ADDRESS>
+<I>Petteri Kangaslampi <BR>
+Mon Jan 27 00:19:24 EET 1997</I>
+</ADDRESS>
+</BODY>
+</HTML>

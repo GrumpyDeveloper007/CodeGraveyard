@@ -1,0 +1,16 @@
+To install and compile this package in a unix environment, you must first
+get the ncurses version 1.8 (or later) library on your system.
+
+The distribution is called ncurses1.8.tgz, and is available on sunsite.unc.edu
+/pub/Linux/libs/ncurses1.8.tgz among other places i'm sure...
+
+First extract this file, and go into the src subdirectory, and run 
+"Configure" this will configure ncurses for your version of unix...
+then "make" it, you may still have to edit the Makefile)
+
+You may have to do some creative editing of the spcdis Makefile also so that
+it can find the proper header and library files (ncurses.h, uncrtl.h,
+libncurses.a)
+
+Then with g++ you should have no problems compiling the rest of the
+distribution....

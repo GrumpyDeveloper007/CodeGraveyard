@@ -1,0 +1,79 @@
+#*      Makefile
+#*
+#* Include file for MIDAS Module Player for Linux
+#*
+#* [Hacked by Petteri]
+#*
+#* Copyright 1996,1997 Housemarque Inc.
+#*
+#* This file is part of the MIDAS Sound System, and may only be
+#* used, modified and distributed under the terms of the MIDAS
+#* Sound System license, LICENSE.TXT. By continuing to use,
+#* modify or distribute this file you indicate that you have
+#* read the license and understand and accept it fully.
+#*
+
+
+# Destination directory for midp executable
+DEST = /usr/local/bin
+
+# MIDAS base directory:
+MIDASDIR = ../..
+
+# MIDAS library directory
+LIBDIR = $(MIDASDIR)/lib
+
+# MIDAS include directory
+INCDIR = $(MIDASDIR)/src
+
+
+CPP = gcc
+
+# The safest options
+#CPPOPTS = -O2 -I$(INCDIR) -fomit-frame-pointer -m486 -g -fpack-struct -Wall -D__LINUX__ --DDEBUG
+
+# For Pentium optimizing gcc 2.7.2p
+#CPPOPTS = -O6 -I$(INCDIR) -frisc -fomit-frame-pointer -mpentium -g -fpack-struct -fstrength-reduce -Wall -D__LINUX__ -DDEBUG
+
+# For gcc 2.7.2.1 (or any "normal" gcc) with pthreads
+CPPOPTS = -O6 -I$(INCDIR) -fomit-frame-pointer -m486 -fpack-struct -fstrength-reduce -Wall -D__LINUX__ -DDEBUG -shared -D_REENTRANT
+
+# For gcc 2.7.2p with pthreads
+#CPPOPTS = -O6 -I$(INCDIR) -frisc -fomit-frame-pointer -mpentium -bpentium-linux -V2.7.2p -fpack-struct -fstrength-reduce -Wall -D__LINUX__ -DDEBUG -shared -D_REENTRANT
+
+
+ASM = gcc
+ASMOPTS = $(CPPOPTS)
+LINK = gcc -lncurses -lpthread -L$(LIBDIR) -o
+LIB = ar
+TOUCH = /usr/bin/touch
+
+.SUFFIXES:
+.SUFFIXES: .c .h .S .o .pic
+
+all :                   midp
+
+%.o:			%.c
+		$(CPP) $(CPPOPTS) -c $< -o $@
+
+%.o:			%.S
+		$(ASM) $(ASMOPTS) -c $< -o $@
+
+%.pic:			%.c
+		$(CPP) $(CPPOPTS) -fpic -c $< -o $@
+
+%.pic:			%.S
+		$(ASM) $(ASMOPTS) -fpic -c $< -o $@
+
+
+midp:           midplx.o $(LIBDIR)/libmidas.so
+		$(LINK) midp midplx.o -lmidas
+
+midplx.o :      midplx.c
+
+
+clean:
+		rm -f *.o *~ midp
+
+install:	midp
+		install -s midp $(DEST)

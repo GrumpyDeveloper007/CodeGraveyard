@@ -1,0 +1,991 @@
+
+        The SNES emulator SNEeSe version 0.15 released on 21 March 1998
+        -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+    Dedicated to the Emu News Service for its continued support of emulation
+
+ THIS IS NOT SHAREWARE NEVER HAS BEEN...ITS FREE AND SHOWS ;-)
+
+ NB - This version has an SPC emulator enabled as default, if
+     a rom drops back to dos then try disabling the emulation.
+     Actraiser is one rom that requires emulation be disabled, this
+     can be done via the gui or the config file.
+
+Credits
+"""""""
+
+ Savoury Snax           - Overall Development, testing.
+ Charles Bilyue		- IRQ, HDMA, bug fixes, optimisations etc...
+ Santeri Saarimaa       - GUI Improvements, testing.
+ Shawn Hargreaves & co. - Allegro 3.0 library!
+
+Thanks for the help!
+""""""""""""""""""""
+
+ _zsknight, demo, Pastor M.M. Angle, Lord ESNES, Yoshi, archeide.
+
+Greets (the Mega part sounded daft!)
+""""""""""""""""""""""""""""""""""""
+
+ archeide,Tim Riemann, Brad Martin, Qwertie, Martijn Kersbergen, B. Walker,
+ Paul Robson, Aquarius-1, D.Kieselhof, _zsknignt, demo, Pastor M.M. Angel,
+ Yoshi, Albert LLoyd Sawyers, Zachary Williams, Lord ESNES, Jonathan Turner,
+ W/\re\/\/0lf, James Cartrette, Duncanthrax, rRNA, Dark Claw, Poiple Shadow,
+ Flash, Windwalker, Chris Lacey, MaJiC, Dark Elf, Shade + any I forgot.
+
+--------------! For True SNES Emulation Buy A SNES ;-) !--------------
+
+Quick list of new things in 0.15
+""""""""""""""""""""""""""""""""
+
+ - Modes 5 & 6 (16x8 & 16x16) fully implemented, NB 512 horizontal
+   resolution is not yet supported.
+
+ - Mode 2 (offset change mode) vertical column offset support added,
+   see included rom for what it does.
+
+ - IRQ support added, Zelda name selection screen now works, and in
+   SMW the clouds on the ghost house now scroll.
+
+ - Fast Rom and Pal/NTSC timings added may be inaccurate...
+
+ - Dynamic ROM allocation implemented (ensures we don't allocate 6MB
+   for a 1MB rom).
+
+ - Implemented Fixed Colour hack, now SMW has a blue background when
+   it should.. looks a lot better.
+
+ - SPC bugs fixed, but still no sound?? I can't figure out the problem
+   so we made it low priority for this release, and erm, well its not
+   yet included sorry..
+
+ - DMA redone, this speeds it up by making the memory access simpler.
+
+ - HDMA redone, indirect mode is working better, FZERO is visible but
+   extremely bodgy, also helps bosses on SMW a little.
+
+ - Zelda maps are now fixed, rain is animated now too, but you should
+   disable plane 1 while playing or you won't see it! Also zelda mode 7
+   map works now too.
+
+ - Mario maps no longer corrupt when entering / leaving the large map
+   area in SMW.
+
+ - OAM name & base select implemented properly, actraiser bosses no
+   longer corrupt.
+
+ - Sprite priority rotation now working, mario is visible on the top
+   left corner of the map screen, in SMW.
+
+ - GUI now has a nice joypad control configuration screen thanks to the
+   work of Santeri Saarimaa.
+
+ - Emulator can now distinguish between SMC & BIN images ie. rom images
+   with and without a 512 byte header again thanks to Santeri Saarimaa.
+
+Requirements To Run
+"""""""""""""""""""
+
+Here is a rough guide to the things you need to run this emulator:
+
+ - 4-12 megabytes of memory (dependant on rom size).
+
+ - A lot of patience, this emulator is lower than beta stage and is slow and
+   incomplete.
+
+ - VGA graphics card capable of mode 13h, ie a VGA gfx card ;-)
+
+ - A reasonable monitor (if you want to use MODEX modes!).
+
+ - IBM PC compatible.. you guessed didn't you? Must be at least a 486!!!
+
+ - Some SNES rom images to try out. We will NOT give images due to copyright
+   laws.
+
+ - A VESA 2 compatable video card capable of 640x480x16bit. You could also
+   try a software VESA 2 driver (like univbe). This is only needed if you
+   (for some insane reason!!) want to use hicolour mode (at present the only
+   difference is its slower!).
+
+
+The config file
+"""""""""""""""
+
+ A config file is now used so SNEeSe remembers what state it was in when the
+user quit. It can be edited in dos for those interested, only a few config
+options exist at present sorry!
+
+ If you want to use the standard .SRM extension for save ram files instead
+of SNEeSe's .RAM (exists to prevent corruption of saved files (incase of
+bugs)) simply edit the SNEeSe.CFG file and change the line :
+
+saveextension=RAM
+
+to
+
+saveextension=SRM
+
+ Simple eh?
+
+
+The new GUI
+"""""""""""
+
+ The GUI can be opened by pressing ESC during emulation. From here you
+can RESUME emulation, RESET the emulation, LOAD a new SNES rom into
+the emulator, setup the CONFIGURATION options (see below) and EXIT the
+emulator. Pressing ESC while in the GUI closes the current window, if
+the last window is closed, emulation resumes. To move the bar use the
+cursor UP/DOWN controls, to choose an option press ENTER (either one
+will do).
+
+ The CONFIGURATION menu allows you to change some features of the
+emulation as follows:
+
+  ???x???x???              - The first option in the list this will
+                             show the current resolution as its text.
+                             When you press ENTER then a window will
+                             open allowing you to choose a new
+                             resolution. If the resolution cannot be
+                             opened it will revert to standard mode.
+
+  Frameskip: ?             - You can modify the amount of frames to
+                             skip by pressing left or right arrow.
+                             Default is 4 (show every 4th frame), you
+                             would probably need a P2/375 to keep 1 here.
+
+  Keyboard on player 1     - This option toggles joystick or keyboard
+                             mode for controller 1.
+
+  Keyboard on player 2     - This option toggles joystick or keyboard
+                             mode for controller 2. NB: Only 1
+                             joystick is supported so don't map it to
+                             both!!!
+
+  Define keys for player 1 - This option lets you redefine the
+                             keys for controller 1. Since version 0.15
+                             this has been done through the GUI, it
+                             shows a nice picture of the SNES joypad
+                             and asks the keys. You can press ESC
+                             anytime to stop redefining.
+
+  Define keys for player 1 - This option lets you redefine the
+                             keys for controller 2.
+
+  Emulate SPC              - This option toggles whether to emulate
+                             the SPC chip or not (skip). This is used
+                             to enable sound emulation, although at
+                             present sound is silent. Use this option
+                             to get roms to work if they lock up.
+
+Readme Or Dont Bother Emailing Me
+"""""""""""""""""""""""""""""""""
+
+ When you attempt to run a rom you should take note of any information
+displayed on the screen. For instance if a rom just bombs back to dos and
+all the information displayed looked like rubbish the rom image format may
+not be supported by the emulator.
+
+ To run the demonstration type SNEESE.EXE and then the file name of the rom
+to load (leave a space ie. SNEESE.EXE file).Once the rom title is displayed,
+press a key to start the emulation.
+
+ To exit emulation press ESC. A new GUI will pop up and you should select
+EXIT using the cursor keys, press ENTER to select the option under the bar.
+
+ If you have any obscure SNES information like DSP, FX chip etc. or would
+like to send me some constructive comments (NOT - are you gonna have sound
+etc!) please feel free to email me at:
+
+	savoury.snax@usa.net
+
+Or you can visit the SNEeSe homepage at :
+
+        www.fortunecity.com/olympia/baberuth/24/index.html
+
+The source code for SNEeSe is found at the above address too.
+
+ Any email about obtaining copyright ROMs will be forwarded to the
+appropriate authorities, so dont even bother!
+
+
+What can SNEeSe do in this version of the program ?
+"""""""""""""""""""""""""""""""""""""""""""""""""""
+
+Implemented features follow:
+
+ - 254/256 opcodes (not instructions) implemented. The last two remain
+   unimplemented since they do nothing too important and can help detect
+   runaway roms!
+
+ - Memory mappings for lo-rom modes done including SRAM.
+
+ - Memory mappings for hi-rom modes done (early stages).
+
+ - DMA operations 0-4, 5-7 are supported but may not be correct.
+
+ - Video Modes 0-7, tile flipping and palette mapping + most special
+   attributes (like 16x8 tiles and offset change) are supported.
+
+ - NMI interrupt running although timings may be a little out.
+
+ - IRQ interrupt running although timings may be a little out.
+
+ - Keyboard working as follows :
+				Cursor Keys	- joypad direction
+				Q,W		- L & R Buttons
+				N,M		- SELECT & START
+				A,S		- Y & X Buttons
+				Z,X		- B & A Buttons
+				ESC		- Open GUI
+				1-4		- Toggle BKG 1-4
+				5		- Toggle Sprites
+				0		- Save PCX piccy
+
+ - SNES Joypads 1 & 2 are supported.
+
+ - A 4 or 6 Button joystick (joypad) can be used in place of the keyboard,
+   selectable from the GUI.
+
+ - All hardware registers should now be done ('cept some undocumented stuff).
+
+ - Sprites are supported 8x8,16x16,32x32,64x64 + name and base and priority
+   rotation.
+
+ - Screen Sizes 32x32,64x32,32x64 & 64x64 supported.
+
+ - Addition of a squashing copy routine so entire SNES screen is visible on
+   a standard VGA mode screen..
+
+ - Backgrounds can be disabled using keys 1-4 for BKGs 1-4, and sprites can
+   be disabled using key 5. These are toggle controls.
+
+ - SPC processor support. Only TCALL, BRK and BCD instructions are not supported,
+   it currently does silent sound emulation.
+
+ - Its got a gui, for those who care & a config file.
+
+ - HDMA operations 0-4 now implemented. Absolute and indirect (NB indirect is
+   still buggy).
+
+
+What is left to do in this emulator ?
+"""""""""""""""""""""""""""""""""""""
+
+ The following list contains things I know need fixing or adding, it may not
+be complete yet!
+
+TO DO:
+~~~~~~
+ MOSAIC     - I keep putting this off, its just a small FX of the screen
+              (usually used in transitions).
+ Sound      - Should come soon, once the SPC is unbugged.
+ Windows    - I have little information on these, I can only guess at there
+              implementation.. sometime in the future.
+ Colour +/- - This relies on windows, and allows overlaying bpls like the
+              rain in zelda?
+
+TO FIX:
+~~~~~~
+ - Problem with pushover, it is only possible to complete the first level!
+ - Problems with every other cart under the sun, it just dont work
+   correctly!
+
+
+Playable Roms ?
+"""""""""""""""
+
+ The following are a sample of game roms known to work to some extent
+(please dont laugh.. this is a SNES emu in its very early stages!):
+
+ Captain America & The New Avengers - Playable.. completely?
+ Pacman (The elitendo PD Rom)       - Completely playable!
+ 7th Saga              - Somewhat playable.
+ Actraiser             - Works!
+ Cartoon Addams        - Works!
+ Contra 3              - Not sure, sometimes works sometimes doesn't.
+ Pushover              - Playable, but cant go to second level!
+ SD The Great Battle   - Disable Plane 1 and you can play away ;-)
+ SimCity               - Works!
+ Super Ghouls & Ghosts - Disable plane 3 in game and its ok!
+ Super Mario World     - Works! No windowing yet, bosses a little buggy.
+ Super Valis           - Sprites Ok, BKGs not! Not sure why ?
+ Syonen                - Playable, but no status information bar!
+ Wheel Of Fortune      - Works ok, but the wheel does not spin 100% of time.
+ Whirlo                - Seems ok!
+ Zelda 3               - Works!
+
+
+History
+"""""""
+
+  SADLY HISTORY IS NOW A THING OF THE PAST (oh dear!) I HAVE NOT HAD TIME
+ TO UPDATE THIS SECTION AND NOW FORGET WHAT HAS HAPPENED AND WHEN SORRY !!
+
+12 February:
+ - Fixed a bug in dma operation 1, this caused the borders on SMW to look
+  corrupt, that is now fixed.
+ - I was trying to add more support for mode 7 when I found that I had
+  forgotten to add the M7SEL register to the hardware updater, I was
+  always reading it as value 0... explains why I had problems with the
+  mode 7 clipping mode stuff!
+ - Added support for flipping in X & Y on mode 7 screens.
+
+10 February:
+ - Implemented fix to mode 0, Paul Robson noticed the bug a while back now
+  but this is the first chance I had to do anything about it.
+ - Implemented sprite clipping bug (fix by Charles).
+
+02 February:
+ - Implemented PCALL, seems simple enough, the docs mention u-page and later
+  mention uppermost-page, I think they are the same so I have implemented it
+  as such.
+
+01 February:
+ - Implemented a timer using the PC PIC for the SPC, this helps a number of
+  roms on my system, however slow machines may experience severe problems?
+
+30 January:
+ - Exams finished for another semester, maybe I can do some real work on
+  SNEeSe, the mario tune I heard last night seems rather unrecognisable
+  this morning (I think I was a bit tired!).
+
+29 January:
+ - Still debugging parts of the SPC, I spent nearly 4 hours tracking a
+  divide by 0 problem, which should not occur since I check for 0
+  state, turns out the bloody problem was not divide by 0, but overflow!
+ - Mario has a sort of tune, thats cool.. Shame it has no instruments yet.
+
+24 January:
+ - Completed the SPC (at last) barring TCALL,PCALL & BRK. It should now
+   work at least as a silent emulation.
+
+22 January:
+ - I'm back at work on SNEeSe after a substantial break, coursework and
+   other pressures have prevented me from doing much.
+
+18 January:
+ - Fixed my computer even more ;-) Now the thing is running 100% with
+  all my add-on cards inserted and no more annoying crashing...
+
+05 January:
+ - Woops, hard drive crash and bangs goes my system, can't be bugged to
+  do anything about it for a few days, I'm a little pissed off.
+
+03 January:
+ - Fixed my ailing computer, it went down completely on the 31st, after
+   spending a few days refusing to write CD's, it died!!! I got the
+   system going again, after hunting for some drivers etc (all mine
+   were on CD!), and I flashed the FIRMWARE in my drive which seems
+   to have stabilised it. Maybe I can do some code again now.
+
+30 December:
+ - I have had some success with sound, The emulation is chronically
+   slower than before.. and yes it was chronic before, however the
+   sound re-acted to what I did on screen in pacman.. good enough
+   for me, to know I might be on track.
+
+29 December:
+ - I have got the SPC code to a stage where a few roms now run
+   as well as they did with the skipper, so I added a simple
+   sound output technique, it plays a continous tone which
+   reacts to volume and pitch from the SPC... or in my case
+   does not. It could be the sound is not updated frequently
+   enough...
+
+27 December:
+ - Resumed coding of SPC instructions, fixing numerous bugs
+   on the way.. I fear more exist.
+
+26 December:
+ - Recovering from christmas... I ate too much.....
+
+25 December: Version 0.13 released!
+ - Cleaned up some code and fixed the GUI background pic, no
+   longer corrupts when switching bit depths.
+
+23 December:
+ - I played with JOYC1 and JOYC2 and suddenly realised
+   what they were for... 
+ - I have moved the joypad/stick/keyboard controller
+   read to during the VBL period, this is to accomodate JOYC1
+   emulation.
+ - Its done... controller now works in super star wars etc..
+ - Colour palette corruption in some roms is now fixed, it was
+   a silly error on my part... I hope!
+
+21 December:
+ - Implemented HDMA indirect mode, not that it does any good,
+   I think its another thing that needs CPU & SCREEN interleaved.
+
+20 December:
+ - Added 2 player support... god knows why, I thought it 
+   would solve a problem, it didn't.
+ - Reworked entire hdma core (not very big really!), now
+   most PD hdma intensive roms work very well.. check out
+   introfin.smc or xmas.smc by anthrox.
+ - Split up that dodgy mem.S file, for all those who
+   complained they could not compile it, it now works on most
+   machines... maybe all ;-)
+
+19 December: Version 0.12 released!
+ - Config file added.
+ - Some more VESA modes added (pointless at present but soon!).
+ - Changed SNES RAM initialisation values fixing actraiser so now when there
+   is no save ram the game only lets you start and not continue.
+ - Added configurable keys via the gui. The keys are saved in the config
+   file.
+
+18 December:
+ - Removed all VESA code and replaced with allegros.
+ - Removed various old peices of code to save on wasted memory and other
+   rubbish.
+
+17 December:
+ - Allegro 3.0 added.
+ - 6 Button pad support added.
+
+16 December:
+ - Sram mappings added to hirom mode.
+
+12 December:
+ - Hirom support implemented, thanks again to Nerlaska!
+
+10 December:
+ - Re-implemented SPC code (still no real use) I will try working on this
+   sometime soon.
+ - Added a new APU skipper part, now super ghouls and ghosts starts.. its
+   quite playable ;-)
+
+08 December:
+ - Added clipping to mode 7 when it needs it, now actraiser etc don't plot
+   multiple copies of the spinning logos etc.
+
+07 December: Version 0.11 released!
+ - Mode 7 rotation problem solved, seems ok now ;)
+ - Source code released! People will moan cos it's rather messy at present.
+
+01 December:
+ - Finally remember what my code does, begun to tidy up code.
+ - Fixed APU skipper, now Contra 3 no longer locks up at start, minor silly
+   mistake.
+
+26 November:
+ - SNEeSe project resumed, scream with delight if you must, I myself will
+   simply stare blankly at my source code for a day or two.
+
+09 October:
+ - SNEeSe project cancelled due to lack of time and other emus!
+
+05 October:
+ - Sprites are now re-implemented in the line by line engine, time to
+   release a new version of sneese (at last I here you cry!).
+ - Sprites are now clipped at the top of the screen correctly, now only the
+   left most edge is incorrectly clipped.
+ - Sprites are now clipped correctly at the left edge too.
+
+04 October:
+ - Line by line engine now scrolls, only 16x16 tile mode needs fixing.
+ - 16x16 support added to line by line engine, now ALL screen modes
+   including 16x16 64x64 screen mode should work.
+ - I noticed I had broken compatability with a pd demo rom, I don't know how
+   long that bugs been there but its fixed now!
+ - Implemented HDMA operations 1,3 & 4 that should be all of them done now.
+
+03 October:
+ - Implemented a very simply line by line screen update method. It has no
+   scrolling support yet or sprites.
+ - Implemented HDMA operations 0 & 2.
+
+28 September:
+ - Found another bug in the cpu, the bug is unlikely to have occured as it
+   was in the emulation section... I wonder if any roms use emulation mode
+   at all?
+
+27 September:
+ - I have started rewriting some of the internal core of the emulator to
+   prepare for some new stuff to be added. The SPC core has been disabled at
+   present to ease the alterations.
+
+25 September:
+ - I have finally gotten round to reworking the tile plotters, this cuts
+   down on the amount of code present in the screen parts. As far as most
+   people are concerned nothing has changed, but it will now be easier to
+   add certain effects.
+
+24 September:
+ - Added support for 640x480 VESA 2 LFB 64K colour mode, I`ll put colour
+   add/sub in this modes resolution... I see little point in doing
+   addition/subtraction in 256 colour modes. I used my own VESA code since I
+   could not be bothered fiddling with allegro.
+
+21 September:
+ - Aha! SPC timer now implemented, now the SPC no longer locks up, instead
+   it says invalid opcode... sigh... still got 80 odd opcodes to do!
+
+20 September:
+ - SPC opcode count reaches 174, spc seems to lock up now in most roms which
+   is a little disturbing...
+
+16 September:
+ - Its PARTY! time! Yup after weeks of searching for a bug I have finally
+   fixed the CPU core, mario now plays properly ie. bashing a block results
+   in the correct number of items!
+
+15 September:
+ - I have been playing with Mode 7, the code now renders the screen as 4
+   quarters each scaled differently. I think my maths is a little out!
+
+14 September:
+ - Fixed one of the major bugs in the emulator, I was doing DMA operation 0
+   incorrectly, this caused screen problems in some roms, but no longer ;-)
+ - Added multiple screen modes to emulator via the config menu.
+
+13 September:
+ - Implemented mode 7, no effects (scaling,rotation etc) but the mode is now
+   visible.
+ - Implemented verticle size aware screen code, now the screen only renders
+   the correct number of verticle lines for the current hardware setting..
+   no more sprites etc, at the bottom of the screen.
+
+11 September:
+ - Implemented Arcane's PCX saver, and after a small tweak it now saves
+   images better than my own. Makes grabbing images easier as I dont have to
+   convert them before editing.
+ - Altered the code to use the allegro library, since my keyboard handler is
+   still causing problems and I figured it would save my implementing some
+   of the other stuff!
+ - Added joystick support and the ability to switch off the SPC emulation.
+   The emulator currently starts with both the joystick and the SPC
+   disabled.
+
+9 September:
+ - SPC opcode count reached 118, I've found a problem with the docs, they
+   dont state which order operands should be written this means I cant
+   emulate some of the opcodes until I figure it out ;(
+
+8 September:
+ - I noticed a message on emunews today saying Mr Grim had released his
+   source (CPU) to help beginning authors like SNEeSe. I can only say one
+   thing... why? The code is full of cpu mistakes, some of them basic to the
+   65c816 series.. I'm not getting at him, he was probably using the GTE
+   docs, all I am saying is if you plan to write a SNES emulator be warned!
+   Its a shame, cos I was hoping to find my cpu bug.
+
+7 September:
+ - Continued with SPC, I have done 70 opcodes and added a small peice of
+   code that attempts to keep the SPC and CPU in sync, its accurate to about
+   4 cycles either way.
+ - Had a play with the MIDAS sound library, I noticed a lot of emu authors
+   use seal, I will use midas. I hacked at it a little (version 1.10 has no
+   source???!) and have a method for altering samples once they are loaded.
+   This is needed for emulating the SNES DSP (at least the way I am thinking
+   of doing it!)
+
+6 September:
+ - Begun adding the SPC implementation to the emulator, I have no idea where
+   to start etc, so I am kinda just shoving it in and hoping! No, I have not
+   started thinking of sound!!
+
+2 September:
+ - Added TD support, this fixes problems I had with missing planes in some
+   roms, mario has a corrupted plane when it starts up (nintendo logo) this
+   is due to a problem I am having with either the cpu or the dma?
+
+1 September:
+ - Fixed? Keyboard code, unlike many emulators I am not using any libraries
+   like allegro so bugs may still occur!
+
+31 August:
+ - Implemented ability to save screen shots from the emu by pressing the 0
+   key.
+ - Implemented a nice simplistic user interface, this is to allow easy
+   debugging and (ofcourse) the ability to load a rom from inside the
+   emulator.
+
+29 August:
+ - Implemented Modes 5 & 6, these are based on information from Lord ESNES,
+   they seem rather simple probably available to increase time for
+   displaying sprites on the original SNES?
+
+20 August:
+ - Today is an important day, I have obtained a DECENT manual for the 65816
+   and will now try and fix all the cpu core problems.
+ - Tons of CPU core fixes implemented, mario and zelda now play a lot more
+   accurately (although GFX corruption is still present!).
+
+19 August:
+ - Played with the cpu addressing code, this may fix a few problems.
+ - Added 2 more opcodes (the last 2 that could potentially do something
+   useful!). Now SimCity will run ;-)
+
+18 August:
+ - Fixed Mode 7 Multiplication register. This has fixed a PD rom problem I
+   was having.
+
+17 August:
+ - I have seen the new screen rendering code (written by Dark Elf) and it is
+   far faster than the current code. It will not be implemented in a release
+   version due to the lack of support for other emulated features, once
+   these are done however it will be included.
+ - Altered DMA 2 (again) to fix a palette problem with a pd rom.
+
+15 August:
+ - Took a break for a few days (BSC Project), back now.
+ - Tried implementing hirom (but failed.. need more information I think).
+ - Fixed 64x64 screen mode (did not spot it before cos it occured only when
+   all 4 screens where visible).
+ - Added Save Ram loading and saving.
+
+11 August:
+ - Altered DMA operation 2 slightly and added DMA operation 4.
+
+10 August:
+ - Fixed VBlank so roms dont go mental, when they use the HVBJOY to do
+   VBlank timing instead of the RDNMI.
+ - Added 64x64 tile mode support, should fix scrolling bkgs in some roms.
+   May not be behaving correctly yet, its difficult to know the sources of
+   errors in this type of program theres so much of it!
+ - Added PAL,NTSC detection, and various information is now displayed about
+   the rom being loaded.
+ - Added MVP opcode, cos I found a rom that used it.
+ - Added BKG and sprite toggling.
+
+9 August:
+ - Fixed Bpl Priorities for mode 1 in new screen render code, captain
+   america becomes playable with sprites fixed.
+
+8 August:
+ - Fixed some addressing mode stuff, based on how addressing are built when
+   addition is used.
+ - Fixed Bit instruction, did not realise N & V flags are set, I have done
+   them on the basis of 6502 bit instruction, since 65816 docs do not give
+   any information as usual!
+ - Fixed Sprite 32 byte table, I had the sprites numbered the wrong way!
+
+7 August:
+ - Implemented some more hardware registers including the scan line location
+   stuff so zelda no longer locks at start.
+ - Altered the screen render code so it squashes the screen, this allows
+   your score to be seen in pacman by elitendo! Its a temp function here
+   until 320x240 & 256x256 modex support is added.
+
+6 August:
+ - Ah, it would seem that the DJGPP assembler does not handle btb
+   instruction if an invalid operand set is given. It just generates btb
+   ebp,x which is completely insane!!!! That should fix 64x32 screen mode.
+ - Implemented 32x64 screen mode. Only got to do 64x64 mode and 16x16 tile
+   modes for non 32x32 screens.
+ - Fixed up the sprite code so it actually works! I kinda made a few major
+   mistakes + that damned assembler bug caused a few!
+ - I Better release another version later today.
+
+5 August:
+ - Continued to rework the screen render code, fixing some scrolling code on
+   the way.
+ - Implemented 16x16 tile renderer in the new screen render code, fixing
+   some palette mapping bugs that were present in the old version of the
+   tile mappers!
+ - Implemented 64x32 screen mode, its a little buggy but works better than
+   without it!
+
+4 August:
+ - I have begun reworking the screen render code (the slowest part of the
+   emulation as far as I can tell). The rework is simply to get the emulator
+   to support sizable screens and solve sprite clipping off right hand and
+   bottom boundaries!
+ - I will release the version prior to the screen changes, since it has
+   sprites in it and will allow people to see my progress so far. The code
+   is stable, but suffers from problems with all but the simplest roms, due
+   to unimplemented HW stuff!
+
+3 August:
+ - Ok, I bowed to pressure from myself to add sprite support, two reasons
+   for this, first I want to see Pacman running on an emulator I have
+   written (One of The few stable games at present ;(). Secondly, Dark Elf
+   wanted to know how sprites work on the snes, and so do I! I spent today
+   playing and got sprites going, although I may have the address decoding
+   scheme for hardware register 0x2101 completely wrong.. it works for some
+   of the pd stuff I have tried!
+ - Fixed mirroring in 16x16 tile modes.
+ - Fixed 24 Bit Multiply via mode 7 regs, not sure how well, but it seems a
+   lot better now!
+
+2 August:
+ - Finally I can release a new version (on monday 4th Aug), I have found the
+   bug that caused the newer code to fail... I forgot to set the Program
+   Bank register to 0 during interrupts etc!
+ - Found a program that has allowed me to guess that the GTE docs have
+   mislead me about the JSR (a,x) instruction and probably JSR (a) and JMP.
+   It would seem they take the current program bank not bank 0 as the high
+   part of the address for the pointer!
+
+1 August:
+ - Altered the method of addressing OAM and VRAM memory, this is due to the
+   way some code uses the auto incrementing features!
+ - I have altered the point at which the screen is turned off and the
+   palette is set, this prevents mad flickering in some roms and has got the
+   INFINITY demo to behave as it should instead of fading out and then
+   ramping the brightness to full!
+
+31 July:
+ - While trying to find an elusive bug, I have implemented a new APU skipper
+   which should fix all APU problems for 2140-2141, this fix will be slow
+   though, so if the skippers dont react under the usual replies then the
+   new method will begin.
+ - Implemented 249 opcodes now, if I can just find the cpu bug that is
+   stopping the code running properly.
+ - Altered the joypad status byte and IRQ status byte so that code will work
+   even though they are not supported properly yet!
+
+29 July:
+ - Found bug in MVN, forgot to change the read/write to memory functions, so
+   it was copying from and to PC memory not SNES memory!
+
+28 July:
+ - Found numerous bugs (one of the problems of re-writing mass chunks of
+   code!), cpu core should be more stable again.... ;-)
+
+27 July:
+ - Got the CPU core running better, some bug keeps causing random crashing
+   though!
+
+26 July:
+ - During re-write spotted I had not implemented V flag, it was being
+   checked but could never be set! This could be causing quite a few ROM
+   problems!
+
+25 July:
+ - Begun re-writting CPU core slightly, cleaning up code etc. The main
+   reason for this being to allow the emulator to run on 8MB machines
+   without virtual memory!
+
+22 July:
+ - Implemented Decimal flag properly, now BCD adds & subs will take place
+   hopefully! Captain America works barring sprites and scroll bug, your
+   health acts correctly though!
+ - Squashed another CPU bug, ora [d] was acting as ora [d],y !
+
+21 July:
+ - Spent almost the whole day tracing mario and zelda to see if I could
+   figure out what was going on. I implemented a wierd hack that has not
+   destroyed any existing ROM compatability (that I know of!). Mario World
+   now starts, shows a picture and you can play with the options and start
+   the game.. However the display is garbage at present. The NINTENDO logo
+   is not displayed... I have found out this is a sprite though!
+ - 221 of 256 opcodes now implemented, Captain America cartridge works
+   barring the BCD addition/subtract instructions (not done) and the lack of
+   sprites.. scroll bug etc!
+
+20 July:
+ - Decided to hold off implementing the SPC code until I have searched the
+   ROMs for a valid reason for failing.
+ - Found Pushover Rom works (by ocean). I have implemented 16x16 tiles for
+   mode 1 because of this. It took a while to figure out the offsets but it
+   seems to work.. palette is wierd though!
+ - Reorder the planes for mode 1 only. Now the planes should display
+   correctly.. and BKG3 will be in front when it should be!
+ - Few more opcodes done to accomodate ROM. 195 / 256 opcodes are now
+   implemented. Also found YS3 works to a point.. the emu breaks the screen
+   at the start (mode 7 not implemented yet), and then once the game kicks
+   in the screen is visible but only the border and large amounts of text
+   floating...
+
+19 July:
+ - Tracked down a problem with the NMI.. NMI is non maskable interrupt.. and
+   yet for some reason I masked it! DOH! DOH! etc.
+ - More ROMs work now, it would seem to me that the CPU core is ok, so I
+   have to try and find what causes the lock up in so many ROMs.
+ - Found a bug in the emulator.. It overwrote part of the ROM to make the
+   ROM image name ASCIIZ. Unfortunately a number of ROMs use the name area
+   to apply patches.. such as intros for commercial roms etc. Another bug
+   bites the dust!
+
+18 July:
+ - Started to look at implementing the SPC, I know the emulator still has
+   problems running roms, but I would like to get the SPC running to prevent
+   problems with ROMS and to give me a better idea of the final speed of the
+   emulator. Spending the weekend redesigning the core of the emulation (CPU
+   elements). This will ensure better operation while running on lo-mem
+   machines.. might even get the memory requirements down and find some
+   bugs?
+
+17 July:
+ - After a short break, I have now implemented a correction to the memory
+   mapper (in preperation for removing the 24MB memory requirements!). Now
+   two demo roms actually display information they refused to (sine dots and
+   a sine scroller), however its broken a couple of ROMS.
+ - Oh, the broken roms may have been an APU skipping problem. I added an
+   altered skipper after some insperation, and forgot to check some older
+   roms.. the new skipper is not as good!
+ - Merged new skipper with old one to form a super skipper, probably still
+   wont work right but it should be back to its old self.
+ - New skipper is working on a few more PD roms now, if I could only find
+   the problem with commercial roms.
+ - Found another rom that scrolls incorrectly, I`ll hopefully be able to fix
+   the bug now. Its caused by a non implemented and rather important
+   feature. The SNES can have variable sized screens, I just forgot to allow
+   for this, so the render code is being adjusted by Dark Elf at this
+   minute.. I hope!
+ - Implemented mode 4... provisional (like mode 2), cos my docs say theres a
+   difference but not sure what. Fixed a couple of bugs, palette set to 0
+   when brightness 0 and screen handled properly when it is supposed to be
+   off! This causes mad flickering in some ROMs due to the way in which they
+   work... bloody demo coders ;-)
+
+15 July:
+ - Addded proper handling of X & Y under pX=1, this has caused a couple of
+   roms to work a little better... but no major improvements.
+ - Dark elf sent me some new code, dont know if I`ll implement it... He has
+   not got the newer version of the code yet and its so different it would
+   be easier for him to do it! Sounds like he's gonna implement the sprites
+   for me though...
+
+14 July:
+ - Squashed another bug in the cpu core. Humans problem is still present...
+
+13 July:
+ - Another bug squashed in the dma routines. After implementing all channels
+   I had forgotten to change some of the reads from DMAP0 to DMAPx!
+ - Found a ROM (Humans) that actually displays some output, looks like at
+   least one commercial ROM may work (I was surprised at this!). No sprites
+   means that whatever happens nothings gonna be playable yet!
+ - Fixed a few tile mapping problems, also put in support for screen mode 2.
+   I have only sketchy info on this mode, I have put it in cos its similar
+   to mode 1... but anything that uses it may freak out.
+ - Humans has shown me that a major flaw exists somewhere and its not the
+   lack of HDMA. None of the backgrounds scroll, this leads me to think
+   theres a cpu flaw.. cant find anything missing in the hardware that is
+   used.
+
+12 July:
+ - Hoorah! SBC should now work properly, got hold of a 6502 manual briefly
+   and found SBC uses carry how I thought on the 10 July. It also flips its
+   meaning after carry which has been sorted.
+ - Added the carry stuff to the cmp instruction... suddenly 90% of the pd
+   roms stopped crashing and started producing pictures and stuff!
+ - Added tile flipping and palette mapping to the screen renderer. Oh dear,
+   major speed decrease! Hmm, I think Dark Elf needs to do some work with
+   the screen stuff!
+ - Implemented the entire 16MB address space for the CPU. This will cause
+   problems for some people with low amounts of memory, but CWSDPMI does
+   allow virtual memory, and this runs under win95 so I cant see too many
+   probs.
+	
+11 July:
+ - Had a really bad night! Got struck down with some sort of bug (not the
+   computing sort!) and spent the night being sick!
+ - Managed to implement mode 0 and a few opcodes, mostly between trips to
+   the loo...
+ - Re-implemented the VRAM addressing registers. Now VRAM is taken as being
+   words in size. This means that VRAM is double the size but it fixed the
+   problem I was having with a certain rom at that time.
+
+10 July:
+ - More bugs squashed, did I really write this mess? Hmmm, keyboard will
+   work better now. And XBA will no longer cause problems.
+ - Anyone care to comment on the SBC instruction. It seems to work if you
+   invert carry before execution.. but this must be wrong surely!
+ - Opcode count reached 111, I`m getting there if it was not for all these
+   hardware problems....
+
+09 July:
+ - Middle of the night code session, loads done like Mode 3 implemented
+   (Dark Elf may improve the routine yet..).
+ - AHA! I think I just found the most important bug yet, it must have been a
+   fluke the demo cart ran! When XCE (set/clr processor emulation mode) is
+   run the wrong information was being returned, causing instructions to
+   operate incorrectly!
+ - Fixed DMA fixed address, Yoshi Docs had bits backwards.
+
+08 July:
+ - Got a new memory map today, this one looks good its already shown me that
+   I confused the issue over slots 0-1fff. Damn, back to the source code
+   again.
+ - Found the stack bug and cured it, I dont know what I was thinking when I
+   wrote the reset code, stack now initialised to 0x01FF. This may still be
+   wrong, but its fixed the stack corruption problem.
+
+07 July:
+ - Decided to release a small demonstration of the emulator, its completely
+   useless as it is, only running one cartridge rom, but more proof I am
+   serious.
+ - Holy cow, I screwed up bad, most of the addressing modes were completely
+   wrong due to the use of DB for modes that wanted bank 0. I also correct
+   JSR & JMP which use the current PB not the current DB!
+
+06 July:
+ - Implemented much more complete DMA operations for mode 0 & 1, channel 0
+   only still. Now CPU->PPU,PPU->CPU,increment,decrement,and no adjustment
+   are implemented, but not tested yet.
+ - Found nasty bug in a couple of addressing modes and fixed them.
+
+05 July:
+ - CNN announced Babylon 5 to get a fifth season (not emulator news but
+   definately worthy of a mention!).
+ - Dark Elf has gone to Germany for a few months, so I have to email him for
+   stuff for a while, a pain but not too drastic.
+ - Implemented Palette (at last) and brightness controls, got the HW scroll
+   registers working again, I'm almost back to the version I had running in
+   C++.
+ - Implemented an APU skipper, I dont know if I have done it like everyone
+   else (those who have'nt implemented the SPC) but it works on the test
+   cartridge.
+ - EEEK, I messed up the memory mapping, banks 0-3f offset 0-1fff are the
+   same as 7e:0-1fff. I only spotted it cos the Stack was corrupting the ram
+   area (or vice versa), This has prompted me to put the stack in its own
+   page (almost), if this is wrong ROMS will soon show it up.
+ - Yeah! The Demo cart runs 100% (without sound output), I`ll leave the SPC
+   till l8r, I want to try and get some comercial carts running now.
+
+04 July:
+ - Implemented a few more hardware addresses, another DMA mode and killed a
+   few more mistakes in the code. Some ROMS may fail due to the way in which
+   hardware is mapped.. not an issue.. only one ROM can work at present
+   anyway!
+ - Well the screen is working (to my eyes anyway!), theres a whole heap of
+   garbage and the palettes wrong but these are due to HW registers that are
+   not setup yet.
+ - 2 out of 3 planes on the screen are running, the last is just a cut &
+   paste away, I`ll worry about that l8r, since it aint used yet!
+
+03 July:
+ - Quick DMA fix and code now runs, but without some more hardware addresses
+   no legable output can be produced.
+
+02 July:
+ - Dark Elf joined development with an assembler version of my screen render
+   code, although it still needs installing into the new code, it has been
+   tested under a C++ core.
+ - In an attempt to get the code running in the asm core, I spent an age
+   getting hardware mapping implemented with DMA and the screen code. The
+   screen code works without crashing.. DMA does not ;(
+
+01 July:
+ - Redone 40 of the opcodes, only 210 to go!
+ - No Hardware mappings yet, so the emulator is a currant rather than a fly!
+
+29 June:
+ - Hmm, decision to stop current work on CPU in c++, and move the code into
+   assember for the basic reason that many opcodes would get a large benefit
+   from assemblerisation.
+ - Arrg, conversion to assembler caused some problems (I never really tried
+   on the PC before!). I ended up having a C file to declare variables that
+   could be accessed by .ASM, .CC and the debugger!
+
+27 June:
+ - Fixed JSL routine, was pushing the wrong PC onto the stack!
+ - Implemented more opcodes, implemented all 8 DMA channels (not H-DMA).
+
+26 June:
+ - At last after screaming at the Yoshi Documentation set (Screen.TXT) I got
+   Mode 1 up and running. Turns out the bit about tiles was completely
+   wrong!
+ - Modes 3 & 0 are now running properly too.
+ - Fixed NMI bug (interrupt was being issued without checking 0x4200!!)
+
+25 June:
+ - Finally got to the end of the Demo cartridge (without doing sound part!).
+
+24 June:
+ - Re-write of initial emulation project begun.

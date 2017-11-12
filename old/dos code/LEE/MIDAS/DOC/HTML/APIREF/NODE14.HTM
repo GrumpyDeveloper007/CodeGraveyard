@@ -1,0 +1,117 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<!--Converted with LaTeX2HTML 96.1-h (September 30, 1996) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
+<HTML>
+<HEAD>
+<TITLE>Constants</TITLE>
+<META NAME="description" CONTENT="Constants">
+<META NAME="keywords" CONTENT="apiref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<LINK REL=STYLESHEET HREF="apiref.css">
+</HEAD>
+<BODY LANG="EN" >
+ <A NAME="tex2html301" HREF="node15.html"><IMG WIDTH=37 HEIGHT=24 ALIGN=BOTTOM ALT="next" SRC="../icons/next_motif.gif"></A> <A NAME="tex2html299" HREF="node13.html"><IMG WIDTH=26 HEIGHT=24 ALIGN=BOTTOM ALT="up" SRC="../icons/up_motif.gif"></A> <A NAME="tex2html293" HREF="node13.html"><IMG WIDTH=63 HEIGHT=24 ALIGN=BOTTOM ALT="previous" SRC="../icons/previous_motif.gif"></A> <A NAME="tex2html303" HREF="node1.html"><IMG WIDTH=65 HEIGHT=24 ALIGN=BOTTOM ALT="contents" SRC="../icons/contents_motif.gif"></A>  <BR>
+<B> Next:</B> <A NAME="tex2html302" HREF="node15.html">Data types</A>
+<B>Up:</B> <A NAME="tex2html300" HREF="node13.html">4 Sample playback</A>
+<B> Previous:</B> <A NAME="tex2html294" HREF="node13.html">4 Sample playback</A>
+<BR> <P>
+<H1><A NAME="SECTION00510000000000000000">Constants</A></H1>
+<P>
+This section describes all constants used in MIDAS sample playback. They are
+grouped according to the <TT>enum</TT> used to define them.
+<P>
+<BR> <HR><A NAME="MIDASsampleTypes">&#160;</A><H2><A NAME="SECTION00511000000000000000">4.1.1 MIDASsampleTypes</A></H2>
+<A NAME="1113">&#160;</A>
+<PRE>
+enum MIDASsampleTypes</PRE>
+<P>
+<H3><A NAME="SECTION00511100000000000000">Description</A></H3>
+<P>
+These constants identify different sample types. They are used with the
+functions <A HREF="node16.html#MIDASloadRawSample">MIDASloadRawSample</A>, <A HREF="node20.html#MIDASplayStreamFile">MIDASplayStreamFile</A> and
+<A HREF="node20.html#MIDASplayStreamPolling">MIDASplayStreamPolling</A> to indicate the format of the sample data.
+The byte order of the sample data is always the system native order (little
+endian for Intel x86 systems).
+<P>
+<H3><A NAME="SECTION00511200000000000000">Values</A></H3>
+<P>
+<DL ><DT><STRONG>MIDAS_SAMPLE_8BIT_MONO</STRONG>
+<DD> 8-bit mono sample, unsigned
+    <DT><STRONG>MIDAS_SAMPLE_8BIT_STEREO</STRONG>
+<DD> 8-bit stereo sample, unsigned
+    <DT><STRONG>MIDAS_SAMPLE_16BIT_MONO</STRONG>
+<DD> 16-bit mono sample, signed
+    <DT><STRONG>MIDAS_SAMPLE_16BIT_STEREO</STRONG>
+<DD> 16-bit stereo sample, signed
+<P>
+</DL>
+<P>
+<BR> <HR><A NAME="MIDASloop">&#160;</A><H2><A NAME="SECTION00512000000000000000">4.1.2 MIDASloop</A></H2>
+<A NAME="1128">&#160;</A>
+<PRE>
+enum MIDASloop</PRE>
+<P>
+<H3><A NAME="SECTION00512100000000000000">Description</A></H3>
+<P>
+These constants are used to indicate the loop type of a sample or stream.
+<P>
+<H3><A NAME="SECTION00512200000000000000">Values</A></H3>
+<P>
+<DL ><DT><STRONG>MIDAS_LOOP_NO</STRONG>
+<DD> Sample or stream does not loop
+    <DT><STRONG>MIDAS_LOOP_YES</STRONG>
+<DD> Sample or stream loops
+<P>
+</DL>
+<P>
+<BR> <HR><A NAME="MIDASpanning">&#160;</A><H2><A NAME="SECTION00513000000000000000">4.1.3 MIDASpanning</A></H2>
+<A NAME="1131">&#160;</A>
+<PRE>
+enum MIDASpanning</PRE>
+<P>
+<H3><A NAME="SECTION00513100000000000000">Description</A></H3>
+<P>
+These constants are used to describe the panning position of a sound. Legal
+panning positions range from -64 (extreme left) to 64 (extreme right),
+inclusive, plus MIDAS_PAN_SURROUND for surround sound.
+<P>
+<H3><A NAME="SECTION00513200000000000000">Values</A></H3>
+<P>
+<DL ><DT><STRONG>MIDAS_PAN_LEFT</STRONG>
+<DD> Panning position full left
+    <DT><STRONG>MIDAS_PAN_MIDDLE</STRONG>
+<DD> Panning position middle
+    <DT><STRONG>MIDAS_PAN_RIGHT</STRONG>
+<DD> Panning position full right
+    <DT><STRONG>MIDAS_PAN_SURROUND</STRONG>
+<DD> Surround sound
+<P>
+</DL>
+<P>
+<BR> <HR><A NAME="MIDASchannels">&#160;</A><H2><A NAME="SECTION00514000000000000000">4.1.4 MIDASchannels</A></H2>
+<A NAME="1134">&#160;</A>
+<PRE>
+enum MIDASchannels</PRE>
+<P>
+<H3><A NAME="SECTION00514100000000000000">Description</A></H3>
+<P>
+These constants are used to indicate the channel number a sound should be
+played on. Legal channel numbers range from 0 upwards, depending on the
+number of open channels. In addition, MIDAS_CHANNEL_AUTO can be used
+with <A HREF="node16.html#MIDASplaySample">MIDASplaySample</A>.
+<P>
+<H3><A NAME="SECTION00514200000000000000">Values</A></H3>
+<P>
+<DL ><DT><STRONG>MIDAS_CHANNEL_AUTO</STRONG>
+<DD> Select channel automatically, used with
+        <A HREF="node16.html#MIDASplaySample">MIDASplaySample</A>
+<P>
+</DL>
+<P>
+<BR> <HR>
+<P><ADDRESS>
+<I>Petteri Kangaslampi <BR>
+Mon Jan 27 00:19:24 EET 1997</I>
+</ADDRESS>
+</BODY>
+</HTML>

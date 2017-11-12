@@ -1,0 +1,256 @@
+-----
+v1.30 (PUBLIC RELEASE)
+-----
+  * TRACER.DOC updated.
+  * Added -b option; disassembles from NMI/VBL vector.
+  * Bugs fixed:
+    * -v was actually disassembling from the NMI/VBL vector, not the reset
+      vector. Oops.
+
+-----
+v1.28 (PUBLIC RELEASE)
+-----
+  * TRACER.DOC updated.
+  * Added -v option; disassembles from reset vector.
+  * I have removed support for doing redirects under DOS. Stuff like:
+      TRACER FILE.BIN > FILENAME
+    ...will no longer work. Please use the -o option instead of using the
+    DOS '>' redirector. This can also be considered an optimization, as the
+    default output device has now changed from a C-style STDOUT to the
+    video driver.
+  * Optimizations:
+    * I have increased the speed of the hex-to-ascii routines once again.
+
+-----
+v1.26 (PUBLIC RELEASE)
+-----
+  * Goodbye protected-mode. Seems Borland Pascal enjoys requiring weird
+    run-time-modules, such as their RTM.EXE, when compiling in protected
+    mode. I didn't realize this until Dan Boris informed me of the error.
+    I feel like a complete git at this point, so i'll stick with the stand-
+    ard DOS real mode from now on. :-)
+
+-----
+v1.25 (PUBLIC RELEASE)
+-----
+  * Bugs fixed:
+    * Oops. I accidentally removed the Seek() line, therefore -k and -s
+      were not working. My bad.
+
+-----
+v1.24 (PUBLIC RELEASE)
+-----
+  * TRACER.DOC updated.
+  * SAMPLE.DIS updated.
+  * TRaCER now has a web page. Be sure to check out:
+      http://www.winternet.com/~shadow/
+    And follow the link to find TRaCER hosted off of my own LAN.
+  * Optimizations:
+    * TRaCER is now a protected-mode application (yes, despite it's small
+      size). It now uses the WinAPI library under DOS, providing the ability
+      to address all memory available. This explains the size increase. Be
+      prepared to experience labelling in the near future.
+      This also means it now requires a 386 or higher to be executed. I doubt
+      anyone uses TRaCER on a 286, so it's for a just cause.
+    * The hex-to-ascii byte/word routines have been re-written in pure
+      assembly. As TRaCER uses these functions constantly, a speed increase
+      is definitely due.
+
+-----
+v1.22 (PUBLIC RELEASE)
+-----
+  * Bugs fixed:
+    * For the zillionth time, a bug was found in the branch instructions.
+      The previous address/operand was not being cleared, and therefore was
+      causing emotional distress when it came to other operands.
+        Wrong: 00/80C9: 54 CF 88     ???
+               00/80CC: FC 00 80     JMP $8000
+        Right: 00/80C9: 54           ???
+               00/80CA: CF           ???
+               00/80CB: 88           DEY
+               00/80CC: FC 00 80     JMP $8000
+
+-----
+v1.21 (PUBLIC RELEASE)
+-----
+  * Optimizations:
+    * Main loop has been sped up by removing dual 'IF's, replacing them
+      with 'IF ((x) and (x))'.
+  * Bugs fixed:
+    * When using -n, opcodes which are not 65c02-compatible were still using
+      the actual size of the opcode even in 65c816 mode.
+        Wrong: 00/80C9: 54 CF 88     ???
+               00/80CC: FC 00 80     JMP $8000
+        Right: 00/80C9: 54           ???
+               00/80CA: CF           ???
+               00/80CB: 88           DEY
+               00/80CC: FC 00 80     JMP $8000
+    * When using -n, opcodes which are not 65c02-compatible were not calc-
+      ulating the offset correctly. This relates directly to the aforemen-
+      tioned bug.
+
+-----
+v1.20 (PUBLIC RELEASE)
+-----
+  * Bugs fixed:
+    * When using -n, program counter was not being incremented correctly
+      if a bad opcode was found, causing the rest of the disassembly to
+      be 100% inaccurate.
+        Wrong: 00/8016: FF A2 34 12  ???
+               00/8017: A7 00        ???
+        Right: 00/8016: FF A2 34 12  ???
+               00/801A: A7 00        ???
+
+-----
+v1.19 (PUBLIC RELEASE)
+-----
+  * Bugs fixed:
+    * Branch operand/address translation was hosed (AGAIN). This time I
+      hope I have finally fixed the problem.
+    * Stack-relative indexed Y was being displayed wrong.
+        Wrong: LDA ($00,Y),S
+        Right: LDA ($00,S),Y
+    * Jump indirect indexed X was being displayed wrong.
+        Wrong: JMP ($1234),X
+        Right: JMP ($1234,X)
+  * Optimizations:
+     * Combine NES & SNES translation routines to provide a smaller and
+       more efficient binary.
+
+-----
+v1.15 (PUBLIC RELEASE)
+-----
+  * Optimizations:
+     * Address search-and-replace routine has now been replaced with an
+       assembly version of the "world-famous" Toad Hall character search.
+
+-----
+v1.14 (PUBLIC RELEASE)
+-----
+  * Added -k option; skips 16-byte iNES header.
+
+-----
+v1.13 (PUBLIC RELEASE)
+-----
+  * Bugs fixed:
+     * Minor assembly modifications done to the translation routines,
+       primarily the NES translation.
+  * TRaCER, from now on, will be officially released by Damaged Cybernetics,
+    not OldSkoOL.
+
+-----
+v1.12 (BETA RELEASE)
+-----
+  * Added -n option; supports NES (65c02) opcode output. I'm sure this
+    feature has bugs -- if you find any, EMail me!
+  * Re-added -t option.
+  * Bugs fixed:
+     * MVN/MVP were being displayed wrong.
+  * Optimizations:
+     * Address search-and-replace routine translated to pure assembly.
+       Previous versions used BP's Pos() routine, which was hellishly slow.
+
+-----
+v1.11 (BETA RELEASE)
+-----
+  * Added disassembler comparison chart to TRACER.DOC.
+  * Added -o option; redirect output to file OUTPUT.DIS.
+  * Bugs fixed:
+     * Branch/jump addresses were totally wrong; initialization routine
+       wasn't 100% correct.
+  * Optimizations:
+     * Lookup table modified by 1 byte (again). Knocked off another 256
+       bytes.
+     * Translation routines have been optimized, though are still in
+       Pascal -- really should be written in assembly.
+     * Minor modifications to actual compile-time options in BP, resulting
+       in 512 bytes being knocked off the binary size.
+
+-----
+v1.10 (PUBLIC RELEASE)
+-----
+  * Bugs fixed:
+     * 'PER' was not being disassembled correctly.
+     * Opcodes such as 'RTS' and 'NOP', which didn't have operands, were
+       being displayed wrong.
+  * Optimizations:
+     * More minor assembly conversions.
+  * TRACER.DOC modified to reflect command-line changes and etc...
+  * SAMPLE.DIS included as an example disassembly.
+
+-----
+v1.09 (BETA RELEASE)
+-----
+  * Bugs fixed:
+     * Disassembled 'MVN' and 'MVP' opcodes were stating the banks in the
+       reverse order.
+  * Optimizations:
+     * REP/SEP checking routine translated to pure assembly.
+
+-----
+v1.08 (BETA RELEASE)
+-----
+  * -t option removed; useless without label support.
+  * -r option added; now supports "real" 65816 addressing..
+  * Optimizations:
+     * Lookup table modified by 1 byte; may seem like nothing, but when you
+       have 256 opcodes, it knocks off 256 bytes from the binary.
+     * Small optimizations to translations routines made.
+     * Variable initialization done via assembly.
+
+-----
+v1.07 (BETA RELEASE)
+-----
+  * Bugs fixed:
+     * Minor typos, such as 24-bit addresses being shown as '$bbxxxx' in
+       comparison to '$bbxxxx'.
+  * Optimizations:
+     * Completely re-wrote hex-to-opcode/operand translation routine.
+     * Small size modifications made, making the actual executable smaller.
+     * Removed use of the DOS include library.
+
+-----
+v1.06 (PUBLIC RELEASE)
+-----
+  * -p option removed, due to non-use.
+  * 65c02 compatible flags added to opcode table. NES compatibility should
+    be enabled by v1.20.
+  * Bugs fixed:
+     * End-of-file bug fixed; '--' and 'EOF' markers now shown.
+     * REP/SEP following was beyond broken; it now works correctly.
+  * Optimizations:
+     * Disk access loop sped up by ~25%.
+     * Small loops converted to assembly.
+     * Opcode table optimized slightly.
+
+-----
+v1.05 (PUBLIC RELEASE)
+-----
+  * Many typos fixed (especially in opcode list).
+  * Bugs fixed:
+     * When not using -s, seek() was seeking to the second byte of the
+       file, not the first.
+     * Certain opcodes were using wrong addressing modes; mainly, BIT,
+       AND, and ROL.
+  * Optimizations:
+     * More code converted to pure assembly.
+     * Internal variables decreased in size (saving about 32 bytes).
+     * REP/SEP following has been sped up.
+
+-----
+v1.02 (PUBLIC RELEASE)
+-----
+  * CHANGES file added.
+  * Small optimizations made.
+
+-----
+v1.01 (PUBLIC RELEASE)
+-----
+  * Bugs were found in the branch statements; I was not taking into account
+    the actual opcode + operand when calculating the new address to print.
+    Therefore, branch statement addresses were 2 bytes off, and long
+    branch statement addresses were 3 bytes off.
+
+-----
+v1.00 (PUBLIC RELEASE)
+-----

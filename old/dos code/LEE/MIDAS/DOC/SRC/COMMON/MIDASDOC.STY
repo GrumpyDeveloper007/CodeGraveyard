@@ -1,0 +1,59 @@
+\usepackage{html}
+
+%begin{latexonly}
+
+% No paragraph indent, about 10pt of space between them:
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{10pt plus 2pt minus 1pt}
+
+% Undent our headings a little bit:
+
+\makeatletter
+\renewcommand\section{\@startsection {section}{1}{-20pt}%
+                                   {-3.5ex \@plus -1ex \@minus -.2ex}%
+                                   {2.3ex \@plus.2ex}%
+                                   {\normalfont\Large\bfseries}}
+\renewcommand\subsection{\@startsection{subsection}{2}{-20pt}%
+                                     {-3.25ex\@plus -1ex \@minus -.2ex}%
+                                     {1.5ex \@plus .2ex}%
+                                     {\normalfont\large\bfseries}}
+\renewcommand\subsubsection{\@startsection{subsubsection}{3}{-20pt}%
+                                     {-3.25ex\@plus -1ex \@minus -.2ex}%
+                                     {1.5ex \@plus .2ex}%
+                                     {\normalfont\normalsize\bfseries}}
+\makeatother
+
+%end{latexonly}
+
+% A cool documentation entry page - describes a sigle whatever, starting a
+% new subsection and inserting a label and index entry point in the process:
+\newcommand{\mDocEntry}[1]{\newpage\htmlrule\label{#1}\subsection{#1}\index{#1}}
+
+% A language reserved word - "enum", "typedef" and such:
+\newcommand{\mResWord}[1]{{\ttfamily #1}}
+
+% A file name:
+\newcommand{\mFileName}[1]{{\ttfamily #1}}
+
+% A variable, structure member or argument:
+\newcommand{\mVariable}[1]{{\bf #1}}
+
+% A label and index entry:
+\newcommand{\mLabel}[1]{\label{#1}\index{#1}}
+
+% Reference to a document entry:
+%begin{latexonly}
+\newcommand{\mDocRef}[1]{{\em #1}}
+%end{latexonly}
+\begin{htmlonly}
+\newcommand{\mDocRef}[1]{\hyperref{#1}{hum}{hum}{#1}}
+\end{htmlonly}
+
+% Reference to a document label:
+%begin{latexonly}
+\newcommand{\mDocRefLabel}[2]{{\em #1}}
+%end{latexonly}
+\begin{htmlonly}
+\newcommand{\mDocRefLabel}[2]{\hyperref{#1}{hum}{hum}{#2}}
+\end{htmlonly}

@@ -1,0 +1,88 @@
+2001-08-30 Clear credit note list box on customer search screen
+2001-09-05 Problems with ADO connection string on WinME, changed connection string
+2001-09-05 Changed Unit cost edit, removed set qty=1
+2001-09-05 VAT Read from textbox in options was using incorrect function
+2001-09-07 Added credit note number to options screen
+2001-09-07 Changed Invoice Number, Credit note number, Estimate number to support multi-user
+2001-09-19 Added mutiple handling charges, config screen, invoice screen using context menu
+2001-10-22 Changed options screen, added autocase/uppercase, fixed tab order
+2001-11-22 Added Discount feature to unit cost/net cost boxes on invoice screen
+2001-11-22 Added field to customer table-discountpercentage added to customer search screen
+2002-01-09 BUG-invoice screen wasnt clearing datastore
+2002-01-09 Changed navigation mode on text boxes in options screen
+2002-01-09 BUG-product config didnt like nulls
+2002-01-09 Changed navigation mode on text boxes in customer search screen
+2002-01-10 Changed postcode to force uppercase
+2002-01-10 Added Graph view to project global forms(printer object)
+2002-01-10 Validated tab-index, moved labels to align them with textboxes
+2002-01-11 Changed class customer, to ensure postcodes remain uppercase
+2002-01-11 Made email address box bigger
+2002-01-11 Added Show all for estimates, allows user to quickly find existing estimates
+2002-01-14 Added InvoiceCustomerID to invoice table and InvoiceCustomer table
+2002-01-14 BUG-Changed Customer Search, company name search wasnt working
+2002-01-14 Added 'All Invoices' to enquiry
+2002-01-14 BUG-Changed invoice storage method
+2002-01-14 Changed Event on Invoice->product name
+2002-01-14 Changed Invoice Print to remove autocase on description and invoice comments
+2002-01-14 Changed Name of Estimate print out to quotation
+2002-01-23 Added SIPalm intergration, ready for user testing
+2002-01-23 Added Email address field (need to update customer database)
+2002-01-23 BUG-Invoicecustomer details problem when existing customer and 2nd invoice
+2002-01-23 Update help file, (still need some work)
+2002-01-25 Changed description coloum on printout to auto-wordwrap multiline text
+2002-01-25 BUG-Not clearing saleID on .resetForm in customer search
+2002-01-30 BUG-Updating invoices salelineID was not being used to update saleline records
+2002-02-01 Changed Product config, added update button
+2002-02-01 Altered code in customer search, may solve bug
+2002-02-07 Added Remove records on edit invoice
+2002-02-07 Changed Reports, Invoice Enq removed estimates from unpaid invoices report
+2002-02-07 Added error logging, Trace information (for bug tracking)
+2002-02-07 BUG-Found bug with editing invoices, problem when using invoice enquiry
+2002-02-07 Changed order of invoice report to invoice date+invoice number
+
+2002-02-22 Added Saving of scroll bar position on product config+Handling+Accounts
+2002-02-22 Paid invoices are green on invoice enquiry
+2002-02-22 Added Statement Logging (statement table)
+2002-02-22 Fixed up statement report
+2002-02-27 BUG-Fixed postcode field size
+2002-02-27 Moved handling above VAT, now value does not include VAT
+2002-02-27 Changed the names on the menu from config to manage
+2002-02-27 Department field added to system, prints on invoice above company name
+2002-02-27 Now only prints one copy of estimates
+2002-02-27 Changed static fields on invoice print-out for estimates (to quotation date etc)
+2002-02-27 Added SaleAction table, for comments aganist invoices
+*
+2002-03-21 Added beep to enter payment screen
+2002-04-08 Refresh grid in invoice enquiry when closing sub-screens (payment etc)
+2002-04-08 Changed down arrow function on invoice screen grid to move to first colomn
+2002-04-08 Changed name of labels on invoice screen when editing estimates
+2002-04-08 BUG-Due date period not being loaded on first screen open (Find customer)
+2002-04-08 Changed caption on update button when editing estimates
+2002-04-15 Added messagebox to create invoice from estimate button(invoice screen) to verify correct clicks 
+2002-04-15 Load Estimate(invoice) date with current date when edition estimates, so when they are converted to invoices they have current date
+*
+2002-04-29 BUG-VAT Report not working, due to payment date not being pushed into invoice table,
+2002-04-29 Changed VAT Report, amountpaid=total cost???
+2002-04-29 Changed VAT Report layout
+2002-04-29 Default to cheque payment type (payment/invoice screen)
+*
+2002-04-30 Added payment date to invoice enquiry grid
+2002-05-01 Added start date option to VAT preview 
+2002-05-01 Changed print preview, now remembers the scale setting
+2002-05-07 Changed VAT report added date option to options screen
+2002-05-07 Added field to Invoice VATPaid (amount of VAT paid on invoice by issuing company)
+
+2002-05-16 Changed Don't Print Tickbox to Copies comboBox, so any number of copies can be printed
+2002-05-16 *GLOBAL* Updated some field types in printerObject->FormatField
+2002-05-16 *GLOBAL* Added support for 'H' hole integers
+2002-05-16 Added Company Name, Days Overdue to Customer Statement
+2002-05-21 Added Invoice and Estimate and as seperate items
+*
+2002-05-29 BUG-added to VAl( to vat save in invoice->createinovice
+2002-06-13 Updated Help file, Added About screen, Added Database view
+*
+2002-07-05 Added statement date column for invoice enquiry
+2002-07-05 Changed layout for statement printout
+2002-07-05 *Global* Updated DateControl to include calendar
+2002-07-10 Added Overdue Invoice screen, screen will load on startup if statements need to be printed
+2002-07-11 Added export customer report

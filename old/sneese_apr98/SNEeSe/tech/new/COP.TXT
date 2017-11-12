@@ -1,0 +1,57 @@
+> >     BRK & COP -- Fun. :-) 
+  > 
+  >  Oh good! Thats all I need ;-)
+  > 
+  > >     On the SNES, COP does nothing important. You should emulate it 
+  > 
+  >  Would COP be a single byte instruction then... ?
+
+          No, COP also possesses a signature byte. It's 2 bytes.
+
+          Emulation mode:
+
+                  1) PC is incremented by 2
+                  2) PC is pushed onto the stack
+                  3) S is pushed onto the stack
+                  4) 'i' in S is set 
+                  5) PC is loaded with what's at the COP vector
+                     ($00FFF4/5)
+
+          Native mode:
+
+                  1) K is pushed onto the stack
+                  2) PC is incremented by 2
+                  3) PC is pushed ont othe stack
+                  4) S is pushed ont othe stack
+                  5) 'i' in S is set
+                  6) K is cleared to 0
+                  7) 'd' in S is cleared
+                  8) PC is loaded with what's at the COP vector
+                     ($00FFE4/5)
+          
+
+          Also, I may've made a typo in my previosu statement about
+          BRK at Step #7 (I think); PC is not cleared to 0, K is.
+
+  > 
+  > >             8) PC is loaded with what's at the BRK vector 
+  > >                ($00FFE6/7) 
+  > 
+  >  Hmm, Is this native or emulation... I assume native! Cos the docs
+  > are unclear on which vectors to use they have two tables with
+  > different bloomin values in each!
+
+          Yes, I'm speaking purely native mode. Under emulation mode,
+          different things happen, like this:
+
+                  1) PC incremented by 2
+                  2) PC pushed onto the stack
+                  3) S pushed onto stack, with 'b' bit set.
+                  4) 'i' in S is set.
+                  5) PC is loaded with what's at the BRK vector
+                     ($00FFFE/F)
+
+
+          The GTE docs suck. :-)
+
+  --

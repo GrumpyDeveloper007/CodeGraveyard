@@ -1,0 +1,6 @@
+FRMMain = 44, 303, 746, 635, C, 253, 257, 454, 503, C
+FRMDesigner = 31, 85, 752, 619, , 426, 4, 627, 247, C
+FRMSelectTemplate = 73, 118, 632, 562, C, 465, 257, 669, 500, C
+FRMDetails1 = 144, 153, 703, 597, C, 4, 6, 215, 247, C
+FRMDetails2 = 110, 110, 669, 554, C, 218, 5, 423, 247, C
+PalmGlobalFunctions = 0, 0, 0, 0, C

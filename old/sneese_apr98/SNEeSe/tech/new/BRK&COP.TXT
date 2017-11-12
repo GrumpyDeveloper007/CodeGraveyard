@@ -1,0 +1,40 @@
+> >  Thanks very much I will do that, sorry its only 12:41 pm here
+> I forget > about the time difference, I`ll let you get on, oh
+> and if you want to > leave me a reply about what BRK and COP do
+> I`d be grateful but send it > in the morning or whenever, I have
+> not looked at them yet, but someone > asked me and I thought I`d
+> ask while I had your attention ;-)  
+>  
+> 	BRK & COP -- Fun. :-) 
+>  
+> 	On the SNES, COP does nothing important. You should emulate it 
+> 	just how the GTE doc states (if it doesn't state anything, I 
+> 	can explain it in detail). 
+>  
+> 	BRK, on the other hand, is very important. 
+>  
+> 	First off, BRK is 2 bytes; one for the opcode ($00), and one
+> for 	the operand. Many document state BRK is one byte, and this
+> is 
+
+> 	100% wrong. BRK supports a signature byte. 
+>  
+> 	On the 65816, when BRK is hit, these things happen (in order): 
+>  
+> 		1) K is pushed onto the stack. 
+> 		2) PC is incremented 2 (see? signature byte ;-) ) 
+> 		3) PC is pushed onto the stack 
+> 		4) S is pushed onto the stack 
+> 		5) 'i' in S is set. 
+> 		6) PC is cleared to 0. 
+> 		7) 'd' in S is cleared. 
+> 		8) PC is loaded with what's at the BRK vector 
+> 		   ($00FFE6/7) 
+>  
+> 	Execution then continues from what's loaded into PC. 
+>  
+> >  ;-) Nice idea, I guess cycle counting is the only way, I`ll
+> probably > make the cycle value changable to be on the safe
+> side. 
+>  
+> 	Yup, you got it :-) 

@@ -1,0 +1,97 @@
+What's new in all the versions...
+
+:Sn2 -The FrontEnds for Snes96, Snes96 Beta, Snes9x. Version .9
+-Name Changed from Snes96sp to Sn2
+-Now has Snes9x support
+-Removed JoyEmu 3.3
+-Added Internal 4 Buttorn Joystic/Gamepad Support.
+-Removed Alot of extra things.
+-Added the **New** Rom Uniter. (Unites for trainers and stuff)
+-Now has support for all 3 Systems (Snes96, Snes9x, Snes96 .73 Beta)
+
+:snes96 -The FrontEnd Speed Util 2.8
+-Changed the menu.
+-Fixed the wrong Version Bug
+-Added MainMenu to make it easier.
+-Begain Working on Snes96sp's "Little Helper" Will be out in 2.9
+
+:snes96 -The FrontEnd Speed Util 2.7
+-Fixed the Joystic/Gamepag errors to snes96.exe
+-Began Working on full jopystic emulation of buttons A,B,X,Y
+
+:snes96 -The FrontEnd Speed Util 2.6
+-Added Joystic Support From JoyEmu 3.3, by SZP.
+-Removed the annoying "Bethoven Sound Intro". So it loads faster !
+
+:snes96 -The FrontEnd Speed Util 2.5b
+-Added the "Bethoven Sound Intro" as a dedication to the Snes96 getting sound.
+-Fixed the dir problem, now only shows *.smc *.sfm.
+
+:snes96 -The FrontEnd Speed Util 2.5
+-Added new speed for beta menu "cyrix". Only werks good for cyrix CPUs.
+-Cyrix now uses the same technology as "normal" speed option.
+
+:snes96 -The FrontEnd Speed Util 2.4c
+-Added the new Beta Menu. Hold Star(*) at the logo to enter it !
+-Added menu features to the Snes96 .73 Beta menu.
+-Added color support to the Beta Menu.
+
+:snes96 -The FrontEnd Speed Util 2.4b
+-Colors added to MAIN MENU =)
+-More to come.
+
+:snes96 -The FrontEnd Speed Util 2.4
+-Now has buttons (meus) function at the startup logo. (see file_id.diz for details)
+-Added "What's New" function to the logo (see file_id.diz)
+-Changed some functions for faster access on 386 & 486 CPUs.
+-Changed the startup logo text.
+-"Snes96 Speed Patch" is now afficialy renamed to "Snes96 -The FrontEnd Speed Util" Becouse of numeraus number of complains I got for the "patch" part of the name.
+
+:snes96 patch 2.3
+-Now has 'detect' option. Sets the framerate to the best speed on your CPU.
+-Deleted some text.
+-Changed "FastSpeed", another bug found =(
+
+:snes96 patch 2.2
+-CPU Detection Bug Fixed
+-Added most of the faq to moreinfo.txt (must read)
+-Added BestSpeed Info (autodetects best speed to choose for your CPU)
+
+:snes96 patch 2.1b
+-Bug Fixed on "FastSpeed" (No more ugly grafix)
+-Added new text for the intro.
+-Added the copyright text.
+
+:snes96 patch 2.1
+-Added "SlowSpeed"
+-Fixed Bytes (31 EB 63)
+
+:snes96 patch 2.0
+-All Re-Written from scratch
+-No more frame affects as it was in the previous versions !
+-Now works almost with all emulated games, exept for the ones that
+need chips.
+-Now uses full assembly & debuger.
+-Nice VGA grafix added to snes96sp.exe . Does alot of new things.
+-Temarearly removed "SlowSpeed" feature due to a debuging problem. Will be probobly
+fixed in the next version.
+-To everyone who asked "No, I did not write snes96 or snes97."
+-Now runs twise as good.
+
+:snes96 patch 1.5b
+-Added "SlowSpeed" Feature (/l)
+-Now Zelda Runs On Full Speed with (/f) on p75.
+
+:snes96 patch 1.5
+-Should now run Dck2 + 3, didn't test it yet. And Mario World on (/f) for
+full performance.
+-Fixed debbuging bytes (25 EB 51)
+-New speed added "hyper" (/h), fast on my p75, verry bad performance though !
+-Spelling fixed at the end from "Thank You fot choosing tRS'97." to "Thank You
+for choosing tRS'97."
+
+:snes96 patch 1.0a (first release)
+-3 Speeds added (fast, supper, turbo)
+-Fixed mapper for debuggin snes96.exe
+-Now debuggs some parts of assembly
+-Expect more to come

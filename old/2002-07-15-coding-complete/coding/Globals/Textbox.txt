@@ -1,0 +1,69 @@
+
+name
+alignment
+appearance
+backcolor
+borderstyle
+causesvalidation
+datafield
+dataformat
+datamember
+datasource
+dragicon
+dragmode
+enabled
+font
+forecolor
+height
+helpcontextid
+hideselection
+index
+left
+linkitem
+linkmode
+linktimeout
+linktopic
+locked
+maxlength
+mouseicon
+mousepointer
+multiline
+oledragmode
+olddropmode
+passwordchar
+righttoleft
+scrollbars
+tabindex
+tabstop
+tag
+text
+tooltiphelp
+top
+visible
+whatsthishelpID
+width
+
+Private Sub Text1_Change()
+Private Sub Text1_Click()
+Private Sub Text1_DblClick()
+Private Sub Text1_DragDrop(Source As Control, X As Single, Y As Single)
+Private Sub Text1_DragOver(Source As Control, X As Single, Y As Single, State As Integer)
+Private Sub Text1_GotFocus()
+Private Sub Text1_KeyDown(KeyCode As Integer, Shift As Integer)
+Private Sub Text1_KeyPress(KeyAscii As Integer)
+Private Sub Text1_KeyUp(KeyCode As Integer, Shift As Integer)
+Private Sub Text1_LinkClose()
+Private Sub Text1_LinkError(LinkErr As Integer)
+Private Sub Text1_LinkNotify()
+Private Sub Text1_LinkOpen(Cancel As Integer)
+Private Sub Text1_LostFocus()
+Private Sub Text1_MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
+Private Sub Text1_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
+Private Sub Text1_MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
+Private Sub Text1_OLECompleteDrag(Effect As Long)
+Private Sub Text1_OLEDragDrop(Data As DataObject, Effect As Long, Button As Integer, Shift As Integer, X As Single, Y As Single)
+Private Sub Text1_OLEDragOver(Data As DataObject, Effect As Long, Button As Integer, Shift As Integer, X As Single, Y As Single, State As Integer)
+Private Sub Text1_OLEGiveFeedback(Effect As Long, DefaultCursors As Boolean)
+Private Sub Text1_OLESetData(Data As DataObject, DataFormat As Integer)
+Private Sub Text1_OLEStartDrag(Data As DataObject, AllowedEffects As Long)
+Private Sub Text1_Validate(Cancel As Boolean)

@@ -1,0 +1,335 @@
+[Root]
+Most Recent Package=Phone System Setup Package
+Most Recent Deploy=Folder Deployment 1
+
+
+[Package|Phone System Setup Package|Root]
+SubWizProgID=PDWizard.SetupPkgSubWiz
+BuildFolder=c:\coding\Package\phonesystem
+
+[Package|Phone System Setup Package|Configure DAO ISAMs]
+Applicable=No
+Xbase=No
+Paradox=No
+Exchange=No
+Text=No
+Excel=No
+Jet 2.x=Yes
+
+[Package|Phone System Setup Package|Configure DAO ODBC]
+JetWorkspace=
+ODBCDirect=
+
+[Package|Phone System Setup Package|Files Found]
+u25store.dll=C:\WIN98\CRYSTAL\u25store.dll
+PhoneSystem.bmp=C:\coding\PhoneSystem\PhoneSystem.bmp
+
+[Package|Phone System Setup Package|Files Released]
+gbhltv32.dll=
+U2LSAMP1.DLL=
+U2LFINRA.DLL=
+U2LEXCH.DLL=
+U2LESBSE.DLL=
+U2LDTS.DLL=
+U2LBAR.DLL=
+U25TOTAL.DLL=
+U25DTS.DLL=
+U2FRDEF.DLL=
+TXTBOX.OCX=
+
+[Package|Phone System Setup Package|Missing Dependency Information]
+D:\coding\Globals\OCX\DateControl.ocx=
+D:\coding\Globals\OCX\TxtBox.ocx=
+D:\coding\SimpleInvoice\DateControl.ocx=
+D:\coding\SimpleInvoice\TxtBox.ocx=
+E:\WINNT\system32\DateControl.ocx=
+E:\WINNT\system32\Flp32x20.ocx=
+E:\WINNT\system32\TxtBox.ocx=
+E:\Program Files\Common Files\System\ado\msado26.tlb=
+E:\Program Files\Common Files\System\ado\msado25.tlb=
+C:\WINNT\system32\DateControl.ocx=
+C:\WINNT\system32\TxtBox.ocx=
+C:\Program Files\Common Files\System\ado\msado26.tlb=
+
+[Package|Phone System Setup Package|Out-of-Date Dependency Information]
+C:\WIN98\SYSTEM\Mscomctl.ocx=
+C:\WIN98\SYSTEM\tabctl32.ocx=
+E:\WINNT\system32\comdlg32.ocx=
+C:\WINNT\system32\MSCAL.OCX=
+C:\WINNT\system32\comdlg32.ocx=
+C:\WINNT\system32\scrrun.dll=
+
+[Package|Phone System Setup Package|Files Added]
+phonesystem.mdb=
+phonesystem.bmp=
+c:\program files\microsoft visual studio\vb98\wizards\pdwizard\redist\mdac_typ.exe=
+
+[Package|Phone System Setup Package|Files Removed]
+e:\program files\common files\system\ado\msado26.tlb=
+e:\program files\coding\microsoft visual studio\vb98\wizards\pdwizard\redist\mdac_typ.exe=
+c:\program files\common files\system\ado\msado26.tlb=
+
+[Package|Phone System Setup Package|Files In Project]
+C:\coding\PhoneSystem\PhoneSystem.exe=Yes
+C:\WINNT\system32\msvbvm60.dll=Yes
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\OLEAUT32.DLL=Yes
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\OLEPRO32.DLL=Yes
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\ASYCFILT.DLL=Yes
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\STDOLE2.TLB=Yes
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\COMCAT.DLL=Yes
+C:\Program Files\Common Files\System\ado\msado26.tlb=No
+C:\WINNT\system32\scrrun.dll=Yes
+C:\WINNT\system32\msvcrt.dll=Yes
+C:\WINNT\system32\TxtBox.ocx=Yes
+C:\WINNT\system32\comdlg32.ocx=Yes
+C:\Program Files\ListPro3\BIN\Flp32a30.ocx=Yes
+C:\WINNT\system32\atl.dll=Yes
+C:\WINNT\system32\DateControl.ocx=Yes
+C:\WINNT\system32\MSMASK32.OCX=Yes
+C:\WINNT\system32\MSCOMM32.OCX=Yes
+C:\WINNT\system32\MSCHRT20.OCX=Yes
+C:\WINNT\system32\MSADODC.OCX=Yes
+C:\WINNT\system32\MSSTDFMT.DLL=Yes
+C:\WINNT\system32\MSWINSCK.OCX=Yes
+C:\WINNT\system32\MSCAL.OCX=Yes
+C:\WINNT\system32\TABCTL32.OCX=Yes
+C:\coding\PhoneSystem\PHONESYSTEM.HLP=Yes
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\SETUP.EXE=Yes
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\SETUP1.EXE=Yes
+C:\WINNT\system32\VB6STKIT.DLL=Yes
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\ST6UNST.EXE=Yes
+C:\coding\PhoneSystem\PhoneSystem.mdb=Yes
+C:\coding\PhoneSystem\PhoneSystem.bmp=Yes
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\MDAC_TYP.EXE=Yes
+
+[Package|Phone System Setup Package|Configure Registry Files]
+Applicable=No
+
+[Package|Phone System Setup Package|Configure Remote Servers]
+Applicable=No
+
+[Package|Phone System Setup Package|Install Locations]
+C:\coding\PhoneSystem\PhoneSystem.exe=$(AppPath)
+C:\WIN98\SYSTEM\MSVBVM60.DLL=$(WinSysPathSysFile)
+C:\Program Files\CODING\VB98\Wizards\PDWizard\Redist\OLEAUT32.DLL=$(WinSysPathSysFile)
+C:\Program Files\CODING\VB98\Wizards\PDWizard\Redist\OLEPRO32.DLL=$(WinSysPathSysFile)
+C:\Program Files\CODING\VB98\Wizards\PDWizard\Redist\ASYCFILT.DLL=$(WinSysPathSysFile)
+C:\Program Files\CODING\VB98\Wizards\PDWizard\Redist\STDOLE2.TLB=$(WinSysPathSysFile)
+C:\Program Files\CODING\VB98\Wizards\PDWizard\Redist\COMCAT.DLL=$(WinSysPathSysFile)
+C:\WIN98\SYSTEM\DAO350.DLL=$(MSDAOPath)
+C:\WIN98\SYSTEM\MSJET35.DLL=$(WinSysPathSysFile)
+C:\WIN98\SYSTEM\msjter35.dll=$(WinSysPathSysFile)
+C:\WIN98\SYSTEM\msjint35.dll=$(WinSysPathSysFile)
+C:\WIN98\SYSTEM\VBAJET32.DLL=$(WinSysPathSysFile)
+C:\WIN98\SYSTEM\expsrv.dll=$(WinSysPathSysFile)
+C:\WIN98\SYSTEM\msrd2x35.dll=$(WinSysPathSysFile)
+C:\WIN98\SYSTEM\MSREPL35.DLL=$(WinSysPathSysFile)
+C:\Program Files\CODING\VB98\Wizards\PDWizard\Redist\MSVCRT40.DLL=$(WinSysPathSysFile)
+C:\WIN98\SYSTEM\vb5db.dll=$(WinSysPath)
+C:\WIN98\SYSTEM\TxtBox.ocx=$(WinSysPath)
+C:\WIN98\SYSTEM\comdlg32.ocx=$(WinSysPath)
+C:\Program Files\CODING\Lstpro20\BIN\Flp32x20.ocx=$(WinSysPath)
+C:\WIN98\SYSTEM\MFC42.DLL=$(WinSysPathSysFile)
+C:\WIN98\SYSTEM\MSVCRT.DLL=$(WinSysPathSysFile)
+C:\WIN98\SYSTEM\THREED32.OCX=$(WinSysPath)
+C:\Program Files\CODING\VB98\Wizards\PDWizard\Redist\MFC40.DLL=$(WinSysPathSysFile)
+C:\WIN98\SYSTEM\tabctl32.ocx=$(WinSysPath)
+C:\WIN98\SYSTEM\DateControl.ocx=$(WinSysPath)
+C:\WIN98\SYSTEM\MSMASK32.OCX=$(WinSysPath)
+C:\WIN98\SYSTEM\crystl32.ocx=$(WinSysPath)
+C:\WIN98\SYSTEM\crpe32.dll=$(WinSysPath)
+C:\WIN98\SYSTEM\implode.dll=$(AppPath)
+C:\WIN98\SYSTEM\ccsdk32.dll=$(WinSysPath)
+C:\WIN98\SYSTEM\crpaig32.dll=$(WinSysPath)
+C:\WIN98\SYSTEM\crxlat32.dll=$(WinSysPath)
+C:\WIN98\SYSTEM\p2bact.dll=$(WinSysPath)
+C:\WIN98\SYSTEM\p2bbde.dll=$(WinSysPath)
+C:\WIN98\SYSTEM\p2bbnd.dll=$(WinSysPath)
+C:\WIN98\SYSTEM\p2bbtrv.dll=$(WinSysPath)
+C:\WIN98\SYSTEM\p2bdao.dll=$(WinSysPath)
+C:\WIN98\SYSTEM\p2bxbse.dll=$(WinSysPath)
+C:\WIN98\SYSTEM\p2ctbtrv.dll=$(WinSysPath)
+C:\WIN98\SYSTEM\p2ctdao.dll=$(WinSysPath)
+C:\WIN98\SYSTEM\p2iract.dll=$(WinSysPath)
+C:\WIN98\SYSTEM\p2irdao.dll=$(WinSysPath)
+C:\WIN98\SYSTEM\p2ixbse.dll=$(WinSysPath)
+C:\WIN98\SYSTEM\p2lodbc.dll=$(WinSysPath)
+C:\WIN98\SYSTEM\p2oesbse.dll=$(WinSysPath)
+C:\WIN98\SYSTEM\p2sacl.dll=$(WinSysPath)
+C:\WIN98\SYSTEM\p2sdb2.dll=$(WinSysPath)
+C:\WIN98\SYSTEM\p2sevt.dll=$(WinSysPath)
+C:\WIN98\SYSTEM\p2sexsr.dll=$(WinSysPath)
+C:\WIN98\SYSTEM\p2sifmx.dll=$(WinSysPath)
+C:\WIN98\SYSTEM\p2smapi.dll=$(WinSysPath)
+C:\WIN98\SYSTEM\p2smon.dll=$(WinSysPath)
+C:\WIN98\SYSTEM\p2sodbc.dll=$(WinSysPath)
+C:\WIN98\SYSTEM\p2sora7.dll=$(WinSysPath)
+C:\WIN98\SYSTEM\p2soutlk.dll=$(WinSysPath)
+C:\WIN98\SYSTEM\p2srepl.dll=$(WinSysPath)
+C:\WIN98\SYSTEM\p2ssql.dll=$(WinSysPath)
+C:\WIN98\SYSTEM\p2ssyb10.dll=$(WinSysPath)
+C:\WIN98\SYSTEM\p2strack.dll=$(WinSysPath)
+C:\WIN98\SYSTEM\p2swblg.dll=$(WinSysPath)
+C:\WIN98\SYSTEM\u2ddisk.dll=$(WinSysPath)
+C:\WIN98\SYSTEM\u2dmapi.dll=$(WinSysPath)
+C:\WIN98\SYSTEM\u2dnotes.dll=$(WinSysPath)
+C:\WIN98\SYSTEM\u2dpost.dll=$(WinSysPath)
+C:\WIN98\SYSTEM\u2dvim.dll=$(WinSysPath)
+C:\WIN98\SYSTEM\u2fcr.dll=$(WinSysPath)
+C:\WIN98\SYSTEM\u2fdif.dll=$(WinSysPath)
+C:\WIN98\SYSTEM\u2fhtml.dll=$(WinSysPath)
+C:\WIN98\SYSTEM\u2fodbc.dll=$(WinSysPath)
+C:\WIN98\CRYSTAL\u2frdef.dll=$(AppPath)
+C:\WIN98\SYSTEM\u2frec.dll=$(WinSysPath)
+C:\WIN98\SYSTEM\u2frtf.dll=$(WinSysPath)
+C:\WIN98\SYSTEM\u2fsepv.dll=$(WinSysPath)
+C:\WIN98\SYSTEM\u2ftext.dll=$(WinSysPath)
+C:\WIN98\SYSTEM\u2fwks.dll=$(WinSysPath)
+C:\WIN98\SYSTEM\u2fwordw.dll=$(WinSysPath)
+C:\WIN98\SYSTEM\u2fxls.dll=$(WinSysPath)
+C:\WIN98\CRYSTAL\u25dts.dll=$(AppPath)
+C:\WIN98\CRYSTAL\u25store.dll=$(AppPath)
+C:\WIN98\CRYSTAL\u25total.dll=$(AppPath)
+C:\WIN98\SYSTEM\u2l2000.dll=$(WinSysPath)
+C:\WIN98\CRYSTAL\u2lbar.dll=$(AppPath)
+C:\WIN98\SYSTEM\u2lcom.dll=$(WinSysPath)
+C:\WIN98\CRYSTAL\u2ldts.dll=$(AppPath)
+C:\WIN98\CRYSTAL\u2lesbse.dll=$(AppPath)
+C:\WIN98\CRYSTAL\u2lexch.dll=$(AppPath)
+C:\WIN98\CRYSTAL\u2lfinra.dll=$(AppPath)
+C:\WIN98\CRYSTAL\u2lsamp1.dll=$(AppPath)
+C:\WIN98\SYSTEM\MSCOMM32.OCX=$(WinSysPath)
+C:\WIN98\SYSTEM\Mscomctl.ocx=$(WinSysPath)
+C:\Program Files\CODING\VB98\Wizards\PDWizard\SETUP.EXE=$(AppPath)
+C:\Program Files\CODING\VB98\Wizards\PDWizard\SETUP1.EXE=$(WinPath)
+C:\WIN98\SYSTEM\VB6STKIT.DLL=$(WinSysPathSysFile)
+C:\Program Files\CODING\VB98\Wizards\PDWizard\ST6UNST.EXE=$(WinPath)
+C:\WIN98\SYSTEM\MSCHRT20.OCX=$(WinSysPath)
+D:\coding\PhoneSystem\PhoneSystem.exe=$(AppPath)
+E:\WINNT\system32\MSVBVM60.DLL=$(WinSysPathSysFile)
+E:\Program Files\coding\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\OLEAUT32.DLL=$(WinSysPathSysFile)
+E:\Program Files\coding\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\OLEPRO32.DLL=$(WinSysPathSysFile)
+E:\Program Files\coding\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\ASYCFILT.DLL=$(WinSysPathSysFile)
+E:\Program Files\coding\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\STDOLE2.TLB=$(WinSysPathSysFile)
+E:\Program Files\coding\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\COMCAT.DLL=$(WinSysPathSysFile)
+D:\coding\Globals\OCX\TxtBox.ocx=$(WinSysPath)
+E:\WINNT\system32\COMDLG32.OCX=$(WinSysPath)
+E:\Program Files\coding\Lstpro20\BIN\Flp32x20.ocx=$(WinSysPath)
+E:\WINNT\system32\mfc42.dll=$(WinSysPathSysFile)
+E:\Program Files\coding\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\MSVCRT40.DLL=$(WinSysPathSysFile)
+E:\WINNT\system32\msvcrt.dll=$(WinSysPathSysFile)
+D:\coding\Globals\OCX\DateControl.ocx=$(WinSysPath)
+E:\WINNT\system32\MSMASK32.OCX=$(WinSysPath)
+E:\WINNT\system32\MSCOMM32.OCX=$(WinSysPath)
+E:\WINNT\system32\MSCHRT20.OCX=$(WinSysPath)
+E:\WINNT\system32\MSWINSCK.OCX=$(WinSysPath)
+E:\WINNT\system32\MSCOMCTL.OCX=$(WinSysPath)
+E:\WINNT\system32\TABCTL32.OCX=$(WinSysPath)
+E:\Program Files\coding\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\MDAC_TYP.EXE=$(AppPath)
+E:\Program Files\coding\Microsoft Visual Studio\VB98\Wizards\PDWizard\SETUP.EXE=$(AppPath)
+E:\Program Files\coding\Microsoft Visual Studio\VB98\Wizards\PDWizard\SETUP1.EXE=$(WinPath)
+E:\WINNT\system32\VB6STKIT.DLL=$(WinSysPathSysFile)
+E:\Program Files\coding\Microsoft Visual Studio\VB98\Wizards\PDWizard\ST6UNST.EXE=$(WinPath)
+C:\Program Files\coding\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\OLEAUT32.DLL=$(WinSysPathSysFile)
+C:\Program Files\coding\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\OLEPRO32.DLL=$(WinSysPathSysFile)
+C:\Program Files\coding\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\ASYCFILT.DLL=$(WinSysPathSysFile)
+C:\Program Files\coding\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\STDOLE2.TLB=$(WinSysPathSysFile)
+C:\Program Files\coding\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\COMCAT.DLL=$(WinSysPathSysFile)
+D:\coding\SimpleInvoice\TxtBox.ocx=$(WinSysPath)
+C:\Program Files\coding\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\MSVCRT40.DLL=$(WinSysPathSysFile)
+D:\coding\SimpleInvoice\DateControl.ocx=$(WinSysPath)
+C:\WIN98\SYSTEM\Mswinsck.ocx=$(WinSysPath)
+C:\Program Files\coding\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\MDAC_TYP.EXE=$(AppPath)
+C:\Program Files\coding\Microsoft Visual Studio\VB98\Wizards\PDWizard\SETUP.EXE=$(AppPath)
+C:\Program Files\coding\Microsoft Visual Studio\VB98\Wizards\PDWizard\SETUP1.EXE=$(WinPath)
+C:\Program Files\coding\Microsoft Visual Studio\VB98\Wizards\PDWizard\ST6UNST.EXE=$(WinPath)
+D:\coding\PhoneSystem\PhoneSystem.mdb=$(AppPath)
+D:\coding\PhoneSystem\PhoneSystem.bmp=$(AppPath)
+E:\Program Files\Common Files\System\ado\msado26.tlb=$(WinSysPath)
+E:\WINNT\system32\TxtBox.ocx=$(WinSysPath)
+E:\WINNT\system32\Flp32x20.ocx=$(WinSysPath)
+E:\WINNT\system32\DateControl.ocx=$(WinSysPath)
+D:\coding\PhoneSystem\PHONESYSTEM.HLP=$(AppPath)
+E:\Program Files\Common Files\System\ado\msado25.tlb=$(WinSysPath)
+E:\WINNT\system32\MSADODC.OCX=$(WinSysPath)
+E:\WINNT\system32\msstdfmt.dll=$(WinSysPath)
+C:\WINNT\system32\msvbvm60.dll=$(WinSysPathSysFile)
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\OLEAUT32.DLL=$(WinSysPathSysFile)
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\OLEPRO32.DLL=$(WinSysPathSysFile)
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\ASYCFILT.DLL=$(WinSysPathSysFile)
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\STDOLE2.TLB=$(WinSysPathSysFile)
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\COMCAT.DLL=$(WinSysPathSysFile)
+C:\WINNT\system32\scrrun.dll=$(WinSysPath)
+C:\WINNT\system32\msvcrt.dll=$(WinSysPathSysFile)
+C:\WINNT\system32\TxtBox.ocx=$(WinSysPath)
+C:\WINNT\system32\comdlg32.ocx=$(WinSysPath)
+C:\Program Files\ListPro3\BIN\Flp32a30.ocx=$(WinSysPath)
+C:\WINNT\system32\atl.dll=$(WinSysPathSysFile)
+C:\WINNT\system32\DateControl.ocx=$(WinSysPath)
+C:\WINNT\system32\MSMASK32.OCX=$(WinSysPath)
+C:\WINNT\system32\MSCOMM32.OCX=$(WinSysPath)
+C:\WINNT\system32\MSCHRT20.OCX=$(WinSysPath)
+C:\WINNT\system32\MSADODC.OCX=$(WinSysPath)
+C:\WINNT\system32\MSSTDFMT.DLL=$(WinSysPath)
+C:\WINNT\system32\MSWINSCK.OCX=$(WinSysPath)
+C:\WINNT\system32\MSCAL.OCX=$(WinSysPath)
+C:\WINNT\system32\TABCTL32.OCX=$(WinSysPath)
+C:\coding\PhoneSystem\PHONESYSTEM.HLP=$(AppPath)
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\SETUP.EXE=$(AppPath)
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\SETUP1.EXE=$(WinPath)
+C:\WINNT\system32\VB6STKIT.DLL=$(WinSysPathSysFile)
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\ST6UNST.EXE=$(WinPath)
+C:\coding\PhoneSystem\PhoneSystem.mdb=$(AppPath)
+C:\coding\PhoneSystem\PhoneSystem.bmp=$(AppPath)
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\MDAC_TYP.EXE=$(AppPath)
+
+[Package|Phone System Setup Package|Configure Shared Files]
+Applicable=Yes
+C:\coding\PhoneSystem\PhoneSystem.exe=No
+C:\WIN98\SYSTEM\implode.dll=No
+C:\WIN98\CRYSTAL\u2frdef.dll=No
+C:\WIN98\CRYSTAL\u25dts.dll=No
+C:\WIN98\CRYSTAL\u25store.dll=No
+C:\WIN98\CRYSTAL\u25total.dll=No
+C:\WIN98\CRYSTAL\u2lbar.dll=No
+C:\WIN98\CRYSTAL\u2ldts.dll=No
+C:\WIN98\CRYSTAL\u2lesbse.dll=No
+C:\WIN98\CRYSTAL\u2lexch.dll=No
+C:\WIN98\CRYSTAL\u2lfinra.dll=No
+C:\WIN98\CRYSTAL\u2lsamp1.dll=No
+D:\coding\PhoneSystem\PhoneSystem.exe=No
+E:\Program Files\coding\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\MDAC_TYP.EXE=No
+C:\Program Files\coding\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\MDAC_TYP.EXE=No
+D:\coding\PhoneSystem\PhoneSystem.mdb=No
+D:\coding\PhoneSystem\PhoneSystem.bmp=No
+D:\coding\PhoneSystem\PHONESYSTEM.HLP=No
+C:\coding\PhoneSystem\PHONESYSTEM.HLP=No
+C:\coding\PhoneSystem\PhoneSystem.mdb=No
+C:\coding\PhoneSystem\PhoneSystem.bmp=No
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\MDAC_TYP.EXE=No
+
+[Package|Phone System Setup Package|Distribution]
+Type=single
+Size=
+Title=PhoneSystem
+
+[Package|Phone System Setup Package|IconGroups]
+Group0=PhoneSystem
+PrivateGroup0=-1
+Parent0=$(Programs)
+
+[Package|Phone System Setup Package|PhoneSystem]
+Icon1=PhoneSystem.exe
+Title1=PhoneSystem
+StartIn1=$(AppPath)
+Key1=Icon1
+
+[Package|Phone System Setup Package|Package]
+PackageFolder=c:\coding\Package\phonesystem
+ProjectFolder=C:\coding\PhoneSystem
+ServerSideCab=
+File1=c:\coding\Package\phonesystem\setup.exe
+File2=c:\coding\Package\phonesystem\Setup.Lst
+File3=c:\coding\Package\phonesystem\PhoneSystem.CAB
+Handler1=PDWizard.FolderDplySubWiz
+Handler2=PDWizard.WebPostDplySubWiz

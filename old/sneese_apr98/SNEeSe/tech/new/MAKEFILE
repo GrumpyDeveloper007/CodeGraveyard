@@ -1,0 +1,19 @@
+spcdis: spcdis.o memory.o screen.o spc700.o machine.o options.o
+	g++ -o spcdis spcdis.o memory.o screen.o spc700.o machine.o options.o -lncurses
+
+test: spcdis
+	spcdis test.bin 
+
+tar: *.C *.h Makefile test.bin 
+	tar -cvf spcdis.tar *.C *.h Makefile test.bin README.UNIX! README.1ST spcdis.gz
+backup: tar
+	mv backup/spcdis.tar.gz backup/spcdis.tar.gz.old
+	gzip spcdis.tar
+	mv spcdis.tar.gz backup/.
+
+
+spcdis.C: memory.h screen.h machine.h
+memory.C: memory.h machine.h
+screen.C: screen.h machine.h
+machine.C: machine.h
+spc700.C: spc700.h memory.h quicktable.h machine.h

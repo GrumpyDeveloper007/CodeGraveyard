@@ -1,0 +1,7 @@
+CNotifyDll = 2, 24, 746, 611, 
+FConfigure = 62, 30, 755, 642, C, 154, 8, 663, 408, C
+DataAccessInterface = 20, 12, 755, 667, C
+GlobalDeclarations = 25, 25, 716, 613, C
+GlobalFunctions = 17, 9, 753, 668, C
+Stuff = 8, 301, 753, 648, 
+StringClass = 0, 0, 0, 0, C

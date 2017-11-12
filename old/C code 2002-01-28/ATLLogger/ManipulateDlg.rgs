@@ -1,0 +1,25 @@
+HKCR
+{
+	ATLLogApp.ManipulateDlg.1 = s 'ManipulateDlg Class'
+	{
+		CLSID = s '{C82C8B66-C218-11D3-9739-0050047D51FB}'
+	}
+	ATLLogApp.ManipulateDlg = s 'ManipulateDlg Class'
+	{
+		CLSID = s '{C82C8B66-C218-11D3-9739-0050047D51FB}'
+		CurVer = s 'ATLLogApp.ManipulateDlg.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {C82C8B66-C218-11D3-9739-0050047D51FB} = s 'ManipulateDlg Class'
+		{
+			ProgID = s 'ATLLogApp.ManipulateDlg.1'
+			VersionIndependentProgID = s 'ATLLogApp.ManipulateDlg'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Apartment'
+			}
+			'TypeLib' = s '{C82C8B56-C218-11D3-9739-0050047D51FB}'
+		}
+	}
+}

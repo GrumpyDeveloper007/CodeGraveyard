@@ -1,0 +1,211 @@
+ beeper
+
+ Timestamp is 3890ba09 (Thu Jan 27 21:35:05 2000)
+
+ Preferred load address is 10000000
+
+ Start         Length     Name                   Class
+ 0001:00000000 00002edfH .text                   CODE
+ 0002:00000000 000000d0H .idata$5                DATA
+ 0002:000000d0 00000238H .rdata                  DATA
+ 0002:00000308 00000064H .idata$2                DATA
+ 0002:0000036c 00000014H .idata$3                DATA
+ 0002:00000380 000000d0H .idata$4                DATA
+ 0002:00000450 000002caH .idata$6                DATA
+ 0002:00000720 000000a3H .edata                  DATA
+ 0003:00000000 00000170H .data                   DATA
+ 0003:00000170 0000008dH .bss                    DATA
+ 0004:00000000 00000118H .rsrc$01                DATA
+ 0004:00000120 00000b38H .rsrc$02                DATA
+
+  Address         Publics by Value              Rva+Base     Lib:Object
+
+ 0001:00000000       ?UpdateRegistry@CBeeper@@SGJH@Z 10001000 f i beeper.obj
+ 0001:00000290       _DllMain@12                10001290 f   beeper.obj
+ 0001:00000530       _DllCanUnloadNow@0         10001530 f   beeper.obj
+ 0001:00000540       _DllGetClassObject@12      10001540 f   beeper.obj
+ 0001:00000630       _DllRegisterServer@0       10001630 f   beeper.obj
+ 0001:00000820       _DllUnregisterServer@0     10001820 f   beeper.obj
+ 0001:00000940       ?AtlW2AHelper@@YGPADPADPBGHI@Z 10001940 f i beeper.obj
+ 0001:00000970       ?GetObjectDescription@?$CComCoClass@VCBeeper@@$1?CLSID_Beeper@@3U_GUID@@B@ATL@@SGPBDXZ 10001970 f i beeper.obj
+ 0001:00000970       ?GetCategoryMap@?$CComCoClass@VCBeeper@@$1?CLSID_Beeper@@3U_GUID@@B@ATL@@SAPBU_ATL_CATMAP_ENTRY@2@XZ 10001970 f i beeper.obj
+ 0001:00000980       ?CreateInstance@?$CComCreator@V?$CComObjectCached@VCComClassFactory@ATL@@@ATL@@@ATL@@SGJPAXABU_GUID@@PAPAX@Z 10001980 f i beeper.obj
+ 0001:00000a10       ?CreateInstance@?$CComCreator2@V?$CComCreator@V?$CComObject@VCBeeper@@@ATL@@@ATL@@V?$CComFailCreator@$0?HPPLPOPA@@2@@ATL@@SGJPAXABU_GUID@@PAPAX@Z 10001a10 f i beeper.obj
+ 0001:00000ac0       ?GetControllingUnknown@CBeeper@@UAEPAUIUnknown@@XZ 10001ac0 f i beeper.obj
+ 0001:00000ad0       ?GetTypeInfoCount@?$IDispatchImpl@UIBeeper@@$1?IID_IBeeper@@3U_GUID@@B$1?LIBID_BeeperLib@@3U3@B$00$0A@VCComTypeInfoHolder@ATL@@@ATL@@UAGJPAI@Z 10001ad0 f i beeper.obj
+ 0001:00000ae0       ?GetTypeInfo@?$IDispatchImpl@UIBeeper@@$1?IID_IBeeper@@3U_GUID@@B$1?LIBID_BeeperLib@@3U3@B$00$0A@VCComTypeInfoHolder@ATL@@@ATL@@UAGJIKPAPAUITypeInfo@@@Z 10001ae0 f i beeper.obj
+ 0001:00000d70       ??1?$CComPtr@UITypeInfo@@@ATL@@QAE@XZ 10001d70 f i beeper.obj
+ 0001:00000d80       ?GetIDsOfNames@?$IDispatchImpl@UIBeeper@@$1?IID_IBeeper@@3U_GUID@@B$1?LIBID_BeeperLib@@3U3@B$00$0A@VCComTypeInfoHolder@ATL@@@ATL@@UAGJABU_GUID@@PAPAGIKPAJ@Z 10001d80 f i beeper.obj
+ 0001:00000ea0       ?Invoke@?$IDispatchImpl@UIBeeper@@$1?IID_IBeeper@@3U_GUID@@B$1?LIBID_BeeperLib@@3U3@B$00$0A@VCComTypeInfoHolder@ATL@@@ATL@@UAGJJABU_GUID@@KGPAUtagDISPPARAMS@@PAUtagVARIANT@@PAUtagEXCEPINFO@@PAI@Z 10001ea0 f i beeper.obj
+ 0001:00001130       ??0?$CComObjectRootEx@VCComMultiThreadModel@ATL@@@ATL@@QAE@XZ 10002130 f i beeper.obj
+ 0001:00001150       ?AddRef@?$CComObjectCached@VCComClassFactory@ATL@@@ATL@@UAGKXZ 10002150 f i beeper.obj
+ 0001:00001190       ?Release@?$CComObjectCached@VCComClassFactory@ATL@@@ATL@@UAGKXZ 10002190 f i beeper.obj
+ 0001:00001210       ?QueryInterface@?$CComObjectCached@VCComClassFactory@ATL@@@ATL@@UAGJABU_GUID@@PAPAX@Z 10002210 f i beeper.obj
+ 0001:00001310       ?Release@?$CComObject@VCBeeper@@@ATL@@UAGKXZ 10002310 f i beeper.obj
+ 0001:00001380       ?QueryInterface@?$CComObject@VCBeeper@@@ATL@@UAGJABU_GUID@@PAPAX@Z 10002380 f i beeper.obj
+ 0001:00001480       ?CreateInstance@?$CComInternalCreator@V?$CComTearOffObject@VCBeeper2@@@ATL@@@ATL@@SGJPAXABU_GUID@@PAPAX@Z 10002480 f i beeper.obj
+ 0001:000015c0       ?InterfaceSupportsErrorInfo@CBeeper2@@UAGJABU_GUID@@@Z 100025c0 f i beeper.obj
+ 0001:00001620       ?InlineIsEqualGUID@ATL@@YAHABU_GUID@@0@Z 10002620 f i beeper.obj
+ 0001:00001660       ?AddRef@?$CComTearOffObject@VCBeeper2@@@ATL@@UAGKXZ 10002660 f i beeper.obj
+ 0001:00001660       ?AddRef@?$CComObject@VCBeeper@@@ATL@@UAGKXZ 10002660 f i beeper.obj
+ 0001:00001680       ?Release@?$CComTearOffObject@VCBeeper2@@@ATL@@UAGKXZ 10002680 f i beeper.obj
+ 0001:000016d0       ?QueryInterface@?$CComTearOffObject@VCBeeper2@@@ATL@@UAGJABU_GUID@@PAPAX@Z 100026d0 f i beeper.obj
+ 0001:000016f0       ?Close@CRegKey@ATL@@QAEJXZ 100026f0 f i beeper.obj
+ 0001:00001710       ?Create@CRegKey@ATL@@QAEJPAUHKEY__@@PBDPADKKPAU_SECURITY_ATTRIBUTES@@PAK@Z 10002710 f i beeper.obj
+ 0001:00001780       ?Open@CRegKey@ATL@@QAEJPAUHKEY__@@PBDK@Z 10002780 f i beeper.obj
+ 0001:000017d0       ?SetKeyValue@CRegKey@ATL@@QAEJPBD00@Z 100027d0 f i beeper.obj
+ 0001:00001840       ?SetValue@CRegKey@ATL@@QAEJPBD0@Z 10002840 f i beeper.obj
+ 0001:00001870       ?RegisterProgID@CComModule@ATL@@SAJPBD00@Z 10002870 f i beeper.obj
+ 0001:00001950       ?UnregisterClassHelper@CComModule@ATL@@QAGJABU_GUID@@PBD1@Z 10002950 f i beeper.obj
+ 0001:00001c60       ?RecurseDeleteKey@CRegKey@ATL@@QAEJPBD@Z 10002c60 f i beeper.obj
+ 0001:00001df0       ?AtlComPtrAssign@ATL@@YGPAUIUnknown@@PAPAU2@PAU2@@Z 10002df0 f i beeper.obj
+ 0001:00001e20       ?AtlModuleAddTermFunc@ATL@@YGJPAU_ATL_MODULE@1@P6GXK@ZK@Z 10002e20 f i beeper.obj
+ 0001:00001e80       ?AtlModuleLoadTypeLib@ATL@@YGJPAU_ATL_MODULE@1@PBGPAPAGPAPAUITypeLib@@@Z 10002e80 f i beeper.obj
+ 0001:00002010       ?ObjectMain@CComObjectRootBase@ATL@@SGX_N@Z 10003010 f i beeper.obj
+ 0001:00002020       ?_Creator@CComObjectRootBase@ATL@@SGJPAXABU_GUID@@PAPAXK@Z 10003020 f i beeper.obj
+ 0001:00002040       ?CreateInstance@CComClassFactory@ATL@@UAGJPAUIUnknown@@ABU_GUID@@PAPAX@Z 10003040 f i beeper.obj
+ 0001:000020a0       ?LockServer@CComClassFactory@ATL@@UAGJH@Z 100030a0 f i beeper.obj
+ 0001:000020d0       ?Cleanup@CComTypeInfoHolder@ATL@@SGXK@Z 100030d0 f i beeper.obj
+ 0001:00002140       ??0stringdispid@CComTypeInfoHolder@ATL@@QAE@XZ 10003140 f i beeper.obj
+ 0001:00002150       ?GetTI@CComTypeInfoHolder@ATL@@QAEJK@Z 10003150 f i beeper.obj
+ 0001:000023c0       ??_H@YGXPAXIHP6EX0@Z@Z     100033c0 f i beeper.obj
+ 0001:000023f0       ??0CBeeper@@QAE@XZ         100033f0 f   beepobj.obj
+ 0001:00002480       ?Beep@CBeeper@@UAGJXZ      10003480 f   beepobj.obj
+ 0001:00002600       ?get_Count@CBeeper@@UAGJPAJ@Z 10003600 f   beepobj.obj
+ 0001:00002620       ?get_Item@CBeeper@@UAGJJPAPAG@Z 10003620 f   beepobj.obj
+ 0001:00002660       ?get__NewEnum@CBeeper@@UAGJPAPAUIUnknown@@@Z 10003660 f   beepobj.obj
+ 0001:00002810       ?AtlA2WHelper@@YGPAGPAGPBDHI@Z 10003810 f i beepobj.obj
+ 0001:00002840       ?AddRef@?$CComObject@V?$CComEnum@UIEnumVARIANT@@$1?IID_IEnumVARIANT@@3U_GUID@@BUtagVARIANT@@V?$_Copy@UtagVARIANT@@@ATL@@VCComMultiThreadModel@6@@ATL@@@ATL@@UAGKXZ 10003840 f i beepobj.obj
+ 0001:00002860       ?Release@?$CComObject@V?$CComEnum@UIEnumVARIANT@@$1?IID_IEnumVARIANT@@3U_GUID@@BUtagVARIANT@@V?$_Copy@UtagVARIANT@@@ATL@@VCComMultiThreadModel@6@@ATL@@@ATL@@UAGKXZ 10003860 f i beepobj.obj
+ 0001:000028f0       ?QueryInterface@?$CComObject@V?$CComEnum@UIEnumVARIANT@@$1?IID_IEnumVARIANT@@3U_GUID@@BUtagVARIANT@@V?$_Copy@UtagVARIANT@@@ATL@@VCComMultiThreadModel@6@@ATL@@@ATL@@UAGJABU_GUID@@PAPAX@Z 100038f0 f i beepobj.obj
+ 0001:000029f0       ?Reset@?$CComEnumImpl@UIEnumVARIANT@@$1?IID_IEnumVARIANT@@3U_GUID@@BUtagVARIANT@@V?$_Copy@UtagVARIANT@@@ATL@@@ATL@@UAGJXZ 100039f0 f i beepobj.obj
+ 0001:00002a00       ??0?$CComEnumImpl@UIEnumVARIANT@@$1?IID_IEnumVARIANT@@3U_GUID@@BUtagVARIANT@@V?$_Copy@UtagVARIANT@@@ATL@@@ATL@@QAE@XZ 10003a00 f i beepobj.obj
+ 0001:00002a20       ?Next@?$CComEnumImpl@UIEnumVARIANT@@$1?IID_IEnumVARIANT@@3U_GUID@@BUtagVARIANT@@V?$_Copy@UtagVARIANT@@@ATL@@@ATL@@UAGJKPAUtagVARIANT@@PAK@Z 10003a20 f i beepobj.obj
+ 0001:00002b10       ?Skip@?$CComEnumImpl@UIEnumVARIANT@@$1?IID_IEnumVARIANT@@3U_GUID@@BUtagVARIANT@@V?$_Copy@UtagVARIANT@@@ATL@@@ATL@@UAGJK@Z 10003b10 f i beepobj.obj
+ 0001:00002b50       ?Clone@?$CComEnumImpl@UIEnumVARIANT@@$1?IID_IEnumVARIANT@@3U_GUID@@BUtagVARIANT@@V?$_Copy@UtagVARIANT@@@ATL@@@ATL@@UAGJPAPAUIEnumVARIANT@@@Z 10003b50 f i beepobj.obj
+ 0001:00002c90       ??0?$CComEnum@UIEnumVARIANT@@$1?IID_IEnumVARIANT@@3U_GUID@@BUtagVARIANT@@V?$_Copy@UtagVARIANT@@@ATL@@VCComMultiThreadModel@6@@ATL@@QAE@XZ 10003c90 f i beepobj.obj
+ 0001:00002cc0       ??1?$CComEnumImpl@UIEnumVARIANT@@$1?IID_IEnumVARIANT@@3U_GUID@@BUtagVARIANT@@V?$_Copy@UtagVARIANT@@@ATL@@@ATL@@QAE@XZ 10003cc0 f i beepobj.obj
+ 0001:00002d10       ?AtlInternalQueryInterface@ATL@@YGJPAXPBU_ATL_INTMAP_ENTRY@1@ABU_GUID@@PAPAX@Z 10003d10 f i beepobj.obj
+ 0001:00002de0       __purecall                 10003de0 f   prebeep.obj
+ 0001:00002df0       _malloc                    10003df0 f   prebeep.obj
+ 0001:00002e50       _free                      10003e50 f   prebeep.obj
+ 0001:00002e90       ??2@YAPAXI@Z               10003e90 f   prebeep.obj
+ 0001:00002ea0       ??3@YAXPAX@Z               10003ea0 f   prebeep.obj
+ 0001:00002eb0       __chkstk                   10003eb0 f   LIBCMT:chkstk.obj
+ 0001:00002eb0       __alloca_probe             10003eb0 f   LIBCMT:chkstk.obj
+ 0002:00000000       __imp__RegCreateKeyExA@36  10004000     advapi32:ADVAPI32.dll
+ 0002:00000004       __imp__RegCloseKey@4       10004004     advapi32:ADVAPI32.dll
+ 0002:00000008       __imp__RegOpenKeyExA@20    10004008     advapi32:ADVAPI32.dll
+ 0002:0000000c       __imp__RegDeleteKeyA@8     1000400c     advapi32:ADVAPI32.dll
+ 0002:00000010       __imp__RegEnumKeyExA@32    10004010     advapi32:ADVAPI32.dll
+ 0002:00000014       __imp__RegSetValueExA@24   10004014     advapi32:ADVAPI32.dll
+ 0002:00000018       \177ADVAPI32_NULL_THUNK_DATA 10004018     advapi32:ADVAPI32.dll
+ 0002:0000001c       __imp__GetSystemInfo@4     1000401c     kernel32:KERNEL32.dll
+ 0002:00000020       __imp__GetVersionExA@4     10004020     kernel32:KERNEL32.dll
+ 0002:00000024       __imp__HeapCreate@12       10004024     kernel32:KERNEL32.dll
+ 0002:00000028       __imp__InitializeCriticalSection@4 10004028     kernel32:KERNEL32.dll
+ 0002:0000002c       __imp__LeaveCriticalSection@4 1000402c     kernel32:KERNEL32.dll
+ 0002:00000030       __imp__EnterCriticalSection@4 10004030     kernel32:KERNEL32.dll
+ 0002:00000034       __imp__HeapAlloc@12        10004034     kernel32:KERNEL32.dll
+ 0002:00000038       __imp__WideCharToMultiByte@32 10004038     kernel32:KERNEL32.dll
+ 0002:0000003c       __imp__HeapDestroy@4       1000403c     kernel32:KERNEL32.dll
+ 0002:00000040       __imp__DisableThreadLibraryCalls@4 10004040     kernel32:KERNEL32.dll
+ 0002:00000044       __imp__lstrlenA@4          10004044     kernel32:KERNEL32.dll
+ 0002:00000048       __imp__lstrcmpiA@8         10004048     kernel32:KERNEL32.dll
+ 0002:0000004c       __imp__lstrcpyA@8          1000404c     kernel32:KERNEL32.dll
+ 0002:00000050       __imp__MultiByteToWideChar@24 10004050     kernel32:KERNEL32.dll
+ 0002:00000054       __imp__lstrcatA@8          10004054     kernel32:KERNEL32.dll
+ 0002:00000058       __imp__DebugBreak@0        10004058     kernel32:KERNEL32.dll
+ 0002:0000005c       __imp__DeleteCriticalSection@4 1000405c     kernel32:KERNEL32.dll
+ 0002:00000060       __imp__HeapFree@12         10004060     kernel32:KERNEL32.dll
+ 0002:00000064       __imp__GetShortPathNameA@12 10004064     kernel32:KERNEL32.dll
+ 0002:00000068       __imp__GetModuleHandleA@4  10004068     kernel32:KERNEL32.dll
+ 0002:0000006c       __imp__GetModuleFileNameA@12 1000406c     kernel32:KERNEL32.dll
+ 0002:00000070       __imp__lstrlenW@4          10004070     kernel32:KERNEL32.dll
+ 0002:00000074       __imp__InterlockedDecrement@4 10004074     kernel32:KERNEL32.dll
+ 0002:00000078       __imp__InterlockedIncrement@4 10004078     kernel32:KERNEL32.dll
+ 0002:0000007c       \177KERNEL32_NULL_THUNK_DATA 1000407c     kernel32:KERNEL32.dll
+ 0002:00000080       __imp__SetErrorInfo@8      10004080     oleaut32:OLEAUT32.dll
+ 0002:00000084       __imp__CreateErrorInfo@4   10004084     oleaut32:OLEAUT32.dll
+ 0002:00000088       __imp__LoadRegTypeLib@20   10004088     oleaut32:OLEAUT32.dll
+ 0002:0000008c       __imp__SysAllocString@4    1000408c     oleaut32:OLEAUT32.dll
+ 0002:00000090       __imp__VariantCopy@8       10004090     oleaut32:OLEAUT32.dll
+ 0002:00000094       __imp__SysStringLen@4      10004094     oleaut32:OLEAUT32.dll
+ 0002:00000098       __imp__LoadTypeLib@8       10004098     oleaut32:OLEAUT32.dll
+ 0002:0000009c       __imp__SysFreeString@4     1000409c     oleaut32:OLEAUT32.dll
+ 0002:000000a0       __imp__RegisterTypeLib@12  100040a0     oleaut32:OLEAUT32.dll
+ 0002:000000a4       __imp__VariantClear@4      100040a4     oleaut32:OLEAUT32.dll
+ 0002:000000a8       \177OLEAUT32_NULL_THUNK_DATA 100040a8     oleaut32:OLEAUT32.dll
+ 0002:000000ac       __imp__CharNextA@4         100040ac     user32:USER32.dll
+ 0002:000000b0       __imp__MessageBeep@4       100040b0     user32:USER32.dll
+ 0002:000000b4       __imp__LoadStringA@16      100040b4     user32:USER32.dll
+ 0002:000000b8       \177USER32_NULL_THUNK_DATA 100040b8     user32:USER32.dll
+ 0002:000000bc       __imp__ProgIDFromCLSID@8   100040bc     ole32:ole32.dll
+ 0002:000000c0       __imp__CoCreateInstance@20 100040c0     ole32:ole32.dll
+ 0002:000000c4       __imp__StringFromCLSID@8   100040c4     ole32:ole32.dll
+ 0002:000000c8       __imp__CoTaskMemFree@4     100040c8     ole32:ole32.dll
+ 0002:000000cc       \177ole32_NULL_THUNK_DATA  100040cc     ole32:ole32.dll
+ 0002:000000d0       _IID_IBeeper               100040d0     beeper.obj
+ 0002:000000e0       _LIBID_BeeperLib           100040e0     beeper.obj
+ 0002:000000f0       _CLSID_Beeper              100040f0     beeper.obj
+ 0002:00000100       ?szLS32@?1??RegisterClassHelper@CComModule@ATL@@QAGJABU_GUID@@PBD1IK@Z@4QBDB 10004100     beeper.obj
+ 0002:00000110       ?szThreadingModel@?1??RegisterClassHelper@CComModule@ATL@@QAGJABU_GUID@@PBD1IK@Z@4QBDB 10004110     beeper.obj
+ 0002:00000120       ?szBoth@?1??RegisterClassHelper@CComModule@ATL@@QAGJABU_GUID@@PBD1IK@Z@4QBDB 10004120     beeper.obj
+ 0002:00000128       ?szIPS32@?1??RegisterClassHelper@CComModule@ATL@@QAGJABU_GUID@@PBD1IK@Z@4QBDB 10004128     beeper.obj
+ 0002:00000138       ?szVIProgID@?1??RegisterClassHelper@CComModule@ATL@@QAGJABU_GUID@@PBD1IK@Z@4QBDB 10004138     beeper.obj
+ 0002:00000154       ?szProgID@?1??RegisterClassHelper@CComModule@ATL@@QAGJABU_GUID@@PBD1IK@Z@4QBDB 10004154     beeper.obj
+ 0002:0000015c       ??_7?$CComObjectCached@VCComClassFactory@ATL@@@ATL@@6B@ 1000415c     beeper.obj
+ 0002:00000170       ??_7CComClassFactory@ATL@@6B@ 10004170     beeper.obj
+ 0002:00000184       ??_7?$CComObject@VCBeeper@@@ATL@@6B@ 10004184     beeper.obj
+ 0002:000001b8       ?_entries@?1??_GetEntries@CBeeper@@SGPBU_ATL_INTMAP_ENTRY@ATL@@XZ@4QBU34@B 100041b8     beeper.obj
+ 0002:000001e8       ?_entries@?1??_GetEntries@CComClassFactory@ATL@@SGPBU_ATL_INTMAP_ENTRY@3@XZ@4QBU43@B 100041e8     beeper.obj
+ 0002:00000200       ?_entries@?1??_GetEntries@CBeeper2@@SGPBU_ATL_INTMAP_ENTRY@ATL@@XZ@4QBU34@B 10004200     beeper.obj
+ 0002:00000218       ??_7?$CComTearOffObject@VCBeeper2@@@ATL@@6B@ 10004218     beeper.obj
+ 0002:00000228       ??_7CBeeper@@6B@           10004228     beepobj.obj
+ 0002:00000258       ??_7?$CComObject@V?$CComEnum@UIEnumVARIANT@@$1?IID_IEnumVARIANT@@3U_GUID@@BUtagVARIANT@@V?$_Copy@UtagVARIANT@@@ATL@@VCComMultiThreadModel@6@@ATL@@@ATL@@6B@ 10004258     beepobj.obj
+ 0002:00000278       ?_entries@?1??_GetEntries@?$CComEnum@UIEnumVARIANT@@$1?IID_IEnumVARIANT@@3U_GUID@@BUtagVARIANT@@V?$_Copy@UtagVARIANT@@@ATL@@VCComMultiThreadModel@6@@ATL@@SGPBU_ATL_INTMAP_ENTRY@3@XZ@4QBU43@B 10004278     beepobj.obj
+ 0002:00000290       __fltused                  10004290     prebeep.obj
+ 0002:00000298       _IID_IUnknown              10004298     uuid:unknwn_i_guid0.obj
+ 0002:000002a8       _CLSID_StdComponentCategoriesMgr 100042a8     uuid:guids_guid180.obj
+ 0002:000002b8       _IID_ICatRegister          100042b8     uuid:comcat_i_guid2.obj
+ 0002:000002c8       _IID_ISupportErrorInfo     100042c8     uuid:oaidl_i_guid14.obj
+ 0002:000002d8       _IID_IErrorInfo            100042d8     uuid:oaidl_i_guid12.obj
+ 0002:000002e8       _GUID_NULL                 100042e8     uuid:cguid_i_guid0.obj
+ 0002:000002f8       _IID_IEnumVARIANT          100042f8     uuid:oaidl_i_guid5.obj
+ 0002:00000308       __IMPORT_DESCRIPTOR_KERNEL32 10004308     kernel32:KERNEL32.dll
+ 0002:0000031c       __IMPORT_DESCRIPTOR_USER32 1000431c     user32:USER32.dll
+ 0002:00000330       __IMPORT_DESCRIPTOR_ADVAPI32 10004330     advapi32:ADVAPI32.dll
+ 0002:00000344       __IMPORT_DESCRIPTOR_ole32  10004344     ole32:ole32.dll
+ 0002:00000358       __IMPORT_DESCRIPTOR_OLEAUT32 10004358     oleaut32:OLEAUT32.dll
+ 0002:0000036c       __NULL_IMPORT_DESCRIPTOR   1000436c     kernel32:KERNEL32.dll
+ 0003:00000048       ?GUID_ATLVer30@ATL@@3U_GUID@@A 10005048     beeper.obj
+ 0003:00000058       ??_C@_0M@KAE@Acme?4Beeper?$AA@ 10005058     beeper.obj
+ 0003:00000064       ??_C@_05FGFK@CLSID?$AA@    10005064     beeper.obj
+ 0003:0000006c       ??_C@_0O@NBIC@Acme?4Beeper?41?$AA@ 1000506c     beeper.obj
+ 0003:0000007c       ?data@?$_CComCreatorData@V?$CComInternalCreator@V?$CComTearOffObject@VCBeeper2@@@ATL@@@ATL@@@ATL@@2U_ATL_CREATORDATA@2@A 1000507c     beeper.obj
+ 0003:00000080       __GUID_6384d584_0fdb_11cf_8700_00aa0053006d 10005080     beeper.obj
+ 0003:00000090       __GUID_00020400_0000_0000_c000_000000000046 10005090     beeper.obj
+ 0003:000000a0       __GUID_00020412_0000_0000_c000_000000000046 100050a0     beeper.obj
+ 0003:000000b0       ?_tih@?$IDispatchImpl@UIBeeper@@$1?IID_IBeeper@@3U_GUID@@B$1?LIBID_BeeperLib@@3U3@B$00$0A@VCComTypeInfoHolder@ATL@@@ATL@@1VCComTypeInfoHolder@2@A 100050b0     beeper.obj
+ 0003:000000d0       __GUID_00000001_0000_0000_c000_000000000046 100050d0     beeper.obj
+ 0003:000000e0       __GUID_df0b3d60_548f_101b_8e65_08002b2bd119 100050e0     beeper.obj
+ 0003:000000f0       ??_C@_04MDHG@?4tlb?$AA@    100050f0     beeper.obj
+ 0003:000000f8       ?arr@@3PAPBGA              100050f8     beepobj.obj
+ 0003:00000108       ??_C@_1O@KKIP@?$AAB?$AAe?$AAe?$AAp?$AAe?$AAr?$AA?$AA@ 10005108     beepobj.obj
+ 0003:00000118       ??_C@_19PNLO@?$AAF?$AAr?$AAo?$AAm?$AA?$AA@ 10005118     beepobj.obj
+ 0003:00000124       ??_C@_1M@NINN@?$AAW?$AAo?$AAr?$AAl?$AAd?$AA?$AA@ 10005124     beepobj.obj
+ 0003:00000130       ??_C@_1M@DLCF@?$AAH?$AAe?$AAl?$AAl?$AAo?$AA?$AA@ 10005130     beepobj.obj
+ 0003:0000013c       ??_C@_0O@NKPL@Unknown?5Error?$AA@ 1000513c     beepobj.obj
+ 0003:0000014c       ??_C@_1BO@NNAB@?$AAT?$AAo?$AAo?$AA?5?$AAm?$AAa?$AAn?$AAy?$AA?5?$AAb?$AAe?$AAe?$AAp?$AAs?$AA?$AA@ 1000514c     beepobj.obj
+ 0003:00000170       ?_pModule@ATL@@3PAVCComModule@1@A 10005170     beeper.obj
+ 0003:00000178       ?_Module@@3VCComModule@ATL@@A 10005178     beeper.obj
+ 0003:000001fc       ??_C@_00A@?$AA@            100051fc     beeper.obj
+
+ entry point at        0000:00000000
+
+ Static symbols
+
+ 0001:00001db0       ?AtlGetDirLen@ATL@@YGIPBG@Z 10002db0 f   beeper.obj
+
+ 48 bytes saved through ICF
+

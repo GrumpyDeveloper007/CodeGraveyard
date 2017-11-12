@@ -1,0 +1,86 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<!--Converted with LaTeX2HTML 96.1-h (September 30, 1996) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
+<HTML>
+<HEAD>
+<TITLE>2.2 Linking with MIDAS</TITLE>
+<META NAME="description" CONTENT="2.2 Linking with MIDAS">
+<META NAME="keywords" CONTENT="prgguide">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<LINK REL=STYLESHEET HREF="prgguide.css">
+</HEAD>
+<BODY LANG="EN" >
+ <A NAME="tex2html143" HREF="node8.html"><IMG WIDTH=37 HEIGHT=24 ALIGN=BOTTOM ALT="next" SRC="../icons/next_motif.gif"></A> <A NAME="tex2html141" HREF="node5.html"><IMG WIDTH=26 HEIGHT=24 ALIGN=BOTTOM ALT="up" SRC="../icons/up_motif.gif"></A> <A NAME="tex2html135" HREF="node6.html"><IMG WIDTH=63 HEIGHT=24 ALIGN=BOTTOM ALT="previous" SRC="../icons/previous_motif.gif"></A> <A NAME="tex2html145" HREF="node1.html"><IMG WIDTH=65 HEIGHT=24 ALIGN=BOTTOM ALT="contents" SRC="../icons/contents_motif.gif"></A>  <BR>
+<B> Next:</B> <A NAME="tex2html144" HREF="node8.html">2.3 An example program</A>
+<B>Up:</B> <A NAME="tex2html142" HREF="node5.html">2 Getting started</A>
+<B> Previous:</B> <A NAME="tex2html136" HREF="node6.html">2.1 Compiling with MIDAS</A>
+<BR> <P>
+<H1><A NAME="SECTION00320000000000000000">2.2 Linking with MIDAS</A></H1>
+<P>
+If your program uses MIDAS Sound System, you naturally need to link with the
+MIDAS libraries as well. This section describes how to do that on each
+platform supported.
+<P>
+<H2><A NAME="SECTION00321000000000000000">2.2.1 Windows NT/95</A></H2>
+<P>
+Under the Win32 platform, applications can link with MIDAS either statically
+or dynamically. Unless there is a specific need to link with MIDAS
+statically, dynamic linking is recommended. Delphi users need to use dynamic
+linking always.
+<P>
+When linking with MIDAS statically, simply link in the library file
+corresponding to your development platform. All MIDAS libraries are located
+in the <TT>lib/</TT> subdirectory of the distribution. Watcom C/C++ users
+need to link with the file <TT>midasnt_watcom.lib</TT>, and Visual
+C/C++ users with <TT>midasnt_visualc.lib</TT>. Depending on your
+configuration, you may need to add the <TT>lib/</TT> subdirectory into
+your ``library paths'' list. When MIDAS is linked into the application
+statically, the .exe is self-contained and no MIDAS <TT>.dll</TT> files
+are needed.
+<P>
+Dynamic linking is done by linking with the appropriate MIDAS import library
+instead of the static linking library. In addition, the MIDAS Dynamic Link
+Library (<TT>midasXX.dll</TT>) needs to be placed in a suitable directory
+-- either to the same directory with the program executable, or in some
+directory in the user's PATH. The import library names correspond to the
+<TT>.dll</TT> name: <TT>midasXX_visualc.lib</TT> for Visual C/C++ and
+<TT>midasXX_watcom.lib</TT> for Watcom C/C++. (the XX stands for the
+MIDAS version number).
+<P>
+Delphi users do not need a separate import library -- using the interface
+unit <TT>midasdll.pas</TT> adds the necessary references to the
+<TT>.dll</TT> automatically. Note that running the program under the
+Delphi IDE without the <TT>.dll</TT> available can cause strange error
+messages.
+<P>
+<H2><A NAME="SECTION00322000000000000000">MS-DOS</A></H2>
+<P>
+As MS-DOS doesn't support dynamic linking, only a static link library is
+provided for MS-DOS. You'll simply need to link file <TT>midasdos.lib</TT>
+from the <TT>lib/</TT> subdirectory of the MIDAS distribution, and your
+program is ready to use MIDAS Sound System. The executable is fully
+self-contained, and no additional files are needed.
+<P>
+Note that some versions of the Watcom Linker are not case-sensitive by
+default, and you'll need to use case-sensitive linking with MIDAS. To do
+that, simply add <TT>option caseexact</TT> to your linker directives.
+<P>
+<H2><A NAME="SECTION00323000000000000000">2.2.3 Linux</A></H2>
+<P>
+For Linux, both dynamic and static libraries are provided. To link your
+program with MIDAS, add the MIDAS library directory to your library directory
+list (gcc option <TT>-L</TT>), and link the library in using the GCC option
+<TT>-lmidas</TT>. Depending on whether you are building a statically or
+dynamically linked program, GCC will automatically select the correct
+library.
+<P>
+<HR><A NAME="tex2html143" HREF="node8.html"><IMG WIDTH=37 HEIGHT=24 ALIGN=BOTTOM ALT="next" SRC="../icons/next_motif.gif"></A> <A NAME="tex2html141" HREF="node5.html"><IMG WIDTH=26 HEIGHT=24 ALIGN=BOTTOM ALT="up" SRC="../icons/up_motif.gif"></A> <A NAME="tex2html135" HREF="node6.html"><IMG WIDTH=63 HEIGHT=24 ALIGN=BOTTOM ALT="previous" SRC="../icons/previous_motif.gif"></A> <A NAME="tex2html145" HREF="node1.html"><IMG WIDTH=65 HEIGHT=24 ALIGN=BOTTOM ALT="contents" SRC="../icons/contents_motif.gif"></A>  <BR>
+<B> Next:</B> <A NAME="tex2html144" HREF="node8.html">2.3 An example program</A>
+<B>Up:</B> <A NAME="tex2html142" HREF="node5.html">2 Getting started</A>
+<B> Previous:</B> <A NAME="tex2html136" HREF="node6.html">2.1 Compiling with MIDAS</A>
+<P><ADDRESS>
+<I>Petteri Kangaslampi <BR>
+Mon Jan 27 00:15:29 EET 1997</I>
+</ADDRESS>
+</BODY>
+</HTML>

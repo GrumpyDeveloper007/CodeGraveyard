@@ -1,0 +1,131 @@
+[Root]
+Most Recent Package=Standard Setup Package 1
+
+
+[Package|Standard Setup Package 1|Root]
+SubWizProgID=PDWizard.SetupPkgSubWiz
+BuildFolder=D:\coding\Package\webtest
+
+[Package|Standard Setup Package 1|Configure DAO ISAMs]
+Applicable=Yes
+Xbase=No
+Excel=No
+Exchange=No
+Text=No
+Jet 2.x=Yes
+Lotus=No
+Paradox=No
+
+[Package|Standard Setup Package 1|Configure DAO ODBC]
+JetWorkspace=
+ODBCDirect=
+
+[Package|Standard Setup Package 1|Files Found]
+
+[Package|Standard Setup Package 1|Files Released]
+gbhltv32.dll=
+
+[Package|Standard Setup Package 1|Missing Dependency Information]
+E:\WINNT\system32\TxtBox.ocx=
+
+[Package|Standard Setup Package 1|Out-of-Date Dependency Information]
+
+[Package|Standard Setup Package 1|Files Added]
+
+[Package|Standard Setup Package 1|Files Removed]
+
+[Package|Standard Setup Package 1|Files In Project]
+D:\coding\webtest\Holly.exe=Yes
+E:\WINNT\system32\Msvbvm60.dll=Yes
+E:\Program Files\coding\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\OLEAUT32.DLL=Yes
+E:\Program Files\coding\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\OLEPRO32.DLL=Yes
+E:\Program Files\coding\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\ASYCFILT.DLL=Yes
+E:\Program Files\coding\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\STDOLE2.TLB=Yes
+E:\Program Files\coding\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\COMCAT.DLL=Yes
+E:\Program Files\Common Files\Microsoft Shared\DAO\DAO350.DLL=Yes
+E:\WINNT\system32\MSJET35.DLL=Yes
+E:\WINNT\system32\MSJTER35.DLL=Yes
+E:\WINNT\system32\MSJINT35.DLL=Yes
+E:\WINNT\system32\vbajet32.dll=Yes
+E:\WINNT\system32\expsrv.dll=Yes
+E:\WINNT\system32\MSRD2X35.DLL=Yes
+E:\WINNT\system32\MSREPL35.DLL=Yes
+E:\Program Files\coding\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\MSVCRT40.DLL=Yes
+E:\WINNT\system32\VB5DB.DLL=Yes
+E:\WINNT\system32\TxtBox.ocx=Yes
+E:\WINNT\system32\Comdlg32.ocx=Yes
+E:\Program Files\coding\Lstpro20\BIN\Flp32x20.ocx=Yes
+E:\WINNT\system32\mfc42.dll=Yes
+E:\WINNT\system32\msvcrt.dll=Yes
+E:\WINNT\system32\Mscomctl.ocx=Yes
+E:\WINNT\system32\MSINET.OCX=Yes
+E:\Program Files\coding\Microsoft Visual Studio\VB98\Wizards\PDWizard\SETUP.EXE=Yes
+E:\Program Files\coding\Microsoft Visual Studio\VB98\Wizards\PDWizard\SETUP1.EXE=Yes
+E:\WINNT\system32\VB6STKIT.DLL=Yes
+E:\Program Files\coding\Microsoft Visual Studio\VB98\Wizards\PDWizard\ST6UNST.EXE=Yes
+
+[Package|Standard Setup Package 1|Configure Registry Files]
+Applicable=No
+
+[Package|Standard Setup Package 1|Configure Remote Servers]
+Applicable=No
+
+[Package|Standard Setup Package 1|Install Locations]
+D:\coding\webtest\Holly.exe=$(AppPath)
+E:\WINNT\system32\Msvbvm60.dll=$(WinSysPathSysFile)
+E:\Program Files\coding\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\OLEAUT32.DLL=$(WinSysPathSysFile)
+E:\Program Files\coding\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\OLEPRO32.DLL=$(WinSysPathSysFile)
+E:\Program Files\coding\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\ASYCFILT.DLL=$(WinSysPathSysFile)
+E:\Program Files\coding\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\STDOLE2.TLB=$(WinSysPathSysFile)
+E:\Program Files\coding\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\COMCAT.DLL=$(WinSysPathSysFile)
+E:\Program Files\Common Files\Microsoft Shared\DAO\DAO350.DLL=$(MSDAOPath)
+E:\WINNT\system32\MSJET35.DLL=$(WinSysPathSysFile)
+E:\WINNT\system32\MSJTER35.DLL=$(WinSysPathSysFile)
+E:\WINNT\system32\MSJINT35.DLL=$(WinSysPathSysFile)
+E:\WINNT\system32\vbajet32.dll=$(WinSysPathSysFile)
+E:\WINNT\system32\expsrv.dll=$(WinSysPathSysFile)
+E:\WINNT\system32\MSRD2X35.DLL=$(WinSysPathSysFile)
+E:\WINNT\system32\MSREPL35.DLL=$(WinSysPathSysFile)
+E:\Program Files\coding\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\MSVCRT40.DLL=$(WinSysPathSysFile)
+E:\WINNT\system32\VB5DB.DLL=$(WinSysPath)
+E:\WINNT\system32\TxtBox.ocx=$(WinSysPath)
+E:\WINNT\system32\Comdlg32.ocx=$(WinSysPath)
+E:\Program Files\coding\Lstpro20\BIN\Flp32x20.ocx=$(WinSysPath)
+E:\WINNT\system32\mfc42.dll=$(WinSysPathSysFile)
+E:\WINNT\system32\msvcrt.dll=$(WinSysPathSysFile)
+E:\WINNT\system32\Mscomctl.ocx=$(WinSysPath)
+E:\WINNT\system32\MSINET.OCX=$(WinSysPath)
+E:\Program Files\coding\Microsoft Visual Studio\VB98\Wizards\PDWizard\SETUP.EXE=$(AppPath)
+E:\Program Files\coding\Microsoft Visual Studio\VB98\Wizards\PDWizard\SETUP1.EXE=$(WinPath)
+E:\WINNT\system32\VB6STKIT.DLL=$(WinSysPathSysFile)
+E:\Program Files\coding\Microsoft Visual Studio\VB98\Wizards\PDWizard\ST6UNST.EXE=$(WinPath)
+
+[Package|Standard Setup Package 1|Configure Shared Files]
+Applicable=Yes
+D:\coding\webtest\Holly.exe=No
+
+[Package|Standard Setup Package 1|Distribution]
+Type=single
+Size=
+Title=Template
+
+[Package|Standard Setup Package 1|IconGroups]
+Group0=Template
+PrivateGroup0=-1
+Parent0=$(Programs)
+
+[Package|Standard Setup Package 1|Template]
+Icon1=Holly.exe
+Title1=Template
+StartIn1=$(AppPath)
+Key1=Icon1
+
+[Package|Standard Setup Package 1|Package]
+PackageFolder=D:\coding\Package\webtest
+ProjectFolder=D:\coding\webtest
+ServerSideCab=
+File1=D:\coding\Package\webtest\setup.exe
+File2=D:\coding\Package\webtest\Setup.Lst
+File3=D:\coding\Package\webtest\Holly.CAB
+Handler1=PDWizard.FolderDplySubWiz
+Handler2=PDWizard.WebPostDplySubWiz

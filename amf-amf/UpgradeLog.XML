@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="Amf">
+</Property><Property Name="Solution File" Value="E:\Transfer\amf-amf\Amf.sln">
+</Property><Property Name="Date" Value="17 August 2014">
+</Property><Property Name="Time" Value="10:58">
+</Property></Properties><Event ErrorLevel="0" Project="Amf" Source="Amf\Amf.csproj" Description="Project converted successfully">
+</Event><Event ErrorLevel="3" Project="Amf" Source="Amf\Amf.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="Amf.Tests" Source="Amf.Tests\Amf.Tests.csproj" Description="Project converted successfully">
+</Event><Event ErrorLevel="3" Project="Amf.Tests" Source="Amf.Tests\Amf.Tests.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="Amf.Utils.ConsoleParser" Source="Amf.Utils.ConsoleParser\Amf.Utils.ConsoleParser.csproj" Description="Project converted successfully">
+</Event><Event ErrorLevel="3" Project="Amf.Utils.ConsoleParser" Source="Amf.Utils.ConsoleParser\Amf.Utils.ConsoleParser.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="Amf.XmlVisualizer" Source="Amf.XmlVisualizer\Amf.XmlVisualizer.csproj" Description="Project converted successfully">
+</Event><Event ErrorLevel="3" Project="Amf.XmlVisualizer" Source="Amf.XmlVisualizer\Amf.XmlVisualizer.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="" Source="Amf.sln" Description="Solution converted successfully">
+</Event><Event ErrorLevel="3" Project="" Source="Amf.sln" Description="Converted">
+</Event><Event ErrorLevel="0" Project="Amf" Source="Amf\Amf.csproj" Description="Scan complete: Upgrade not required for project files.">
+</Event><Event ErrorLevel="0" Project="Amf.Tests" Source="Amf.Tests\Amf.Tests.csproj" Description="Scan complete: Upgrade not required for project files.">
+</Event><Event ErrorLevel="0" Project="Amf.Utils.ConsoleParser" Source="Amf.Utils.ConsoleParser\Amf.Utils.ConsoleParser.csproj" Description="Scan complete: Upgrade not required for project files.">
+</Event><Event ErrorLevel="0" Project="Amf.XmlVisualizer" Source="Amf.XmlVisualizer\Amf.XmlVisualizer.csproj" Description="Scan complete: Upgrade not required for project files.">
+</Event></UpgradeLog>

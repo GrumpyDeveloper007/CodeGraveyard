@@ -1,0 +1,381 @@
+#include <i86.h>
+#include <math.h>
+#include <conio.h>
+#include <fstream.h>
+#include <iostream.h>
+#include <time.h>
+#include "\coding\watcom\xavstuff\h\video.h"
+#include "\coding\watcom\XavStuff\h\fixed32.h"
+//#include "assem.h"
+
+const float _PI=3.141592654;
+float DistanceTable[65536];
+unsigned short ScanBufferLeft[200];
+unsigned short ScanBufferRight[200];
+//unsigned char *Screen=(unsigned char *)0x0a0000;
+unsigned char *Texture;
+
+short MinY=399,MaxY=0;
+float Ax=160,Ay=5,Bx=300,By=50,Cx=160,Cy=190,Dx=10,Dy=50;
+int IAx,IAy,IBx,IBy,ICx,ICy,IDx,IDy;
+ int TextureX=64 ,TextureY=64;
+ int i,t;
+
+ unsigned char *Buffer1,*Screen;
+ unsigned char CurrentPal[256*3];
+
+#include "..\XavStuff\h\pcx.h"
+PCXHeader HeaderInfo;
+
+
+
+void ScanConvert(int x1,int y1,int x2,int y2)   // To convert standard poly {
+ {
+ Fixed mx;   // slope of x
+ Fixed temp; // for swapping
+ Fixed x,y;  // source x and y screen coordinates
+ int TempX;  // Dark
+
+ if(y1 > y2) // make sure that edge goes from top to bottom
+  {
+  temp=x1;  // we need to swap the coordinates around
+  x1=x2;
+  x2=temp;
+
+  temp=y1;
+  y1=y2;
+  y2=temp;
+  }
+
+ if(y2!=y1 ) // initialize the slopes for stepping the edges
+  mx = (Int2Fixed(x2-x1)) / (y2-y1); // dx/dy
+
+ x=Int2Fixed(x1);
+ for(y=y1;y<=y2;y++)
+  {
+   TempX=Fixed2Int(x);
+   if (TempX<ScanBufferLeft[y])
+     ScanBufferLeft[y]=TempX;
+   if (TempX>ScanBufferRight[y])
+     ScanBufferRight[y]=TempX;
+  x+=mx;
+  }
+ }
+
+// Lots of revisions in this code
+//
+//
+void TexturePlot()
+ {
+ int i, t;
+ int YMul, TYPE;
+ int A, B, C, D; // Y values of points (Orded)
+ int StartX, EndX;
+ float SX, SY, DX, DY;
+ Fixed SXF,SYF,DXF,DYF;
+ int DXStep;
+ Fixed GXF,GYF,MGXF,MGYF;
+ float MSX, MSY, MDX, MDY;
+ Fixed MSXF,MSYF,MDXF,MDYF;
+ A=IAy;B=IBy;C=ICy;D=IDy;
+ if (A>B)
+  { i=A;A=B;B=i;}
+ if (B>C)
+  { i=B;B=C;C=i;}
+ if (C>D)
+  { i=C;C=D;D=i;}
+ if (A>B)
+  { i=A;A=B;B=i;}
+ if (B>C)
+  { i=B;B=C;C=i;}
+ if (A>B)
+  { i=A;A=B;B=i;}
+
+ if (IAy<=IBy && IAy<=ICy && IAy<=IDy)
+  { SX=0;SY=0;TYPE=1;
+  MSX=TextureX/(By-Ay); // Source in source gradient
+  MSY=0;
+  MDX=0;                // Destnation in source gradient
+  MDY=TextureY/(Dy-Ay);
+  }
+ else
+   if (ICy<=IAy && ICy<=IBy && ICy<=IDy)
+    { SX=TextureX; SY=TextureY; TYPE=2;
+    MSX=-(TextureX/(Dy-Cy)); // Source in source gradient
+    MSY=0;
+    MDX=0;                // Destnation in source gradient
+    MDY=-(TextureY/(By-Cy));
+    }
+   else
+     if (IBy<IAy && IBy<ICy && IBy<IDy)
+      { SX=TextureX; SY=0; TYPE=3;
+  MSX=0; // Source in source gradient
+  MSY=(TextureY/(Cy-By));
+  MDX=-(TextureX/(Ay-By));                // Destnation in source gradient
+  MDY=0;
+      }
+      else
+      if (IDy<IAy && IDy<IBy && IDy<ICy)
+        { SX=0; SY=TextureY;TYPE=4;
+  MSX=0; // Source in source gradient
+  MSY=-(TextureY/(Ay-Dy));
+  MDX=(TextureX/(Cy-Dy));                // Destnation in source gradient
+  MDY=0;
+        }
+ DX=SX;DY=SY;
+
+
+ YMul=(int)A*320;
+ SXF=Float2Fixed(SX);
+ SYF=Float2Fixed(SY);
+ DXF=Float2Fixed(DX);
+ DYF=Float2Fixed(SY);
+
+ MSXF=Float2Fixed(MSX);
+ MSYF=Float2Fixed(MSY);
+ MDXF=Float2Fixed(MDX);
+ MDYF=Float2Fixed(MSY);
+
+ for(i=A;i<B;i++)
+   {
+   StartX=ScanBufferLeft[i];
+   EndX=ScanBufferRight[i];
+   DXStep=EndX-StartX; // M1=length of line in destnation
+
+   SX=Fixed2Float(SXF);
+   SY=Fixed2Float(SYF);
+   DX=Fixed2Float(DXF);
+   DY=Fixed2Float(DYF);
+
+   GXF=Float2Fixed(DX);
+   GYF=Float2Fixed(DY);
+   MGXF=Float2Fixed(((SX-DX)/DXStep));
+   MGYF=Float2Fixed(((SY-DY)/DXStep));
+   YMul+=StartX;
+   for(t=0;t<DXStep;t++)
+     {
+     Screen[(int) (t+YMul) ]=Buffer1[(int) ( Fixed2Int(GXF)+Fixed2Int(GYF)*TextureX )&16383];
+     GXF+=MGXF;
+     GYF+=MGYF;
+     }
+   YMul+=320-StartX;
+//   SX+=MSX; // Next X line in source
+//   SY+=MSY; // Next Y line in source
+//   DX+=MDX;
+//   DY+=MDY;
+   SXF+=MSXF;
+   SYF+=MSYF; // Next Y line in source
+   DXF+=MDXF;
+   DYF+=MDYF;
+   }
+
+ if (TYPE==1)
+  {
+  if (B==IBy)  // Check right edge
+   {
+   SX=TextureX;SY=0;MSX=0;MSY=(TextureY/(Cy-By));
+   }
+  if (B==IDy)  // Check left edge
+   {
+   DX=0;DY=TextureY;MDX=(TextureX/(Cy-Dy));MDY=0;
+   }
+  }
+
+ if (TYPE==2)
+  {
+  if (B==IDy)
+   {
+   SX=0;SY=TextureY;MSX=0;MSY=-(TextureY/(Ay-Dy));
+   }
+  if (B==IBy)
+   {
+   DX=TextureX;DY=0;MDX=-(TextureX/(Ay-By));MDY=0;
+   }
+  }
+
+ if (TYPE==3)
+  {
+  if (B==ICy)
+   {
+   SX=TextureX;SY=TextureY;MSX=-(TextureY/(Dy-Cy));MSY=0;
+   }
+  if (B==IAy)
+   {
+   DX=0;DY=0;MDX=0;MDY=TextureY/(Dy-Ay);
+   }
+  }
+
+ if (TYPE==4)
+  {
+  if (B==IAy)
+   {
+   SX=0;SY=0;MSX=TextureX/(By-Ay);MSY=0;
+   }
+  if (B==ICy)
+   {
+   DX=TextureX;DY=TextureY;MDX=0;MDY=-(TextureX/(By-Cy));
+   }
+  }
+ for(i=B;i<C;i++)
+   {
+   StartX=ScanBufferLeft[i];
+   EndX=ScanBufferRight[i];
+   DXStep=EndX-StartX; // M1=length of line in destnation
+   GXF=Float2Fixed(DX);
+   GYF=Float2Fixed(DY);
+   MGXF=Float2Fixed(((SX-DX)/DXStep));
+   MGYF=Float2Fixed(((SY-DY)/DXStep));
+  YMul+=StartX;
+   for(t=0;t<DXStep;t++)
+     {
+     Screen[(int) (t+YMul) ]=Buffer1[(int) ( Fixed2Int(GXF)+Fixed2Int(GYF)*TextureX )&16383];
+     GXF+=MGXF;
+     GYF+=MGYF;
+     }
+   YMul+=320-StartX;
+   SX+=MSX; // Next X line in source
+   SY+=MSY; // Next Y line in source
+   DX+=MDX;
+   DY+=MDY;
+   }
+ if (TYPE==1)
+  {
+  if (C==IBy)  // Check right edge
+   {
+   SX=TextureX;SY=0;MSX=0;MSY=TextureY/(Cy-By);
+   }
+  if (C==IDy)  // Check left edge
+   {
+   DX=0;DY=TextureY;MDX=TextureX/(Cy-Dy);MDY=0;
+   }
+  }
+
+ if (TYPE==2)
+  {
+  if (C==IDy)
+   {
+   SX=0;SY=TextureY;MSX=0;MSY=-(TextureY/(Ay-Dy));
+   }
+  if (C==IBy)
+   {
+   DX=TextureX;DY=0;MDX=-(TextureX/(Ay-By));MDY=0;
+   }
+  }
+
+ if (TYPE==3)
+  {
+  if (C==ICy)
+   {
+   SX=TextureX;SY=TextureY;MSX=-(TextureY/(Dy-Cy));MSY=0;
+   }
+  if (C==IAy)
+   {
+   DX=0;DY=0;MDX=0;MDY=TextureY/(Dy-Ay);
+   }
+  }
+
+ if (TYPE==4)
+  {
+  if (C==IAy)
+   {
+   SX=0;SY=0;MSX=TextureX/(By-Ay);MSY=0;
+   }
+  if (C==ICy)
+   {
+   DX=TextureX;DY=TextureY;MDX=0;MDY=-(TextureX/(By-Cy));
+   }
+  }
+
+ for(i=C;i<D;i++)
+   {
+   StartX=ScanBufferLeft[i];
+   EndX=ScanBufferRight[i];
+   DXStep=EndX-StartX; // M1=length of line in destnation
+   GXF=Float2Fixed(DX);
+   GYF=Float2Fixed(DY);
+   MGXF=Float2Fixed(((SX-DX)/DXStep));
+   MGYF=Float2Fixed(((SY-DY)/DXStep));
+   YMul+=StartX;
+   for(t=0;t<DXStep;t++)
+     {
+     Screen[(int) (t+YMul) ]=Buffer1[(int) ( Fixed2Int(GXF)+Fixed2Int(GYF)*TextureX )&16383];
+     GXF+=MGXF;
+     GYF+=MGYF;
+     }
+   YMul+=320-StartX;
+   SX+=MSX; // Next X line in source
+   SY+=MSY; // Next Y line in source
+   DX+=MDX;
+   DY+=MDY;
+   }
+
+ }
+
+
+
+
+
+
+void main ()
+ {
+ clock_t Start,End;
+ int Frame=0;
+
+
+ Screen=(unsigned char*)0x0a0000;
+ Buffer1=new unsigned char[65536];
+
+ GetPCXInfo(&HeaderInfo,"texture.PCX");
+ GetPCXPicture(&HeaderInfo,"texture.PCX",Buffer1);
+ GetPCXPalette(&HeaderInfo,"texture.PCX",CurrentPal);
+
+
+ InitVideo();
+ SetPalette(CurrentPal,0,256);
+
+ Start=clock();
+ float ax1=30,ay1=-50,bx1=50,by1=50;
+ float cx1=-30,cy1=50,dx1=-50,dy1=-70;
+ float Angle=0;
+
+ while(!kbhit())
+ {
+ Angle+=0.01;
+ if (Angle>=_PI*2)
+  Angle=0;
+// ax1+=1;
+// if (ax1>80)
+//  ax1=40;
+ for(i=0;i<200;i++)     // Initialises Scanbuffer
+  {
+  ScanBufferLeft[i]=320;
+  ScanBufferRight[i]=0;
+  }
+ Ax=(ax1*sin(Angle)+ay1*cos(Angle))+160;
+ Ay=(-ax1*cos(Angle)+ay1*sin(Angle))+100;
+ Bx=(bx1*sin(Angle)+by1*cos(Angle))+160;
+ By=(-bx1*cos(Angle)+by1*sin(Angle))+100;
+ Cx=(cx1*sin(Angle)+cy1*cos(Angle))+160;
+ Cy=(-cx1*cos(Angle)+cy1*sin(Angle))+100;
+ Dx=(dx1*sin(Angle)+dy1*cos(Angle))+160;
+ Dy=(-dx1*cos(Angle)+dy1*sin(Angle))+100;
+ IAx=Ax;IAy=Ay;IBx=Bx;IBy=By;ICx=Cx;ICy=Cy;IDx=Dx;IDy=Dy; 
+
+ ScanConvert(IAx,IAy,IBx,IBy);
+ ScanConvert(IBx,IBy,ICx,ICy);
+ ScanConvert(ICx,ICy,IDx,IDy);
+ ScanConvert(IDx,IDy,IAx,IAy);
+   TexturePlot();
+    Frame++;
+  }
+
+ End=clock();
+ KillVideo();
+ cout << "Frame number :"<<Frame<<"   start,end :"<<Start<<" : "<<End<<endl;
+ cout << "Frames Per Second = " << (Frame*CLOCKS_PER_SEC)/(End-Start)<<endl;
+ cout << "\nCode By Dark Elf / Phobia"<<endl;
+ }
+
+
+
+

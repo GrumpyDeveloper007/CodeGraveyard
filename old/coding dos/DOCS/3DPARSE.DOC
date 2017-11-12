@@ -1,0 +1,146 @@
+3DO Classess Document - Written By Xavier / SCUDD
+-------------------------------------------------
+
+Rules of creation - All items are seperated by spaces so no space can occur
+                   within a data item!
+
+Note : OBJECT_STATIC & OBJECT_SPRITE are included a little differently than
+      OBJECT_SECTOR they are defined with the 3DOD_ instead of 3DO_ this
+      is essentially identical except that references to the index are NOT
+      used as the structures are created relative to the current
+      position within the DYNA tables! They are included into the map
+      by way of the 3DO_INCLUDE function NB: Do not try to include maps this
+      way cos you`ll stuff it up! Only 1 object should be defined per
+      included file (many polys & verts) and all offsets should be from 0
+      including textures.
+
+DEFINES - Used to speed up parsing!
++++++++
+
+DEFINE VERTEX num   - Max vertex number used
+DEFINE POLYGON num  - Max polygon number used
+DEFINE OBJECT num   - Max object number used
+DEFINE TREENODE num - Max tree node number used
+DEFINE GRAPHIC num  - Max gfx number used
+DEFINE TEXTURE num  - Max texture number used
+DEFINE CAMERA num   - Max camera number used
+DEFINE DYNA_VERTEX num   - Max vertex number used for dynamic items
+DEFINE DYNA_POLYGON num  - Max polygon number used for dynamic items
+DEFINE DYNA_OBJECT num   - Max object number used for dynamic items
+
+CLASSESS AS THEY WOULD APPEAR
++++++++++++++++++++++++++++++
+
+CLASS 3DO_VERTEX - Defines a vertex within 3D space
+ num x y z       - vertex number (int) location in 3D space (float)
+
+CLASS 3DO_VERTEX_LIGHT - Defines a vertex within 3D space
+ num x y z             - vertex number (int) location in 3D space (float)
+ light                 - light level (int)
+
+CLASS 3DO_VERTEX_2DMAP - Defines a vertex within 3D space
+ num x y z             - vertex number (int) location in 3D space (float)
+ txtfx txtfy           - front x y pixel offset in texture (float)
+ txtrx txtry           - rear x y pixel offset in texture (float)
+
+CLASS 3DO_POLYGON - Defines a polygon of type POLY_NORMAL
+ num numsides     - polygon number (int) number of sides for polygon (int)
+ vertexnum        - repeated numsides times, its the index to the vertex.(int)
+ colour           - colour of polygon
+
+CLASS 3DO_POLYGON_SHADE - Defines a polygon of type POLY_GSHADE
+ num numsides           - polygon number (int) number of sides for polygon (int)
+ vertexnum              - repeated numsides times, its the index to the vertex.(int)
+ colour                 - colour of polygon
+
+CLASS 3DO_POLYGON_TEXTURE - Defines a polygon of type POLY_TEXTUR
+ num numsides             - polygon number (int) number of sides for polygon (int)
+ vertexnum                - repeated numsides times, its the index to the vertex.(int)
+ txtp txtm txtn           - 3 cordinates for texture (Origin,M,N) (int)
+ texture                  - texture index (int)
+ sizex sizey              - set sizex sizey of texture (float)
+ offx offy                - offset x y of texture (int)
+
+CLASS 3DO_POLYGON_FLOOR   - Defines a polygon of type POLY_FLOOR
+ num numsides             - polygon number (int) number of sides for polygon (int)
+ vertexnum                - repeated numsides times, its the index to the vertex.(int)
+ txtp txtm txtn           - 3 cordinates for texture (Origin,M,N) (int)
+ texture                  - texture index (int)
+ sizex sizey              - set sizex sizey of texture (float)
+ offx offy                - offset x y of texture (int)
+
+CLASS 3DO_POLYGON_QTEXT   - Defines a polygon of type POLY_QTEXT
+ num numsides             - polygon number (int) number of sides for polygon (int)
+ vertexnum                - repeated numsides times, its the index to the vertex.(int)
+ txtp txtm txtn           - 3 cordinates for texture (Origin,M,N) (int)
+ texture                  - texture index (int)
+ sizex sizey              - set sizex sizey of texture (float)
+ offx offy                - offset x y of texture (int)
+
+CLASS 3DO_POLYGON_FRONT   - Defines a polygon of type POLY_FRONT
+ num numsides             - polygon number (int) number of sides for polygon (int)
+ vertexnum                - repeated numsides times, its the index to the vertex.(int)
+ texture                  - texture index (int)
+
+CLASS 3DO_POLYGON_REAR    - Defines a polygon of type POLY_REAR
+ num numsides             - polygon number (int) number of sides for polygon (int)
+ vertexnum                - repeated numsides times, its the index to the vertex.(int)
+ texture                  - texture index (int)
+
+CLASS 3DO_SECTOR     - Defines an object of type OBJECT_SECTOR
+ num                 - object number (int)
+ numverts numpolys   - number of vertices (int) number of polygons (int) 
+ firstvert firstpoly - first vertex (int) first polygon (int)
+
+CLASS 3DO_TREENODE - Defines a tree node
+ num               - treenode number (int)
+ type object       - type (0 - divisor , 1 - object) (int) object index (int)
+ plane position    - plane (X,Y,Z 0-2) (int) position (float)
+
+// NB tree is defined as follows 0,1,65535,65535,2,3,65535,65535,4,65535,65535
+//
+//     0
+//   1/ \2
+//     3/ \4
+
+CLASS 3DO_TREE     - Defines a tree
+ treenodenum       - index to tree node (int) if treenode=65535 end branch
+                    No need for a number of indexs count, since the
+                    recursive tree build function will finish so long as the
+                    index list contains no errors!
+
+CLASS 3DO_GRAPHIC  - Defines a graphic
+ num               - graphic number (int)
+ filename          - filename and path (string)
+
+CLASS 3DO_TEXTURE  - Defines a texture
+ num               - texture number (int)
+ graphic           - graphic number (int)
+ width height      - width (int) height (int)
+ currentframe      - current frame (int)
+ framemask         - frame mask (int)
+
+CLASS 3DO_PALETTE  - Grabs the palette from the specified pcx file
+ filename          - filename and path (string)
+
+CLASS 3DO_CAMERA   - Defines a camera
+ num               - camera number (int)
+ ox oy oz          - world co-ordinates of camera (float)
+ ax ay az          - Orientation of camera (int)
+
+CLASS 3DO_STATIC   - Used to include static (and only static!!!) objects
+ filename          - filename and path of static object (string)
+ texturenum        - index into texture for this object or first texture
+                     for multi texture objects (int)
+ ox oy oz          - world co-ordinates of object (float)
+ ax ay az          - Orientation of object
+
+CLASS 3DO_DYNAMIC  - Used to include dynamic (and only dynamic!!!) objects
+ filename          - filename and path of dynamic object (string)
+ texturenum        - index into texture for this object or first texture
+                     for multi texture objects (int)
+ ox oy oz          - world co-ordinates of object (float)
+ ax ay az          - Orientation of object
+
+CLASS 3DOD_???  - Identical to above but without num
+
