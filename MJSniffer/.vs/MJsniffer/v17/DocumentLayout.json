@@ -1,0 +1,74 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\Coding\\MJSniffer\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{EC2D7E72-9F4F-420F-B7D9-5D5109784A9D}|MJSniff\\MJsniffer.csproj|d:\\coding\\mjsniffer\\mjsniff\\mjsnifferform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EC2D7E72-9F4F-420F-B7D9-5D5109784A9D}|MJSniff\\MJsniffer.csproj|solutionrelative:mjsniff\\mjsnifferform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EC2D7E72-9F4F-420F-B7D9-5D5109784A9D}|MJSniff\\MJsniffer.csproj|d:\\coding\\mjsniffer\\mjsniff\\mjsnifferform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{EC2D7E72-9F4F-420F-B7D9-5D5109784A9D}|MJSniff\\MJsniffer.csproj|solutionrelative:mjsniff\\mjsnifferform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EC2D7E72-9F4F-420F-B7D9-5D5109784A9D}|MJSniff\\MJsniffer.csproj|d:\\coding\\mjsniffer\\mjsniff\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EC2D7E72-9F4F-420F-B7D9-5D5109784A9D}|MJSniff\\MJsniffer.csproj|solutionrelative:mjsniff\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "MJsnifferForm.cs",
+              "DocumentMoniker": "D:\\Coding\\MJSniffer\\MJSniff\\MJsnifferForm.cs",
+              "RelativeDocumentMoniker": "MJSniff\\MJsnifferForm.cs",
+              "ToolTip": "D:\\Coding\\MJSniffer\\MJSniff\\MJsnifferForm.cs*",
+              "RelativeToolTip": "MJSniff\\MJsnifferForm.cs*",
+              "ViewState": "AgIAAFIBAAAAAAAAAAAWwFoBAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-13T00:08:45.978Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\Coding\\MJSniffer\\MJSniff\\Program.cs",
+              "RelativeDocumentMoniker": "MJSniff\\Program.cs",
+              "ToolTip": "D:\\Coding\\MJSniffer\\MJSniff\\Program.cs",
+              "RelativeToolTip": "MJSniff\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-13T00:07:33.323Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "MJsnifferForm.cs [Design]",
+              "DocumentMoniker": "D:\\Coding\\MJSniffer\\MJSniff\\MJsnifferForm.cs",
+              "RelativeDocumentMoniker": "MJSniff\\MJsnifferForm.cs",
+              "ToolTip": "D:\\Coding\\MJSniffer\\MJSniff\\MJsnifferForm.cs [Design]*",
+              "RelativeToolTip": "MJSniff\\MJsnifferForm.cs [Design]*",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-13T00:06:33.516Z",
+              "EditorCaption": " [Design]"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
